@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,9 @@ pre{background:#f4f4f4;padding:10px;border-radius:6px;white-space:pre-wrap;font-
 footer{text-align:center;padding:15px;background:#111;color:#fff;margin-top:20px;font-size:14px}
 </style>
 </head>
-<body><header>
+<body>
+
+<header>
 <h1>Oil Token (OIL)</h1>
 <nav>
 <a href="#about">About</a>
@@ -34,11 +37,15 @@ footer{text-align:center;padding:15px;background:#111;color:#fff;margin-top:20px
 <a href="#buy">Buy</a>
 <a href="#contact">Contact</a>
 </nav>
-</header><section class="hero">
+</header>
+
+<section class="hero">
 <h2>Oil Token — Digital Gateway to Crude Oil</h2>
 <p>TIP-3 Jetton on TON — 1 OIL = 1 barrel (Total supply: 10,000,000,000)</p>
-<a href="https://raw.githubusercontent.com/IRANOILtoken/iranoil.github.io/707137de0755781cdd8c6fc2b690a80d037044a0/White%20paper" class="btn">📄 White Paper</a>
-</section><section id="about">
+<a href="https://raw.githubusercontent.com/IRANOILtoken/iranoil.github.io/main/White%20paper.pdf" class="btn" target="_blank">📄 White Paper</a>
+</section>
+
+<section id="about">
 <h3>Project Introduction & Features</h3>
 <p style="text-align:center; max-width:700px; margin:auto;">
 Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent, and global access to digital oil assets.
@@ -50,13 +57,17 @@ Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent,
 <div class="feature">Global accessibility</div>
 <div class="feature">Easily transferable & verifiable</div>
 </div>
-</section><section id="roadmap">
+</section>
+
+<section id="roadmap">
 <h3>Roadmap</h3>
 <div class="roadmap-phase">🚀 Phase 0 — Launch: Deploy Jetton contract, publish metadata, list in wallets, initial DEX liquidity</div>
 <div class="roadmap-phase">👥 Phase 1 — Accessibility: List on major DEX, activate community, attract holders, AMA sessions</div>
 <div class="roadmap-phase">🔗 Phase 2 — Adoption: Partnerships with Web3 projects, integrate into services, build payment tools</div>
 <div class="roadmap-phase">🌍 Phase 3 — Expansion: Strengthen liquidity, CEX listings, smart contract audit</div>
-</section><section id="tokenomics">
+</section>
+
+<section id="tokenomics">
 <h3>Tokenomics</h3>
 <div class="tokenomics">
 <p><b>Total Supply:</b> 10,000,000,000 tokens</p>
@@ -64,7 +75,9 @@ Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent,
 <p><b>Initial Distribution:</b> 1,000,000,000 tokens to Tonkeeper holders</p>
 <p><b>Remaining Tokens:</b> 4,000,000,000 distributed as Airdrops, Public Sale, Team & Community</p>
 </div>
-</section><section id="team">
+</section>
+
+<section id="team">
 <h3>Team</h3>
 <div class="team">
 <div class="member"><b>P.s</b><br>Digital Assets Specialist & Project Manager</div>
@@ -76,11 +89,15 @@ Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent,
 <div class="member"><b>Ms.S</b><br>Project Program Manager</div>
 <div class="member"><b>Ms.F</b><br>Public Relations Manager</div>
 </div>
-</section><section id="exchange">
+</section>
+
+<section id="exchange">
 <h3>Oil Exchange</h3>
 <p class="center"><strong>Coming Soon</strong></p>
 <p class="center">Trading pair OIL / TON interface will be available later.</p>
-</section><section id="buy">
+</section>
+
+<section id="buy">
 <h3>Buy Oil Token (Official Seller)</h3>
 <p class="center">Only the project owner can sell tokens. Payments via TON, OIL transfer handled by owner.</p>
 <label>Owner TON Wallet Address:</label>
@@ -96,11 +113,22 @@ Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent,
 <button id="instrBtn">Show Payment Instructions</button>
 </div>
 <pre id="instructions"></pre>
-</section><section id="contact">
-<h3>Contact</h3>
-<p class="center">Telegram: <a href="https://t.me/Oiltokenofficial">t.me/Oiltokenofficial</a></p>
+</section>
+
+<section id="contact">
+<h3>Contact & Social Links</h3>
+<div class="center">
+  <a href="https://t.me/Oiltokenofficial">Telegram</a> |
+  <a href="https://instagram.com/oiltokenofficial">Instagram</a> |
+  <a href="https://x.com/oiltoken_">X</a> |
+  <a href="https://github.com/Oiltokenofficial">GitHub</a>
+</div>
 <p class="center">Email: <a href="mailto:Oiltokenofficial@gmail.com">Oiltokenofficial@gmail.com</a></p>
-</section><footer>© 2025 Oil Token</footer><script>
+</section>
+
+<footer>© 2025 Oil Token</footer>
+
+<script>
 const ownerAddr = document.getElementById('ownerAddress').value;
 const priceEl = document.getElementById('price');
 const amountEl = document.getElementById('amount');
@@ -127,4 +155,7 @@ instrBtn.addEventListener('click',()=>{
         instructions.textContent = "Please enter valid price and amount.";
     }
 });
-</script></body>
+</script>
+
+</body>
+</html>
