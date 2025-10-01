@@ -3,52 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oil Token (Oil)</title>
+  <title>Oil Token (OIL)</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f9f9f9; color:#222; }
+    body { margin:0; font-family: Arial, sans-serif; background:#f4f8fb; color:#222; }
     header { background:#111; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
-    header h1 { margin:0; font-size:24px; }
+    header h1 { margin:0; font-size:24px; display:flex; align-items:center; gap:10px; }
     nav a { color:#fff; margin:0 10px; text-decoration:none; }
-    .hero { text-align:center; padding:80px 20px; background:#222; color:#fff; }
-    .hero h2 { font-size:36px; margin-bottom:10px; }
-    .hero p { font-size:18px; margin-bottom:20px; }
-    .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#0077ff; cursor:pointer; }
+    .hero { text-align:center; padding:80px 20px; background:#0077ff; color:#fff; }
+    .hero h2 { font-size:42px; margin-bottom:10px; }
+    .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#ff6600; }
     section { padding:60px 20px; max-width:1000px; margin:auto; }
-    h3 { text-align:center; margin-bottom:40px; }
+    h3 { text-align:center; margin-bottom:40px; font-size:28px; }
     .features { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
     .feature { background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); width:250px; text-align:center; }
-    .roadmap-phase, .tokenomics, .exchange { background:#fff; margin:15px 0; padding:15px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+    .roadmap-phase, .tokenomics { background:#fff; margin:15px 0; padding:15px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
     .team { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px; }
     .member { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; }
+    .exchange { background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; max-width:500px; margin:auto; }
     .socials a { margin:0 10px; text-decoration:none; font-weight:bold; color:#0077ff; }
     footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-    input { padding:8px; border-radius:6px; border:1px solid #ccc; width:100px; }
+    img.logo { width:30px; vertical-align:middle; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Oil Token (Oil)</h1>
+    <h1><img src="https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png" class="logo"> Oil Token (OIL)</h1>
     <nav>
       <a href="#about">About</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#tokenomics">Tokenomics</a>
-      <a href="#exchange">Exchange</a>
       <a href="#team">Team</a>
+      <a href="#exchange">Exchange</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Oil Token (Oil)</h2>
-    <p>Digital Gateway to Crude Oil — 1 token = 1 barrel of crude oil</p>
-    <a href="WhitePaper.pdf" class="btn" target="_blank">📄 White Paper</a>
+    <h2>Oil Token (OIL)</h2>
+    <p>Unlocking Digital Access to Crude Oil — 1 OIL = 1 barrel of crude oil</p>
+    <a href="WhitePaper.html" class="btn">📄 White Paper</a>
   </section>
 
   <section id="about">
     <h3>Project Introduction & Features</h3>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent, and global access to digital oil assets.
-    </p>
     <div class="features">
       <div class="feature">Fixed supply: 10,000,000,000 tokens</div>
       <div class="feature">Fully released ownership, no minting</div>
@@ -60,32 +57,19 @@
 
   <section id="roadmap">
     <h3>Roadmap</h3>
-    <div class="roadmap-phase">🚀 Phase 0 — Launch: Deploy Jetton contract, publish metadata, list in wallets, initial DEX liquidity</div>
-    <div class="roadmap-phase">👥 Phase 1 — Accessibility: List on major DEX, activate community, attract holders, AMA sessions</div>
-    <div class="roadmap-phase">🔗 Phase 2 — Adoption: Partnerships with Web3 projects, integrate into services, build payment tools</div>
-    <div class="roadmap-phase">🌍 Phase 3 — Expansion: Strengthen liquidity, CEX listings, smart contract audit</div>
+    <div class="roadmap-phase">🚀 Phase 0 — Launch</div>
+    <div class="roadmap-phase">👥 Phase 1 — Accessibility</div>
+    <div class="roadmap-phase">🔗 Phase 2 — Adoption</div>
+    <div class="roadmap-phase">🌍 Phase 3 — Expansion</div>
   </section>
 
   <section id="tokenomics">
     <h3>Tokenomics</h3>
     <div class="tokenomics">
       <p><b>Total Supply:</b> 10,000,000,000 tokens</p>
-      <p><b>Locked Supply (50%):</b> 5,000,000,000 tokens — released over ~11 years</p>
+      <p><b>Locked Supply:</b> 5,000,000,000 tokens — released over ~11 years</p>
       <p><b>Initial Distribution:</b> 1,000,000,000 tokens to Tonkeeper holders</p>
-      <p><b>Remaining Tokens:</b> 4,000,000,000 distributed as Airdrops, Public Sale, Team & Community</p>
-    </div>
-  </section>
-
-  <section id="exchange">
-    <h3>Oil Exchange (Coming Soon)</h3>
-    <div class="exchange" style="text-align:center;">
-      <p>Buy/Sell OIL/TON</p>
-      <p>Price (TON per OIL): <input type="number" id="oilPrice" placeholder="0.00"></p>
-      <p>Amount of OIL: <input type="number" id="oilAmount" placeholder="0"></p>
-      <button class="btn" onclick="calculateTON()">Calculate TON</button>
-      <p id="tonResult"></p>
-      <button class="btn" onclick="withdrawRequest()">Withdrawal Request</button>
-      <p id="withdrawResult"></p>
+      <p><b>Remaining Tokens:</b> 4,000,000,000 for Airdrops, Public Sale, Team & Community</p>
     </div>
   </section>
 
@@ -103,6 +87,18 @@
     </div>
   </section>
 
+  <section id="exchange">
+    <h3>Exchange OIL</h3>
+    <div class="exchange">
+      <p><b>Price:</b> 1 OIL = 0.01 TON</p>
+      <label>Amount of OIL: <input type="number" id="oilAmount" value="0"></label><br><br>
+      <button onclick="calculate()">Calculate</button>
+      <p id="result"></p>
+      <button onclick="showPayment()">Proceed to Payment</button>
+      <p id="payment"></p>
+    </div>
+  </section>
+
   <section id="contact">
     <h3>Contact & Social Links</h3>
     <div class="socials" style="text-align:center;">
@@ -115,24 +111,19 @@
   </section>
 
   <footer>
-    <p>© 2025 Oil Token. All rights reserved.</p>
+    <p><img src="https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png" class="logo"> © 2025 Oil Token. All rights reserved.</p>
   </footer>
 
   <script>
-    const OWNER_WALLET = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
-    function calculateTON() {
-      const price = parseFloat(document.getElementById('oilPrice').value);
-      const amount = parseFloat(document.getElementById('oilAmount').value);
-      if(isNaN(price)||isNaN(amount)){ alert("Enter valid numbers"); return; }
-      const result = price * amount;
-      document.getElementById('tonResult').innerText = "TON needed: " + result.toFixed(2);
+    function calculate() {
+      let amount = document.getElementById('oilAmount').value;
+      let ton = amount * 0.01;
+      document.getElementById('result').innerText = `You need to pay ${ton} TON`;
     }
-    function withdrawRequest() {
-      const amount = parseFloat(document.getElementById('oilAmount').value);
-      const price = parseFloat(document.getElementById('oilPrice').value);
-      if(isNaN(price)||isNaN(amount)){ alert("Enter valid numbers"); return; }
-      const ton = (price * amount).toFixed(2);
-      document.getElementById('withdrawResult').innerText = "Withdraw " + ton + " TON to wallet: " + OWNER_WALLET;
+    function showPayment() {
+      let amount = document.getElementById('oilAmount').value;
+      let ton = amount * 0.01;
+      document.getElementById('payment').innerHTML = `Send ${ton} TON to wallet:<br><b>UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ</b>`;
     }
   </script>
 </body>
