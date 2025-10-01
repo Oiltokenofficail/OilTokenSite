@@ -1,133 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oil Token (OIL)</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f0f4f9; color:#222; }
-    header { background:#111; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
-    header h1 { margin:0; font-size:24px; display:flex; align-items:center; }
-    header img { width:32px; height:32px; margin-right:10px; }
-    nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-    nav a:hover { text-decoration:underline; }
-    .hero { text-align:center; padding:80px 20px; background:linear-gradient(135deg, #0077ff, #00b894); color:#fff; }
-    .hero h2 { font-size:42px; margin-bottom:10px; }
-    .hero p { font-size:20px; margin-bottom:20px; }
-    .btn { display:inline-block; padding:12px 24px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#111; font-weight:bold; }
-    section { padding:60px 20px; max-width:1000px; margin:auto; }
-    h3 { text-align:center; margin-bottom:40px; font-size:28px; }
-    .features, .tokenomics, .roadmap, .team { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-    .feature, .token-box, .phase, .member { background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); width:250px; text-align:center; }
-    .exchange { background:#fff; padding:40px; border-radius:12px; box-shadow:0 3px 8px rgba(0,0,0,0.15); text-align:center; }
-    .exchange input { padding:10px; width:200px; margin:10px; border:1px solid #ccc; border-radius:6px; }
-    .exchange button { padding:10px 20px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-    .exchange button:hover { background:#005fcb; }
-    .socials { text-align:center; margin-top:30px; }
-    .socials a { margin:0 10px; text-decoration:none; font-weight:bold; color:#0077ff; }
-    footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Token (OIL) - Official Site</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f0f0; color:#222; }
+  header { background:#111; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
+  header img { width:50px; height:50px; }
+  header h1 { margin:0; font-size:28px; }
+  nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
+  .hero { text-align:center; padding:80px 20px; background:#222; color:#fff; }
+  .hero h2 { font-size:36px; margin-bottom:10px; }
+  .hero p { font-size:18px; margin-bottom:20px; }
+  .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#0077ff; }
+  section { padding:60px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  h3 { text-align:center; margin-bottom:30px; }
+  .socials a { margin:0 10px; text-decoration:none; font-weight:bold; color:#0077ff; }
+  footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
+  .token-section { margin:20px auto; max-width:400px; text-align:center; }
+  .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
+  .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+  .token-section p { margin:10px 0; font-size:18px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1><img src="barrel.png" alt="Oil Token Logo">Oil Token (OIL)</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="WhitePaper.html">White Paper</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#team">Team</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#exchange">Exchange</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h2>Oil Token (OIL)</h2>
-    <p>Unlocking Digital Access to Crude Oil — 1 OIL = 1 Barrel</p>
-    <a href="WhitePaper.html" class="btn">📄 Read White Paper</a>
-  </section>
+<header>
+  <img src="barrel.png" alt="Oil Token Logo">
+  <h1>Oil Token (OIL)</h1>
+  <nav>
+    <a href="WhitePaper.html">White Paper</a>
+    <a href="Roadmap.html">Roadmap</a>
+    <a href="Tokenomics.html">Tokenomics</a>
+    <a href="Team.html">Team</a>
+    <a href="Description.html">Description</a>
+  </nav>
+</header>
 
-  <section id="about">
-    <h3>Project Introduction & Features</h3>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Oil Token is a TIP-3 token on the TON blockchain, providing secure, transparent, and global access to digital oil assets.
-    </p>
-    <div class="features">
-      <div class="feature">Fixed supply: 10,000,000,000 tokens</div>
-      <div class="feature">Fully released ownership, no minting</div>
-      <div class="feature">Transparent & traceable transactions</div>
-      <div class="feature">Global accessibility</div>
-      <div class="feature">Easily transferable & verifiable</div>
-    </div>
-  </section>
+<section class="hero">
+  <h2>Oil Token Exchange</h2>
+  <p>Buy OIL Token - 1 OIL = 0.01 TON</p>
+</section>
 
-  <section id="tokenomics">
-    <h3>Tokenomics</h3>
-    <div class="tokenomics">
-      <div class="token-box"><b>Total Supply:</b> 10,000,000,000 OIL</div>
-      <div class="token-box"><b>Locked Supply (50%):</b> 5,000,000,000 tokens — released over 11 years</div>
-      <div class="token-box"><b>Initial Distribution:</b> 1,000,000,000 tokens to Tonkeeper holders</div>
-      <div class="token-box"><b>Remaining Tokens:</b> 4,000,000,000 tokens distributed as Airdrops, Public Sale, Team & Community</div>
-    </div>
-  </section>
+<section>
+  <h3>Buy Oil Tokens</h3>
+  <div class="token-section">
+    <p>Current Price: <span id="currentPrice">0.01 TON / OIL</span></p>
+    <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
+    <br>
+    <button onclick="calculatePayment()">Calculate Payment</button>
+    <button onclick="showWithdrawalInfo()">Show Withdrawal Info</button>
+    <p>Total TON: <span id="totalTON">0</span></p>
+    <div id="withdrawalInfo"></div>
+  </div>
+  <p><i>Note: Buy/Sell function is manual for now. Automatic exchange coming soon.</i></p>
+</section>
 
-  <section id="roadmap">
-    <h3>Roadmap</h3>
-    <div class="roadmap">
-      <div class="phase">🚀 Phase 0 — Launch: Deploy Jetton contract, publish metadata, list in wallets, initial DEX liquidity</div>
-      <div class="phase">👥 Phase 1 — Accessibility: List on major DEX, activate community, attract holders, AMA sessions</div>
-      <div class="phase">🔗 Phase 2 — Adoption: Partnerships with Web3 projects, integrate into services, build payment tools</div>
-      <div class="phase">🌍 Phase 3 — Expansion: Strengthen liquidity, CEX listings, smart contract audit</div>
-    </div>
-  </section>
+<section>
+  <h3>Follow Us</h3>
+  <div class="socials" style="text-align:center;">
+    <a href="https://t.me/Oiltokenofficial">Telegram</a>
+    <a href="https://instagram.com/oiltokenofficial">Instagram</a>
+    <a href="https://x.com/oiltoken_">X</a>
+    <a href="mailto:Oiltokenofficial@gmail.com">Email</a>
+  </div>
+</section>
 
-  <section id="team">
-    <h3>Team</h3>
-    <div class="team">
-      <div class="member"><b>P.s</b><br>Digital Assets Specialist & Project Manager</div>
-      <div class="member"><b>M.B</b><br>Senior Expert in Marketing & Global Trade</div>
-      <div class="member"><b>miss.N</b><br>Senior Expert in International Insurance</div>
-      <div class="member"><b>Mr.F</b><br>Senior Expert in Accounting & Finance</div>
-      <div class="member"><b>Ms.A</b><br>Senior Expert in International Law</div>
-      <div class="member"><b>Mr.Bs</b><br>Senior Marketing Specialist</div>
-      <div class="member"><b>Ms.S</b><br>Project Program Manager</div>
-      <div class="member"><b>Ms.F</b><br>Public Relations Manager</div>
-    </div>
-  </section>
+<footer>
+  <p>© 2025 Oil Token. All rights reserved.</p>
+  <img src="barrel.png" alt="Oil Token Logo" style="width:50px; margin-top:10px;">
+</footer>
 
-  <section id="exchange">
-    <h3>Oil Exchange</h3>
-    <div class="exchange">
-      <p><strong>Buy OIL using TON</strong></p>
-      <input type="number" id="tokenAmount" placeholder="Enter OIL amount">
-      <input type="text" id="price" value="0.01" readonly> TON (per OIL)
-      <br>
-      <button onclick="calculate()">Calculate</button>
-      <button onclick="showPayment()">Payment Instruction</button>
-      <p id="result"></p>
-    </div>
-  </section>
+<script src="WatchPayment.js"></script>
 
-  <section id="contact">
-    <h3>Contact & Social Links</h3>
-    <div class="socials">
-      <a href="https://t.me/Oiltokenofficial">Telegram</a>
-      <a href="https://instagram.com/oiltokenofficial">Instagram</a>
-      <a href="https://x.com/oiltoken_">X</a>
-      <a href="https://github.com/Oiltokenofficail">GitHub</a>
-    </div>
-    <p style="text-align:center; margin-top:10px;">📧 Email: Oiltokenofficial@gmail.com</p>
-  </section>
-
-  <footer>
-    <p>© 2025 Oil Token. All rights reserved.</p>
-  </footer>
-
-  <script>
-    const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
-    const pricePerToken = 0.01;
-
-    function calculate() {
-      let amount = document.getElementById("tokenAmount").value;
-      if
+</body>
+</html>
