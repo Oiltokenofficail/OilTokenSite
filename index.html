@@ -11,8 +11,8 @@
   header h1 { margin:0; font-size:28px; }
   nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
   .hero { text-align:center; padding:80px 20px; background:#222; color:#fff; }
-  .hero h2 { font-size:36px; margin-bottom:10px; }
-  .hero p { font-size:18px; margin-bottom:20px; }
+  .hero h2 { font-size:40px; margin-bottom:10px; }
+  .hero p { font-size:20px; margin-bottom:20px; }
   .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#0077ff; }
   section { padding:60px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
   h3 { text-align:center; margin-bottom:30px; }
@@ -72,7 +72,37 @@
   <img src="barrel.png" alt="Oil Token Logo" style="width:50px; margin-top:10px;">
 </footer>
 
-<script src="WatchPayment.js"></script>
+<script>
+const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
+let oilPriceTON = 0.01;
+
+function calculatePayment() {
+    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+    if (isNaN(tokenAmount) || tokenAmount <= 0) {
+        alert("Please enter a valid token amount");
+        return;
+    }
+    const totalTON = tokenAmount * oilPriceTON;
+    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
+}
+
+function showWithdrawalInfo() {
+    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+    if (isNaN(tokenAmount) || tokenAmount <= 0) {
+        alert("Please enter a valid token amount");
+        return;
+    }
+    const totalTON = tokenAmount * oilPriceTON;
+    document.getElementById("withdrawalInfo").innerHTML =
+        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
+         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
+}
+
+function updatePrice(newPrice) {
+    oilPriceTON = parseFloat(newPrice);
+    document.getElementById("currentPrice").innerText = oilPriceTON + " TON / OIL";
+}
+</script>
 
 </body>
 </html>
