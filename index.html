@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oil Token (OIL) - Official Site</title>
-<style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f0f0; color:#222; }
-  header { background:#ff8c00; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
-  header img { width:50px; height:50px; }
-  header h1 { margin:0; font-size:28px; }
-  nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-  .hero { text-align:center; padding:80px 20px; background:#001f3f; color:#fff; }
-  .hero h2 { font-size:36px; margin-bottom:10px; }
-  .hero p { font-size:18px; margin-bottom:20px; }
-  section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  h3 { text-align:center; margin-bottom:30px; }
-  .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; font-weight:bold; }
-  .gold { background:#FFD700; color:#111; }
-  .wheat { background:#f5deb3; color:#111; }
-  .sky { background:#87CEEB; color:#111; }
-  .bluegrey { background:#6A7BA2; color:#fff; }
-  .olive { background:#808000; color:#fff; }
-  .silver { background:#C0C0C0; color:#111; }
-  .pink { background:#ff69b4; color:#fff; }
-  .yellow { background:#FFD700; color:#111; }
-  footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-  .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
-  .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oil Token (OIL) - Official Site</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f0f0; color:#222; }
+    header { background:#ff8800; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
+    header img { width:50px; height:50px; }
+    header h1 { margin:0; font-size:28px; }
+    nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
+
+    .hero { text-align:center; padding:60px 20px; background:#001f3f; color:#fff; }
+    .hero h2 { font-size:36px; margin-bottom:10px; }
+    .hero p { font-size:18px; }
+
+    .exchange { text-align:center; background:#ff0000; color:#fff; padding:40px 20px; font-size:32px; font-weight:bold; }
+    .exchange p { font-size:20px; margin-top:10px; }
+
+    .opportunity { background:#FFD700; padding:30px; font-size:18px; text-align:center; border-radius:10px; margin:20px auto; max-width:1000px; }
+
+    section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    h3 { text-align:center; margin-bottom:20px; }
+
+    .token-section { margin:20px auto; max-width:400px; text-align:center; }
+    .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
+    .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+
+    .telegram-bot { background:#FFD700; padding:30px; text-align:center; border-radius:10px; margin:20px auto; max-width:800px; }
+    .telegram-bot a { display:inline-block; margin-top:10px; padding:12px 24px; background:#000; color:#fff; text-decoration:none; border-radius:8px; font-weight:bold; }
+
+    .links { text-align:center; margin:20px 0; }
+    .links a { display:block; margin:8px; padding:12px; border-radius:8px; font-weight:bold; text-decoration:none; }
+
+    .whitepaper { background:#DAA520; }
+    .roadmap { background:#87CEEB; }
+    .sites { background:#7B68EE; color:#fff; }
+    .team { background:#6B8E23; color:#fff; }
+    .socials { background:#C0C0C0; }
+
+    footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
+    footer img { width:50px; margin-top:10px; }
+  </style>
 </head>
 <body>
 
@@ -39,17 +53,34 @@
     <a href="Roadmap.html">Roadmap</a>
     <a href="Tokenomics.html">Tokenomics</a>
     <a href="Team.html">Team</a>
-    <a href="#contact">Contact</a>
+    <a href="Description.html">Description</a>
   </nav>
 </header>
 
+<!-- Welcome -->
 <section class="hero">
   <h2>Welcome to Oil Token</h2>
-  <p>The future of decentralized oil-backed assets on TON Blockchain</p>
+  <p>The future of decentralized oil-backed digital assets.</p>
 </section>
 
+<!-- Exchange Section -->
+<div class="exchange">
+  OIL EXCHANGE
+  <p>Coming Soon</p>
+</div>
+
+<!-- Opportunity Section -->
+<div class="opportunity">
+  <p>
+    Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.  
+    Don’t regret it again! With Oil Token, holders gain a second chance to participate in a unique,  
+    revolutionary asset that bridges traditional energy markets with the blockchain world.
+  </p>
+</div>
+
+<!-- Buy Tokens -->
 <section>
-  <h3>Manual Token Purchase</h3>
+  <h3>Buy Oil Tokens (Manual)</h3>
   <div class="token-section">
     <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
     <br>
@@ -57,73 +88,56 @@
     <br>
     <button onclick="calculatePayment()">Calculate Payment</button>
     <p>Total TON: <span id="totalTON">0</span></p>
-    <p>Owner Wallet: <b>UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ</b></p>
+    <div id="withdrawalInfo"></div>
   </div>
 </section>
 
 <!-- Telegram Bot -->
-<section class="gold" style="text-align:center;">
+<div class="telegram-bot">
   <h3>Buy via Telegram Bot</h3>
-  <p>For fast and secure purchases, use our Telegram bot:</p>
-  <a href="https://t.me/Oiltokenbot" class="btn" style="background:#111; color:#fff;">Open Bot</a>
-</section>
+  <p>You can also buy Oil Token safely using our official Telegram Bot.</p>
+  <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
+</div>
 
-<!-- Whitepaper -->
-<section class="wheat" style="text-align:center;">
-  <a href="WhitePaper.html" class="btn">Read Whitepaper</a>
-</section>
-
-<!-- Roadmap -->
-<section class="sky" style="text-align:center;">
-  <a href="Roadmap.html" class="btn">View Roadmap</a>
-</section>
-
-<!-- Website Links -->
-<section class="bluegrey" style="text-align:center;">
-  <p><a href="https://oiltokenofficail.netlify.app/" target="_blank" style="color:#fff;">oiltokenofficail.netlify.app</a></p>
-  <p><a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank" style="color:#fff;">oiltokenofficail.github.io/OilTokenSite</a></p>
-</section>
-
-<!-- Team -->
-<section class="olive" style="text-align:center;">
-  <a href="Team.html" class="btn">Meet the Team</a>
-</section>
-
-<!-- Social -->
-<section class="silver" style="text-align:center;">
-  <h3>Social Channels</h3>
-  <p><a href="https://t.me/Oiltokenofficial">Telegram</a></p>
-  <p><a href="https://x.com/oiltoken_">X (Twitter)</a></p>
-  <p><a href="https://www.instagram.com/oiltokenofficial">Instagram</a></p>
-  <p><a href="mailto:Oiltokenofficial@gmail.com">Email</a></p>
-</section>
-
-<!-- Contact Section -->
-<section id="contact">
-  <h3>Contact Us</h3>
-  <p>For inquiries, partnerships, or support, reach us at:</p>
-  <p>Email: <a href="mailto:Oiltokenofficial@gmail.com">Oiltokenofficial@gmail.com</a></p>
-  <p>Telegram: <a href="https://t.me/Oiltokenofficial">Oiltokenofficial</a></p>
-</section>
+<!-- Quick Links -->
+<div class="links">
+  <a href="WhitePaper.html" class="whitepaper">📄 Whitepaper</a>
+  <a href="Roadmap.html" class="roadmap">🛣 Roadmap</a>
+  <div class="sites">
+    <p>Main Sites:</p>
+    <a href="https://oiltokenofficail.netlify.app/" target="_blank">Netlify Site</a>
+    <a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">GitHub Pages Site</a>
+  </div>
+  <a href="Team.html" class="team">👥 Team</a>
+  <div class="socials">
+    <h3>Social Channels</h3>
+    <p><a href="https://t.me/Oiltokenofficial">Telegram</a></p>
+    <p><a href="https://x.com/oiltoken_">X (Twitter)</a></p>
+    <p><a href="https://instagram.com/oiltokenofficial">Instagram</a></p>
+    <p><a href="mailto:Oiltokenofficial@gmail.com">Email</a></p>
+  </div>
+</div>
 
 <footer>
   <p>© 2025 Oil Token. All rights reserved.</p>
+  <img src="barrel.png" alt="Oil Token Logo">
 </footer>
 
 <script>
+const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
+
 function calculatePayment() {
     const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
     const customPrice = parseFloat(document.getElementById("customPrice").value);
-    if (isNaN(tokenAmount) || tokenAmount <= 0) {
-        alert("Please enter a valid token amount");
-        return;
-    }
-    if (isNaN(customPrice) || customPrice <= 0) {
-        alert("Please enter your custom price per token in TON");
+    if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
+        alert("Enter valid token amount and price.");
         return;
     }
     const totalTON = tokenAmount * customPrice;
     document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
+    document.getElementById("withdrawalInfo").innerHTML =
+        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
+         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
 }
 </script>
 
