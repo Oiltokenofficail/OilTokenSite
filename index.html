@@ -5,23 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oil Token (OIL) - Official Site</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f0f0; color:#222; }
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#222; }
   header { background:#111; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
   header img { width:50px; height:50px; }
   header h1 { margin:0; font-size:28px; }
   nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-  .hero { text-align:center; padding:80px 20px; background:#222; color:#fff; }
-  .hero h2 { font-size:40px; margin-bottom:10px; }
-  .hero p { font-size:20px; margin-bottom:20px; }
-  .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; background:#0077ff; }
-  section { padding:60px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  h3 { text-align:center; margin-bottom:30px; }
+  section { padding:60px 20px; max-width:1100px; margin:auto; margin-bottom:30px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff; }
+  h2, h3 { text-align:center; margin-bottom:20px; }
+  .highlight-red { background:#b30000; color:#fff; font-size:32px; font-weight:bold; text-align:center; padding:40px; border-radius:12px; }
+  .highlight-red span { display:block; font-size:20px; margin-top:10px; color:#ffcccc; }
+  .highlight-purple { background:#6a0dad; color:#fff; font-size:20px; line-height:1.6; text-align:center; padding:30px; border-radius:12px; }
+  .highlight-yellow { background:#ffd700; padding:25px; border-radius:12px; text-align:center; font-size:18px; }
+  .highlight-yellow a { color:#000; font-weight:bold; text-decoration:none; }
+  .highlight-pink { background:#ff66b2; padding:30px; border-radius:12px; text-align:center; }
+  .highlight-pink input { width:70%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; font-size:16px; }
+  .highlight-pink button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
   .socials a { margin:0 10px; text-decoration:none; font-weight:bold; color:#0077ff; }
   footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-  .token-section { margin:20px auto; max-width:400px; text-align:center; }
-  .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
-  .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-  .token-section p { margin:10px 0; font-size:18px; }
 </style>
 </head>
 <body>
@@ -34,29 +34,75 @@
     <a href="Roadmap.html">Roadmap</a>
     <a href="Tokenomics.html">Tokenomics</a>
     <a href="Team.html">Team</a>
-    <a href="Description.html">Description</a>
+    <a href="Contact.html">Contact</a>
+    <a href="Description.html">About</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h2>Oil Token Exchange</h2>
-  <p>Buy OIL Token - 1 OIL = 0.01 TON</p>
-</section>
-
+<!-- Hero -->
 <section>
-  <h3>Buy Oil Tokens</h3>
-  <div class="token-section">
-    <p>Current Price: <span id="currentPrice">0.01 TON / OIL</span></p>
-    <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
-    <br>
-    <button onclick="calculatePayment()">Calculate Payment</button>
-    <button onclick="showWithdrawalInfo()">Show Withdrawal Info</button>
-    <p>Total TON: <span id="totalTON">0</span></p>
-    <div id="withdrawalInfo"></div>
-  </div>
-  <p><i>Note: Buy/Sell function is manual for now. Automatic exchange coming soon.</i></p>
+  <h2>Welcome to Oil Token</h2>
+  <p style="text-align:center;">Oil Token (OIL) bridges digital assets with real-world crude oil.</p>
 </section>
 
+<!-- Red Highlight: Oil Exchange -->
+<div class="highlight-red">
+  OIL EXCHANGE
+  <span>Coming Soon</span>
+</div>
+
+<!-- Purple Highlight: Opportunity Text -->
+<div class="highlight-purple">
+  Oil Token represents a unique opportunity for those who missed Bitcoin in 2010.  
+  Don’t regret the past – a new chance is here. With Oil Token, investors and holders gain a second opportunity to be part of something revolutionary in the digital asset world.
+</div>
+
+<!-- Yellow Highlight: Liquidity Pool -->
+<div class="highlight-yellow">
+  <h3>Ston.fi Liquidity Pool</h3>
+  <p><a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy" target="_blank">
+    Click here to view the OIL/TON Liquidity Pool
+  </a></p>
+</div>
+
+<!-- Pink Highlight: Manual Purchase -->
+<div class="highlight-pink">
+  <h3>Manual Token Purchase</h3>
+  <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
+  <br>
+  <input type="number" id="pricePerToken" placeholder="Enter your price per token (TON)">
+  <br>
+  <button onclick="calculatePayment()">Calculate Payment</button>
+  <div id="purchaseResult"></div>
+</div>
+
+<!-- Roadmap -->
+<section>
+  <h3>Roadmap</h3>
+  <p>Phase 1: Launch and Distribution</p>
+  <p>Phase 2: Liquidity and Exchange Listings</p>
+  <p>Phase 3: Expansion and Global Adoption</p>
+</section>
+
+<!-- Tokenomics -->
+<section>
+  <h3>Tokenomics</h3>
+  <ul>
+    <li>50% Community Distribution</li>
+    <li>20% Liquidity Pools</li>
+    <li>15% Development</li>
+    <li>10% Marketing</li>
+    <li>5% Reserve & Burn</li>
+  </ul>
+</section>
+
+<!-- Team -->
+<section>
+  <h3>Team</h3>
+  <p>Our team is composed of blockchain experts, financial analysts, and oil industry professionals committed to transparency and growth.</p>
+</section>
+
+<!-- Socials -->
 <section>
   <h3>Follow Us</h3>
   <div class="socials" style="text-align:center;">
@@ -73,34 +119,16 @@
 </footer>
 
 <script>
-const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
-let oilPriceTON = 0.01;
-
 function calculatePayment() {
-    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-    if (isNaN(tokenAmount) || tokenAmount <= 0) {
-        alert("Please enter a valid token amount");
-        return;
-    }
-    const totalTON = tokenAmount * oilPriceTON;
-    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
-}
-
-function showWithdrawalInfo() {
-    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-    if (isNaN(tokenAmount) || tokenAmount <= 0) {
-        alert("Please enter a valid token amount");
-        return;
-    }
-    const totalTON = tokenAmount * oilPriceTON;
-    document.getElementById("withdrawalInfo").innerHTML =
-        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
-         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
-}
-
-function updatePrice(newPrice) {
-    oilPriceTON = parseFloat(newPrice);
-    document.getElementById("currentPrice").innerText = oilPriceTON + " TON / OIL";
+  const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+  const pricePerToken = parseFloat(document.getElementById("pricePerToken").value);
+  if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(pricePerToken) || pricePerToken <= 0) {
+    alert("Please enter valid values.");
+    return;
+  }
+  const totalTON = tokenAmount * pricePerToken;
+  document.getElementById("purchaseResult").innerHTML =
+    `<p>Total Payment: <b>${totalTON.toFixed(4)} TON</b></p>`;
 }
 </script>
 
