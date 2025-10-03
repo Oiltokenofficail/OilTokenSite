@@ -5,23 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oil Token (OIL) - Official Site</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#222; }
-  header { background:#111; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f0f0; color:#222; }
+  header { background:#ff8c00; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
   header img { width:50px; height:50px; }
   header h1 { margin:0; font-size:28px; }
   nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-  section { padding:60px 20px; max-width:1100px; margin:auto; margin-bottom:30px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); background:#fff; }
-  h2, h3 { text-align:center; margin-bottom:20px; }
-  .highlight-red { background:#b30000; color:#fff; font-size:32px; font-weight:bold; text-align:center; padding:40px; border-radius:12px; }
-  .highlight-red span { display:block; font-size:20px; margin-top:10px; color:#ffcccc; }
-  .highlight-purple { background:#6a0dad; color:#fff; font-size:20px; line-height:1.6; text-align:center; padding:30px; border-radius:12px; }
-  .highlight-yellow { background:#ffd700; padding:25px; border-radius:12px; text-align:center; font-size:18px; }
-  .highlight-yellow a { color:#000; font-weight:bold; text-decoration:none; }
-  .highlight-pink { background:#ff66b2; padding:30px; border-radius:12px; text-align:center; }
-  .highlight-pink input { width:70%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; font-size:16px; }
-  .highlight-pink button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-  .socials a { margin:0 10px; text-decoration:none; font-weight:bold; color:#0077ff; }
+  .hero { text-align:center; padding:80px 20px; background:#001f3f; color:#fff; }
+  .hero h2 { font-size:36px; margin-bottom:10px; }
+  .hero p { font-size:18px; margin-bottom:20px; }
+  section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  h3 { text-align:center; margin-bottom:30px; }
+  .btn { display:inline-block; padding:10px 20px; margin:5px; border-radius:6px; text-decoration:none; color:#fff; font-weight:bold; }
+  .gold { background:#FFD700; color:#111; }
+  .wheat { background:#f5deb3; color:#111; }
+  .sky { background:#87CEEB; color:#111; }
+  .bluegrey { background:#6A7BA2; color:#fff; }
+  .olive { background:#808000; color:#fff; }
+  .silver { background:#C0C0C0; color:#111; }
+  .pink { background:#ff69b4; color:#fff; }
+  .yellow { background:#FFD700; color:#111; }
   footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
+  .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
+  .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -34,101 +39,91 @@
     <a href="Roadmap.html">Roadmap</a>
     <a href="Tokenomics.html">Tokenomics</a>
     <a href="Team.html">Team</a>
-    <a href="Contact.html">Contact</a>
-    <a href="Description.html">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<!-- Hero -->
-<section>
+<section class="hero">
   <h2>Welcome to Oil Token</h2>
-  <p style="text-align:center;">Oil Token (OIL) bridges digital assets with real-world crude oil.</p>
+  <p>The future of decentralized oil-backed assets on TON Blockchain</p>
 </section>
 
-<!-- Red Highlight: Oil Exchange -->
-<div class="highlight-red">
-  OIL EXCHANGE
-  <span>Coming Soon</span>
-</div>
-
-<!-- Purple Highlight: Opportunity Text -->
-<div class="highlight-purple">
-  Oil Token represents a unique opportunity for those who missed Bitcoin in 2010.  
-  Don’t regret the past – a new chance is here. With Oil Token, investors and holders gain a second opportunity to be part of something revolutionary in the digital asset world.
-</div>
-
-<!-- Yellow Highlight: Liquidity Pool -->
-<div class="highlight-yellow">
-  <h3>Ston.fi Liquidity Pool</h3>
-  <p><a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy" target="_blank">
-    Click here to view the OIL/TON Liquidity Pool
-  </a></p>
-</div>
-
-<!-- Pink Highlight: Manual Purchase -->
-<div class="highlight-pink">
+<section>
   <h3>Manual Token Purchase</h3>
-  <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
-  <br>
-  <input type="number" id="pricePerToken" placeholder="Enter your price per token (TON)">
-  <br>
-  <button onclick="calculatePayment()">Calculate Payment</button>
-  <div id="purchaseResult"></div>
-</div>
+  <div class="token-section">
+    <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
+    <br>
+    <input type="number" id="customPrice" placeholder="Enter your price in TON">
+    <br>
+    <button onclick="calculatePayment()">Calculate Payment</button>
+    <p>Total TON: <span id="totalTON">0</span></p>
+    <p>Owner Wallet: <b>UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ</b></p>
+  </div>
+</section>
+
+<!-- Telegram Bot -->
+<section class="gold" style="text-align:center;">
+  <h3>Buy via Telegram Bot</h3>
+  <p>For fast and secure purchases, use our Telegram bot:</p>
+  <a href="https://t.me/Oiltokenbot" class="btn" style="background:#111; color:#fff;">Open Bot</a>
+</section>
+
+<!-- Whitepaper -->
+<section class="wheat" style="text-align:center;">
+  <a href="WhitePaper.html" class="btn">Read Whitepaper</a>
+</section>
 
 <!-- Roadmap -->
-<section>
-  <h3>Roadmap</h3>
-  <p>Phase 1: Launch and Distribution</p>
-  <p>Phase 2: Liquidity and Exchange Listings</p>
-  <p>Phase 3: Expansion and Global Adoption</p>
+<section class="sky" style="text-align:center;">
+  <a href="Roadmap.html" class="btn">View Roadmap</a>
 </section>
 
-<!-- Tokenomics -->
-<section>
-  <h3>Tokenomics</h3>
-  <ul>
-    <li>50% Community Distribution</li>
-    <li>20% Liquidity Pools</li>
-    <li>15% Development</li>
-    <li>10% Marketing</li>
-    <li>5% Reserve & Burn</li>
-  </ul>
+<!-- Website Links -->
+<section class="bluegrey" style="text-align:center;">
+  <p><a href="https://oiltokenofficail.netlify.app/" target="_blank" style="color:#fff;">oiltokenofficail.netlify.app</a></p>
+  <p><a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank" style="color:#fff;">oiltokenofficail.github.io/OilTokenSite</a></p>
 </section>
 
 <!-- Team -->
-<section>
-  <h3>Team</h3>
-  <p>Our team is composed of blockchain experts, financial analysts, and oil industry professionals committed to transparency and growth.</p>
+<section class="olive" style="text-align:center;">
+  <a href="Team.html" class="btn">Meet the Team</a>
 </section>
 
-<!-- Socials -->
-<section>
-  <h3>Follow Us</h3>
-  <div class="socials" style="text-align:center;">
-    <a href="https://t.me/Oiltokenofficial">Telegram</a>
-    <a href="https://instagram.com/oiltokenofficial">Instagram</a>
-    <a href="https://x.com/oiltoken_">X</a>
-    <a href="mailto:Oiltokenofficial@gmail.com">Email</a>
-  </div>
+<!-- Social -->
+<section class="silver" style="text-align:center;">
+  <h3>Social Channels</h3>
+  <p><a href="https://t.me/Oiltokenofficial">Telegram</a></p>
+  <p><a href="https://x.com/oiltoken_">X (Twitter)</a></p>
+  <p><a href="https://www.instagram.com/oiltokenofficial">Instagram</a></p>
+  <p><a href="mailto:Oiltokenofficial@gmail.com">Email</a></p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h3>Contact Us</h3>
+  <p>For inquiries, partnerships, or support, reach us at:</p>
+  <p>Email: <a href="mailto:Oiltokenofficial@gmail.com">Oiltokenofficial@gmail.com</a></p>
+  <p>Telegram: <a href="https://t.me/Oiltokenofficial">Oiltokenofficial</a></p>
 </section>
 
 <footer>
   <p>© 2025 Oil Token. All rights reserved.</p>
-  <img src="barrel.png" alt="Oil Token Logo" style="width:50px; margin-top:10px;">
 </footer>
 
 <script>
 function calculatePayment() {
-  const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-  const pricePerToken = parseFloat(document.getElementById("pricePerToken").value);
-  if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(pricePerToken) || pricePerToken <= 0) {
-    alert("Please enter valid values.");
-    return;
-  }
-  const totalTON = tokenAmount * pricePerToken;
-  document.getElementById("purchaseResult").innerHTML =
-    `<p>Total Payment: <b>${totalTON.toFixed(4)} TON</b></p>`;
+    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+    const customPrice = parseFloat(document.getElementById("customPrice").value);
+    if (isNaN(tokenAmount) || tokenAmount <= 0) {
+        alert("Please enter a valid token amount");
+        return;
+    }
+    if (isNaN(customPrice) || customPrice <= 0) {
+        alert("Please enter your custom price per token in TON");
+        return;
+    }
+    const totalTON = tokenAmount * customPrice;
+    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
 }
 </script>
 
