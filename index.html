@@ -1,141 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oil Token Official</title>
   <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('https://i.postimg.cc/XJRC2zdT/refinery-background.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      line-height: 1.6;
     }
-    header {
-      background-color: orange;
-      text-align: center;
-      padding: 20px;
-      font-size: 2em;
-      font-weight: bold;
-      color: white;
-    }
-    section {
-      padding: 20px;
-      text-align: center;
-      margin: 20px;
-      border-radius: 15px;
-    }
-    .welcome {
-      background-color: #001f3f;
-    }
-    .exchange {
-      background-color: red;
-      font-size: 2em;
-      font-weight: bold;
-      color: white;
-      text-transform: uppercase;
-    }
-    .coming {
-      font-size: 1.3em;
-      color: #ffcccb;
-      margin-top: 10px;
-    }
-    .opportunity {
-      background-color: gold;
-      color: black;
-      font-size: 1.1em;
-      border-radius: 15px;
-    }
-    .telegram-bot {
-      background-color: #FFD700;
-      color: black;
-      font-weight: bold;
-    }
-    .whitepaper {
-      background-color: wheat;
-      color: black;
-    }
-    .roadmap {
-      background-color: skyblue;
-      color: black;
-    }
-    .websites {
-      background-color: #a6b8ff;
-      color: black;
-    }
-    .team {
-      background-color: olive;
-      color: white;
-    }
-    .social {
-      background-color: silver;
-      color: black;
-    }
-    a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    section {padding: 20px; text-align:center; margin:20px; border-radius:15px;}
+    .welcome {background-color:#001f3f; color:white;}
+    .exchange {background-color:red; font-size:2em; font-weight:bold; color:white; text-transform:uppercase;}
+    .coming {font-size:1.3em; color:#ffcccb; margin-top:10px;}
+    .opportunity {background-color:gold; color:black; font-size:1.1em; border-radius:15px;}
+    .telegram-bot {background-color:#FFD700; color:black; font-weight:bold;}
+    .whitepaper {background-color:#FFB6C1; color:black; border-radius:15px;}
+    .roadmap {background-color:skyblue; color:black; border-radius:15px;}
+    .websites {background-color:#a6b8ff; color:black; border-radius:15px;}
+    .team {background-color:olive; color:white; border-radius:15px;}
+    .social {background-color:silver; color:black; border-radius:15px;}
+    a {color:black; font-weight:bold; text-decoration:none; transition:0.3s;}
+    a:hover {text-decoration:underline; color:#ff4500;}
+    .btn {display:inline-block; padding:12px 25px; border-radius:12px; color:white; font-weight:bold; text-decoration:none; margin:10px; transition:transform 0.2s, box-shadow 0.2s;}
+    .btn:hover {transform:scale(1.05); box-shadow:0 4px 15px rgba(0,0,0,0.3);}
+    .btn-red {background-color:#ff4c4c;}
+    .btn-gold {background-color:#ffd700; color:black;}
+    .btn-lightblue {background-color:#87cefa; color:black;}
+    .btn-purple {background-color:#800080;}
+    .btn-olive {background-color:#556b2f;}
+    header {background-color:#ffcc00; text-align:center; padding:20px; font-size:2em; font-weight:bold; color:black;}
+    nav a {margin:0 10px; color:black; font-weight:bold; text-decoration:none;}
+    nav a:hover {color:red;}
+    nav {margin-top:10px;}
+    @media(max-width:768px){nav a{display:block;margin:10px 0;}}
   </style>
 </head>
 <body>
-  <header>OIL TOKEN OFFICIAL</header>
-
-  <section class="welcome">
+  <header>OIL TOKEN OFFICIAL
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">White Paper</a>
+      <a href="#">Roadmap</a>
+      <a href="#">Team</a>
+      <a href="#">Tokenomics</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>  <section class="welcome">
     <h2>Welcome to Oil Token</h2>
     <p>The future of decentralized energy investment on the TON blockchain.</p>
-  </section>
-
-  <section class="exchange">
+  </section>  <section class="exchange">
     OIL EXCHANGE
     <div class="coming">Coming Soon</div>
-  </section>
-
-  <section class="opportunity">
+  </section>  <section class="opportunity">
     <p>
       Oil Token is a unique opportunity for those who missed buying Bitcoin in 2010 and now regret it.
       Don't worry — your second chance is here! Oil Token offers an ideal opportunity for buyers and holders
       to gain from a truly innovative blockchain project.
     </p>
-  </section>
-
-  <section class="telegram-bot">
+  </section>  <section class="telegram-bot">
     <h3>Telegram Bot Access</h3>
     <p>Connect with our Telegram Bot for easy access to Oil Token updates and direct interactions.</p>
-    <a href="https://t.me/Oiltokenbot" target="_blank">💬 Connect to @Oiltokenbot</a>
-  </section>
-
-  <section class="whitepaper">
+    <a href="https://t.me/Oiltokenofficial" target="_blank" class="btn btn-lightblue">💬 Connect to @Oiltokenofficial</a>
+  </section>  <section class="whitepaper">
     <h3>White Paper</h3>
-    <a href="WhitePaper.html">View White Paper</a>
-  </section>
-
-  <section class="roadmap">
+    <a href="WhitePaper.html" class="btn btn-purple">View White Paper</a>
+  </section>  <section class="roadmap">
     <h3>Roadmap</h3>
-    <a href="Roadmap.html">View Roadmap</a>
-  </section>
-
-  <section class="websites">
+    <a href="Roadmap.html" class="btn btn-gold">View Roadmap</a>
+  </section>  <section class="websites">
     <h3>Official Websites</h3>
-    <p><a href="https://oiltokenofficail.netlify.app/" target="_blank">Netlify Site</a></p>
-    <p><a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">GitHub Pages Site</a></p>
-  </section>
-
-  <section class="team">
+    <p><a href="https://oiltokenofficial.github.io/OilTokenSite/" target="_blank">GitHub Pages Site</a></p>
+  </section>  <section class="team">
     <h3>Team</h3>
-    <a href="Team.html">Meet the Team</a>
-  </section>
-
-  <section class="social">
+    <a href="Team.html" class="btn btn-olive">Meet the Team</a>
+  </section>  <section class="social">
     <h3>Social Channels</h3>
-    <p>Telegram: <a href="https://t.me/Oiltokenbot" target="_blank">@Oiltokenbot</a></p>
-    <p>X (Twitter): <a href="#" target="_blank">Coming soon</a></p>
-    <p>Instagram: <a href="#" target="_blank">Coming soon</a></p>
-    <p>Email: <a href="mailto:oiltokenofficail@gmail.com">oiltokenofficail@gmail.com</a></p>
+    <p>Telegram: <a href="https://t.me/Oiltokenofficial" target="_blank">@Oiltokenofficial</a></p>
+    <p>X (Twitter): <a href="https://x.com/oiltoken_" target="_blank">@oiltoken_</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/oiltokenofficial" target="_blank">@oiltokenofficial</a></p>
+    <p>GitHub: <a href="https://github.com/Oiltokenofficial" target="_blank">OilTokenOfficial</a></p>
+    <p>Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></p>
   </section>
 </body>
-  </html>
+</html>
