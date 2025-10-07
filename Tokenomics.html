@@ -1,65 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oil Token (OIL) - Tokenomics</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oiltoken — Tokenomics</title>
 <style>
-  body { font-family: Arial, sans-serif; background:#f9f9f9; color:#222; margin:0; padding:0; }
-  header { background:#111; color:#fff; padding:20px; text-align:center; }
-  header img { width:40px; height:40px; vertical-align:middle; margin-right:10px; }
-  header h1 { display:inline; font-size:28px; }
-  section { padding:60px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  h2 { font-size:26px; text-align:center; margin-bottom:30px; }
-  .token-section { margin:20px 0; padding:20px; background:#e0f0ff; border-radius:8px; }
-  footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
+  :root{
+    --gold:#FFD700;
+    --purple:#8A2BE2;
+    --bg-1:#FFF8FF;
+    --bg-2:#F7F0FF;
+    --card:#ffffff;
+    --muted:#5c3b76;
+    --text-dark:#1C0A2B;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-dark)}
+  header{background:linear-gradient(90deg,var(--purple),var(--gold));padding:28px;box-shadow:0 8px 30px rgba(138,43,226,0.12)}
+  header h1{margin:0;font-size:28px;font-weight:800;color:var(--text-dark)}
+  main{max-width:1000px;margin:30px auto;padding:20px}
+  .card{background:var(--card);border-radius:14px;padding:24px;box-shadow:0 6px 22px rgba(106,42,207,0.06)}
+  h2{color:var(--purple);margin-top:0;font-size:24px}
+  h3{color:var(--muted);margin-top:22px}
+  ul{margin-left:20px;line-height:1.6}
+  li{margin-bottom:6px}
+  .highlight{background:linear-gradient(180deg,#fff,#FFF8E0);border-radius:10px;padding:14px;border:1px solid rgba(0,0,0,0.05);margin:12px 0}
+  a{color:var(--purple);text-decoration:none}
+  footer{text-align:center;color:var(--muted);padding:18px;margin-top:30px}
 </style>
 </head>
 <body>
 
 <header>
-  <img src="barrel.png" alt="Oil Token Logo">
-  <h1>Oil Token (OIL) - Tokenomics</h1>
+  <h1>Oil (Oiltoken) — Tokenomics</h1>
 </header>
 
-<section>
-  <h2>Token Distribution & Allocation</h2>
+<main>
+  <section class="card">
+    <h2>Token Overview</h2>
+    <div class="highlight">
+      <strong>Name:</strong> Oil<br>
+      <strong>Symbol:</strong> Oiltoken<br>
+      <strong>Standard:</strong> TIP-3 (Jetton on TON)<br>
+      <strong>Decimals:</strong> 9<br>
+      <strong>Total Supply:</strong> 10,000,000,000 Oiltoken (fixed, no minting)<br>
+      <strong>Contract Address:</strong> <code>EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q</code><br>
+      <strong>Explorer:</strong> <a href="https://tonviewer.com/EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q" target="_blank">TonViewer (contract)</a>
+    </div>
+    <p>The <strong>Oiltoken</strong> represents a fixed-supply energy-backed digital asset on the TON blockchain. No further minting will ever occur, ensuring supply scarcity and transparent tokenomics verified on-chain.</p>
+  </section>
 
-  <div class="token-section">
-    <h3>Total Supply</h3>
-    <p>The total supply of Oil Token is <b>10,000,000,000 OIL</b>. No additional minting is possible.</p>
-  </div>
-
-  <div class="token-section">
-    <h3>Locked Supply (50%)</h3>
-    <p>5,000,000,000 tokens are locked for 5 years. 1 billion tokens are unlocked every 2 years. Monthly distribution: 100 million tokens. Fully distributed in ~11 years and 3 months.</p>
-  </div>
-
-  <div class="token-section">
-    <h3>Initial Distribution</h3>
-    <p>1,000,000,000 tokens will be distributed to Tonkeeper holders at launch.</p>
-  </div>
-
-  <div class="token-section">
-    <h3>Remaining Tokens (50%)</h3>
+  <section class="card">
+    <h2>Distribution Model</h2>
+    <p>The distribution is designed to guarantee fairness, ecosystem sustainability, and long-term stability.</p>
     <ul>
-      <li>10% (1,000,000,000) — Airdrops & Rewards</li>
-      <li>20% (2,000,000,000) — Public Sale on Exchanges</li>
-      <li>5% (500,000,000) — Core Team</li>
-      <li>5% (500,000,000) — Community Development & Future Projects</li>
+      <li><strong>Locked Supply:</strong> 50% — 5,000,000,000 Oiltoken (team/project reserve with multi-year vesting)</li>
+      <li><strong>Initial Distribution (Tonkeeper Holders):</strong> 10% — 1,000,000,000 Oiltoken</li>
+      <li><strong>Public Sale / Exchange Liquidity:</strong> 20% — 2,000,000,000 Oiltoken</li>
+      <li><strong>Airdrops & Rewards:</strong> 10% — 1,000,000,000 Oiltoken</li>
+      <li><strong>Core Team:</strong> 5% — 500,000,000 Oiltoken (subject to vesting)</li>
+      <li><strong>Community & Development:</strong> 5% — 500,000,000 Oiltoken</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="token-section">
-    <h3>Token Utility</h3>
-    <p>Oil Token is a utility token representing 1 barrel of crude oil per token. It enables global access, secure transactions, and simplified asset tracking on the TON blockchain.</p>
-  </div>
+  <section class="card">
+    <h2>Vesting & Lockup Policy</h2>
+    <p><strong>Total Locked Supply:</strong> 5,000,000,000 Oiltoken</p>
+    <ul>
+      <li><strong>Cliff Period:</strong> 60 months (5 years) — no tokens released during this period.</li>
+      <li>After the first 5 years, <strong>1,000,000,000 Oiltoken</strong> will be unlocked gradually over 10 months (100,000,000 per month).</li>
+      <li>Each subsequent tranche remains locked for 2 years before the next 1B unlock cycle begins.</li>
+      <li>Total locked distribution completes in approximately <strong>16 years and 3 months</strong>, ensuring long-term commitment and market stability.</li>
+    </ul>
+  </section>
 
-</section>
+  <section class="card">
+    <h2>Circulating Supply</h2>
+    <p>At launch, <strong>2,000,000,000 Oiltoken</strong> (Public + Airdrops) and <strong>1,000,000,000</strong> distributed to Tonkeeper holders make up the initial circulation.  
+    The <strong>5B locked supply</strong> remains excluded until vesting release events. Real-time circulating supply can be monitored through the Ton blockchain explorer and official dashboards.</p>
+  </section>
+
+  <section class="card">
+    <h2>Release Schedule</h2>
+    <ul>
+      <li><strong>Frequency:</strong> Monthly, during release periods.</li>
+      <li><strong>First Unlock:</strong> After 60-month cliff.</li>
+      <li><strong>Monthly Release:</strong> 100,000,000 Oiltoken for 10 months (first tranche).</li>
+      <li>Subsequent unlocks follow the same 10-month pattern every 2 years.</li>
+      <li><strong>Completion:</strong> Entire 5B locked supply distributed over ~16.25 years.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Utility & Value Creation</h2>
+    <ul>
+      <li>Trading on decentralized exchanges such as <strong>Ston.fi</strong>.</li>
+      <li>Participation in energy-backed dApps and DeFi products.</li>
+      <li>Governance, staking, and community reward systems.</li>
+      <li>Access to a stable, oil-backed asset class for global users.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Liquidity & Exchanges</h2>
+    <p>Liquidity pools are deployed primarily on decentralized exchanges (DEX) within TON’s ecosystem.  
+    Additional listings on centralized exchanges (CEX) are planned as the project matures.</p>
+    <p>Example Pool:  
+    <a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy" target="_blank">
+      Ston.fi — Oiltoken Liquidity Pool
+    </a></p>
+  </section>
+
+  <section class="card">
+    <h2>Transparency & Verification</h2>
+    <p>All token balances, transactions, and vesting contracts are recorded publicly on the TON blockchain.  
+    The smart contract is open-source, audited, and available for verification through TonViewer.</p>
+  </section>
+</main>
 
 <footer>
-  <p>© 2025 Oil Token. All rights reserved.</p>
+  © 2025 Oiltokenofficail — Tokenomics Page
 </footer>
 
 </body>
-</html>
+  </html>
