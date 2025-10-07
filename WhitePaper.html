@@ -1,175 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oil Token (Oiltoken) - White Paper</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oil (Oiltoken) — Whitepaper</title>
+<meta name="description" content="Oil (Oiltoken) — Energy-backed token on TON. Tokenomics, roadmap, team, token details and contact.">
 <style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #2e004f, #3d0066, #5c008a);
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+  :root{
+    --gold:#FFD700;
+    --purple:#8A2BE2;
+    --bg-1:#FFF8FF;
+    --bg-2:#F7F0FF;
+    --card:#ffffff;
+    --muted:#5c3b76;
+    --text-dark:#1C0A2B;
   }
-  header {
-    background: linear-gradient(90deg, #ffb800, #ffcc33);
-    color: #2e004f;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  }
-  header h1 {
-    font-size: 34px;
-    margin: 0;
-  }
-  section {
-    background: rgba(255,255,255,0.08);
-    margin: 30px auto;
-    padding: 30px;
-    max-width: 1100px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  }
-  h2 {
-    color: #ffcc33;
-    border-left: 5px solid #ffcc33;
-    padding-left: 10px;
-  }
-  h3 {
-    color: #ffde6b;
-  }
-  a {
-    color: #ffcc33;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  ul {
-    margin-left: 20px;
-  }
-  footer {
-    background: #1d0033;
-    color: #ffcc33;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 2px solid #ffcc33;
-  }
+  html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-dark)}
+  header{background:linear-gradient(90deg,var(--purple),var(--gold));padding:28px;box-shadow:0 8px 30px rgba(138,43,226,0.12)}
+  .wrap{max-width:1200px;margin:0 auto;display:flex;gap:18px;align-items:center;justify-content:flex-start}
+  header img{width:64px;height:64px;border-radius:12px;background:#fff;padding:6px;object-fit:cover}
+  header h1{margin:0;font-size:28px;font-weight:800;color:var(--text-dark)}
+  header p{margin:4px 0 0 0;color:rgba(28,10,43,0.8);font-size:13px}
+  main{max-width:1200px;margin:26px auto;padding:12px}
+  .card{background:var(--card);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 6px 22px rgba(106,42,207,0.06)}
+  h2{color:var(--purple);margin:0 0 12px 0;font-size:22px}
+  h3{color:var(--muted);margin:8px 0;font-size:16px}
+  p,li{color:#222;line-height:1.6}
+  ul{margin-left:18px}
+  .kpi{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .kpi .item{background:linear-gradient(180deg,#fff,#FFF8E0);border-radius:10px;padding:12px 14px;min-width:160px;border:1px solid rgba(0,0,0,0.04)}
+  .two-col{display:flex;gap:18px;flex-wrap:wrap}
+  .col{flex:1;min-width:280px}
+  .team-grid{display:flex;gap:12px;flex-wrap:wrap}
+  .team-card{background:linear-gradient(180deg,#fff,#F9F6FF);border-radius:10px;padding:14px;border:1px solid rgba(106,42,207,0.06);min-width:220px;flex:1}
+  .team-card h4{margin:0 0 6px 0;color:#3B0B4E}
+  .links ul{list-style:none;padding-left:0}
+  .links li{margin-bottom:8px}
+  a{color:var(--purple);text-decoration:none}
+  .muted{color:#6b6b6b;font-size:13px}
+  footer{max-width:1200px;margin:18px auto;text-align:center;color:var(--muted);padding:14px}
+  pre.source{white-space:pre-wrap;background:#111;padding:12px;color:#fff;border-radius:8px;overflow:auto}
+  @media(max-width:860px){.two-col{flex-direction:column}.kpi{flex-direction:column}}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Oil Token (Oiltoken) - White Paper</h1>
+  <div class="wrap">
+    <img src="https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png" alt="Oil Logo">
+    <div>
+      <h1>Oil (Oiltoken) — Whitepaper</h1>
+      <p class="muted">Energy-backed token on the TON blockchain — Official documentation (2025)</p>
+    </div>
+  </div>
 </header>
 
-<section id="intro">
-  <h2>Introduction</h2>
-  <p><b>Oil Token (Oiltoken)</b> bridges the gap between digital assets and real-world crude oil, providing secure, transparent, and global access for users worldwide. Each token represents a digitalized share of crude oil, enabling seamless trading, tracking, and valuation within the blockchain ecosystem.</p>
-</section>
+<main>
 
-<section id="objective">
-  <h2>Project Objective</h2>
-  <p>The main goal of <b>Oil Token</b> is to create a secure, transparent, and globally accessible representation of crude oil using blockchain technology.</p>
-  <ul>
-    <li>Global accessibility and decentralization</li>
-    <li>Transparency through blockchain verification</li>
-    <li>Community-driven economic growth</li>
-  </ul>
-</section>
+  <section class="card" id="cover">
+    <h2>Cover & Executive Summary</h2>
+    <p><strong>Oil (Oiltoken)</strong> bridges digital assets and real-world crude oil by tokenizing oil-value on the TON blockchain. Each token represents the digital economic value tied to crude oil. Oiltoken enables transparent trading, tracking, and participation in energy markets — designed for global accessibility, security, and long-term stability.</p>
+  </section>
 
-<section id="problem">
-  <h2>Market Problem & Opportunity</h2>
-  <h3>Current Challenges:</h3>
-  <ul>
-    <li>Limited access to global energy investments</li>
-    <li>Inefficient and opaque trading in traditional oil markets</li>
-    <li>Lack of transparency and decentralization</li>
-  </ul>
-  <h3>Opportunities with Oiltoken:</h3>
-  <ul>
-    <li>Tokenization of crude oil assets for global users</li>
-    <li>Blockchain-based verification and ownership tracking</li>
-    <li>Real-time trading and staking possibilities</li>
-  </ul>
-</section>
+  <section class="card" id="objective">
+    <h2>Project Objective</h2>
+    <p>The primary objective of <strong>Oil</strong> is to create a secure, transparent, and accessible digital representation of crude oil that opens energy markets to retail and institutional users worldwide. The project reduces intermediaries and provides blockchain-native ownership of energy value.</p>
+    <ul>
+      <li>Global accessibility for retail and institutional investors</li>
+      <li>Transparency and auditability via TON blockchain</li>
+      <li>Fixed, verifiable token supply and predictable release schedule</li>
+    </ul>
+  </section>
 
-<section id="solution">
-  <h2>Solution</h2>
-  <p><b>Oiltoken</b> transforms the traditional oil market by creating a blockchain-based token that is fully transparent and accessible. The token allows investors to trade, stake, and participate in energy-backed DeFi applications.</p>
-</section>
+  <section class="card" id="problem-opportunity">
+    <h2>Market Problem & Opportunity</h2>
+    <div class="two-col">
+      <div class="col">
+        <h3>Challenges in Traditional Oil Markets</h3>
+        <ul>
+          <li>Limited access for small-scale investors</li>
+          <li>Complex legal and cross-border constraints</li>
+          <li>Opaqueness and reliance on intermediaries</li>
+          <li>High costs and slow settlement</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Opportunity</h3>
+        <p>Tokenization of crude oil creates instant, permissionless access to oil-backed assets, improving liquidity and transparency. By representing oil value on-chain, Oiltoken unlocks a large addressable market within energy and DeFi ecosystems.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="tokenomics">
-  <h2>Tokenomics & Distribution</h2>
-  <ul>
-    <li><b>Name:</b> Oil</li>
-    <li><b>Symbol:</b> Oiltoken</li>
-    <li><b>Total Supply:</b> 10,000,000,000</li>
-    <li><b>Public Sale:</b> 20%</li>
-    <li><b>Airdrops & Rewards:</b> 10%</li>
-    <li><b>Community Lock:</b> 50% (locked 5 years with gradual release)</li>
-    <li><b>Team:</b> 5% (vesting after 2 years)</li>
-    <li><b>Project Goals:</b> 5% (community-approved)</li>
-  </ul>
-</section>
+  <section class="card" id="solution">
+    <h2>Solution Overview</h2>
+    <p><strong>Oiltoken</strong> tokenizes crude oil value via TIP-3 (Jetton) tokens on the TON network. The smart contract model ensures transparent supply rules, verifiable ownership, and on-chain transferability. Investors can trade Oiltoken on DEXs (like Ston.fi), participate in staking and rewards, and access energy-backed dApps.</p>
+  </section>
 
-<section id="roadmap">
-  <h2>Roadmap</h2>
-  <ul>
-    <li><b>Phase 1:</b> Token deployment & Tonkeeper distribution</li>
-    <li><b>Phase 2:</b> DEX listing & Airdrops</li>
-    <li><b>Phase 3:</b> Community rewards & strategic partnerships</li>
-    <li><b>Phase 4:</b> Liquidity expansion, staking launch</li>
-    <li><b>Phase 5:</b> Global exchange listings & DeFi integration</li>
-  </ul>
-</section>
+  <section class="card" id="token-details">
+    <h2>Token Details</h2>
+    <div class="kpi">
+      <div class="item"><strong>Name</strong><div>Oil</div></div>
+      <div class="item"><strong>Symbol</strong><div>Oiltoken</div></div>
+      <div class="item"><strong>Standard</strong><div>TIP-3 (Jetton on TON)</div></div>
+      <div class="item"><strong>Decimals</strong><div>9</div></div>
+    </div>
+    <ul style="margin-top:12px">
+      <li><strong>Total Supply:</strong> 10,000,000,000 Oiltoken (fixed, no minting)</li>
+      <li><strong>Contract Address:</strong> <code>EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q</code></li>
+      <li><strong>Explorer:</strong> <a href="https://tonviewer.com/EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q" target="_blank">TonViewer (contract)</a></li>
+      <li><strong>Top holders:</strong> 35 wallets currently identified on-chain (see explorer).</li>
+    </ul>
+  </section>
 
-<section id="team">
-  <h2>Team & Advisors</h2>
-  <ul>
-    <li>P.s - Digital Assets Specialist & Project Manager</li>
-    <li>M.B - Senior Expert in Marketing & Global Trade</li>
-    <li>miss.N - Senior Expert in International Insurance</li>
-    <li>Mr.F - Senior Expert in Accounting & Finance</li>
-    <li>Ms.A - Senior Expert in International Law</li>
-    <li>Mr.Bs - Senior Marketing Specialist</li>
-    <li>Ms.S - Project Program Manager</li>
-    <li>Ms.F - Public Relations Manager</li>
-  </ul>
-  <p><b>Team Information:</b>  
-  All members are working full-time on the project. The team consists of young, talented, and highly intelligent innovators building with passion and precision.  
-  For privacy and security, communications are handled via the official Telegram channel:  
-  <a href="https://t.me/oilofficial" target="_blank">https://t.me/oilofficial</a>  
-  Team members prefer to remain pseudonymous until major milestones are achieved.</p>
-</section>
+  <section class="card" id="tokenomics">
+    <h2>Tokenomics & Distribution</h2>
+    <p>Distribution is structured to ensure fair community participation, liquidity, and long-term project stability.</p>
+    <ul>
+      <li><strong>Locked Supply:</strong> 50% — 5,000,000,000 Oiltoken (team/project reserve with staged vesting)</li>
+      <li><strong>Initial Distribution (Tonkeeper holders):</strong> 10% — 1,000,000,000 Oiltoken</li>
+      <li><strong>Public Sale / Exchanges:</strong> 20% — 2,000,000,000 Oiltoken</li>
+      <li><strong>Airdrops & Rewards:</strong> 10% — 1,000,000,000 Oiltoken</li>
+      <li><strong>Core Team:</strong> 5% — 500,000,000 Oiltoken (subject to vesting)</li>
+      <li><strong>Community & Development:</strong> 5% — 500,000,000 Oiltoken</li>
+    </ul>
 
-<section id="market">
-  <h2>Market Opportunity</h2>
-  <p>The global energy market offers a multi-trillion dollar opportunity. By integrating blockchain and DeFi with oil-backed tokens, <b>Oiltoken</b> enables users to invest in the world’s most valuable commodity transparently and securely.</p>
-</section>
+    <p><strong>Vesting & Release Pattern (Locked Supply):</strong></p>
+    <ul>
+      <li><strong>Cliff Period:</strong> 60 months (5 years) — no tokens released during cliff.</li>
+      <li>After the first 5 years, <strong>1,000,000,000 Oiltoken</strong> are released over 10 months (100,000,000 / month).</li>
+      <li>Remaining locked supply follows the same pattern: after each tranche release, the next tranche remains locked for 2 years, then the next 1B is released over 10 months.</li>
+      <li>Total locked distribution completes in approximately <strong>~16 years and 3 months</strong> (accounting for cliffs and staged releases).</li>
+    </ul>
+  </section>
 
-<section id="security">
-  <h2>Security & Transparency</h2>
-  <p>All transactions and token ownership are recorded on the TON blockchain. The smart contract ensures immutability, verifiability, and community auditability.</p>
-</section>
+  <section class="card" id="supply-circulating">
+    <h2>Supply & Circulating Supply</h2>
+    <p><strong>Total Supply:</strong> 10,000,000,000 Oiltoken (no additional minting).<br>
+    <strong>Circulating Supply (current):</strong> tokens not locked or vested. At launch, initial distribution to Tonkeeper holders (10%) and public allocations are considered circulating; locked supply (5B) is excluded until vesting releases occur. For live numbers, refer to the Tokenomics page and block explorer.</p>
+  </section>
 
-<section id="contact">
-  <h2>Contact & Community</h2>
-  <ul>
-    <li>🌐 Website: <a href="https://oiltokenofficail.github.io/OilTokenSite/">oiltokenofficail.github.io/OilTokenSite</a></li>
-    <li>💬 Telegram: <a href="https://t.me/OilTokenOfficial">t.me/OilTokenOfficial</a></li>
-    <li>🐦 X (Twitter): <a href="https://x.com/OilTokenOfficial">x.com/OilTokenOfficial</a></li>
-    <li>📸 Instagram: <a href="https://instagram.com/oiltokenofficail">instagram.com/oiltokenofficail</a></li>
-    <li>📧 Email: Oiltokenofficail@gmail.com</li>
-  </ul>
-</section>
+  <section class="card" id="release-schedule">
+    <h2>Release Schedule</h2>
+    <p><strong>Frequency:</strong> Monthly (during release windows).<br><strong>First unlock:</strong> After 60-month cliff, monthly releases of 100,000,000 Oiltoken for 10 months (first 1B). Subsequent tranches follow every 2 years by the same monthly schedule.</p>
+  </section>
+
+  <section class="card" id="utility">
+    <h2>Utility & Use Cases</h2>
+    <ul>
+      <li>Trading on DEXs (e.g., Ston.fi) and planned CEX listings</li>
+      <li>Participation in energy-backed decentralized applications (dApps)</li>
+      <li>Staking, rewards, and governance mechanisms</li>
+      <li>Representation of oil-value for portfolio diversification and access to commodity exposure</li>
+    </ul>
+  </section>
+
+  <section class="card" id="roadmap">
+    <h2>Roadmap & Key Milestones (2025–2035)</h2>
+    <ul>
+      <li><strong>2025:</strong> Token launch, initial distribution to Tonkeeper holders, DEX liquidity on Ston.fi</li>
+      <li><strong>2026–2027:</strong> Expand DEX presence, partnerships, liquidity growth</li>
+      <li><strong>2028–2030:</strong> Launch staking programs, industry integrations, pursue CEX listings</li>
+      <li><strong>2031–2035:</strong> Global ecosystem expansion, strategic partnerships, broader utility</li>
+    </ul>
+  </section>
+
+  <section class="card" id="uniqueness">
+    <h2>What Makes Oil Unique</h2>
+    <p>Oiltoken is commodity-backed (crude oil) and built on TON for fast, low-cost transactions. The project combines long-term vesting discipline, transparent on-chain accounting, and a team with both energy-market and blockchain experience to enable real-world integrations and sustainable growth.</p>
+  </section>
+
+  <section class="card" id="revenue-model">
+    <h2>Revenue Model</h2>
+    <p>Revenue streams include transaction fees, staking commissions, liquidity pool yields, partnership revenues, and service integrations. A portion of revenue is allocated to community development, ecosystem growth, and future strategic initiatives.</p>
+  </section>
+
+  <section class="card" id="security">
+    <h2>Security & Transparency</h2>
+    <p>All token transactions and balances are recorded on the TON blockchain. The TIP-3 Jetton contract enforces supply rules and transfer logic. The project will publish on-chain proof, explorer links, and pursue third-party audits as appropriate to ensure trust and verifiability.</p>
+  </section>
+
+  <section class="card" id="liquidity">
+    <h2>Liquidity & Exchanges</h2>
+    <p>Initial liquidity is provided on decentralized exchanges (Ston.fi). Planned public sale and exchange listings are intended to expand liquidity across markets. Example pool:</p>
+    <p><a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy" target="_blank">Ston.fi liquidity pool (example)</a></p>
+  </section>
+
+  <section class="card" id="team">
+    <h2>Team & Advisors</h2>
+    <p class="muted">All members work full-time on the project. For privacy and security, core members currently prefer pseudonymous representation until key milestones are achieved. Official communications are handled via the verified Telegram channel <a href="https://t.me/oilofficial" target="_blank">https://t.me/oilofficial</a>.</p>
+
+    <div class="team-grid" style="margin-top:12px">
+      <div class="team-card">
+        <h4>P.s</h4>
+        <p><strong>Role:</strong> Digital Assets Specialist & Project Manager<br>The lead on token architecture, distribution strategy, and technical coordination.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>M.B</h4>
+        <p><strong>Role:</strong> Senior Expert in Marketing & Global Trade<br>Responsible for marketing strategy, partnerships, and global exchange outreach.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>miss.N</h4>
+        <p><strong>Role:</strong> Senior Expert in International Insurance<br>Handles insurance strategy, risk mitigation, and compliance for asset backing.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>Mr.F</h4>
+        <p><strong>Role:</strong> Senior Expert in Accounting & Finance<br>Responsible for treasury, financial reporting, and tokenomics oversight.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>Ms.A</h4>
+        <p><strong>Role:</strong> Senior Expert in International Law<br>Leads legal strategy, compliance, and contractual frameworks for asset linkage.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>Mr.Bs</h4>
+        <p><strong>Role:</strong> Senior Marketing Specialist<br>Supports community engagement, campaigns, and PR activities.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>Ms.S</h4>
+        <p><strong>Role:</strong> Project Program Manager<br>Coordinates project timelines, milestones, and cross-functional delivery.</p>
+      </div>
+
+      <div class="team-card">
+        <h4>Ms.F</h4>
+        <p><strong>Role:</strong> Public Relations Manager<br>Leads external communications and media relations for the project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card links" id="official-links">
+    <h2>Official Links & Contact</h2>
+    <ul>
+      <li>Website: <a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">oiltokenofficail.github.io/OilTokenSite</a></li>
+      <li>Tokenomics: <a href="https://oiltokenofficail.github.io/OilTokenSite/Tokenomics.html" target="_blank">Tokenomics Page</a></li>
+      <li>Whitepaper (this page): HTML / PDF</li>
+      <li>Explorer (contract): <a href="https://tonviewer.com/EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q" target="_blank">TonViewer</a></li>
+      <li>Liquidity (Ston.fi): <a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy" target="_blank">Ston.fi Pool</a></li>
+      <li>Telegram (community): <a href="https://t.me/Oiltokenofficial" target="_blank">t.me/Oiltokenofficial</a></li>
+      <li>Telegram (official team contact): <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></li>
+      <li>X (Twitter): <a href="https://x.com/Oiltoken_" target="_blank">x.com/Oiltoken_</a></li>
+      <li>Instagram: <a href="https://www.instagram.com/oiltokenofficail" target="_blank">instagram.com/oiltokenofficail</a></li>
+      <li>GitHub: <a href="https://github.com/Oiltokenofficail" target="_blank">github.com/Oiltokenofficail</a></li>
+      <li>Email: <a href="mailto:oiltokenofficail@gmail.com">oiltokenofficail@gmail.com</a></li>
+    </ul>
+  </section>
+
+  <section class="card" id="faq">
+    <h2>FAQ & Additional Notes</h2>
+    <ul>
+      <li><strong>Token Generation Event (TGE):</strong> Yet to be confirmed — will be announced via official channels.</li>
+      <li><strong>Circulating Supply API / Total Supply API:</strong> Live figures and APIs (if available) will be linked on the Tokenomics page and explorer.</li>
+      <li><strong>Vested/Locked Wallets:</strong> Locked team/project wallets hold 5B Oiltoken and are excluded from circulating supply until vesting releases.</li>
+      <li><strong>Top Holder List URL:</strong> The contract explorer link shows top holders — use TonViewer contract page to review holders.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="disclaimer">
+    <h2>Disclaimer</h2>
+    <p>This Whitepaper is for informational purposes only and does not constitute financial, legal, or investment advice. Token holders and potential investors should perform their own research and consult professional advisors before making investment decisions. The project team is not responsible for individual investment outcomes.</p>
+  </section>
+
+</main>
 
 <footer>
-  <p>© 2025 Oil Token (Oiltoken). All rights reserved.</p>
+  <div class="muted">© 2025 Oiltokenofficail – All Rights Reserved</div>
 </footer>
 
 </body>
-</html>
+  </html>
