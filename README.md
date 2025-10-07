@@ -77,7 +77,7 @@ The global energy sector exceeds $6 trillion. Tokenizing oil assets allows digit
 Social Links:
 - 🌐 Website: https://oiltokenofficail.github.io/OilTokenSite/
 - 💬 Telegram: https://t.me/OilTokenOfficial
-- 🐦 X (Twitter): https://x.com/OilTokenOfficial
+- 🐦 X (Twitter): https://x.com/OilToken_
 - 📸 Instagram: https://www.instagram.com/oiltokenofficail
 - 💻 GitHub: https://github.com/OilTokenOfficail
 - 📧 Email: oiltokenofficail@gmail.com
