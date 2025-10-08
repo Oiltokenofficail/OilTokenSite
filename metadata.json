@@ -1,0 +1,14 @@
+{
+  "name": "Oil",
+  "symbol": "OILTOKEN",
+  "description": "Oil Token (OILTOKEN) is a decentralized digital asset built on the TON blockchain, designed to combine innovation, transparency, and energy-inspired value in the Web3 ecosystem.",
+  "image": "https://oiltokenofficail.github.io/logo.png",
+  "website": "https://oiltokenofficail.github.io/",
+  "social": {
+    "telegram": "https://t.me/oilofficial",
+    "x": "https://x.com/Oiltoken_",
+    "github": "https://github.com/oiltokenofficail"
+  },
+  "type": "token",
+  "version": "1.0"
+}
