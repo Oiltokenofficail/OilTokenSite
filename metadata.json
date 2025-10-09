@@ -1,14 +1,12 @@
 {
+  "address": "0:4a6041cc7cc45ca658ffede56c0475b5467a977fe3cef173fec48497451bbe5c",
   "name": "Oil",
-  "symbol": "OILTOKEN",
-  "description": "Oil Token (OILTOKEN) is a decentralized digital asset built on the TON blockchain, designed to combine innovation, transparency, and energy-inspired value in the Web3 ecosystem.",
-  "image": "https://oiltokenofficail.github.io/logo.png",
-  "website": "https://oiltokenofficail.github.io/",
-  "social": {
-    "telegram": "https://t.me/oilofficial",
-    "x": "https://x.com/Oiltoken_",
-    "github": "https://github.com/oiltokenofficail"
-  },
-  "type": "token",
-  "version": "1.0"
+  "symbol": "OIL TOKEN",
+  "decimals": "9",
+  "image": "https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png",
+  "description": "Oil Token bridges the gap between digital assets and real-world crude oil. Each token represents one barrel of crude oil — secured, transparent, and globally accessible through the TON blockchain.",
+  "website": "https://oiltokenofficial.github.io",
+  "whitepaper": "https://oiltokenofficial.github.io/whitepaper",
+  "dex": "https://ston.fi/pairs?token=OIL",
+  "telegram": "https://t.me/oilofficial"
 }
