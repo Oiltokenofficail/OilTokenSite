@@ -1,69 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OIL TOKEN — Official Repository Links</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Token Logo</title>
   <style>
     body {
-      background: #0a0a0a;
-      color: #f8d57e;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px 20px;
-    }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.1em;
-      margin-bottom: 30px;
-      color: #d9d9d9;
+      background-color: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
     img {
-      width: 160px;
-      border-radius: 50%;
-      box-shadow: 0 0 25px #f8d57e77;
-      margin-bottom: 25px;
-    }
-    a {
-      display: block;
-      margin: 10px auto;
-      text-decoration: none;
-      background: #f8d57e;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      width: fit-content;
-      transition: 0.3s;
-    }
-    a:hover {
-      background: #fff0b3;
-      transform: translateY(-2px);
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #888;
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 25px gold;
     }
   </style>
 </head>
 <body>
-  <h1>💧 OIL TOKEN — Official Resources</h1>
-  <p>Your Digital Barrel of Crude — Trade Oil Globally on TON Blockchain</p>
-  
-  <img src="https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png" alt="OIL Token Logo">
-
-  <a href="metadata.json" target="_blank">📜 View Metadata.json</a>
-  <a href="whitepaper.html" target="_blank">📖 View Whitepaper</a>
-  <a href="roadmap.html" target="_blank">🗺️ View Roadmap</a>
-  <a href="https://ston.fi" target="_blank">🌐 Visit Ston.fi</a>
-  <a href="https://github.com/oiltokenofficail/oiltokenofficail.github.io/archive/refs/heads/main.zip" target="_blank">⬇️ Download Latest ZIP</a>
-
-  <footer>
-    © 2025 OIL TOKEN | Powered by TON Blockchain
-  </footer>
+  <img src="https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png" alt="Oil Token Logo" />
 </body>
 </html>
