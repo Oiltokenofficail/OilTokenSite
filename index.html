@@ -144,140 +144,98 @@ function calculatePayment() {
 </body>
 </html>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>OilTokenOfficial</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Token Official</title>
   <style>
-    :root {
-      --gold: #ffd700;
-      --purple: #6a0dad;
-      --bg-light: #fffaf0;
-      --text-dark: #1b0b2b;
-    }
     body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #3b0063, #000000);
+      color: gold;
       margin: 0;
-      font-family: Inter, system-ui, Arial, sans-serif;
-      background: linear-gradient(180deg, var(--bg-light), #fff);
-      color: var(--text-dark);
+      padding: 0;
+      text-align: center;
     }
     header {
-      padding: 40px;
-      text-align: center;
-      background: linear-gradient(90deg, var(--purple), #8e44ad 40%, var(--gold));
-      color: white;
-    }
-    .container {
-      max-width: 980px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    .logo-box {
-      width: 120px;
-      height: 120px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(106,13,173,0.15);
-      display: inline-block;
-      overflow: hidden;
-      background: white;
-      padding: 10px;
-    }
-    .logo-box img {
-      width: 100%;
-      height: auto;
-      display: block;
+      padding: 40px 20px;
     }
     h1 {
-      margin: 12px 0;
-      font-size: 28px;
+      font-size: 2.5em;
+      color: #ffd700;
     }
-    p.lead {
-      color: #2a0b3b;
-      font-size: 16px;
+    p {
+      max-width: 800px;
+      margin: 10px auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #f8e7a8;
     }
-    .card {
-      background: linear-gradient(180deg, white, #fffaf5);
-      border: 1px solid rgba(106,13,173,0.06);
-      padding: 18px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-      margin-bottom: 24px;
+    .connect {
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 30px auto;
+      width: 80%;
+      max-width: 600px;
+    }
+    .connect a {
+      color: #ffd700;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+      transition: color 0.3s;
+    }
+    .connect a:hover {
+      color: #fff;
     }
     .btn {
       display: inline-block;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: var(--gold);
-      color: #12030a;
+      background: #ffd700;
+      color: #3b0063;
+      padding: 12px 25px;
+      border-radius: 30px;
       text-decoration: none;
-      font-weight: 700;
-      margin: 8px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn:hover {
+      background: #fff;
+      color: #3b0063;
     }
     footer {
-      margin-top: 30px;
-      text-align: center;
-      color: #6b4a7a;
-      font-size: 14px;
-      padding: 30px;
-    }
-    .connect-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .connect-list li {
-      margin: 8px 0;
-    }
-    .small {
-      font-size: 13px;
-      color: #6b4a7a;
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #cbb26a;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-box">
-      <img src="logo.png" alt="Oil Token Logo">
-    </div>
-    <h1>OIL — Official</h1>
-    <div class="small">Community-driven energy token on TON</div>
+    <h1>💧 Oil Token Official</h1>
+    <p>Oil Token (OIL TOKEN) is a decentralized digital asset built on the TON blockchain, symbolizing innovation, transparency, and energy in the crypto economy.</p>
   </header>
 
-  <div class="container">
-    <section class="card">
-      <h2>About</h2>
-      <p class="lead">Oil (OIL) is a community token on the TON blockchain that focuses on innovation, transparency, and accessibility in digital energy assets. This page has been updated to include essential links and connectivity for our community.</p>
-    </section>
+  <section class="connect">
+    <h2>🌐 Connect with Us</h2>
+    <a href="https://t.me/oilofficial">Official Telegram</a>
+    <a href="https://t.me/Oiltokenofficial">Community Telegram</a>
+    <a href="https://www.instagram.com/">Instagram</a>
+    <a href="https://x.com/Oiltoken_">X (Twitter)</a>
+    <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
+  </section>
 
-    <section class="card">
-      <h2>Liquidity Pool</h2>
-      <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">💧 View Pool on Ston.fi</a>
-    </section>
+  <section>
+    <h2>💎 Join Our Liquidity Pool</h2>
+    <p>Trade and stake Oil Token directly on STON.fi</p>
+    <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">🔗 Go to STON.fi Pool</a>
+  </section>
 
-    <section class="card">
-      <h2>Connect</h2>
-      <p class="small">Reach out to our team or follow official channels:</p>
-      <ul class="connect-list">
-        <li><strong>Team Telegram:</strong> <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></li>
-        <li><strong>Community Telegram:</strong> <a href="https://t.me/Oiltokenofficial" target="_blank">t.me/Oiltokenofficial</a></li>
-        <li><strong>Instagram:</strong> <a href="https://instagram.com/oiltokenofficail" target="_blank">instagram.com/oiltokenofficail</a></li>
-        <li><strong>X (Twitter):</strong> <a href="https://x.com/oiltoken_" target="_blank">x.com/oiltoken_</a></li>
-        <li><strong>Email:</strong> <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Resources</h2>
-      <a class="btn" href="metadata.json" download>📄 metadata.json</a>
-      <a class="btn" href="logo.png" download>🖼️ logo.png</a>
-      <a class="btn" href="whitepaper.html">📖 Whitepaper</a>
-      <a class="btn" href="roadmap.html">🗺️ Roadmap</a>
-      <a class="btn" href="tokenomics.html">📊 Tokenomics</a>
-    </section>
-  </div>
-
-  <footer>© 2025 OilTokenOfficial — Updated with Connect & Ston Pool</footer>
+  <footer>
+    <p>© 2025 OilTokenOfficial — All Rights Reserved</p>
+  </footer>
 </body>
-        </html>
+      </html>
