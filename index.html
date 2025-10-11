@@ -42,13 +42,14 @@
 
     .telegram-bot { background:#FFD700; }
     .connect { background:#8B008B; color:#fff; }
-    .official-letter { background:#00CED1; color:#000; }
+    .official-letter { background:#00CED1; color:#000; cursor:pointer; transition:0.3s; }
+    .official-letter:hover { background:#00b5c3; color:#fff; transform:scale(1.02); }
     .investor { background:#FF6347; color:#fff; }
     .ideas { background:#FF69B4; color:#fff; }
     .survey { background:#32CD32; color:#fff; }
     .prices { background:#1E90FF; color:#fff; }
 
-    .connect a, .official-letter a, .investor a, .ideas a, .survey a, .prices a {
+    .connect a, .investor a, .ideas a, .survey a, .prices a {
       color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
     }
 
@@ -114,118 +115,30 @@
   <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
 </section>
 
-<section class="official-letter">
+<section class="official-letter" onclick="contactTeam()">
   <h2>📜 Official Letters</h2>
-  <p>View our formal correspondence with TON and Telegram leadership.</p>
-  <a href= <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Official Letter | OilToken</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: #0c0c0c;
-      color: #e5e5e5;
-      text-align: center;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png') center/cover no-repeat;
-      opacity: 0.15;
-      filter: blur(3px);
-      z-index: -1;
-    }
-
-    .letter {
-      max-width: 800px;
-      margin: 80px auto;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    img.logo {
-      width: 100px;
-      opacity: 0.9;
-    }
-
-    h2 {
-      color: #ffffff;
-      margin-top: 20px;
-    }
-
-    p {
-      line-height: 1.7;
-      font-size: 16px;
-      text-align: left;
-      color: #dddddd;
-    }
-
-    .signature {
-      margin-top: 40px;
-      text-align: center;
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-  
-    </div>
-  </div>
-  Dear Pavel Durov,
-
-We, the team behind **OilToken**, would like to express our deepest respect and gratitude for your vision in building the **TON ecosystem** and the global **Telegram** platform — a space that empowers freedom, transparency, and innovation for developers and communities worldwide.
-
-**OilToken (OIL)** is a digital asset built on the TON blockchain, created with a unique mission:  
-for the first time, to bring the global oil market to the blockchain world.  
-Our goal is to merge the tangible value of traditional energy markets with decentralized technology — enabling transparent, accessible, and borderless digital trading for everyone.
-
-We believe that **OilToken** can attract a new wave of users, investors, and global attention to the TON network, contributing to its long-term value and growth.
-
-However, we have faced challenges during the **verification process** through **TON Keeper** and **TON Assets**.  
-Despite fully meeting technical and transparency standards, our verification requests have been repeatedly rejected without clear explanation — with the only justification being that the TON Keeper team reserves the right to reject any submission at its discretion.
-
-We fully respect the policies and independence of the TON team,  
-but we humbly request your attention and support to ensure that genuine, innovative community projects like **OilToken** are given a fair opportunity to grow and contribute to the expansion of the TON ecosystem.
-
-Our team remains committed to transparency, collaboration, and the long-term vision of expanding the TON network through real-world adoption and value.
-
-With respect and appreciation,  
-**OilToken Team**  
-🌐 Website: [https://oiltokenofficail.github.io/OilTokenSite](https://oiltokenofficail.github.io/OilTokenSite)  
-📩 Email: oiltokenproject@gmail.com  
-🔗 Telegram: [https://t.me/oilofficial](https://t.me/oilofficial)
-
-</body>
-</html>
+  <p>Tap to contact the team regarding official correspondence and updates.</p>
+</section>
 
 <section class="investor">
   <h2>💰 Investor Relations</h2>
   <p>Interested in investing? Contact our team for collaboration opportunities.</p>
-  <a href="https://t.me/oilofficial">Contact Investment Team</a>
+  <a href="https://t.me/oilofficial">Telegram: oilofficial</a>
+  <a href="mailto:oiltokenproject@gmail.com">Email: oiltokenproject@gmail.com</a>
 </section>
 
 <section class="ideas">
   <h2>💡 Creative Ideas</h2>
   <p>Have an idea to improve Oil Token? Share it with us!</p>
-  <a href="https://t.me/Oiltokenofficial">Submit Your Idea</a>
+  <a href="https://t.me/Oiltokenofficial">Telegram: Oiltokenofficial</a>
+  <a href="mailto:oiltokenproject@gmail.com">Email: oiltokenproject@gmail.com</a>
 </section>
 
 <section class="survey">
   <h2>🗳️ Community Feedback</h2>
   <p>We value your opinion! Take part in our community surveys.</p>
-  <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
+  <a href="https://t.me/Oiltokenofficial">Telegram: Oiltokenofficial</a>
+  <a href="mailto:oiltokenproject@gmail.com">Email: oiltokenproject@gmail.com</a>
 </section>
 
 <section class="prices">
@@ -241,19 +154,25 @@ With respect and appreciation,
 
 <script>
 const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
+
 function calculatePayment() {
-    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-    const customPrice = parseFloat(document.getElementById("customPrice").value);
-    if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
-        alert("Enter valid token amount and price.");
-        return;
-    }
-    const totalTON = tokenAmount * customPrice;
-    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
-    document.getElementById("withdrawalInfo").innerHTML =
-        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
-         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
+  const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+  const customPrice = parseFloat(document.getElementById("customPrice").value);
+  if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
+    alert("Enter valid token amount and price.");
+    return;
+  }
+  const totalTON = tokenAmount * customPrice;
+  document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
+  document.getElementById("withdrawalInfo").innerHTML =
+      `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
+       <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
+}
+
+function contactTeam() {
+  alert("Contact the OilToken Team:\nTelegram: @oilofficial\nEmail: oiltokenproject@gmail.com");
 }
 </script>
+
 </body>
-</html>
+  </html>
