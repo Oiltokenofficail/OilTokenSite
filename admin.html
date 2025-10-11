@@ -1,0 +1,72 @@
+<!-- =======================  admin.html  ======================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OilToken Admin Panel</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle, #3b0063, #000000);
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+    .panel { display:none; }
+    input, textarea, button {
+      margin:10px; padding:10px; border:none; border-radius:8px;
+      font-size:16px;
+    }
+    button {
+      background:#FFD700; color:#3b0063; cursor:pointer; font-weight:bold;
+    }
+    button:hover { background:#fff; color:#3b0063; }
+    textarea { width:80%; height:120px; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ OilToken Admin Panel</h1>
+  <input type="password" id="password" placeholder="Enter admin password">
+  <button onclick="login()">Login</button>
+
+  <div class="panel">
+    <h2>Add News</h2>
+    <textarea id="newsText" placeholder="Write news content here..."></textarea><br>
+    <button onclick="addNews()">Add News</button>
+    <button onclick="clearNews()">🗑️ Clear All News</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const PASS = "12345";
+    function login() {
+      const input = document.getElementById("password").value;
+      if (input === PASS) {
+        document.querySelector(".panel").style.display = "block";
+        document.getElementById("password").style.display = "none";
+        event.target.style.display = "none";
+      } else {
+        alert("Incorrect password.");
+      }
+    }
+
+    function addNews() {
+      const text = document.getElementById("newsText").value.trim();
+      if (!text) return alert("Enter some news text!");
+      const news = JSON.parse(localStorage.getItem("oilNews")) || [];
+      news.unshift(`${new Date().toLocaleDateString()} — ${text}`);
+      localStorage.setItem("oilNews", JSON.stringify(news));
+      document.getElementById("newsText").value = "";
+      document.getElementById("status").innerText = "✅ News added!";
+    }
+
+    function clearNews() {
+      if (confirm("Delete all news?")) {
+        localStorage.removeItem("oilNews");
+        document.getElementById("status").innerText = "🗑️ All news cleared.";
+      }
+    }
+  </script>
+</body>
+</html>
