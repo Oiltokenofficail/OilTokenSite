@@ -12,14 +12,11 @@
       background: linear-gradient(135deg, #3b0063, #000000);
       color: gold;
       text-align: center;
-      
-      /* 👇 اضافه شده برای بک‌گراند لوگو 👇 */
       background-image: url("barrel.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
-      background-size: 250px; /* می‌تونی مثلاً 400px یا contain بزاری */
-      /* 👆 پایان بخش بک‌گراند */
+      background-size: 250px;
     }
 
     header { background:#ff8800; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
@@ -28,56 +25,38 @@
     nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
 
     .hero { text-align:center; padding:60px 20px; background:#001f3f; color:#fff; }
-    .hero h2 { font-size:36px; margin-bottom:10px; }
-    .hero p { font-size:18px; }
-
     .exchange { text-align:center; background:#ff0000; color:#fff; padding:40px 20px; font-size:32px; font-weight:bold; }
     .exchange p { font-size:20px; margin-top:10px; }
 
-    .opportunity { background:#FFD700; padding:30px; font-size:18px; text-align:center; border-radius:10px; margin:20px auto; max-width:1000px; color:#000; }
+    .opportunity { background:#007BFF; padding:30px; font-size:18px; text-align:center; border-radius:10px; margin:20px auto; max-width:1000px; color:#fff; }
 
     section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); color:#000; }
     h3 { text-align:center; margin-bottom:20px; }
 
-    .token-section { margin:20px auto; max-width:400px; text-align:center; }
     .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
     .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
 
-    .telegram-bot { background:#FFD700; padding:30px; text-align:center; border-radius:10px; margin:20px auto; max-width:800px; color:#000; }
-    .telegram-bot a { display:inline-block; margin-top:10px; padding:12px 24px; background:#000; color:#fff; text-decoration:none; border-radius:8px; font-weight:bold; }
+    .telegram-bot, .connect, .official-letter, .investor, .ideas, .survey, .prices {
+      border-radius: 20px; padding: 30px; margin: 30px auto; width: 85%; max-width: 900px; color:#000;
+    }
 
-    .connect {
-      background: rgba(255, 215, 0, 0.15);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 30px auto;
-      width: 80%;
-      max-width: 600px;
-      color:#fff;
+    .telegram-bot { background:#FFD700; }
+    .connect { background:#8B008B; color:#fff; }
+    .official-letter { background:#00CED1; color:#000; }
+    .investor { background:#FF6347; color:#fff; }
+    .ideas { background:#FF69B4; color:#fff; }
+    .survey { background:#32CD32; color:#fff; }
+    .prices { background:#1E90FF; color:#fff; }
+
+    .connect a, .official-letter a, .investor a, .ideas a, .survey a, .prices a {
+      color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
     }
-    .connect a {
-      color: #ffd700;
-      text-decoration: none;
-      display: block;
-      margin: 8px 0;
-      transition: color 0.3s;
-    }
-    .connect a:hover { color: #fff; }
 
     .btn {
-      display: inline-block;
-      background: #ffd700;
-      color: #3b0063;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      display:inline-block; background:#FFD700; color:#3b0063; padding:12px 25px; border-radius:30px;
+      text-decoration:none; font-weight:bold; transition:background 0.3s, color 0.3s;
     }
-    .btn:hover {
-      background: #fff;
-      color: #3b0063;
-    }
+    .btn:hover { background:#fff; color:#3b0063; }
 
     footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
   </style>
@@ -96,49 +75,36 @@
   </nav>
 </header>
 
-<!-- Welcome -->
 <section class="hero">
   <h2>Welcome to Oil Token</h2>
   <p>The future of decentralized oil-backed digital assets.</p>
 </section>
 
-<!-- Exchange Section -->
 <div class="exchange">
   OIL EXCHANGE
   <p>Coming Soon</p>
 </div>
 
-<!-- Opportunity Section -->
 <div class="opportunity">
-  <p>
-    Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.  
-    Don’t regret it again! With Oil Token, holders gain a second chance to participate in a unique,  
-    revolutionary asset that bridges traditional energy markets with the blockchain world.
-  </p>
+  <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
 </div>
 
-<!-- Buy Tokens -->
 <section>
   <h3>Buy Oil Tokens (Manual)</h3>
   <div class="token-section">
     <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
-    <br>
     <input type="number" id="customPrice" placeholder="Enter your price in TON">
-    <br>
     <button onclick="calculatePayment()">Calculate Payment</button>
     <p>Total TON: <span id="totalTON">0</span></p>
     <div id="withdrawalInfo"></div>
   </div>
 </section>
 
-<!-- Telegram Bot -->
 <div class="telegram-bot">
   <h3>Buy via Telegram Bot</h3>
-  <p>You can also buy Oil Token safely using our official Telegram Bot.</p>
   <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
 </div>
 
-<!-- Connect Section -->
 <section class="connect">
   <h2>🌐 Connect with Us</h2>
   <a href="https://t.me/oilofficial">Official Telegram</a>
@@ -148,11 +114,35 @@
   <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
 </section>
 
-<!-- STON.fi Liquidity Pool -->
-<section>
-  <h2>💎 Join Our Liquidity Pool</h2>
-  <p>Trade and stake Oil Token directly on STON.fi</p>
-  <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">🔗 Go to STON.fi Pool</a>
+<section class="official-letter">
+  <h2>📜 Official Letters</h2>
+  <p>View our formal correspondence with TON and Telegram leadership.</p>
+  <a href="#">📩 Read Letter to Pavel Durov</a>
+</section>
+
+<section class="investor">
+  <h2>💰 Investor Relations</h2>
+  <p>Interested in investing? Contact our team for collaboration opportunities.</p>
+  <a href="https://t.me/oilofficial">Contact Investment Team</a>
+</section>
+
+<section class="ideas">
+  <h2>💡 Creative Ideas</h2>
+  <p>Have an idea to improve Oil Token? Share it with us!</p>
+  <a href="https://t.me/Oiltokenofficial">Submit Your Idea</a>
+</section>
+
+<section class="survey">
+  <h2>🗳️ Community Feedback</h2>
+  <p>We value your opinion! Take part in our community surveys.</p>
+  <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
+</section>
+
+<section class="prices">
+  <h2>💹 Live Crypto Prices</h2>
+  <p>Check real-time prices on trusted platforms:</p>
+  <a href="https://www.coingecko.com/en/coins/oil-token" target="_blank">View on CoinGecko</a>
+  <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
 </section>
 
 <footer>
@@ -175,7 +165,5 @@ function calculatePayment() {
          <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
 }
 </script>
-
-</html>
 </body>
 </html>
