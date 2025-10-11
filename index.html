@@ -175,6 +175,80 @@ function calculatePayment() {
          <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
 }
 </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Letter | OilToken</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: #0c0c0c;
+      color: #e5e5e5;
+      text-align: center;
+    }
 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png') center/cover no-repeat;
+      opacity: 0.15;
+      filter: blur(3px);
+      z-index: -1;
+    }
+
+    .letter {
+      max-width: 800px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    img.logo {
+      width: 100px;
+      opacity: 0.9;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-top: 20px;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 16px;
+      text-align: left;
+      color: #dddddd;
+    }
+
+    .signature {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="letter">
+    <img src="assets/oil_logo.png" alt="OilToken Logo" class="logo">
+    <h2>Official Letter to Pavel Durov</h2>
+    <img src="assets/A_letter_to_PavelDurov.png" alt="OilToken Letter" style="width:100%; border-radius:12px; margin-top:20px;">
+    <div class="signature">
+      <p>With respect and appreciation,<br><strong>OilToken Team</strong></p>
+    </div>
+  </div>
+
+</body>
+</html>
 </body>
 </html>
