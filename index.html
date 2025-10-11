@@ -12,7 +12,7 @@
       background: linear-gradient(135deg, #3b0063, #000000);
       color: gold;
       text-align: center;
-      background-image: url("barrel.png");
+      background-image: url("https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
@@ -37,21 +37,37 @@
     .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
 
     .telegram-bot, .connect, .official-letter, .investor, .ideas, .survey, .prices, .news {
-      border-radius: 20px; padding: 30px; margin: 30px auto; width: 85%; max-width: 900px; color:#000;
+      border-radius: 20px; padding: 30px; margin: 30px auto; width: 85%; max-width: 900px;
     }
 
-    .telegram-bot { background:#FFD700; }
+    .telegram-bot { background:#FFD700; color:#000; }
     .connect { background:#8B008B; color:#fff; }
     .official-letter { background:#00CED1; color:#000; }
     .investor { background:#FF6347; color:#fff; }
     .ideas { background:#FF69B4; color:#fff; }
     .survey { background:#32CD32; color:#fff; }
     .prices { background:#1E90FF; color:#fff; }
-    .news { background:#111; color:#fff; box-shadow: 0 0 10px rgba(255,215,0,0.4); }
 
     .connect a, .official-letter a, .investor a, .ideas a, .survey a, .prices a {
       color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
     }
+
+    .news {
+      background: #4B0082;
+      color: gold;
+      text-align: left;
+      box-shadow: 0 0 20px rgba(255,215,0,0.2);
+    }
+
+    .news h2 { text-align: center; color: #FFD700; }
+    .news-item {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+    }
+    .news-item h3 { color: #FFD700; margin-bottom: 5px; }
+    .news-item p { color: #fff; margin: 5px 0; }
 
     .btn {
       display:inline-block; background:#FFD700; color:#3b0063; padding:12px 25px; border-radius:30px;
@@ -117,29 +133,50 @@
 
 <section class="official-letter">
   <h2>📜 Official Letters</h2>
-  <p>View our formal correspondence and official communications.</p>
-  <a href="https://t.me/oilofficial">Contact the Team</a>
+  <a href="https://t.me/oilofficial" target="_blank">Contact the Official Team</a>
+</section>
+
+<section class="news">
+  <h2>📰 OilToken News</h2>
+
+  <div class="news-item">
+    <h3>OilToken Launch Success!</h3>
+    <p><b>Date:</b> October 10, 2025</p>
+    <p>Our project officially expands across the TON ecosystem. Stay tuned for the upcoming liquidity pool on Ston.fi.</p>
+  </div>
+
+  <div class="news-item">
+    <h3>Partnership Talks Underway</h3>
+    <p><b>Date:</b> October 8, 2025</p>
+    <p>The OilToken team is in discussion with new partners to bring traditional energy assets onto the blockchain.</p>
+  </div>
+
+  <div class="news-item">
+    <h3>New Roadmap Released</h3>
+    <p><b>Date:</b> October 5, 2025</p>
+    <p>The updated roadmap showcases our mission to bridge real-world oil markets with decentralized finance.</p>
+  </div>
 </section>
 
 <section class="investor">
   <h2>💰 Investor Relations</h2>
   <p>Interested in investing? Contact our team for collaboration opportunities.</p>
   <a href="https://t.me/oilofficial">Contact Investment Team</a>
-  <a href="mailto:oiltokenproject@gmail.com">Email Investment Team</a>
+  <a href="mailto:oiltokenproject@gmail.com">Send Email</a>
 </section>
 
 <section class="ideas">
   <h2>💡 Creative Ideas</h2>
   <p>Have an idea to improve Oil Token? Share it with us!</p>
   <a href="https://t.me/Oiltokenofficial">Submit Your Idea</a>
-  <a href="mailto:oiltokenproject@gmail.com">Email Your Idea</a>
+  <a href="mailto:oiltokenproject@gmail.com">Send Idea by Email</a>
 </section>
 
 <section class="survey">
   <h2>🗳️ Community Feedback</h2>
   <p>We value your opinion! Take part in our community surveys.</p>
   <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
-  <a href="mailto:oiltokenproject@gmail.com">Send Feedback via Email</a>
+  <a href="mailto:oiltokenproject@gmail.com">Email Feedback</a>
 </section>
 
 <section class="prices">
@@ -149,104 +186,25 @@
   <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
 </section>
 
-<!-- 📰 OilToken News Section -->
-<section class="news">
-  <h2>📰 OilToken News</h2>
-  <div id="news-list">
-    <p>Loading latest updates...</p>
-  </div>
-
-  <div id="admin-panel" style="display:none; margin-top:20px;">
-    <h3>Add / Remove News</h3>
-    <input type="text" id="news-input" placeholder="Enter news title..." style="width:70%; padding:10px;">
-    <button onclick="addNews()" style="padding:10px 20px; margin-left:10px; background:#ffd700; border:none; border-radius:8px; cursor:pointer;">➕ Add News</button>
-    <button onclick="clearNews()" style="padding:10px 20px; margin-left:10px; background:#ff0000; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Clear All</button>
-  </div>
-
-  <div id="admin-login" style="margin-top:20px;">
-    <input type="password" id="admin-pass" placeholder="Team access password..." style="padding:10px; border-radius:8px; border:none; width:250px;">
-    <button onclick="checkPassword()" style="padding:10px 20px; margin-left:10px; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Login</button>
-  </div>
-</section>
-
 <footer>
   <p>© 2025 OilTokenOfficial — All Rights Reserved</p>
 </footer>
 
 <script>
 const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
-
 function calculatePayment() {
-  const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-  const customPrice = parseFloat(document.getElementById("customPrice").value);
-  if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
-    alert("Enter valid token amount and price.");
-    return;
-  }
-  const totalTON = tokenAmount * customPrice;
-  document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
-  document.getElementById("withdrawalInfo").innerHTML =
-    `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
-     <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
+    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
+    const customPrice = parseFloat(document.getElementById("customPrice").value);
+    if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
+        alert("Enter valid token amount and price.");
+        return;
+    }
+    const totalTON = tokenAmount * customPrice;
+    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
+    document.getElementById("withdrawalInfo").innerHTML =
+        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
+         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
 }
-
-const PASSWORD = "oilteam2025";
-const JSON_URL = "https://oiltokenofficail.github.io/OilTokenSite/news.json";
-let isAdmin = false;
-
-async function loadNews() {
-  try {
-    const res = await fetch(JSON_URL + "?t=" + Date.now());
-    const data = await res.json();
-    renderNews(data);
-  } catch (err) {
-    document.getElementById("news-list").innerHTML = "<p>⚠️ Unable to load news.</p>";
-  }
-}
-
-function renderNews(data) {
-  const list = document.getElementById("news-list");
-  if (!data || data.length === 0) {
-    list.innerHTML = "<p>No public news available.</p>";
-    return;
-  }
-  list.innerHTML = data.map((item, i) =>
-    `<div style='background:rgba(255,255,255,0.1); margin:10px 0; padding:10px; border-radius:8px;'>${i+1}. ${item}</div>`
-  ).join("");
-}
-
-function checkPassword() {
-  const pass = document.getElementById("admin-pass").value;
-  if (pass === PASSWORD) {
-    isAdmin = true;
-    document.getElementById("admin-panel").style.display = "block";
-    document.getElementById("admin-login").style.display = "none";
-    alert("✅ Admin access granted.");
-  } else {
-    alert("❌ Incorrect password!");
-  }
-}
-
-function addNews() {
-  if (!isAdmin) return alert("Access denied.");
-  const input = document.getElementById("news-input");
-  const val = input.value.trim();
-  if (val === "") return alert("Please enter a news title.");
-  const item = document.createElement("div");
-  item.style = "background:rgba(255,255,255,0.1); margin:10px 0; padding:10px; border-radius:8px;";
-  item.innerText = val;
-  document.getElementById("news-list").prepend(item);
-  input.value = "";
-  alert("✅ Added locally. To make it public, update news.json on GitHub.");
-}
-
-function clearNews() {
-  if (!isAdmin) return;
-  if (!confirm("Are you sure you want to clear displayed news?")) return;
-  document.getElementById("news-list").innerHTML = "<p>No public news available.</p>";
-}
-
-loadNews();
 </script>
 </body>
 </html>
