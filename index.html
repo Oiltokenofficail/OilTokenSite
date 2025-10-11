@@ -154,35 +154,89 @@
   <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
 </section>
 
-<!-- 📰 News Section (Letter moved here) -->
+  <!-- 📰 OilToken News Section -->
 <section class="news">
-  <h3>📰 OilToken News</h3>
-  <p>
-    <b>Dear Pavel Durov,</b><br><br>
-    We, the team behind <b>OilToken</b>, would like to express our deepest respect and gratitude for your vision in building the <b>TON ecosystem</b> and the global <b>Telegram</b> platform — a space that empowers freedom, transparency, and innovation for developers and communities worldwide.<br><br>
+  <h2>📰 OilToken News</h2>
+  <div id="news-list">
+    <p>No news available yet.</p>
+  </div>
 
-    <b>OilToken (OIL)</b> is a digital asset built on the TON blockchain, created with a unique mission:  
-    for the first time, to bring the global oil market to the blockchain world.  
-    Our goal is to merge the tangible value of traditional energy markets with decentralized technology — enabling transparent, accessible, and borderless digital trading for everyone.<br><br>
+  <!-- Hidden admin tools -->
+  <div id="admin-panel" style="display:none; margin-top:20px;">
+    <h3>Add / Remove News</h3>
+    <input type="text" id="news-input" placeholder="Enter news title..." style="width:70%; padding:10px;">
+    <button onclick="addNews()" style="padding:10px 20px; margin-left:10px; background:#ffd700; border:none; border-radius:8px; cursor:pointer;">➕ Add News</button>
+    <button onclick="clearNews()" style="padding:10px 20px; margin-left:10px; background:#ff0000; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Clear All</button>
+  </div>
 
-    We believe that <b>OilToken</b> can attract a new wave of users, investors, and global attention to the TON network, contributing to its long-term value and growth.<br><br>
-
-    However, we have faced challenges during the <b>verification process</b> through <b>TON Keeper</b> and <b>TON Assets</b>.  
-    Despite fully meeting technical and transparency standards, our verification requests have been repeatedly rejected without clear explanation — with the only justification being that the TON Keeper team reserves the right to reject any submission at its discretion.<br><br>
-
-    We fully respect the policies and independence of the TON team,  
-    but we humbly request your attention and support to ensure that genuine, innovative community projects like <b>OilToken</b> are given a fair opportunity to grow and contribute to the expansion of the TON ecosystem.<br><br>
-
-    Our team remains committed to transparency, collaboration, and the long-term vision of expanding the TON network through real-world adoption and value.<br><br>
-
-    With respect and appreciation,<br>
-    <b>OilToken Team</b><br>
-    🌐 Website: <a href="https://oiltokenofficail.github.io/OilTokenSite" target="_blank">https://oiltokenofficail.github.io/OilTokenSite</a><br>
-    📩 Email: oiltokenproject@gmail.com<br>
-    🔗 Telegram: <a href="https://t.me/oilofficial" target="_blank">@oilofficial</a>
-  </p>
+  <!-- Hidden admin login -->
+  <div id="admin-login" style="margin-top:20px;">
+    <input type="password" id="admin-pass" placeholder="Team access password..." style="padding:10px; border-radius:8px; border:none; width:250px;">
+    <button onclick="checkPassword()" style="padding:10px 20px; margin-left:10px; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Login</button>
+  </div>
 </section>
 
+<script>
+const PASSWORD = "oilteam2025";
+let newsData = JSON.parse(localStorage.getItem("oilNews")) || [];
+
+function renderNews() {
+  const list = document.getElementById("news-list");
+  if (newsData.length === 0) {
+    list.innerHTML = "<p>No news available yet.</p>";
+    return;
+  }
+  list.innerHTML = newsData.map((item, i) => 
+    `<div style='background:rgba(255,255,255,0.1); margin:10px 0; padding:10px; border-radius:8px;'>${i+1}. ${item}</div>`
+  ).join("");
+}
+
+function checkPassword() {
+  const pass = document.getElementById("admin-pass").value;
+  if (pass === PASSWORD) {
+    document.getElementById("admin-panel").style.display = "block";
+    document.getElementById("admin-login").style.display = "none";
+    alert("✅ Access granted. You can now add or remove news.");
+  } else {
+    alert("❌ Incorrect password!");
+  }
+}
+
+function addNews() {
+  const input = document.getElementById("news-input");
+  if (input.value.trim() === "") return alert("Please enter a news title.");
+  newsData.push(input.value.trim());
+  localStorage.setItem("oilNews", JSON.stringify(newsData));
+  input.value = "";
+  renderNews();
+}
+
+function clearNews() {
+  if (!confirm("Are you sure you want to clear all news?")) return;
+  newsData = [];
+  localStorage.removeItem("oilNews");
+  renderNews();
+}
+
+renderNews();
+</script>
+
+<style>
+.news {
+  background: #111;
+  color: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 30px auto;
+  width: 85%;
+  max-width: 900px;
+  box-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+.news h2 {
+  color: #FFD700;
+  text-shadow: 0 0 5px #FFD700;
+}
+</style>
 <footer>
   <p>© 2025 OilTokenOfficial — All Rights Reserved</p>
 </footer>
