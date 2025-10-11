@@ -1,3 +1,4 @@
+<!-- =======================  index.html  ======================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
-      background-size: 250px;
+      background-size: cover;
     }
 
     header { background:#ff8800; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
@@ -33,47 +34,21 @@
     section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); color:#000; }
     h3 { text-align:center; margin-bottom:20px; }
 
-    .token-section input { width:80%; padding:10px; margin:5px 0; font-size:16px; }
-    .token-section button { padding:10px 20px; font-size:16px; margin:5px; background:#0077ff; color:#fff; border:none; border-radius:6px; cursor:pointer; }
-
-    .telegram-bot, .connect, .official-letter, .investor, .ideas, .survey, .prices, .news {
+    .connect, .investor, .ideas, .survey, .prices, .news, .stonfi {
       border-radius: 20px; padding: 30px; margin: 30px auto; width: 85%; max-width: 900px;
     }
 
-    .telegram-bot { background:#FFD700; color:#000; }
     .connect { background:#8B008B; color:#fff; }
-    .official-letter { background:#00CED1; color:#000; }
     .investor { background:#FF6347; color:#fff; }
     .ideas { background:#FF69B4; color:#fff; }
     .survey { background:#32CD32; color:#fff; }
     .prices { background:#1E90FF; color:#fff; }
+    .stonfi { background:#222; color:#fff; border:2px solid #FFD700; }
+    .news { background:#800080; color:#fff; }
 
-    .connect a, .official-letter a, .investor a, .ideas a, .survey a, .prices a {
+    .connect a, .investor a, .ideas a, .survey a, .prices a, .stonfi a {
       color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
     }
-
-    .news {
-      background: #4B0082;
-      color: gold;
-      text-align: left;
-      box-shadow: 0 0 20px rgba(255,215,0,0.2);
-    }
-
-    .news h2 { text-align: center; color: #FFD700; }
-    .news-item {
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
-    }
-    .news-item h3 { color: #FFD700; margin-bottom: 5px; }
-    .news-item p { color: #fff; margin: 5px 0; }
-
-    .btn {
-      display:inline-block; background:#FFD700; color:#3b0063; padding:12px 25px; border-radius:30px;
-      text-decoration:none; font-weight:bold; transition:background 0.3s, color 0.3s;
-    }
-    .btn:hover { background:#fff; color:#3b0063; }
 
     footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
   </style>
@@ -106,21 +81,11 @@
   <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
 </div>
 
-<section>
-  <h3>Buy Oil Tokens (Manual)</h3>
-  <div class="token-section">
-    <input type="number" id="tokenAmount" placeholder="Enter number of OIL tokens">
-    <input type="number" id="customPrice" placeholder="Enter your price in TON">
-    <button onclick="calculatePayment()">Calculate Payment</button>
-    <p>Total TON: <span id="totalTON">0</span></p>
-    <div id="withdrawalInfo"></div>
-  </div>
+<section class="stonfi">
+  <h2>💧 Ston.fi Liquidity Pool</h2>
+  <p>Access the official OilToken liquidity pool on STON.FI</p>
+  <a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">Open Ston.fi Pool</a>
 </section>
-
-<div class="telegram-bot">
-  <h3>Buy via Telegram Bot</h3>
-  <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
-</div>
 
 <section class="connect">
   <h2>🌐 Connect with Us</h2>
@@ -131,52 +96,27 @@
   <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
 </section>
 
-<section class="official-letter">
-  <h2>📜 Official Letters</h2>
-  <a href="https://t.me/oilofficial" target="_blank">Contact the Official Team</a>
-</section>
-
 <section class="news">
   <h2>📰 OilToken News</h2>
-
-  <div class="news-item">
-    <h3>OilToken Launch Success!</h3>
-    <p><b>Date:</b> October 10, 2025</p>
-    <p>Our project officially expands across the TON ecosystem. Stay tuned for the upcoming liquidity pool on Ston.fi.</p>
-  </div>
-
-  <div class="news-item">
-    <h3>Partnership Talks Underway</h3>
-    <p><b>Date:</b> October 8, 2025</p>
-    <p>The OilToken team is in discussion with new partners to bring traditional energy assets onto the blockchain.</p>
-  </div>
-
-  <div class="news-item">
-    <h3>New Roadmap Released</h3>
-    <p><b>Date:</b> October 5, 2025</p>
-    <p>The updated roadmap showcases our mission to bridge real-world oil markets with decentralized finance.</p>
-  </div>
+  <div id="news-container"></div>
 </section>
 
 <section class="investor">
   <h2>💰 Investor Relations</h2>
   <p>Interested in investing? Contact our team for collaboration opportunities.</p>
   <a href="https://t.me/oilofficial">Contact Investment Team</a>
-  <a href="mailto:oiltokenproject@gmail.com">Send Email</a>
 </section>
 
 <section class="ideas">
   <h2>💡 Creative Ideas</h2>
   <p>Have an idea to improve Oil Token? Share it with us!</p>
   <a href="https://t.me/Oiltokenofficial">Submit Your Idea</a>
-  <a href="mailto:oiltokenproject@gmail.com">Send Idea by Email</a>
 </section>
 
 <section class="survey">
   <h2>🗳️ Community Feedback</h2>
   <p>We value your opinion! Take part in our community surveys.</p>
   <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
-  <a href="mailto:oiltokenproject@gmail.com">Email Feedback</a>
 </section>
 
 <section class="prices">
@@ -191,20 +131,15 @@
 </footer>
 
 <script>
-const ownerWallet = "UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ";
-function calculatePayment() {
-    const tokenAmount = parseFloat(document.getElementById("tokenAmount").value);
-    const customPrice = parseFloat(document.getElementById("customPrice").value);
-    if (isNaN(tokenAmount) || tokenAmount <= 0 || isNaN(customPrice) || customPrice <= 0) {
-        alert("Enter valid token amount and price.");
-        return;
-    }
-    const totalTON = tokenAmount * customPrice;
-    document.getElementById("totalTON").innerText = totalTON.toFixed(4) + " TON";
-    document.getElementById("withdrawalInfo").innerHTML =
-        `<p>Payment Amount: <b>${totalTON.toFixed(4)} TON</b></p>
-         <p>Owner Wallet Address: <b>${ownerWallet}</b></p>`;
+const newsContainer = document.getElementById("news-container");
+const savedNews = JSON.parse(localStorage.getItem("oilNews")) || [];
+function renderNews() {
+  newsContainer.innerHTML = savedNews.length
+    ? savedNews.map(n => `<div style="background:rgba(255,255,255,0.1);margin:10px;padding:15px;border-radius:10px;">${n}</div>`).join("")
+    : "<p>No news available yet.</p>";
 }
+renderNews();
 </script>
+
 </body>
 </html>
