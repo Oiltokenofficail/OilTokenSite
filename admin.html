@@ -1,72 +1,79 @@
-<!-- =======================  admin.html  ======================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OilToken Admin Panel</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: radial-gradient(circle, #3b0063, #000000);
-      color: #fff;
-      text-align: center;
-      padding: 40px;
-    }
-    .panel { display:none; }
-    input, textarea, button {
-      margin:10px; padding:10px; border:none; border-radius:8px;
-      font-size:16px;
-    }
-    button {
-      background:#FFD700; color:#3b0063; cursor:pointer; font-weight:bold;
-    }
-    button:hover { background:#fff; color:#3b0063; }
-    textarea { width:80%; height:120px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OilToken Admin Panel</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #4b0082, #000);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 40px;
+  }
+  .panel {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: auto;
+  }
+  input, textarea {
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+  }
+  button {
+    background: gold;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-  <h1>🛡️ OilToken Admin Panel</h1>
-  <input type="password" id="password" placeholder="Enter admin password">
-  <button onclick="login()">Login</button>
-
+  <h1>🛠️ OilToken Admin Panel</h1>
   <div class="panel">
-    <h2>Add News</h2>
-    <textarea id="newsText" placeholder="Write news content here..."></textarea><br>
-    <button onclick="addNews()">Add News</button>
-    <button onclick="clearNews()">🗑️ Clear All News</button>
-    <p id="status"></p>
+    <input type="password" id="password" placeholder="Enter Admin Password" />
+    <div id="adminForm" style="display:none;">
+      <input type="text" id="newsTitle" placeholder="News Title" />
+      <textarea id="newsContent" rows="5" placeholder="News Content"></textarea>
+      <button onclick="addNews()">Add News</button>
+      <button onclick="clearNews()">🗑️ Clear All News</button>
+    </div>
   </div>
 
-  <script>
-    const PASS = "12345";
-    function login() {
-      const input = document.getElementById("password").value;
-      if (input === PASS) {
-        document.querySelector(".panel").style.display = "block";
-        document.getElementById("password").style.display = "none";
-        event.target.style.display = "none";
-      } else {
-        alert("Incorrect password.");
-      }
+<script>
+  const PASS = "oilteam2025";
+  document.getElementById("password").addEventListener("input", e => {
+    if (e.target.value === PASS) {
+      document.getElementById("adminForm").style.display = "block";
+      e.target.style.display = "none";
     }
+  });
 
-    function addNews() {
-      const text = document.getElementById("newsText").value.trim();
-      if (!text) return alert("Enter some news text!");
-      const news = JSON.parse(localStorage.getItem("oilNews")) || [];
-      news.unshift(`${new Date().toLocaleDateString()} — ${text}`);
-      localStorage.setItem("oilNews", JSON.stringify(news));
-      document.getElementById("newsText").value = "";
-      document.getElementById("status").innerText = "✅ News added!";
-    }
+  function addNews() {
+    const title = document.getElementById("newsTitle").value.trim();
+    const content = document.getElementById("newsContent").value.trim();
+    if (!title || !content) return alert("Please enter title and content");
+    const news = JSON.parse(localStorage.getItem("oilNews") || "[]");
+    news.push({ title, content });
+    localStorage.setItem("oilNews", JSON.stringify(news));
+    alert("News added successfully!");
+  }
 
-    function clearNews() {
-      if (confirm("Delete all news?")) {
-        localStorage.removeItem("oilNews");
-        document.getElementById("status").innerText = "🗑️ All news cleared.";
-      }
+  function clearNews() {
+    if (confirm("Are you sure to delete all news?")) {
+      localStorage.removeItem("oilNews");
+      alert("All news cleared!");
     }
-  </script>
+  }
+</script>
 </body>
 </html>
