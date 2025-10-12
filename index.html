@@ -1,238 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oil Token (OIL) - Official Site</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #3b0063, #000000);
-      color: gold;
-      text-align: center;
-      background-image: url("barrel.png");
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
-      background-size: 250px;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>OilTokenOfficial — Dashboard</title>
+<style>
+  :root{
+    --purple:#4b0082;
+    --deep:#3b0063;
+    --gold:#ffd700;
+    --white:#ffffff;
+    --card:#1f0b2a;
+    --muted:#f4f4f4;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Inter, "Poppins", Arial, sans-serif;
+    background:linear-gradient(135deg,var(--deep),#000);
+    color:var(--gold);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    header {
-      background: #ff8800;
-      color: #fff;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header img {
-      width: 50px;
-      height: 50px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  /* header */
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px; background:linear-gradient(90deg,#ff8800 0%, #dd6b00 100%);
+  }
+  header .brand{
+    display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;
+  }
+  header .brand img{width:48px;height:48px;border-radius:8px;object-fit:cover}
+  header h1{font-size:18px;margin:0;color:#fff}
+  nav{display:flex;gap:12px;align-items:center}
+  nav a{color:#fff;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px;}
+  nav a:hover{background:rgba(255,255,255,0.08)}
 
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      background: #001f3f;
-      color: #fff;
-    }
+  /* layout */
+  .container{
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap:20px;
+    padding:28px;
+    max-width:1300px;margin:20px auto;
+  }
 
-    .exchange {
-      text-align: center;
-      background: #ff0000;
-      color: #fff;
-      padding: 40px 20px;
-      font-size: 32px;
-      font-weight: bold;
-    }
+  /* left/right column squares */
+  .col{display:flex;flex-direction:column;gap:18px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.25));
+    border:1px solid rgba(255,255,255,0.04);
+    padding:18px;border-radius:12px;color:var(--white);
+    min-height:120px; box-shadow:0 6px 22px rgba(0,0,0,0.4);
+  }
+  .card h4{margin:0 0 8px 0;color:var(--gold)}
+  .card p{margin:0;color:#ddd;font-size:14px;line-height:1.45}
 
-    .opportunity {
-      background: #007bff;
-      padding: 30px;
-      font-size: 18px;
-      text-align: center;
-      border-radius: 10px;
-      margin: 20px auto;
-      max-width: 1000px;
-      color: #fff;
-    }
+  /* center bigger cards */
+  .center .big{
+    background:linear-gradient(180deg, rgba(75,0,130,0.95), rgba(58,0,99,0.9));
+    color:var(--gold); padding:22px;border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  }
+  .center .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .center .media{background:var(--card);padding:12px;border-radius:10px;color:#fff}
 
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-      background: #fff;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      color: #000;
-    }
+  /* news list */
+  .news-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .news-item{background:rgba(0,0,0,0.25);padding:12px;border-radius:8px;color:#fff;border-left:4px solid var(--gold)}
+  .news-item small{display:block;color:#f0e5b4;margin-bottom:6px;font-size:12px}
 
-    .telegram-bot,
-    .connect,
-    .official-letter,
-    .investor,
-    .ideas,
-    .survey,
-    .prices,
-    .news {
-      border-radius: 20px;
-      padding: 30px;
-      margin: 30px auto;
-      width: 85%;
-      max-width: 900px;
-      color: #fff;
-    }
+  /* comments */
+  .comments-list{max-height:260px;overflow:auto;padding:6px;display:flex;flex-direction:column;gap:8px}
+  .comment-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;color:#fff;font-size:14px}
 
-    .telegram-bot { background: #FFD700; color:#000; }
-    .connect { background: #8B008B; }
-    .official-letter { background: #00CED1; color:#000; }
-    .investor { background: #FF6347; }
-    .ideas { background: #FF69B4; }
-    .survey { background: #32CD32; }
-    .prices { background: #1E90FF; }
-    .news { background: #6A0DAD; }
+  /* footer and admin */
+  footer{padding:18px 28px;text-align:center;color:#ddd;background:linear-gradient(90deg,#070007,#000);margin-top:26px}
+  .footer-links a{color:var(--gold);text-decoration:none;margin:0 8px;font-weight:600}
 
-    .connect a,
-    .official-letter a,
-    .investor a,
-    .ideas a,
-    .survey a,
-    .prices a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      margin: 8px 0;
-      font-weight: bold;
-    }
+  /* buttons */
+  .btn{background:var(--gold);color:var(--deep);padding:8px 12px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid rgba(255,215,0,0.15)}
 
-    .btn {
-      display: inline-block;
-      background: #ffd700;
-      color: #3b0063;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn:hover { background: #fff; color: #3b0063; }
+  /* responsive */
+  @media (max-width:1000px){
+    .container{grid-template-columns:1fr; padding:16px}
+    header{flex-direction:column;gap:12px;align-items:flex-start}
+  }
 
-    footer { background: #111; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+  /* background logo (semi) */
+  body::before{
+    content:"";position:fixed;left:50%;top:12%;transform:translateX(-50%);opacity:0.06;
+    width:420px;height:420px;background:url('barrel.png') center/contain no-repeat;pointer-events:none;
+  }
 
-    .news-item {
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px;
-      padding: 15px;
-      border-radius: 10px;
-    }
-  </style>
+  /* framed sections look */
+  .square-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .square{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));border-radius:10px;padding:12px;color:#fff;min-height:100px}
+  .square h5{margin:0 0 8px;color:var(--gold)}
+  iframe{width:100%;height:200px;border-radius:8px;border:0}
+  .tv-iframe{height:220px}
+</style>
 </head>
 <body>
+
 <header>
-  <img src="barrel.png" alt="Oil Token Logo" />
-  <h1>Oil Token (OIL)</h1>
+  <a class="brand" href="#">
+    <img src="barrel.png" alt="logo">
+    <div>
+      <h1>OilTokenOfficial</h1>
+      <div style="font-size:12px;color:#fff;opacity:0.9">Energy-backed token — TON</div>
+    </div>
+  </a>
+
   <nav>
-    <a href="WhitePaper.html">White Paper</a>
-    <a href="Roadmap.html">Roadmap</a>
-    <a href="Tokenomics.html">Tokenomics</a>
-    <a href="Team.html">Team</a>
-    <a href="Description.html">Description</a>
+    <a href="WhitePaper.html" target="_blank">WhitePaper</a>
+    <a href="Roadmap.html" target="_blank">Roadmap</a>
+    <a href="Tokenomics.html" target="_blank">Tokenomics</a>
+    <a href="Description.html" target="_blank">Description</a>
+    <a href="Team.html" target="_blank">Team</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h2>Welcome to Oil Token</h2>
-  <p>The future of decentralized oil-backed digital assets.</p>
-</section>
+<!-- three-column container -->
+<div class="container">
+  <!-- LEFT column: square cards -->
+  <div class="col left">
+    <div class="card">
+      <h4>🛢 Oil News</h4>
+      <p>Latest headlines from oil & energy markets. Tap to open selected news sources.</p>
+      <div style="margin-top:10px;">
+        <button class="btn" onclick="window.open('https://oilprice.com','_blank')">Open OilPrice</button>
+        <button class="btn ghost" onclick="window.open('https://www.reuters.com/markets/commodities/','_blank')">Reuters Commodities</button>
+      </div>
+    </div>
 
-<div class="exchange">
-  OIL EXCHANGE
-  <p>Coming Soon</p>
+    <div class="card">
+      <h4>💬 Free Comments (Unanswered)</h4>
+      <p>Visitors can post comments freely. Admin can clear comments from Admin Panel.</p>
+      <div style="margin-top:10px; color:#fff">
+        <div id="miniComments" style="max-height:120px;overflow:auto"></div>
+        <button class="btn" style="margin-top:8px" onclick="scrollToComments()">Open Comments</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>✉️ Contact & Social</h4>
+      <p>Email: <a href="mailto:oiltokenproject@gmail.com" style="color:#fff;text-decoration:underline">oiltokenproject@gmail.com</a></p>
+      <p>Telegram: <a href="https://t.me/oilofficial" target="_blank" style="color:#fff;text-decoration:underline">@oilofficial</a></p>
+    </div>
+  </div>
+
+  <!-- CENTER column: wide content -->
+  <div class="col center">
+    <div class="big">
+      <h2 style="margin:0 0 10px 0;color:var(--gold)">Welcome to Oil Token</h2>
+      <p style="margin:0 0 12px 0;font-size:16px;color:#fff">The future of decentralized oil-backed digital assets. Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010 — bridging physical crude value with TON blockchain liquidity and DeFi.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn" onclick="document.getElementById('manualBuy').scrollIntoView({behavior:'smooth'})">Manual Buy</button>
+        <button class="btn ghost" onclick="window.open('https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/','_blank')">Open STON.fi Pool</button>
+        <button class="btn ghost" onclick="window.open('https://www.coingecko.com/en/coins/oil-token','_blank')">View on CoinGecko</button>
+        <button class="btn ghost" onclick="window.open('https://coinmarketcap.com/currencies/oil-token/','_blank')">View on CoinMarketCap</button>
+      </div>
+    </div>
+
+    <!-- Manual buy + small controls -->
+    <div class="row" style="margin-top:18px">
+      <div class="media" id="manualBuy" style="min-height:160px">
+        <h4 style="color:var(--gold);margin:0 0 8px 0">Manual Buy (owner wallet)</h4>
+        <p style="color:#eee">Enter token amount and TON price → calculate total → transfer to owner wallet.</p>
+        <input id="tokenAmount" type="number" placeholder="Amount OIL" style="width:72%;padding:8px;border-radius:8px;border:none;margin-top:8px">
+        <input id="priceTon" type="number" placeholder="Price per token (TON)" style="width:72%;padding:8px;border-radius:8px;border:none;margin-top:8px">
+        <div style="margin-top:8px">
+          <button class="btn" onclick="calcPay()">Calculate</button>
+          <span id="payResult" style="margin-left:12px;color:#fff;font-weight:700"></span>
+        </div>
+        <div style="margin-top:8px;color:#ddd">Owner Wallet: <code style="background:rgba(255,255,255,0.06);padding:4px 6px;border-radius:6px;color:#fff">UQCQ0A_nGICwBavJs9FbGclF7NYAv_cEkScvpU1XeppmyEqZ</code></div>
+      </div>
+
+      <div class="media">
+        <h4 style="color:var(--gold);margin:0 0 8px 0">Crypto News (Live)</h4>
+        <!-- CoinDesk YouTube live embed (sample) -->
+        <iframe class="tv-iframe" src="https://www.youtube.com/embed/O2wW2b5Zt3U" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn ghost" onclick="window.open('https://www.coindesk.com','_blank')">CoinDesk</button>
+          <button class="btn ghost" onclick="window.open('https://cointelegraph.com','_blank')">Cointelegraph</button>
+          <button class="btn ghost" onclick="window.open('https://coinmarketcap.com','_blank')">CoinMarketCap</button>
+        </div>
+      </div>
+
+      <div class="media">
+        <h4 style="color:var(--gold);margin:0 0 8px 0">Financial TV</h4>
+        <!-- Bloomberg sample embed -->
+        <iframe class="tv-iframe" src="https://www.youtube.com/embed/d8L1ijI7Luk" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+        <div style="margin-top:8px">
+          <button class="btn ghost" onclick="window.open('https://www.bloomberg.com','_blank')">Bloomberg</button>
+          <button class="btn ghost" onclick="window.open('https://www.cnbc.com','_blank')">CNBC</button>
+        </div>
+      </div>
+
+      <div class="media">
+        <h4 style="color:var(--gold);margin:0 0 8px 0">Oil Market TV</h4>
+        <!-- Oil-specific news site link; many oil networks don't offer embeddable live streams publicly -->
+        <iframe class="tv-iframe" src="https://www.youtube.com/embed/9Auq9mYxFEE" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+        <div style="margin-top:8px">
+          <button class="btn ghost" onclick="window.open('https://oilprice.com','_blank')">OilPrice</button>
+          <button class="btn ghost" onclick="window.open('https://www.reuters.com/markets/commodities/','_blank')">Reuters Commodities</button>
+        </div>
+      </div>
+
+      <!-- animation video -->
+      <div class="media" style="grid-column:span 2">
+        <h4 style="color:var(--gold);margin:0 0 8px 0">🎞 Crypto Animation (Intro)</h4>
+        <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+        <p style="color:#ddd;margin-top:8px">Short animated explainer about tokenization and crypto fundamentals.</p>
+      </div>
+    </div>
+
+    <!-- News list -->
+    <div style="margin-top:18px" class="media">
+      <h4 style="color:var(--gold);margin:0 0 8px 0">Latest OIL News</h4>
+      <div class="news-list" id="newsList"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT column: square cards -->
+  <div class="col right">
+    <div class="card">
+      <h4>🤖 Telegram Bot</h4>
+      <p>Use our bot for quick purchases, notifications, and support.</p>
+      <button class="btn" onclick="window.open('https://t.me/Oiltokenbot','_blank')">Open Bot</button>
+    </div>
+
+    <div class="card">
+      <h4>💡 Creative Ideas</h4>
+      <p>Share ideas or proposals. We'll review top suggestions for community funding.</p>
+      <button class="btn ghost" onclick="window.open('mailto:oiltokenproject@gmail.com')">Send Idea</button>
+    </div>
+
+    <div class="card">
+      <h4>🗳 Community Surveys</h4>
+      <p>Participate in governance votes and polls.</p>
+      <button class="btn ghost" onclick="window.open('https://t.me/Oiltokenofficial','_blank')">Join Polls</button>
+    </div>
+
+    <div class="card">
+      <h4>💰 Investors</h4>
+      <p>Strategic & institutional partnerships. Contact us for decks & collaboration.</p>
+      <button class="btn" onclick="window.open('mailto:oiltokenproject@gmail.com')">Contact Investors</button>
+    </div>
+  </div>
 </div>
 
-<div class="opportunity">
-  <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
+<!-- Comments area near bottom for in-place posting -->
+<div style="max-width:1200px;margin:0 auto;padding:0 24px 36px;">
+  <div style="background:linear-gradient(90deg,#2b003f,#1a001f);padding:18px;border-radius:12px;color:#fff;">
+    <h3 style="margin:0 0 8px 0;color:var(--gold)">💬 Free Comments (Public)</h3>
+    <textarea id="commentInput" placeholder="Share your thoughts..." style="width:100%;min-height:80px;padding:12px;border-radius:8px;border:none"></textarea>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+      <button class="btn" onclick="postComment()">Send</button>
+      <button class="btn ghost" onclick="scrollToTop()">Back to Top</button>
+    </div>
+    <div id="commentWall" style="margin-top:12px;color:#fff"></div>
+  </div>
 </div>
 
-<section class="telegram-bot">
-  <h3>Buy via Telegram Bot</h3>
-  <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
-</section>
+<footer>
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:8px 18px">
+    <div style="text-align:left;color:#ddd">
+      © 2025 OilTokenOfficial — All rights reserved.<br>
+      <span style="color:#fff">Website:</span> <a class="footer-link" href="https://oiltokenofficail.github.io/OilTokenSite" target="_blank" style="color:var(--gold)">oiltokenofficail.github.io/OilTokenSite</a>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:oiltokenproject@gmail.com">oiltokenproject@gmail.com</a>
+      <a href="https://t.me/oilofficial" target="_blank">Telegram</a>
+      <a href="https://x.com/Oiltoken_" target="_blank">X</a>
+      <button class="btn" onclick="showAdmin()">Admin Login</button>
+    </div>
+  </div>
+</footer>
 
-<section class="connect">
-  <h2>🌐 Connect with Us</h2>
-  <a href="https://t.me/oilofficial">Official Telegram</a>
-  <a href="https://t.me/Oiltokenofficial">Community Telegram</a>
-  <a href="https://www.instagram.com/">Instagram</a>
-  <a href="https://x.com/Oiltoken_">X (Twitter)</a>
-  <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
-</section>
+<!-- hidden admin modal/panel -->
+<div id="adminModal" style="position:fixed;left:0;top:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999">
+  <div style="width:92%;max-width:720px;background:#080018;padding:18px;border-radius:12px;color:#fff">
+    <h3 style="color:var(--gold);margin-top:0">🔒 Admin Panel</h3>
+    <div id="adminLoginArea">
+      <input id="adminPwd" type="password" placeholder="Enter admin password" style="width:65%;padding:10px;border-radius:8px;border:none">
+      <button class="btn" onclick="adminLogin()">Unlock</button>
+      <button class="btn ghost" onclick="closeAdmin()" style="margin-left:8px">Close</button>
+    </div>
 
-<section class="official-letter">
-  <h2>📜 Official Letters</h2>
-  <a href="https://t.me/oilofficial">Contact the Team</a>
-</section>
+    <div id="adminArea" style="display:none;margin-top:12px">
+      <h4 style="color:var(--gold)">Manage News</h4>
+      <input id="newsTitle" placeholder="Title (short)" style="width:100%;padding:10px;border-radius:8px;border:none;margin-bottom:8px">
+      <textarea id="newsContent" placeholder="News content..." style="width:100%;height:80px;padding:10px;border-radius:8px;border:none"></textarea>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button class="btn" onclick="adminAddNews()">Add News</button>
+        <button class="btn ghost" onclick="adminClearNews()">Clear All News</button>
+      </div>
 
-<section class="investor">
-  <h2>💰 Investor Relations</h2>
-  <p>Interested in investing? Contact our team for collaboration opportunities.</p>
-  <a href="https://t.me/oilofficial">Contact Investment Team</a>
-</section>
+      <h4 style="color:var(--gold);margin-top:18px">Manage Comments</h4>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" onclick="adminClearComments()">Clear All Comments</button>
+        <button class="btn ghost" onclick="exportData()">Export news.json</button>
+      </div>
 
-<section class="ideas">
-  <h2>💡 Creative Ideas</h2>
-  <p>Have an idea to improve Oil Token? Share it with us!</p>
-  <a href="mailto:oiltokenproject@gmail.com">Submit Your Idea</a>
-</section>
-
-<section class="survey">
-  <h2>🗳️ Community Feedback</h2>
-  <p>We value your opinion! Take part in our community surveys.</p>
-  <a href="mailto:oiltokenproject@gmail.com">Send Feedback</a>
-</section>
-
-<section class="prices">
-  <h2>💹 Live Crypto Prices</h2>
-  <p>Check real-time prices on trusted platforms:</p>
-  <a href="https://www.coingecko.com/en/coins/oil-token" target="_blank">View on CoinGecko</a>
-  <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
-</section>
-
-<section class="news">
-  <h2>📰 OILToken News</h2>
-  <div id="newsContainer"></div>
-</section>
-
-<section>
-  <h2>💎 STON.fi Liquidity Pool</h2>
-  <p>Trade and stake Oil Token directly on STON.fi</p>
-  <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">🔗 Go to STON.fi Pool</a>
-</section>
-
-<footer><p>© 2025 OilTokenOfficial — All Rights Reserved</p></footer>
+      <p style="color:#ccc;margin-top:12px;font-size:13px">Admin password: <b style="color:#fff">oilteam2025</b></p>
+    </div>
+  </div>
+</div>
 
 <script>
-  const newsContainer = document.getElementById("newsContainer");
-  const storedNews = JSON.parse(localStorage.getItem("oilNews") || "[]");
-  storedNews.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "news-item";
-    div.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
-    newsContainer.appendChild(div);
-  });
+/* -------------------------
+   LocalStorage: news + comments
+   ------------------------- */
+const STORAGE_NEWS = 'oilNews_v1';
+const STORAGE_COMMENTS = 'oilComments_v1';
+
+/* helpers */
+function saveNews(arr){ localStorage.setItem(STORAGE_NEWS, JSON.stringify(arr)) }
+function loadNewsFromStore(){ return JSON.parse(localStorage.getItem(STORAGE_NEWS) || '[]') }
+function saveComments(arr){ localStorage.setItem(STORAGE_COMMENTS, JSON.stringify(arr)) }
+function loadCommentsFromStore(){ return JSON.parse(localStorage.getItem(STORAGE_COMMENTS) || '[]') }
+
+/* render news */
+function renderNews(){
+  const list = document.getElementById('newsList');
+  const data = loadNewsFromStore();
+  if(!data || data.length===0){
+    list.innerHTML = '<div class="news-item"><small>No news yet</small><div style="color:#ddd">Admin can add news from Admin Panel.</div></div>';
+    return;
+  }
+  list.innerHTML = data.slice().reverse().map(n=>{
+    const when = n.date || new Date().toLocaleString();
+    const title = n.title ? `<strong style="color:var(--gold)">${escapeHtml(n.title)}</strong><br>` : '';
+    return `<div class="news-item"><small>${when}</small>${title}<div style="color:#fff">${escapeHtml(n.content)}</div></div>`;
+  }).join('');
+}
+
+/* render mini comments for left column and main comments wall */
+function renderComments(){
+  const mini = document.getElementById('miniComments');
+  const wall = document.getElementById('commentWall');
+  const list = loadCommentsFromStore();
+  if(!list || list.length===0){
+    mini.innerHTML = '<small style="color:#ddd">No comments</small>';
+    wall.innerHTML = '<p style="color:#ddd">No comments yet. Be the first!</p>';
+    return;
+  }
+  mini.innerHTML = list.slice(0,4).map(c=>`<div style="font-size:13px;color:#fff;margin-bottom:6px">${escapeHtml( truncate(c.text,80) )}</div>`).join('');
+  wall.innerHTML = list.slice().reverse().map(c=>`<div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;margin-bottom:8px;color:#fff"><small style="color:#f0e5b4">${c.date}</small><div style="margin-top:6px">${escapeHtml(c.text)}</div></div>`).join('');
+}
+
+/* post comment (public) */
+function postComment(){
+  const el = document.getElementById('commentInput');
+  const text = el.value.trim();
+  if(!text){ alert('Write something first'); return; }
+  const arr = loadCommentsFromStore();
+  arr.push({ text, date: new Date().toLocaleString() });
+  saveComments(arr);
+  el.value = '';
+  renderComments();
+  renderMini(); // update left column mini
+}
+
+/* admin actions */
+const ADMIN_PASS = 'oilteam2025';
+function showAdmin(){ document.getElementById('adminModal').style.display = 'flex' }
+function closeAdmin(){ document.getElementById('adminModal').style.display = 'none' }
+function adminLogin(){
+  const p = document.getElementById('adminPwd').value;
+  if(p === ADMIN_PASS){
+    document.getElementById('adminLoginArea').style.display = 'none';
+    document.getElementById('adminArea').style.display = 'block';
+    alert('Welcome, admin');
+  } else alert('Wrong password');
+}
+function adminAddNews(){
+  const t = document.getElementById('newsTitle').value.trim();
+  const c = document.getElementById('newsContent').value.trim();
+  if(!c){ alert('Enter news content'); return; }
+  const arr = loadNewsFromStore();
+  arr.push({ title: t || '', content: c, date: new Date().toLocaleString() });
+  saveNews(arr);
+  document.getElementById('newsTitle').value=''; document.getElementById('newsContent').value='';
+  renderNews();
+  alert('News added');
+}
+function adminClearNews(){
+  if(confirm('Delete all news?')){ saveNews([]); renderNews(); alert('All news cleared') }
+}
+function adminClearComments(){
+  if(confirm('Delete all comments?')){ saveComments([]); renderComments(); renderMini(); alert('All comments cleared') }
+}
+
+/* small helpers */
+function calcPay(){
+  const amount = parseFloat(document.getElementById('tokenAmount').value);
+  const price = parseFloat(document.getElementById('priceTon').value);
+  if(isNaN(amount) || isNaN(price) || amount<=0 || price<=0){ alert('Enter valid amount and price'); return; }
+  const total = amount * price;
+  document.getElementById('payResult').innerText = total.toFixed(6) + ' TON';
+}
+function renderMini(){ renderComments(); }
+function scrollToComments(){ document.getElementById('commentInput').scrollIntoView({behavior:'smooth'}) }
+function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}) }
+function truncate(s,n){ return s.length>n? s.slice(0,n-1)+'…': s }
+
+/* safe escape for insertion */
+function escapeHtml(str){
+  return String(str).replace(/[&<>"'`]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',"`":'&#96;'}[m] })
+}
+
+/* export JSON (admin) */
+function exportData(){
+  const news = loadNewsFromStore();
+  const blob = new Blob([JSON.stringify(news, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'news.json'; document.body.appendChild(a); a.click();
+  a.remove(); URL.revokeObjectURL(url);
+}
+
+/* initial render */
+renderNews(); renderComments(); renderMini();
+
+/* load some sample default news if none (only first time) */
+(function seedDefault(){
+  if(!localStorage.getItem(STORAGE_NEWS)){
+    const sample = [
+      {title:'Launch Success', content:'OilToken launched on TON — liquidity pool opening soon on STON.fi', date:new Date().toLocaleString()},
+      {title:'Roadmap Updated', content:'New roadmap published: CEX applications and staking roadmap', date:new Date().toLocaleString()}
+    ];
+    saveNews(sample);
+    renderNews();
+  }
+})();
 </script>
+
 </body>
-</html>
+          </html>
