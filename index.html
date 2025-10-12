@@ -18,6 +18,7 @@
       background-attachment: fixed;
       background-size: 250px;
     }
+
     header {
       background: #ff8800;
       color: #fff;
@@ -40,12 +41,14 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     .hero {
       text-align: center;
       padding: 60px 20px;
       background: #001f3f;
       color: #fff;
     }
+
     .exchange {
       text-align: center;
       background: #ff0000;
@@ -54,12 +57,9 @@
       font-size: 32px;
       font-weight: bold;
     }
-    .exchange p {
-      font-size: 20px;
-      margin-top: 10px;
-    }
+
     .opportunity {
-      background: #7b2cbf;
+      background: #007bff;
       padding: 30px;
       font-size: 18px;
       text-align: center;
@@ -68,6 +68,7 @@
       max-width: 1000px;
       color: #fff;
     }
+
     section {
       padding: 40px 20px;
       max-width: 1000px;
@@ -78,112 +79,77 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       color: #000;
     }
-    h3 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .telegram-bot, .connect, .official-letter, .investor, .ideas, .survey, .prices {
+
+    .telegram-bot,
+    .connect,
+    .official-letter,
+    .investor,
+    .ideas,
+    .survey,
+    .prices,
+    .news {
       border-radius: 20px;
       padding: 30px;
       margin: 30px auto;
       width: 85%;
       max-width: 900px;
-      color: #000;
+      color: #fff;
     }
-    .telegram-bot { background:#FFD700; }
-    .connect { background:#8B008B; color:#fff; }
-    .official-letter { background:#00CED1; color:#000; }
-    .investor { background:#FF6347; color:#fff; }
-    .ideas { background:#FF69B4; color:#fff; }
-    .survey { background:#32CD32; color:#fff; }
-    .prices { background:#1E90FF; color:#fff; }
-    .connect a, .official-letter a, .investor a, .ideas a, .survey a, .prices a {
-      color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
+
+    .telegram-bot { background: #FFD700; color:#000; }
+    .connect { background: #8B008B; }
+    .official-letter { background: #00CED1; color:#000; }
+    .investor { background: #FF6347; }
+    .ideas { background: #FF69B4; }
+    .survey { background: #32CD32; }
+    .prices { background: #1E90FF; }
+    .news { background: #6A0DAD; }
+
+    .connect a,
+    .official-letter a,
+    .investor a,
+    .ideas a,
+    .survey a,
+    .prices a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+      font-weight: bold;
     }
+
     .btn {
-      display:inline-block; background:#FFD700; color:#3b0063; padding:12px 25px;
-      border-radius:30px; text-decoration:none; font-weight:bold; transition:0.3s;
+      display: inline-block;
+      background: #ffd700;
+      color: #3b0063;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
     }
-    .btn:hover { background:#fff; color:#3b0063; }
-    footer {
-      background:#111;
-      color:#fff;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-    }
-    #news-section {
-      background:#4B0082;
-      color:#fff;
-      padding:30px;
-      border-radius:15px;
-      width:85%;
-      margin:30px auto;
-      max-width:900px;
-    }
+    .btn:hover { background: #fff; color: #3b0063; }
+
+    footer { background: #111; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+
     .news-item {
-      background:#2e0854;
-      margin:10px 0;
-      padding:15px;
-      border-radius:10px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
     }
-    #comments-section {
-      background:#5e2491;
-      color:#fff;
-      padding:30px;
-      border-radius:15px;
-      width:85%;
-      margin:30px auto;
-      max-width:900px;
-    }
-    .comment {
-      background:#3b0063;
-      margin:10px 0;
-      padding:10px;
-      border-radius:10px;
-    }
-    #admin-panel {
-      display:none;
-      background:#111;
-      color:#fff;
-      padding:20px;
-      border-radius:10px;
-      width:90%;
-      margin:20px auto;
-      max-width:700px;
-    }
-    input, textarea {
-      width:90%;
-      padding:10px;
-      margin:5px 0;
-      border-radius:6px;
-      border:none;
-      font-size:16px;
-    }
-    button {
-      padding:10px 20px;
-      font-size:16px;
-      background:#FFD700;
-      color:#3b0063;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      margin-top:10px;
-    }
-    button:hover { background:#fff; color:#3b0063; }
   </style>
 </head>
 <body>
-
 <header>
-  <img src="barrel.png" alt="Oil Token Logo">
+  <img src="barrel.png" alt="Oil Token Logo" />
   <h1>Oil Token (OIL)</h1>
   <nav>
-    <a href="#">White Paper</a>
-    <a href="#">Roadmap</a>
-    <a href="#">Tokenomics</a>
-    <a href="#">Team</a>
-    <a href="#">Description</a>
+    <a href="WhitePaper.html">White Paper</a>
+    <a href="Roadmap.html">Roadmap</a>
+    <a href="Tokenomics.html">Tokenomics</a>
+    <a href="Team.html">Team</a>
+    <a href="Description.html">Description</a>
   </nav>
 </header>
 
@@ -194,154 +160,79 @@
 
 <div class="exchange">
   OIL EXCHANGE
-  <p>Coming Soon on Ston.fi</p>
+  <p>Coming Soon</p>
 </div>
 
 <div class="opportunity">
   <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
 </div>
 
-<div id="news-section">
-  <h2>📰 OILToken News</h2>
-  <div id="news-list"></div>
-</div>
-
-<div id="comments-section">
-  <h2>💬 Free Comments</h2>
-  <div id="comment-list"></div>
-  <textarea id="commentText" placeholder="Write your comment..."></textarea><br>
-  <button onclick="addComment()">Send Comment</button>
-</div>
-
-<div class="telegram-bot">
+<section class="telegram-bot">
   <h3>Buy via Telegram Bot</h3>
   <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
-</div>
+</section>
 
 <section class="connect">
   <h2>🌐 Connect with Us</h2>
   <a href="https://t.me/oilofficial">Official Telegram</a>
   <a href="https://t.me/Oiltokenofficial">Community Telegram</a>
+  <a href="https://www.instagram.com/">Instagram</a>
   <a href="https://x.com/Oiltoken_">X (Twitter)</a>
   <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
 </section>
 
 <section class="official-letter">
   <h2>📜 Official Letters</h2>
-  <a href="https://t.me/oilofficial" target="_blank">Contact Team</a>
+  <a href="https://t.me/oilofficial">Contact the Team</a>
 </section>
 
 <section class="investor">
   <h2>💰 Investor Relations</h2>
-  <a href="mailto:oiltokenproject@gmail.com">oiltokenproject@gmail.com</a>
+  <p>Interested in investing? Contact our team for collaboration opportunities.</p>
   <a href="https://t.me/oilofficial">Contact Investment Team</a>
 </section>
 
 <section class="ideas">
   <h2>💡 Creative Ideas</h2>
   <p>Have an idea to improve Oil Token? Share it with us!</p>
-  <a href="mailto:oiltokenproject@gmail.com">Send via Email</a>
+  <a href="mailto:oiltokenproject@gmail.com">Submit Your Idea</a>
 </section>
 
 <section class="survey">
   <h2>🗳️ Community Feedback</h2>
   <p>We value your opinion! Take part in our community surveys.</p>
-  <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
+  <a href="mailto:oiltokenproject@gmail.com">Send Feedback</a>
 </section>
 
 <section class="prices">
   <h2>💹 Live Crypto Prices</h2>
+  <p>Check real-time prices on trusted platforms:</p>
   <a href="https://www.coingecko.com/en/coins/oil-token" target="_blank">View on CoinGecko</a>
   <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
 </section>
 
-<footer>
-  <p>© 2025 OilTokenOfficial — All Rights Reserved</p>
-  <button onclick="showAdminLogin()">Admin Login</button>
-</footer>
+<section class="news">
+  <h2>📰 OILToken News</h2>
+  <div id="newsContainer"></div>
+</section>
 
-<!-- Admin Panel -->
-<div id="admin-panel">
-  <h2>🛠 Admin Panel</h2>
-  <input type="password" id="adminPass" placeholder="Enter admin password">
-  <button onclick="loginAdmin()">Login</button>
+<section>
+  <h2>💎 STON.fi Liquidity Pool</h2>
+  <p>Trade and stake Oil Token directly on STON.fi</p>
+  <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">🔗 Go to STON.fi Pool</a>
+</section>
 
-  <div id="adminControls" style="display:none;">
-    <h3>Add News</h3>
-    <textarea id="newsText" placeholder="Write news..."></textarea><br>
-    <button onclick="addNews()">Add News</button>
-    <button onclick="clearNews()">Clear All News</button>
-    <h3>Manage Comments</h3>
-    <button onclick="clearComments()">Clear All Comments</button>
-  </div>
-</div>
+<footer><p>© 2025 OilTokenOfficial — All Rights Reserved</p></footer>
 
 <script>
-  const ADMIN_PASSWORD = "oilteam2025";
-
-  function showAdminLogin() {
-    document.getElementById("admin-panel").style.display = "block";
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
-  function loginAdmin() {
-    const pass = document.getElementById("adminPass").value;
-    if (pass === ADMIN_PASSWORD) {
-      document.getElementById("adminControls").style.display = "block";
-      alert("Welcome Admin!");
-    } else {
-      alert("Wrong password!");
-    }
-  }
-
-  function addNews() {
-    const text = document.getElementById("newsText").value.trim();
-    if (text === "") return alert("Enter news text!");
-    const news = JSON.parse(localStorage.getItem("oilNews") || "[]");
-    news.push({ text, date: new Date().toLocaleString() });
-    localStorage.setItem("oilNews", JSON.stringify(news));
-    document.getElementById("newsText").value = "";
-    loadNews();
-  }
-
-  function loadNews() {
-    const list = document.getElementById("news-list");
-    const news = JSON.parse(localStorage.getItem("oilNews") || "[]");
-    list.innerHTML = news.length ? news.map(n => `<div class='news-item'><b>${n.date}</b><br>${n.text}</div>`).join("") : "<p>No news yet.</p>";
-  }
-
-  function clearNews() {
-    if (confirm("Delete all news?")) {
-      localStorage.removeItem("oilNews");
-      loadNews();
-    }
-  }
-
-  function addComment() {
-    const text = document.getElementById("commentText").value.trim();
-    if (text === "") return alert("Write something!");
-    const comments = JSON.parse(localStorage.getItem("oilComments") || "[]");
-    comments.push({ text, date: new Date().toLocaleString() });
-    localStorage.setItem("oilComments", JSON.stringify(comments));
-    document.getElementById("commentText").value = "";
-    loadComments();
-  }
-
-  function loadComments() {
-    const list = document.getElementById("comment-list");
-    const comments = JSON.parse(localStorage.getItem("oilComments") || "[]");
-    list.innerHTML = comments.length ? comments.map(c => `<div class='comment'><b>${c.date}</b><br>${c.text}</div>`).join("") : "<p>No comments yet.</p>";
-  }
-
-  function clearComments() {
-    if (confirm("Delete all comments?")) {
-      localStorage.removeItem("oilComments");
-      loadComments();
-    }
-  }
-
-  loadNews();
-  loadComments();
+  const newsContainer = document.getElementById("newsContainer");
+  const storedNews = JSON.parse(localStorage.getItem("oilNews") || "[]");
+  storedNews.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "news-item";
+    div.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
+    newsContainer.appendChild(div);
+  });
 </script>
 </body>
-  </html>
+</html>
