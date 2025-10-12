@@ -1,315 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oil Token (OIL) - Official Site</title>
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #fafaff, #ffffff);
-      color: #222;
-      text-align: center;
+    :root{
+      --bg: linear-gradient(135deg,#fafaff,#ffffff);
+      --card-radius:14px;
+      --gap:14px;
+      --gold:linear-gradient(135deg,#ffd700,#ffa500);
+      --blue:linear-gradient(135deg,#00c6ff,#0072ff);
+      --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
+      --purple:linear-gradient(135deg,#7f00ff,#e100ff);
+      --red:linear-gradient(135deg,#ff4b2b,#ff416c);
+      --green:linear-gradient(135deg,#00b09b,#96c93d);
     }
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial; background:var(--bg); color:#111}
+    .container{max-width:1200px;margin:14px auto;padding:10px}
+    .top-row{display:flex;gap:var(--gap);flex-wrap:wrap}
+    .top-card{flex:1;min-width:260px;border-radius:18px;padding:18px;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .nav-card{background:linear-gradient(135deg,#ff0057,#ff7b00)}
+    .welcome-card{background:linear-gradient(135deg,#009dff,#00ffcc)}
+    .exchange-card{background:linear-gradient(135deg,#ffd700,#ff8c00)}
+    nav a{display:inline-block;margin:6px 8px;padding:8px 14px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.22)}
 
-    .card {
-      border-radius: 16px;
-      padding: 20px;
-      margin: 10px;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-5px); }
+    .main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:var(--gap);margin-top:18px}
+    .left-col,.right-col{display:flex;flex-direction:column;gap:var(--gap)}
+    .square-card{height:160px;border-radius:var(--card-radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .rect-card{border-radius:var(--card-radius);padding:20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .btn{display:inline-block;background:#fff;color:#111;padding:8px 14px;border-radius:14px;text-decoration:none;font-weight:700;margin:8px}
+    .sub-link{font-size:13px;margin-top:8px;color:rgba(255,255,255,.95)}
+    .sub-link a{color:#fff;text-decoration:underline}
 
-    .top-row {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      flex-wrap: wrap;
-    }
-    .top-card {
-      flex: 1;
-      min-width: 280px;
-      margin: 10px;
-    }
-
-    .nav-card { background: linear-gradient(135deg, #ff0057, #ff7b00); }
-    .welcome-card { background: linear-gradient(135deg, #009dff, #00ffcc); }
-    .exchange-card { background: linear-gradient(135deg, #ffd700, #ff8c00); }
-
-    nav a {
-      display: inline-block;
-      margin: 6px 8px;
-      padding: 8px 16px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      background: rgba(255,255,255,0.2);
-      border-radius: 10px;
-    }
-    nav a:hover { background: rgba(255,255,255,0.4); }
-
-    .main-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 15px;
-      padding: 20px;
-    }
-    .left-col, .right-col {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .square-card {
-      border-radius: 14px;
-      height: 160px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      cursor: pointer;
-      flex-direction: column;
-    }
-
-    .middle-col .rect-card {
-      border-radius: 14px;
-      padding: 25px;
-      margin-bottom: 15px;
-      color: white;
-      text-align: center;
-    }
-
-    .red { background: linear-gradient(135deg, #ff4b2b, #ff416c); }
-    .blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-    .green { background: linear-gradient(135deg, #00b09b, #96c93d); }
-    .purple { background: linear-gradient(135deg, #7f00ff, #e100ff); }
-    .gold { background: linear-gradient(135deg, #ffd700, #ffa500); }
-    .pink { background: linear-gradient(135deg, #ff5f6d, #ffc371); }
-
-    a.btn {
-      display: inline-block;
-      background: white;
-      color: black;
-      padding: 8px 18px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .sub-link {
-      font-size: 13px;
-      margin-top: 6px;
-      color: white;
-    }
-    .sub-link a {
-      color: white;
-      text-decoration: underline;
-    }
-
-    footer {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    textarea {
-      width: 80%;
-      border-radius: 10px;
-      padding: 10px;
-      border: none;
-    }
-
-    #adminPanel {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      color: #000;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      z-index: 999;
-      text-align: left;
-      width: 320px;
-    }
-    #adminPanel input, #adminPanel textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    #adminPanel button {
-      margin-top: 5px;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #009dff;
-      color: white;
-      font-weight: bold;
-    }
+    footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
+    textarea,input{width:90%;padding:10px;border-radius:10px;border:1px solid #ddd;margin:8px 0;font-size:14px}
+    button.action{padding:10px 14px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer}
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:9999}
+    .modal .box{background:#fff;padding:18px;border-radius:12px;max-width:420px;width:94%;text-align:left}
+    .list-item{background:#111;color:#fff;padding:10px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:13px;color:rgba(255,255,255,.85)}
+    .hidden{display:none}
+    @media(max-width:900px){ .main-layout{grid-template-columns:1fr; } .top-row{flex-direction:column} .left-col,.right-col{flex-direction:row;overflow:auto} .square-card{min-width:200px} }
   </style>
 </head>
 <body>
-  <!-- 🔺 Top 3 Cards -->
-  <div class="top-row">
-    <div class="card top-card nav-card">
-      <h3>Explore</h3>
-      <nav>
-        <a href="WhitePaper.html">WhitePaper</a>
-        <a href="Roadmap.html">Roadmap</a>
-        <a href="Tokenomics.html">Tokenomics</a>
-        <a href="Team.html">Team</a>
-        <a href="Description.html">Description</a>
-      </nav>
-    </div>
+  <div class="container">
 
-    <div class="card top-card welcome-card">
-      <h2>Welcome to Oil Token</h2>
-      <p>The future of decentralized oil-backed digital assets.</p>
-      <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
-    </div>
-
-    <div class="card top-card exchange-card">
-      <h2>OIL EXCHANGE</h2>
-      <p>Coming Soon</p>
-      <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
-    </div>
-  </div>
-
-  <!-- 🔸 3-column layout -->
-  <div class="main-layout">
-    <!-- Left Column -->
-    <div class="left-col">
-      <div class="square-card gold" onclick="window.open('https://www.youtube.com/embed/5qap5aO4i9A','_blank')">Crypto TV</div>
-      <div class="square-card blue" onclick="window.open('https://www.bloomberg.com/live', '_blank')">Bloomberg TV</div>
-      <div class="square-card purple" onclick="window.open('https://oilprice.com/', '_blank')">Oil Market News</div>
-      <div class="square-card red" onclick="scrollToSection('rewards')">Rewards</div>
-    </div>
-
-    <!-- Middle Column -->
-    <div class="middle-col">
-      <div class="rect-card pink">
-        <h3>Global Crypto News</h3>
-        <a class="btn" href="https://www.coindesk.com/" target="_blank">CoinDesk</a>
-        <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
+    <!-- TOP ROW -->
+    <div class="top-row">
+      <div class="top-card nav-card">
+        <h3>Explore</h3>
+        <nav>
+          <a href="WhitePaper.html">WhitePaper</a>
+          <a href="Roadmap.html">Roadmap</a>
+          <a href="Tokenomics.html">Tokenomics</a>
+          <a href="Team.html">Team</a>
+          <a href="Description.html">Description</a>
+        </nav>
       </div>
 
-      <div class="rect-card blue">
-        <h3>Oiltoken News</h3>
-        <video width="100%" autoplay muted loop>
-          <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
-        </video>
-        <a class="btn" href="https://app.ston.fi/swap" target="_blank">Manual Buy</a>
+      <div class="top-card welcome-card">
+        <h2>Welcome to Oil Token</h2>
+        <p style="opacity:.95">The future of decentralized oil-backed digital assets.</p>
+        <p style="font-weight:700;opacity:.95">Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
       </div>
 
-      <div class="rect-card purple" id="newsSection">
-        <h3>Connect Telegram Bot</h3>
-        <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
+      <div class="top-card exchange-card">
+        <h2>OIL EXCHANGE</h2>
+        <p style="opacity:.95">Coming Soon</p>
+        <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
       </div>
     </div>
 
-    <!-- Right Column -->
-    <div class="right-col">
-      <div class="square-card pink">
-        <span>Advertisements</span>
-        <div class="sub-link"><a href="https://t.me/oilofficial" target="_blank">Telegram Team</a></div>
-      </div>
-      <div class="square-card gold">
-        <span>Partnerships</span>
-        <div class="sub-link"><a href="mailto:oiltokenofficial@gmail.com">
+    <!-- MAIN LAYOUT (1 2 1) -->
+    <div class="main-layout">
+
+      <!-- LEFT COLUMN (squares) -->
+      <div class="left-col">
+        <div class="square-card" style="background:var(--gold)" onclick="window.open('https://www.youtube.com/watch?v=5qap5aO4i9A','_blank')">
+          Crypto TV
+        </div>
+        <div class="square-card" style="background:var(--blue)" onclick="window.open('https://www.bloomberg.com/live','_blank')">
+          Bloomberg TV
+        </div>
+        <div class="square-card" style="background:var(--purple)" onclick="window.open('https://oilprice.com','_blank')">
+          Oil Market News
+        </div>
+        <div class="square-card" style="background:var(--red)" onclick="scrollToSection('rewards')">
+          Rewards
         </div>
       </div>
-      <div class="square-card blue" onclick="window.open('mailto:oiltokenproject@gmail.com')">Contact Us</div>
-      
-      <div class="square-card green" onclick="openAdmin()">Admin Panel</div>
+
+      <!-- MIDDLE COLUMN (rectangles) -->
+      <div class="middle-col">
+        <div class="rect-card" style="background:var(--pink)">
+          <h3>Global Crypto News</h3>
+          <a class="btn" href="https://www.coindesk.com/" target="_blank">CoinDesk</a>
+          <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
+        </div>
+
+        <div class="rect-card" style="background:var(--blue)">
+          <h3>Oiltoken News</h3>
+          <video width="100%" autoplay muted loop playsinline style="border-radius:10px;">
+            <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div style="margin-top:10px">
+            <a class="btn" href="https://app.ston.fi/swap" target="_blank">Manual Buy</a>
+          </div>
+          <div id="newsList" style="text-align:left;margin-top:12px;color:#fff"></div>
+        </div>
+
+        <div class="rect-card" style="background:var(--purple)" id="newsSection">
+          <h3>Connect Telegram Bot</h3>
+          <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (squares + contact) -->
+      <div class="right-col">
+        <div class="square-card" style="background:var(--pink)">
+          <div>Advertisements</div>
+          <div class="sub-link" style="margin-top:8px;">
+            <div>Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></div>
+            <div style="margin-top:6px">Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="square-card" style="background:var(--gold)">
+          <div>Partnerships</div>
+          <div class="sub-link" style="margin-top:8px;">
+            <div>Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></div>
+            <div style="margin-top:6px">Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="square-card" style="background:var(--blue)" onclick="openContact()">
+          Contact Us
+        </div>
+
+        <div class="square-card" style="background:var(--green)" onclick="openAdmin()">
+          Admin Panel
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER: Rewards / Comments -->
+    <footer id="rewards">
+      <h3>Rewards Registration</h3>
+      <input id="walletBox" placeholder="Enter your TON wallet address (ton format)"/>
+      <button class="action" onclick="addWallet()">Submit</button>
+      <div id="walletList" style="margin-top:10px"></div>
+
+      <h3 style="margin-top:18px">Comments (Free)</h3>
+      <textarea id="commentBox" rows="3" placeholder="Write a comment..."></textarea><br>
+      <button class="action" onclick="addComment()">Post Comment</button>
+      <div id="commentsList" style="margin-top:10px"></div>
+    </footer>
+
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contactModal" class="modal" onclick="closeContact(event)">
+    <div class="box" role="dialog" aria-modal="true">
+      <h3>Contact & Socials</h3>
+      <p><strong>Official Telegram (team):</strong> <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></p>
+      <p><strong>Community Telegram:</strong> <a href="https://t.me/Oiltokenofficial" target="_blank">t.me/Oiltokenofficial</a></p>
+      <p><strong>Email:</strong> <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></p>
+      <p><strong>X (Twitter):</strong> <a href="https://x.com/Oiltoken_" target="_blank">x.com/Oiltoken_</a></p>
+      <div style="text-align:right;margin-top:10px">
+        <button onclick="document.getElementById('contactModal').style.display='none'">Close</button>
+      </div>
     </div>
   </div>
 
-  <!-- 🔹 Rewards Section -->
-  <footer id="rewards">
-    <h3>Rewards Registration</h3>
-    <textarea id="walletBox" rows="2" placeholder="Enter your TON Wallet Address..."></textarea><br />
-    <button onclick="addWallet()">Submit</button>
-    <div id="walletList"></div>
+  <!-- ADMIN PANEL (modal) -->
+  <div id="adminPanel" class="modal" onclick="closeAdmin(event)">
+    <div class="box" onclick="event.stopPropagation()">
+      <h3>Admin Panel</h3>
 
-    <h3>Comments Free</h3>
-    <textarea id="commentBox" rows="2" placeholder="Write a comment..."></textarea><br />
-    <button onclick="addComment()">Post</button>
-    <div id="commentsList"></div>
-  </footer>
+      <div id="adminLogin">
+        <input type="password" id="adminPass" placeholder="Enter admin password" />
+        <small class="small">Use password: <strong>oilteam2025</strong></small>
+        <div style="margin-top:8px">
+          <button onclick="checkPass()">Login</button>
+          <button onclick="document.getElementById('adminPanel').style.display='none'">Close</button>
+        </div>
+      </div>
 
-  <!-- Admin Panel -->
-  <div id="adminPanel">
-    <h3>Admin Control</h3>
-    <input type="password" id="adminPass" placeholder="Enter Password" />
-    <button onclick="checkPass()">Login</button>
-    <div id="adminControls" style="display:none;">
-      <textarea id="adminNews" rows="2" placeholder="Add news, ad or partner info..."></textarea>
-      <button onclick="addNews()">Add News</button>
-      <button onclick="clearNews()">Clear News</button>
-      <button onclick="closeAdmin()">Close</button>
+      <div id="adminControls" class="hidden" style="margin-top:12px">
+        <label class="small">Add News / Ads / Partner / Reward Entry</label>
+        <textarea id="adminNews" rows="2" placeholder="Type news, ad or partner info..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button onclick="addNews()">Add News</button>
+          <button onclick="addAd()">Add Ad</button>
+          <button onclick="addPartner()">Add Partner</button>
+        </div>
+
+        <hr style="margin:12px 0">
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="clearAllNews()" style="background:#c0392b;color:#fff">Clear News</button>
+          <button onclick="clearAllAds()" style="background:#d35400;color:#fff">Clear Ads</button>
+          <button onclick="clearAllPartners()" style="background:#16a085;color:#fff">Clear Partners</button>
+        </div>
+
+        <div style="margin-top:12px">
+          <label class="small">Admin can also delete individual items using the delete buttons next to each item.</label>
+        </div>
+
+        <div style="margin-top:12px;text-align:right">
+          <button onclick="logoutAdmin()">Logout</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
-    function openAdmin() { document.getElementById("adminPanel").style.display = "block"; }
-    function closeAdmin() { document.getElementById("adminPanel").style.display = "none"; }
-    function checkPass() {
-      const pass = document.getElementById("adminPass").value;
-      if (pass === "oilteam2025") document.getElementById("adminControls").style.display = "block";
-      else alert("Incorrect password.");
+    /* ---------- Utilities & persistence ---------- */
+    const NEWS_KEY = 'oiltoken_news';
+    const ADS_KEY = 'oiltoken_ads';
+    const PARTNERS_KEY = 'oiltoken_partners';
+    const WALLETS_KEY = 'oiltoken_wallets';
+    const COMMENTS_KEY = 'oiltoken_comments';
+
+    // load saved lists
+    function loadList(key, containerId, renderFn){
+      const raw = localStorage.getItem(key);
+      const arr = raw ? JSON.parse(raw) : [];
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      arr.forEach((item, idx) => {
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        el.innerHTML = `<div style="flex:1">${renderFn(item)}</div>
+          <div><button style="background:#e74c3c;color:#fff;border:none;padding:6px;border-radius:8px" onclick="deleteItem('${key}',${idx})">Delete</button></div>`;
+        container.appendChild(el);
+      });
     }
-    function addNews() {
-      const text = document.getElementById("adminNews").value.trim();
-      if (!text) return;
-      const div = document.createElement("div");
-      div.textContent = text;
-      div.style.margin = "6px";
-      div.style.padding = "8px";
-      div.style.background = "#222";
-      div.style.color = "white";
-      div.style.borderRadius = "8px";
-      document.getElementById("newsSection").appendChild(div);
-      document.getElementById("adminNews").value = "";
+
+    function saveItem(key, value){
+      const raw = localStorage.getItem(key);
+      const arr = raw ? JSON.parse(raw) : [];
+      arr.unshift(value);
+      localStorage.setItem(key, JSON.stringify(arr));
     }
-    function addWallet() {
-      const text = document.getElementById("walletBox").value.trim();
-      if (!text) return;
-      const div = document.createElement("div");
-      div.textContent = text;
-      div.style.margin = "6px";
-      div.style.padding = "8px";
-      div.style.background = "#333";
-      div.style.color = "#fff";
-      div.style.borderRadius = "8px";
-      document.getElementById("walletList").appendChild(div);
-      document.getElementById("walletBox").value = "";
+
+    function deleteItem(key, index){
+      const raw = localStorage.getItem(key);
+      const arr = raw ? JSON.parse(raw) : [];
+      if(!arr || index<0 || index>=arr.length) return;
+      arr.splice(index,1);
+      localStorage.setItem(key, JSON.stringify(arr));
+      refreshAll();
     }
-    function addComment() {
-      const text = document.getElementById("commentBox").value.trim();
-      if (!text) return;
-      const div = document.createElement("div");
-      div.textContent = text;
-      div.style.margin = "6px";
-      div.style.padding = "8px";
-      div.style.background = "#222";
-      div.style.color = "#fff";
-      div.style.borderRadius = "8px";
-      document.getElementById("commentsList").appendChild(div);
-      document.getElementById("commentBox").value = "";
+
+    function clearKey(key){ localStorage.removeItem(key); refreshAll(); }
+
+    function refreshAll(){
+      loadList(NEWS_KEY,'newsList', (i)=>`<strong>${escapeHtml(i.title||i)}</strong><div class="small">${escapeHtml(i.text||'')}</div>`);
+      loadList(ADS_KEY,'adsList', (i)=>escapeHtml(i));
+      loadList(PARTNERS_KEY,'partnersList', (i)=>escapeHtml(i));
+      loadList(WALLETS_KEY,'walletList',(i)=>escapeHtml(i));
+      loadList(COMMENTS_KEY,'commentsList',(i)=>escapeHtml(i));
     }
+
+    function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}); }
+
+    // initial refresh
+    refreshAll();
+
+    /* ---------- Contact modal ---------- */
+    function openContact(){ document.getElementById('contactModal').style.display='flex'; }
+    function closeContact(e){ if(e.target.classList.contains('modal')) document.getElementById('contactModal').style.display='none'; }
+
+    /* ---------- Admin ---------- */
+    function openAdmin(){ document.getElementById('adminPanel').style.display='flex'; }
+    function closeAdmin(e){ if(e.target.classList.contains('modal')) document.getElementById('adminPanel').style.display='none'; }
+    function checkPass(){
+      const p = document.getElementById('adminPass').value.trim();
+      if(p === 'oilteam2025'){
+        document.getElementById('adminLogin').style.display='none';
+        document.getElementById('adminControls').classList.remove('hidden');
+      } else {
+        alert('Incorrect password.');
+      }
+    }
+    function logoutAdmin(){
+      document.getElementById('adminLogin').style.display='';
+      document.getElementById('adminControls').classList.add('hidden');
+      document.getElementById('adminPass').value = '';
+      document.getElementById('adminPanel').style.display='none';
+    }
+
+    /* ---------- Admin actions ---------- */
+    function addNews(){
+      const raw = document.getElementById('adminNews').value.trim();
+      if(!raw) { alert('Type news text first'); return; }
+      const news = { title: (new Date()).toLocaleString(), text: raw };
+      saveItem(NEWS_KEY, news);
+      document.getElementById('adminNews').value='';
+      refreshAll();
+      alert('News added');
+    }
+    function addAd(){
+      const raw = document.getElementById('adminNews').value.trim();
+      if(!raw) { alert('Type ad text first'); return; }
+      saveItem(ADS_KEY, raw);
+      document.getElementById('adminNews').value='';
+      refreshAll();
+      alert('Ad added');
+    }
+    function addPartner(){
+      const raw = document.getElementById('adminNews').value.trim();
+      if(!raw) { alert('Type partner info first'); return; }
+      saveItem(PARTNERS_KEY, raw);
+      document.getElementById('adminNews').value='';
+      refreshAll();
+      alert('Partner added');
+    }
+    function clearAllNews(){ if(confirm('Clear all news?')) clearKey(NEWS_KEY); }
+    function clearAllAds(){ if(confirm('Clear all ads?')) clearKey(ADS_KEY); }
+    function clearAllPartners(){ if(confirm('Clear all partners?')) clearKey(PARTNERS_KEY); }
+
+    /* ---------- Wallets, Ads, Comments ---------- */
+    function addWallet(){
+      const v = document.getElementById('walletBox').value.trim();
+      if(!v) return alert('Enter wallet address');
+      saveItem(WALLETS_KEY,v);
+      document.getElementById('walletBox').value='';
+      refreshAll();
+    }
+    function addAd(){ // duplicate-safe name for footer button
+      const v = document.getElementById('adBox') ? document.getElementById('adBox').value.trim() : '';
+      if(!v) return alert('Type ad text first');
+      saveItem(ADS_KEY,v);
+      if(document.getElementById('adBox')) document.getElementById('adBox').value='';
+      refreshAll();
+    }
+    function addComment(){
+      const v = document.getElementById('commentBox').value.trim();
+      if(!v) return;
+      saveItem(COMMENTS_KEY,v);
+      document.getElementById('commentBox').value='';
+      refreshAll();
+    }
+
+    /* make sure news persisted on page load */
+    window.addEventListener('load', refreshAll);
   </script>
 </body>
-                                         </html>
+              </html>
