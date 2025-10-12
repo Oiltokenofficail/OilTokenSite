@@ -1,62 +1,148 @@
-<!-- =======================  index.html  ======================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oil Token (OIL) - Official Site</title>
   <style>
-    body { 
+    body {
       font-family: "Poppins", sans-serif;
-      margin:0; 
-      padding:0; 
+      margin: 0;
+      padding: 0;
       background: linear-gradient(135deg, #3b0063, #000000);
       color: gold;
       text-align: center;
-      background-image: url("https://i.postimg.cc/bJ7mCD5Z/file-000000000c0c6243b9263765619cddcb-2.png");
+      background-image: url("barrel.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
-      background-size: cover;
+      background-size: 250px;
     }
 
-    header { background:#ff8800; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; }
-    header img { width:50px; height:50px; }
-    header h1 { margin:0; font-size:28px; }
-    nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-
-    .hero { text-align:center; padding:60px 20px; background:#001f3f; color:#fff; }
-    .exchange { text-align:center; background:#ff0000; color:#fff; padding:40px 20px; font-size:32px; font-weight:bold; }
-    .exchange p { font-size:20px; margin-top:10px; }
-
-    .opportunity { background:#007BFF; padding:30px; font-size:18px; text-align:center; border-radius:10px; margin:20px auto; max-width:1000px; color:#fff; }
-
-    section { padding:40px 20px; max-width:1000px; margin:auto; background:#fff; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); color:#000; }
-    h3 { text-align:center; margin-bottom:20px; }
-
-    .connect, .investor, .ideas, .survey, .prices, .news, .stonfi {
-      border-radius: 20px; padding: 30px; margin: 30px auto; width: 85%; max-width: 900px;
+    header {
+      background: #ff8800;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      width: 50px;
+      height: 50px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .connect { background:#8B008B; color:#fff; }
-    .investor { background:#FF6347; color:#fff; }
-    .ideas { background:#FF69B4; color:#fff; }
-    .survey { background:#32CD32; color:#fff; }
-    .prices { background:#1E90FF; color:#fff; }
-    .stonfi { background:#222; color:#fff; border:2px solid #FFD700; }
-    .news { background:#800080; color:#fff; }
-
-    .connect a, .investor a, .ideas a, .survey a, .prices a, .stonfi a {
-      color:#fff; text-decoration:none; display:block; margin:8px 0; font-weight:bold;
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: #001f3f;
+      color: #fff;
     }
 
-    footer { background:#111; color:#fff; text-align:center; padding:20px; margin-top:40px; }
+    .exchange {
+      text-align: center;
+      background: #ff0000;
+      color: #fff;
+      padding: 40px 20px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .opportunity {
+      background: #007bff;
+      padding: 30px;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 1000px;
+      color: #fff;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
+
+    .telegram-bot,
+    .connect,
+    .official-letter,
+    .investor,
+    .ideas,
+    .survey,
+    .prices,
+    .news {
+      border-radius: 20px;
+      padding: 30px;
+      margin: 30px auto;
+      width: 85%;
+      max-width: 900px;
+      color: #fff;
+    }
+
+    .telegram-bot { background: #FFD700; color:#000; }
+    .connect { background: #8B008B; }
+    .official-letter { background: #00CED1; color:#000; }
+    .investor { background: #FF6347; }
+    .ideas { background: #FF69B4; }
+    .survey { background: #32CD32; }
+    .prices { background: #1E90FF; }
+    .news { background: #6A0DAD; }
+
+    .connect a,
+    .official-letter a,
+    .investor a,
+    .ideas a,
+    .survey a,
+    .prices a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffd700;
+      color: #3b0063;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn:hover { background: #fff; color: #3b0063; }
+
+    footer { background: #111; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+
+    .news-item {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
-
 <header>
-  <img src="barrel.png" alt="Oil Token Logo">
+  <img src="barrel.png" alt="Oil Token Logo" />
   <h1>Oil Token (OIL)</h1>
   <nav>
     <a href="WhitePaper.html">White Paper</a>
@@ -81,10 +167,9 @@
   <p>Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
 </div>
 
-<section class="stonfi">
-  <h2>💧 Ston.fi Liquidity Pool</h2>
-  <p>Access the official OilToken liquidity pool on STON.FI</p>
-  <a href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">Open Ston.fi Pool</a>
+<section class="telegram-bot">
+  <h3>Buy via Telegram Bot</h3>
+  <a href="https://t.me/Oiltokenbot" target="_blank">Open Telegram Bot</a>
 </section>
 
 <section class="connect">
@@ -96,9 +181,9 @@
   <a href="mailto:oiltokenproject@gmail.com">Email Us</a>
 </section>
 
-<section class="news">
-  <h2>📰 OilToken News</h2>
-  <div id="news-container"></div>
+<section class="official-letter">
+  <h2>📜 Official Letters</h2>
+  <a href="https://t.me/oilofficial">Contact the Team</a>
 </section>
 
 <section class="investor">
@@ -110,13 +195,13 @@
 <section class="ideas">
   <h2>💡 Creative Ideas</h2>
   <p>Have an idea to improve Oil Token? Share it with us!</p>
-  <a href="https://t.me/Oiltokenofficial">Submit Your Idea</a>
+  <a href="mailto:oiltokenproject@gmail.com">Submit Your Idea</a>
 </section>
 
 <section class="survey">
   <h2>🗳️ Community Feedback</h2>
   <p>We value your opinion! Take part in our community surveys.</p>
-  <a href="https://t.me/Oiltokenofficial">Join Survey Channel</a>
+  <a href="mailto:oiltokenproject@gmail.com">Send Feedback</a>
 </section>
 
 <section class="prices">
@@ -126,20 +211,28 @@
   <a href="https://coinmarketcap.com/" target="_blank">View on CoinMarketCap</a>
 </section>
 
-<footer>
-  <p>© 2025 OilTokenOfficial — All Rights Reserved</p>
-</footer>
+<section class="news">
+  <h2>📰 OILToken News</h2>
+  <div id="newsContainer"></div>
+</section>
+
+<section>
+  <h2>💎 STON.fi Liquidity Pool</h2>
+  <p>Trade and stake Oil Token directly on STON.fi</p>
+  <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">🔗 Go to STON.fi Pool</a>
+</section>
+
+<footer><p>© 2025 OilTokenOfficial — All Rights Reserved</p></footer>
 
 <script>
-const newsContainer = document.getElementById("news-container");
-const savedNews = JSON.parse(localStorage.getItem("oilNews")) || [];
-function renderNews() {
-  newsContainer.innerHTML = savedNews.length
-    ? savedNews.map(n => `<div style="background:rgba(255,255,255,0.1);margin:10px;padding:15px;border-radius:10px;">${n}</div>`).join("")
-    : "<p>No news available yet.</p>";
-}
-renderNews();
+  const newsContainer = document.getElementById("newsContainer");
+  const storedNews = JSON.parse(localStorage.getItem("oilNews") || "[]");
+  storedNews.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "news-item";
+    div.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
+    newsContainer.appendChild(div);
+  });
 </script>
-
 </body>
-</html>
+  </html>
