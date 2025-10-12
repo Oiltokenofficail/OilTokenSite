@@ -14,7 +14,6 @@
       text-align: center;
     }
 
-    /* General Card Styles */
     .card {
       border-radius: 16px;
       padding: 20px;
@@ -23,11 +22,8 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
+    .card:hover { transform: translateY(-5px); }
 
-    /* Header Row (Top 3 Cards) */
     .top-row {
       display: flex;
       justify-content: center;
@@ -40,15 +36,9 @@
       margin: 10px;
     }
 
-    .nav-card {
-      background: linear-gradient(135deg, #ff0057, #ff7b00);
-    }
-    .welcome-card {
-      background: linear-gradient(135deg, #009dff, #00ffcc);
-    }
-    .exchange-card {
-      background: linear-gradient(135deg, #ffd700, #ff8c00);
-    }
+    .nav-card { background: linear-gradient(135deg, #ff0057, #ff7b00); }
+    .welcome-card { background: linear-gradient(135deg, #009dff, #00ffcc); }
+    .exchange-card { background: linear-gradient(135deg, #ffd700, #ff8c00); }
 
     nav a {
       display: inline-block;
@@ -57,23 +47,18 @@
       color: white;
       font-weight: bold;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255,255,255,0.2);
       border-radius: 10px;
     }
-    nav a:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+    nav a:hover { background: rgba(255,255,255,0.4); }
 
-    /* Body Layout (1 2 1 ratio) */
     .main-layout {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
       gap: 15px;
       padding: 20px;
     }
-
-    .left-col,
-    .right-col {
+    .left-col, .right-col {
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -87,6 +72,7 @@
       align-items: center;
       font-weight: bold;
       cursor: pointer;
+      flex-direction: column;
     }
 
     .middle-col .rect-card {
@@ -97,25 +83,12 @@
       text-align: center;
     }
 
-    /* Colors */
-    .red {
-      background: linear-gradient(135deg, #ff4b2b, #ff416c);
-    }
-    .blue {
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-    }
-    .green {
-      background: linear-gradient(135deg, #00b09b, #96c93d);
-    }
-    .purple {
-      background: linear-gradient(135deg, #7f00ff, #e100ff);
-    }
-    .gold {
-      background: linear-gradient(135deg, #ffd700, #ffa500);
-    }
-    .pink {
-      background: linear-gradient(135deg, #ff5f6d, #ffc371);
-    }
+    .red { background: linear-gradient(135deg, #ff4b2b, #ff416c); }
+    .blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    .green { background: linear-gradient(135deg, #00b09b, #96c93d); }
+    .purple { background: linear-gradient(135deg, #7f00ff, #e100ff); }
+    .gold { background: linear-gradient(135deg, #ffd700, #ffa500); }
+    .pink { background: linear-gradient(135deg, #ff5f6d, #ffc371); }
 
     a.btn {
       display: inline-block;
@@ -126,6 +99,16 @@
       text-decoration: none;
       font-weight: bold;
       margin-top: 10px;
+    }
+
+    .sub-link {
+      font-size: 13px;
+      margin-top: 6px;
+      color: white;
+    }
+    .sub-link a {
+      color: white;
+      text-decoration: underline;
     }
 
     footer {
@@ -143,7 +126,6 @@
       border: none;
     }
 
-    /* Admin Popup */
     #adminPanel {
       display: none;
       position: fixed;
@@ -159,8 +141,7 @@
       text-align: left;
       width: 320px;
     }
-    #adminPanel input,
-    #adminPanel textarea {
+    #adminPanel input, #adminPanel textarea {
       width: 100%;
       margin-bottom: 10px;
       padding: 8px;
@@ -224,9 +205,8 @@
         <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
       </div>
 
-      <!-- Animation Section -->
       <div class="rect-card blue">
-        <h3>Crypto Animation & Manual Buy</h3>
+        <h3>Oiltoken News</h3>
         <video width="100%" autoplay muted loop>
           <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
         </video>
@@ -234,16 +214,22 @@
       </div>
 
       <div class="rect-card purple" id="newsSection">
-        <h3>OilToken News</h3>
-        <div id="newsList"></div>
+        <h3>Connect Telegram Bot</h3>
+        <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
       </div>
     </div>
 
     <!-- Right Column -->
     <div class="right-col">
-      <div class="square-card pink" onclick="scrollToSection('ads')">Advertisements</div>
-      <div class="square-card gold" onclick="scrollToSection('partners')">Partnerships</div>
-      <div class="square-card blue" onclick="window.open('mailto:oiltokenproject@gmail.com')">Email Us</div>
+      <div class="square-card pink">
+        <span>Advertisements</span>
+        <div class="sub-link"><a href="https://t.me/oilofficial" target="_blank">Telegram Team</a></div>
+      </div>
+      <div class="square-card gold">
+        <span>Partnerships</span>
+        <div class="sub-link"><a href="mailto:oiltokenproject@gmail.com">oiltokenproject@gmail.com</a></div>
+      </div>
+      <div class="square-card blue" onclick="window.open('mailto:oiltokenproject@gmail.com')">Contact Us</div>
       <div class="square-card green" onclick="openAdmin()">Admin Panel</div>
     </div>
   </div>
@@ -255,13 +241,10 @@
     <button onclick="addWallet()">Submit</button>
     <div id="walletList"></div>
 
-    <h3 id="ads">Advertisements</h3>
-    <textarea id="adBox" rows="2" placeholder="Write your ad..."></textarea><br />
-    <button onclick="addAd()">Submit Ad</button>
-    <div id="adsList"></div>
-
-    <h3 id="partners">Partnerships</h3>
-    <div id="partnersList"></div>
+    <h3>Comments Free</h3>
+    <textarea id="commentBox" rows="2" placeholder="Write a comment..."></textarea><br />
+    <button onclick="addComment()">Post</button>
+    <div id="commentsList"></div>
   </footer>
 
   <!-- Admin Panel -->
@@ -278,27 +261,14 @@
   </div>
 
   <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    }
-
-    function openAdmin() {
-      document.getElementById("adminPanel").style.display = "block";
-    }
-
-    function closeAdmin() {
-      document.getElementById("adminPanel").style.display = "none";
-    }
-
+    function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
+    function openAdmin() { document.getElementById("adminPanel").style.display = "block"; }
+    function closeAdmin() { document.getElementById("adminPanel").style.display = "none"; }
     function checkPass() {
       const pass = document.getElementById("adminPass").value;
-      if (pass === "oilteam2025") {
-        document.getElementById("adminControls").style.display = "block";
-      } else {
-        alert("Incorrect password.");
-      }
+      if (pass === "oilteam2025") document.getElementById("adminControls").style.display = "block";
+      else alert("Incorrect password.");
     }
-
     function addNews() {
       const text = document.getElementById("adminNews").value.trim();
       if (!text) return;
@@ -309,16 +279,9 @@
       div.style.background = "#222";
       div.style.color = "white";
       div.style.borderRadius = "8px";
-      document.getElementById("newsList").appendChild(div);
-      localStorage.setItem("newsData", document.getElementById("newsList").innerHTML);
+      document.getElementById("newsSection").appendChild(div);
       document.getElementById("adminNews").value = "";
     }
-
-    function clearNews() {
-      document.getElementById("newsList").innerHTML = "";
-      localStorage.removeItem("newsData");
-    }
-
     function addWallet() {
       const text = document.getElementById("walletBox").value.trim();
       if (!text) return;
@@ -332,25 +295,19 @@
       document.getElementById("walletList").appendChild(div);
       document.getElementById("walletBox").value = "";
     }
-
-    function addAd() {
-      const text = document.getElementById("adBox").value.trim();
+    function addComment() {
+      const text = document.getElementById("commentBox").value.trim();
       if (!text) return;
       const div = document.createElement("div");
       div.textContent = text;
       div.style.margin = "6px";
       div.style.padding = "8px";
-      div.style.background = "#444";
-      div.style.color = "white";
+      div.style.background = "#222";
+      div.style.color = "#fff";
       div.style.borderRadius = "8px";
-      document.getElementById("adsList").appendChild(div);
-      document.getElementById("adBox").value = "";
+      document.getElementById("commentsList").appendChild(div);
+      document.getElementById("commentBox").value = "";
     }
-
-    window.onload = function () {
-      const savedNews = localStorage.getItem("newsData");
-      if (savedNews) document.getElementById("newsList").innerHTML = savedNews;
-    };
   </script>
 </body>
-</html>
+                                         </html>
