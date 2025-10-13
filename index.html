@@ -1,252 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Oil Token (OIL) - Official Site</title>
-<style>
-:root{
-  --bg:#ffffff;
-  --card-radius:14px;
-  --gap:14px;
-  --gold:linear-gradient(135deg,#ffd700,#ffa500);
-  --blue:linear-gradient(135deg,#00c6ff,#0072ff);
-  --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
-  --purple:linear-gradient(135deg,#7f00ff,#e100ff);
-  --red:linear-gradient(135deg,#ff4b2b,#ff416c);
-  --green:linear-gradient(135deg,#00b09b,#96c93d);
-  --silver:linear-gradient(135deg,#c0c0c0,#f0f0f0);
-  --neon:linear-gradient(135deg,#39ff14,#0ff);
-}
-html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial; background:var(--bg); color:#111}
-.container{max-width:1200px;margin:14px auto;padding:10px}
-.top-row{display:flex;gap:var(--gap);flex-wrap:wrap}
-.top-card{flex:1;min-width:260px;border-radius:18px;padding:18px;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-nav a{display:inline-block;margin:6px 8px;padding:8px 14px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
-nav a:hover{background:rgba(255,255,255,.22)}
-.main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:var(--gap);margin-top:18px}
-.left-col,.right-col{display:flex;flex-direction:column;gap:var(--gap)}
-.square-card{height:160px;border-radius:var(--card-radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.rect-card{border-radius:var(--card-radius);padding:20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.btn{display:inline-block;background:#fff;color:#111;padding:8px 14px;border-radius:14px;text-decoration:none;font-weight:700;margin:8px}
-.chat-container{margin-top:20px;padding:10px;border-radius:14px;background:#f5f5f5;border:1px solid #ddd}
-.chat-box{height:200px;overflow-y:auto;padding:8px;border:1px solid #ccc;border-radius:10px;background:#fff;margin-bottom:10px}
-.chat-message{padding:6px 10px;margin:4px 0;border-radius:8px;background:#eee}
-.chat-message.private{background:#cce5ff}
-input,textarea{width:90%;padding:10px;border-radius:10px;border:1px solid #ddd;margin:8px 0;font-size:14px}
-button.action{padding:10px 14px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer}
-footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
-@media(max-width:900px){ .main-layout{grid-template-columns:1fr;} .top-row{flex-direction:column} .left-col,.right-col{flex-direction:row;overflow:auto} .square-card{min-width:200px} }
-</style>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",
-  authDomain: "oilgram.firebaseapp.com",
-  projectId: "oilgram",
-  storageBucket: "oilgram.firebasestorage.app",
-  messagingSenderId: "555429946689",
-  appId: "1:555429946689:web:a23a918ca6ceb3e8936dc0",
-  measurementId: "G-BSEWJHYD29"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let loginSection, chatSection, emailInput, passInput, loginBtn, logoutBtn;
-let publicChatBox, privateChatBox, publicMsgInput, privateMsgInput, sendPublicBtn, sendPrivateBtn;
-let selectedUser = null;
-
-window.addEventListener('DOMContentLoaded',()=>{
-  loginSection = document.getElementById('loginSection');
-  chatSection = document.getElementById('chatSection');
-  emailInput = document.getElementById('email');
-  passInput = document.getElementById('password');
-  loginBtn = document.getElementById('loginBtn');
-  logoutBtn = document.getElementById('logoutBtn');
-
-  publicChatBox = document.getElementById('publicChatBox');
-  privateChatBox = document.getElementById('privateChatBox');
-  publicMsgInput = document.getElementById('publicMsg');
-  privateMsgInput = document.getElementById('privateMsg');
-  sendPublicBtn = document.getElementById('sendPublic');
-  sendPrivateBtn = document.getElementById('sendPrivate');
-
-  loginBtn.addEventListener('click',loginUser);
-  logoutBtn.addEventListener('click',logoutUser);
-  sendPublicBtn.addEventListener('click',sendPublicMessage);
-  sendPrivateBtn.addEventListener('click',sendPrivateMessage);
-
-  onAuthStateChanged(auth,user=>{
-    if(user){
-      loginSection.style.display='none';
-      chatSection.style.display='block';
-      loadPublicChat();
-      loadPrivateChat(user.email);
-    } else {
-      loginSection.style.display='block';
-      chatSection.style.display='none';
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oil Token (OIL) - Official Site</title>
+  <style>
+    :root{
+      --bg: linear-gradient(135deg,#fafaff,#ffffff);
+      --card-radius:14px;
+      --gap:14px;
+      --gold:linear-gradient(135deg,#ffd700,#ffa500);
+      --blue:linear-gradient(135deg,#00c6ff,#0072ff);
+      --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
+      --purple:linear-gradient(135deg,#7f00ff,#e100ff);
+      --red:linear-gradient(135deg,#ff4b2b,#ff416c);
+      --green:linear-gradient(135deg,#00b09b,#96c93d);
     }
-  });
-});
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial; background:var(--bg); color:#111}
+    .container{max-width:1200px;margin:14px auto;padding:10px}
+    .top-row{display:flex;gap:var(--gap);flex-wrap:wrap}
+    .top-card{flex:1;min-width:260px;border-radius:18px;padding:18px;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .nav-card{background:linear-gradient(135deg,#ff0057,#ff7b00)}
+    .welcome-card{background:linear-gradient(135deg,#009dff,#00ffcc)}
+    .exchange-card{background:linear-gradient(135deg,#ffd700,#ff8c00)}
+    nav a{display:inline-block;margin:6px 8px;padding:8px 14px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.22)}
 
-async function loginUser(){
-  const email=emailInput.value.trim();
-  const pass=passInput.value.trim();
-  if(!email||!pass){ alert("Enter email and password"); return; }
-  try{
-    await signInWithEmailAndPassword(auth,email,pass);
-  }catch(e){
-    if(e.code==="auth/user-not-found"){
-      try{ await createUserWithEmailAndPassword(auth,email,pass); }
-      catch(err){ alert(err.message); }
-    } else alert(e.message);
-  }
-}
+    .main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:var(--gap);margin-top:18px}
+    .left-col,.right-col{display:flex;flex-direction:column;gap:var(--gap)}
+    .square-card{height:160px;border-radius:var(--card-radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .rect-card{border-radius:var(--card-radius);padding:20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .btn{display:inline-block;background:#fff;color:#111;padding:8px 14px;border-radius:14px;text-decoration:none;font-weight:700;margin:8px}
+    .sub-link{font-size:13px;margin-top:8px;color:rgba(255,255,255,.95)}
+    .sub-link a{color:#fff;text-decoration:underline}
 
-function logoutUser(){ signOut(auth); }
-
-async function sendPublicMessage(){
-  const msg=publicMsgInput.value.trim();
-  if(!msg) return;
-  const user = auth.currentUser;
-  await addDoc(collection(db,'publicMessages'),{email:user.email,message:msg,ts:new Date()});
-  publicMsgInput.value='';
-}
-
-async function sendPrivateMessage(){
-  const msg=privateMsgInput.value.trim();
-  if(!msg||!selectedUser){ alert("Select a user for private chat"); return; }
-  const user = auth.currentUser;
-  await addDoc(collection(db,'privateMessages'),{
-    from:user.email,
-    to:selectedUser,
-    message:msg,
-    ts:new Date()
-  });
-  privateMsgInput.value='';
-}
-
-function loadPublicChat(){
-  const q=query(collection(db,'publicMessages'),orderBy('ts','asc'));
-  onSnapshot(q,snap=>{
-    publicChatBox.innerHTML='';
-    snap.forEach(doc=>{
-      const d=doc.data();
-      const div=document.createElement('div');
-      div.className='chat-message';
-      div.textContent=`${d.email}: ${d.message}`;
-      publicChatBox.appendChild(div);
-      publicChatBox.scrollTop=publicChatBox.scrollHeight;
-    });
-  });
-}
-
-function loadPrivateChat(email){
-  const q=query(collection(db,'privateMessages'),orderBy('ts','asc'));
-  onSnapshot(q,snap=>{
-    privateChatBox.innerHTML='';
-    snap.forEach(doc=>{
-      const d=doc.data();
-      if(d.from===email || d.to===email){
-        const div=document.createElement('div');
-        div.className='chat-message private';
-        div.textContent=`${d.from} → ${d.to}: ${d.message}`;
-        privateChatBox.appendChild(div);
-        privateChatBox.scrollTop=privateChatBox.scrollHeight;
-      }
-    });
-  });
-}
-</script>
+    footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
+    textarea,input{width:90%;padding:10px;border-radius:10px;border:1px solid #ddd;margin:8px 0;font-size:14px}
+    button.action{padding:10px 14px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer}
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:9999}
+    .modal .box{background:#fff;padding:18px;border-radius:12px;max-width:420px;width:94%;text-align:left}
+    .list-item{background:#111;color:#fff;padding:10px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:13px;color:rgba(255,255,255,.85)}
+    .hidden{display:none}
+    @media(max-width:900px){ .main-layout{grid-template-columns:1fr; } .top-row{flex-direction:column} .left-col,.right-col{flex-direction:row;overflow:auto} .square-card{min-width:200px} }
+  </style>
 </head>
 <body>
-<div class="container">
+  <div class="container">
 
-<!-- TOP ROW -->
-<div class="top-row">
-  <div class="top-card" style="background:var(--purple)">
-    <h3>Explore</h3>
-    <nav>
-      <a href="WhitePaper.html">WhitePaper</a>
-      <a href="Roadmap.html">Roadmap</a>
-      <a href="Tokenomics.html">Tokenomics</a>
-      <a href="Team.html">Team</a>
-      <a href="Description.html">Description</a>
-    </nav>
-  </div>
+    <!-- TOP ROW -->
+    <div class="top-row">
+      <div class="top-card nav-card">
+        <h3>Explore</h3>
+        <nav>
+          <a href="WhitePaper.html">WhitePaper</a>
+          <a href="Roadmap.html">Roadmap</a>
+          <a href="Tokenomics.html">Tokenomics</a>
+          <a href="Team.html">Team</a>
+          <a href="Description.html">Description</a>
+        </nav>
+      </div>
 
-  <div class="top-card" style="background:var(--blue)">
-    <h2>Welcome to Oil Token</h2>
-    <p>The future of decentralized oil-backed digital assets.</p>
-  </div>
+      <div class="top-card welcome-card">
+        <h2>Welcome to Oil Token</h2>
+        <p style="opacity:.95">The future of decentralized oil-backed digital assets.</p>
+        <p style="font-weight:700;opacity:.95">Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
+      </div>
 
-  <div class="top-card" style="background:var(--gold)">
-    <h2>OILtoken EXCHANGE</h2>
-    <p>Coming Soon</p>
-  </div>
-</div>
-
-<!-- MAIN LAYOUT -->
-<div class="main-layout">
-  <!-- LEFT COLUMN -->
-  <div class="left-col">
-    <div class="square-card" style="background:var(--gold)">Crypto TV</div>
-    <div class="square-card" style="background:var(--blue)">Bloomberg TV</div>
-    <div class="square-card" style="background:var(--purple)">Oil Market News</div>
-    <div class="square-card" style="background:var(--red)">Rewards</div>
-  </div>
-
-  <!-- MIDDLE COLUMN -->
-  <div class="middle-col">
-    <div class="rect-card" style="background:var(--pink)">
-      <h3>Global Crypto News</h3>
+      <div class="top-card exchange-card">
+        <h2>OILtoken EXCHANGE</h2>
+        <p style="opacity:.95">Coming Soon</p>
+        <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
+      </div>
     </div>
-    <div class="rect-card" style="background:var(--blue)">
-      <h3>Oiltoken News</h3>
-      <video width="100%" autoplay muted loop playsinline style="border-radius:10px;">
-        <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
-      </video>
+
+    <!-- MAIN LAYOUT (1 2 1) -->
+    <div class="main-layout">
+
+      <!-- LEFT COLUMN (squares) -->
+      <div class="left-col">
+        <div class="square-card" style="background:var(--gold)" onclick="window.open('https://www.youtube.com/watch?v=5qap5aO4i9A','_blank')">
+          Crypto TV
+        </div>
+        <div class="square-card" style="background:var(--blue)" onclick="window.open('https://www.bloomberg.com/live','_blank')">
+          Bloomberg TV
+        </div>
+        <div class="square-card" style="background:var(--purple)" onclick="window.open('https://oilprice.com','_blank')">
+          Oil Market News
+        </div>
+        <div class="square-card" style="background:var(--red)" onclick="scrollToSection('rewards')">
+          Rewards
+        </div>
+      </div>
+
+      <!-- MIDDLE COLUMN (rectangles) -->
+      <div class="middle-col">
+        <div class="rect-card" style="background:var(--pink)">
+          <h3>Global Crypto News</h3>
+          <a class="btn" href="https://www.coindesk.com/" target="_blank">CoinDesk</a>
+          <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
+        </div>
+
+        <div class="rect-card" style="background:var(--blue)">
+          <h3>Oiltoken News</h3>
+          🛢️ Important Announcement – Multi-Chain Expansion
+
+We are excited to announce that OILToken will soon be launched on the Ethereum and BNB Smart Chain (BSC) networks, in addition to the TON blockchain.
+
+This multi-chain expansion will bring greater liquidity, global accessibility, and faster ecosystem growth for OILToken.
+
+🔗 Further details and the official launch date will be announced soon.
+Stay tuned and join us on the journey toward the future of digital energy! 💥
+          <video width="100%" autoplay muted loop playsinline style="border-radius:10px;">
+            <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div style="margin-top:10px">
+            <a class="btn" href="https://app.ston.fi/swap" target="_blank">Manual Buy</a>
+          </div>
+          <div id="newsList" style="text-align:left;margin-top:12px;color:#fff"></div>
+        </div>
+
+        <div class="rect-card" style="background:var(--purple)" id="newsSection">
+          <h3>Connect Telegram Bot</h3>
+          <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (squares + contact) -->
+      <div class="right-col">
+        <div class="square-card" style="background:var(--pink)">
+          <div>Advertisements</div>
+          <div class="sub-link" style="margin-top:8px;">
+            <div>Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></div>
+            <div style="margin-top:6px">Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="square-card" style="background:var(--gold)">
+          <div>Partnerships</div>
+          <div class="sub-link" style="margin-top:8px;">
+            <div>Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></div>
+            <div style="margin-top:6px">Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="square-card" style="background:var(--blue)" onclick="openContact()">
+          Contact Us
+        </div>
+
+        <div class="square-card" style="background:var(--green)" onclick="openAdmin()">
+          Admin Panel
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER: Rewards / Comments -->
+    <footer id="rewards">
+      <h3>Rewards Registration</h3>
+      <input id="walletBox" placeholder="Enter your TON wallet address (ton format)"/>
+      <button class="action" onclick="addWallet()">Submit</button>
+      <div id="walletList" style="margin-top:10px"></div>
+
+      <h3 style="margin-top:18px">Comments (Free)</h3>
+      <textarea id="commentBox" rows="3" placeholder="Write a comment..."></textarea><br>
+      <button class="action" onclick="addComment()">Post Comment</button>
+      <div id="commentsList" style="margin-top:10px"></div>
+    </footer>
+
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contactModal" class="modal" onclick="closeContact(event)">
+    <div class="box" role="dialog" aria-modal="true">
+      <h3>Contact & Socials</h3>
+      <p><strong>Official Telegram (team):</strong> <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a></p>
+      <p><strong>Community Telegram:</strong> <a href="https://t.me/Oiltokenofficial" target="_blank">t.me/Oiltokenofficial</a></p>
+      <p><strong>Email:</strong> <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></p>
+      <p><strong>X (Twitter):</strong> <a href="https://x.com/Oiltoken_" target="_blank">x.com/Oiltoken_</a></p>
+      <div style="text-align:right;margin-top:10px">
+        <button onclick="document.getElementById('contactModal').style.display='none'">Close</button>
+      </div>
     </div>
   </div>
 
-  <!-- RIGHT COLUMN -->
-  <div class="right-col">
-    <div class="square-card" style="background:var(--pink)">
-      Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a>
-    </div>
-    <div class="square-card" style="background:var(--green)">
-      Admin Panel
-    </div>
-  </div>
-</div>
+  <!-- ADMIN PANEL (modal) -->
+  <div id="adminPanel" class="modal" onclick="closeAdmin(event)">
+    <div class="box" onclick="event.stopPropagation()">
+      <h3>Admin Panel</h3>
 
-<!-- CHAT SECTION -->
-<div id="loginSection" class="chat-container">
-  <h3>Login / Register (Email)</h3>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button class="action" id="loginBtn">Login / Register</button>
-</div>
-
-<div id="chatSection" class="chat-container" style="display:none">
-  <h3>Public Chat</h3>
-  <div class="chat-box" id="publicChatBox"></div>
-  <input type="text" id="publicMsg" placeholder="Type a message">
-  <button class="action" id="sendPublic">Send</button>
-
-  <h3>Private Chat</h3>
-  <input type="email" id="privateUser" placeholder="Recipient email" oninput="selectedUser=this.value">
-  <div class="chat-box" id="privateChatBox"></div>
-  <input type="text" id="privateMsg" placeholder="Type a private message">
-  <button class="action" id="sendPrivate">Send Private</button>
-
-  <button class="action" id="logoutBtn" style="margin-top:10px;background:#c0392b">Logout</button>
-</div>
-
-</div>
-</body>
-</html>
+      <div id="adminLogin">
+        <input type="password" id="adminPass" placeholder="Enter admin password" />
+        <small class="small">Use password: <strong>oilteam2025</strong></small>
+        <div style="margin-top:8px
