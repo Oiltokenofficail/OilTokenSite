@@ -3,320 +3,139 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Oilgram — Oil Token Chat (OIL)</title>
+  <title>Oil Token (OIL) - Official Site</title>
   <style>
-    :root{ --bg:#ffffff; --accent:#3b0063; --muted:#666; --radius:12px; --success:#16a34a; --danger:#e11d48; }
-    body{font-family:Inter,system-ui,Arial;margin:0;background:linear-gradient(180deg,#fff,#fbfbff);color:#0b1220}
-    .wrap{max-width:980px;margin:18px auto;padding:18px}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-    .card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 8px 30px rgba(11,18,32,0.06)}
-    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #e6e6e9;margin:6px 0}
-    button{cursor:pointer;padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700}
-    .ghost{background:#fff;color:var(--accent);border:1px solid #eee}
-    .messages{height:360px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
-    .message{padding:8px;border-radius:8px;margin-bottom:8px;background:#fff;border:1px solid #eee}
-    .me{background:linear-gradient(90deg,#e9f8f2,#dff6ea)}
-    .small{font-size:13px;color:var(--muted)}
-    .hidden{display:none}
-    @media(max-width:920px){ .grid{grid-template-columns:1fr} .messages{height:260px} }
+    :root{
+      --bg: linear-gradient(135deg,#fafaff,#ffffff);
+      --gold:linear-gradient(135deg,#ffd700,#ffa500);
+      --blue:linear-gradient(135deg,#00c6ff,#0072ff);
+      --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
+      --purple:linear-gradient(135deg,#7f00ff,#e100ff);
+      --red:linear-gradient(135deg,#ff4b2b,#ff416c);
+      --green:linear-gradient(135deg,#00b09b,#96c93d);
+      --card-radius:14px;
+    }
+    body{font-family:Inter,system-ui,Arial;margin:0;background:var(--bg);color:#111}
+    .wrap{max-width:1200px;margin:18px auto;padding:18px}
+    .top-row{display:flex;gap:14px}
+    .card{border-radius:18px;padding:18px;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+    .nav-card{background:linear-gradient(135deg,#ff0057,#ff7b00)}
+    .welcome-card{background:linear-gradient(135deg,#009dff,#00ffcc)}
+    .exchange-card{background:linear-gradient(135deg,#ffd700,#ff8c00)}
+    nav a{display:inline-block;margin:6px 8px;padding:8px 12px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
+    .main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;margin-top:18px}
+    .square{height:140px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer}
+    .rect{border-radius:14px;padding:16px;color:#fff}
+    .btn{display:inline-block;background:#fff;color:#111;padding:8px 12px;border-radius:12px;text-decoration:none;font-weight:700;margin-top:8px}
+    footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header style="display:flex;justify-content:space-between;align-items:center">
-      <h1 style="margin:0;color:#3b0063">Oilgram — Oil Token Chat</h1>
-      <div class="small">Auth: Email & Password • Number prefix: <strong>666</strong></div>
-    </header>
+    <div class="top-row">
+      <div class="card nav-card" style="flex:1">
+        <h3>Explore</h3>
+        <nav>
+          <a href="#">WhitePaper</a>
+          <a href="#">Roadmap</a>
+          <a href="#">Tokenomics</a>
+          <a href="#">Team</a>
+          <a href="#">Description</a>
+          <a href="oilgram.html">Oilgram</a>
+        </nav>
+      </div>
 
-    <div class="grid" style="margin-top:18px">
+      <div class="card welcome-card" style="flex:1">
+        <h2>Welcome to Oil Token</h2>
+        <p style="opacity:.95">The future of decentralized oil-backed digital assets.</p>
+        <p style="font-weight:700;opacity:.95">Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
+      </div>
+
+      <div class="card exchange-card" style="flex:1">
+        <h2>OILtoken EXCHANGE</h2>
+        <p style="opacity:.95">Coming Soon</p>
+        <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
+      </div>
+    </div>
+
+    <div class="main-layout">
       <!-- left -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="square" style="background:var(--gold)" onclick="window.open('https://www.youtube.com/watch?v=5qap5aO4i9A','_blank')">Crypto TV</div>
+        <div class="square" style="background:var(--blue)" onclick="window.open('https://www.bloomberg.com/live','_blank')">Bloomberg TV</div>
+        <div class="square" style="background:var(--purple)" onclick="window.open('https://oilprice.com','_blank')">Oil Market News</div>
+        <div class="square" style="background:var(--red)" onclick="location.href='#rewards'">Rewards</div>
+      </div>
+
+      <!-- middle -->
       <div>
-        <div class="card" id="authCard">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div style="font-weight:800">Sign up / Login</div>
-              <div class="small">Sign up with email & password. Then reserve a 10-digit code starting with 666.</div>
-            </div>
-            <div id="profileBox" class="hidden">
-              <div id="meName" style="font-weight:700"></div>
-              <div class="small" id="meNumber"></div>
-              <button class="ghost" onclick="logout()">Logout</button>
-            </div>
-          </div>
-
-          <div id="authForm">
-            <label>Email</label><input id="email" type="email" placeholder="you@example.com"/>
-            <label>Password</label><input id="password" type="password" placeholder="min 6 chars"/>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button onclick="doSignup()">Sign Up</button>
-              <button class="ghost" onclick="doLogin()">Login</button>
-            </div>
-
-            <div style="margin-top:12px">
-              <label>Choose 10-digit code (start 666) — optional</label>
-              <input id="chosenNumber" placeholder="e.g. 6661234567"/>
-              <div class="small" id="numberNotice">Reserved codes (3+ identical digits after 666) are blocked for auction.</div>
-              <div style="display:flex;gap:8px;margin-top:8px">
-                <button onclick="checkNumber()">Check</button>
-                <button class="ghost" onclick="assignNumber()">Assign</button>
-              </div>
-              <div id="numberFeedback" class="small" style="margin-top:8px"></div>
-            </div>
-          </div>
+        <div class="rect" style="background:var(--pink)">
+          <h3>Global Crypto News</h3>
+          <a class="btn" href="https://www.coindesk.com/" target="_blank">CoinDesk</a>
+          <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-weight:800">Public Chat</div><div class="small">Messages visible to all signed users.</div></div>
-            <div>
-              <button class="ghost" onclick="showPublic()">Public</button>
-              <button onclick="showPrivate()" class="ghost">Private</button>
-            </div>
-          </div>
-
-          <div id="publicArea" style="margin-top:10px">
-            <div class="messages" id="publicMessages"></div>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="publicInput" placeholder="Write a public message..."/>
-              <button onclick="sendPublic()">Send</button>
-            </div>
-          </div>
-
-          <div id="privateArea" class="hidden" style="margin-top:12px">
-            <label>Find by code (666...)</label>
-            <input id="searchNumber" placeholder="Enter recipient code"/>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button onclick="findUser()">Find</button>
-              <button class="ghost" onclick="openPrivateBySelection()">Open Private</button>
-            </div>
-
-            <div id="privateChatBox" class="hidden" style="margin-top:12px">
-              <div class="small">Chat with: <span id="privateRecipient"></span></div>
-              <div class="messages" id="privateMessages"></div>
-              <div style="display:flex;gap:8px;margin-top:8px">
-                <input id="privateInput" placeholder="Write a private message..."/>
-                <button onclick="sendPrivate()">Send</button>
-              </div>
-            </div>
-          </div>
+        <div class="rect" style="background:var(--blue);margin-top:12px">
+          <h3>Oiltoken News & Oilgram</h3>
+          <p style="color:#fff">📢 Oilgram is live for testing. Click below to open the Oilgram chat app.</p>
+          <a class="btn" href="oilgram.html">Open Oilgram</a>
+          <video width="100%" autoplay muted loop playsinline style="border-radius:10px;margin-top:12px">
+            <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
+          </video>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Voice & Video (coming soon)</div>
-          <div class="small">Voice & Video require WebRTC signalling (we will enable step-by-step). Buttons are placeholders now.</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="ghost" id="voiceBtn" onclick="alert('Voice call demo: next step implement WebRTC')" disabled>Start Voice</button>
-            <button class="ghost" id="videoBtn" onclick="alert('Video call demo: next step implement WebRTC')" disabled>Start Video</button>
-          </div>
+        <div class="rect" style="background:var(--purple);margin-top:12px">
+          <h3>Connect Telegram Bot</h3>
+          <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
         </div>
       </div>
 
       <!-- right -->
-      <div>
-        <div class="card">
-          <div style="font-weight:800">Quick Info</div>
-          <div class="small">Reserved codes (3+ identical digits after 666) are locked for auction and not assignable.</div>
-          <div style="margin-top:8px" id="reservedListBox"></div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Admin (local)</div>
-          <div class="small">Admin password unlocks deletion UI client-side only.</div>
-          <label>Admin Password</label>
-          <input id="adminPass" type="password" placeholder="admin password"/>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button onclick="doAdminLogin()">Open Admin</button>
-            <button class="ghost" onclick="doAdminLogout()">Close</button>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="square" style="background:var(--pink)">
+          Advertisements
+          <div style="font-size:13px;margin-top:8px;color:#fff">
+            Telegram: <a style="color:#fff;text-decoration:underline" href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a><br>
+            Email: <a style="color:#fff;text-decoration:underline" href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
           </div>
-          <div id="adminStatus" class="small" style="margin-top:8px;color:var(--danger)"></div>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Search user by code</div>
-          <input id="search-code" placeholder="6661234567"/>
-          <div style="margin-top:8px"><button onclick="doSearch()">Find</button></div>
-          <div id="search-result" style="margin-top:8px"></div>
+        <div class="square" style="background:var(--gold)">
+          Partnerships
+          <div style="font-size:13px;margin-top:8px;color:#fff">
+            Telegram: <a style="color:#fff;text-decoration:underline" href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a><br>
+            Email: <a style="color:#fff;text-decoration:underline" href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
+          </div>
         </div>
+
+        <div class="square" style="background:var(--blue)" onclick="openContact()">Contact Us</div>
+        <div class="square" style="background:var(--green)" onclick="openAdmin()">Admin Panel</div>
       </div>
     </div>
+
+    <footer id="rewards">
+      <h3 style="color:#fff">Rewards Registration</h3>
+      <input id="walletBox" placeholder="Enter your TON wallet address (ton format)" style="width:80%;padding:10px;border-radius:8px;border:1px solid #ddd"/>
+      <button style="padding:10px 14px;margin-left:8px" onclick="alert('Demo: wallet saved client-side only')">Submit</button>
+
+      <h3 style="color:#fff;margin-top:18px">Comments (Free)</h3>
+      <textarea id="commentBox" rows="3" style="width:80%;padding:10px;border-radius:8px;border:1px solid #ddd" placeholder="Write a comment..."></textarea><br>
+      <button style="padding:10px 14px;margin-top:8px" onclick="alert('Demo: comment posted client-side only')">Post Comment</button>
+    </footer>
   </div>
 
-  <!-- app logic -->
+  <!-- contact & admin modals (simple) -->
   <script type="module" src="./script.js"></script>
   <script type="module">
-    // wrapper UI logic that uses functions from script.js
-    import * as S from "./script.js";
-
-    // UI helpers
-    function $(id){ return document.getElementById(id); }
-    function showProfile(udata){
-      $("authForm").style.display = "none";
-      $("profileBox").classList.remove("hidden");
-      $("meName").textContent = udata.email;
-      $("meNumber").textContent = "Code: " + (udata.code || "(none)");
-    }
-    function showLoggedOut(){
-      $("authForm").style.display = "";
-      $("profileBox").classList.add("hidden");
-    }
-
-    // load reserved list
-    async function renderReserved(){
-      const list = S.getReservedNumbers();
-      const box = $("reservedListBox");
-      box.innerHTML = "";
-      list.forEach(c=>{
-        const d = document.createElement("div");
-        d.style.marginBottom="6px";
-        d.innerHTML = `<strong>${c}</strong> <span style="color:#d23"> (reserved)</span>`;
-        box.appendChild(d);
-      });
-    }
-
-    // signup/login wrappers for UI
-    window.doSignup = async function(){
-      try{
-        const email = $("email").value.trim();
-        const pass = $("password").value;
-        await S.signup(email,pass,$("chosenNumber").value.trim());
-        alert("Signed up. Check profile and assigned code in a moment.");
-      }catch(e){ alert("Signup error: "+(e.message||e)); console.error(e); }
+    // small helpers to open simple modals (use built-in prompts for demo)
+    window.openContact = function(){
+      alert("Contact & Socials:\nTelegram (team): t.me/oilofficial\nCommunity: t.me/Oiltokenofficial\nEmail: oiltokenofficial@gmail.com");
     };
-    window.doLogin = async function(){
-      try{ await S.login($("email").value.trim(), $("password").value); }
-      catch(e){ alert("Login error: "+(e.message||e)); console.error(e); }
+    window.openAdmin = function(){
+      const p = prompt("Enter admin password (client-side):");
+      if(p === "oilteam2025") alert("Admin unlocked (client-side). Use Oilgram admin UI for moderation.");
+      else if(p) alert("Wrong password.");
     };
-    window.logout = async function(){ await S.logout(); alert("Logged out"); };
-
-    // onAuth changes -> update UI & listeners
-    let currentUser = null;
-    onAuthStateChanged = S && S ? S : null; // avoid lint noise
-    // we cannot import onAuthStateChanged here (already in script.js). rely on window.currentUser updated in script.js
-    setInterval(()=>{ // small poll to update UI after auth changes (simple approach)
-      if(window.currentUser && (!currentUser || currentUser.uid !== window.currentUser.uid)){
-        currentUser = window.currentUser;
-        const udata = window.currentUserData || { email: currentUser.email, code: window.currentUserCode };
-        showProfile(udata);
-        // start public listener
-        S.startPublicListener((arr)=> {
-          const box = $("publicMessages"); box.innerHTML="";
-          arr.forEach(m=>{
-            const div = document.createElement("div");
-            div.className = "message" + (m.uid === (window.currentUser && window.currentUser.uid) ? " me" : "");
-            div.innerHTML = `<div style="font-weight:700">${m.code||m.email}</div><div>${m.text}</div><div style="font-size:11px;color:#888">${m.createdAt?.toDate ? m.createdAt.toDate().toLocaleString() : ''}</div>`;
-            // admin delete
-            if(window._adminLogged){
-              const del = document.createElement("button"); del.style.marginTop="8px"; del.textContent="Delete";
-              del.onclick = async ()=>{ if(confirm('Delete?')) await deleteDoc(doc(db,'publicMessages', m.id)); };
-              div.appendChild(del);
-            }
-            box.appendChild(div);
-          });
-          box.scrollTop = box.scrollHeight;
-        });
-      } else if(!window.currentUser && currentUser){
-        currentUser = null;
-        showLoggedOut();
-        S.stopPublicListener();
-      }
-    }, 700);
-
-    // number check & assign
-    window.checkNumber = async function(){
-      const raw = $("chosenNumber").value.trim();
-      const n = raw.replace(/\D/g,"");
-      if(!S.isValidCodeFormat?.call ? false : !S.isValidCodeFormat(n)){
-        // If script.js does not export isValidCodeFormat we fall back to simple check
-      }
-      // We'll call backend helpers from script.js via generated helpers:
-      if(!isNaN(Number(n)) && n.length===10){
-        if(reservedNumbers?.includes && reservedNumbers.includes(n) || (/(.)\1\1/.test(n.slice(3)))){
-          $("numberFeedback").textContent = "This number is reserved for auction (not available).";
-          $("numberFeedback").style.color = "#e11d48";
-          return;
-        }
-        // check uniqueness on Firestore
-        const q = await getDocs(query(collection(db,'userCodes'), where('code','==', n)));
-        if(!q.empty){ $("numberFeedback").textContent = "This number is already taken."; $("numberFeedback").style.color="#e11d48"; return; }
-        $("numberFeedback").textContent = "Available ✅"; $("numberFeedback").style.color="#16a34a";
-      } else {
-        $("numberFeedback").textContent = "Invalid format. Must be 10 digits starting with 666."; $("numberFeedback").style.color="#e11d48";
-      }
-    };
-
-    // assign number: simply recommend using signup with requested number (script.signup handles it)
-    window.assignNumber = async function(){
-      alert("To assign a code, sign up (or login) first and then use the Assign button near code input (feature demo - server side assign done on signup).");
-    };
-
-    // public messaging UI
-    window.sendPublic = async function(){
-      try{
-        if(!window.currentUser) return alert("Login first");
-        await S.sendPublicMessage($("publicInput").value.trim(), window.currentUser);
-        $("publicInput").value='';
-      }catch(e){ alert("Send public error: "+(e.message||e)); }
-    };
-
-    // show toggle
-    window.showPublic = function(){ $("publicArea").classList.remove("hidden"); $("privateArea").classList.add("hidden"); };
-    window.showPrivate = function(){ $("publicArea").classList.add("hidden"); $("privateArea").classList.remove("hidden"); };
-
-    // find user by number (private chat)
-    window.findUser = async function(){
-      const num = $("searchNumber").value.trim().replace(/\D/g,"");
-      if(!num) return alert("Enter code");
-      const docSnap = await getDoc(doc(db,"userCodes", num));
-      if(!docSnap.exists()){ alert("No user with that code"); return; }
-      const target = docSnap.data();
-      $("privateRecipient").textContent = target.code;
-      $("privateChatBox").classList.remove("hidden");
-      // open private room realtime listener
-      const myUid = window.currentUser && window.currentUser.uid;
-      if(!myUid) return alert("Login first");
-      const convo = await S.openPrivateRoom(myUid, target.uid, (arr)=>{
-        const box = $("privateMessages"); box.innerHTML='';
-        arr.forEach(m=>{
-          const el = document.createElement("div");
-          el.className = "message" + (m.uid === (window.currentUser && window.currentUser.uid) ? " me" : "");
-          el.innerHTML = `<div style="font-weight:700">${m.code||m.email}</div><div>${m.text}</div>`;
-          box.appendChild(el);
-        });
-        box.scrollTop = box.scrollHeight;
-      });
-      // store convo id in DOM
-      $("privateChatBox").dataset.convo = convo;
-    };
-
-    window.openPrivateBySelection = async function(){ if(!$("privateRecipient").textContent) return alert("Find recipient first"); /* already handled in findUser */ };
-
-    window.sendPrivate = async function(){
-      try{
-        const convo = $("privateChatBox").dataset.convo;
-        if(!convo) return alert("Open private chat first");
-        await S.sendPrivateMessage(convo, $("privateInput").value.trim(), window.currentUser);
-        $("privateInput").value='';
-      }catch(e){ alert("Send private error: "+(e.message||e)); }
-    };
-
-    // admin client
-    window.doAdminLogin = function(){
-      const p = $("adminPass").value.trim();
-      if(S.adminLogin(p)){ $("adminStatus").textContent="Admin enabled (client-side)."; } else alert("Wrong admin password.");
-    };
-    window.doAdminLogout = function(){ S.adminLogout(); $("adminStatus").textContent=''; };
-
-    window.doSearch = async function(){
-      const code = $("search-code").value.trim().replace(/\D/g,"");
-      if(!code) return alert("Enter code");
-      const docSnap = await getDoc(doc(db,"userCodes", code));
-      if(!docSnap.exists()){ $("search-result").innerHTML = "<div class='small'>Not found</div>"; return; }
-      $("search-result").innerHTML = "<div class='small'>Found: " + code + "</div>";
-    };
-
-    // initial
-    (async ()=>{ await renderReserved(); })();
-
   </script>
 </body>
-</html>
+            </html>
