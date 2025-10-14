@@ -1,177 +1,133 @@
-<!-- ===== Oilgram Chat Widget (Username-Based Private Chat) ===== -->
-<div id="oilgram-widget">
-  <div id="oilgram-header" onclick="toggleOilgramBody()">💬 Oilgram</div>
-  <div id="oilgram-body">
-
-    <!-- Login Form -->
-    <div id="chat-login">
-      <input type="email" id="chat-email" placeholder="Email" />
-      <input type="password" id="chat-pass" placeholder="Password" />
-      <button style="background:#ff4b5c;color:#fff" onclick="loginChat()">Login</button>
-      <button style="background:#ffcc00;color:#111" onclick="signupChat()">Sign Up</button>
-      <div id="chat-login-msg" style="font-size:12px;color:red;margin-top:4px;"></div>
-    </div>
-
-    <!-- Chat Area -->
-    <div id="chat-area">
-      <div style="display:flex;gap:4px;margin-bottom:6px;">
-        <button style="background:#ff4b5c;color:#fff;flex:1" onclick="showPublicChat()">Public Chat</button>
-        <button style="background:#8a2be2;color:#fff;flex:1" onclick="showPrivateChat()">Private Chat</button>
-        <button style="background:#aaa;color:#fff;flex:1" disabled>Voice Call</button>
-        <button style="background:#00ffcc;color:#111;flex:1" disabled>Video Call</button>
-      </div>
-
-      <div id="chat-messages" style="height:200px;overflow:auto;border:1px solid #ddd;padding:6px;border-radius:10px;margin-bottom:6px;background:#f0f0f0"></div>
-      
-      <div id="private-recipient-div" style="display:none;margin-bottom:6px;">
-        <input type="text" id="private-recipient" placeholder="Recipient username" />
-      </div>
-      
-      <input type="text" id="chat-input" placeholder="Type a message..." />
-      <button style="background:#00b09b;color:#fff;width:100%;margin-top:4px" onclick="sendMessage()">Send</button>
-      <button style="background:#ff69b4;color:#fff;width:100%;margin-top:4px" onclick="logoutChat()">Logout</button>
-    </div>
-
-  </div>
-</div>
-
-<style>
-  #oilgram-widget{
-    position:fixed;
-    bottom:0;
-    right:20px;
-    width:320px;
-    background:#fff;
-    border-radius:12px 12px 0 0;
-    box-shadow:0 4px 12px rgba(0,0,0,.2);
-    z-index:9999;
-    font-family:Poppins,Arial,sans-serif;
-    overflow:hidden;
-  }
-  #oilgram-header{
-    background:#ff4b5c;
-    color:#fff;
-    padding:10px;
-    text-align:center;
-    font-weight:700;
-    cursor:pointer;
-  }
-  #oilgram-body{padding:10px;display:none;}
-  #chat-area{display:none;margin-top:8px;}
-  #chat-input{width:calc(100% - 12px);padding:6px;margin-bottom:6px;border-radius:8px;border:1px solid #ccc;}
-  #oilgram-body button{display:block;width:100%;margin:6px 0;padding:8px;border:none;border-radius:10px;font-weight:700;cursor:pointer;}
-  #private-recipient{width:calc(100% - 12px);padding:6px;border-radius:8px;border:1px solid #ccc;}
-</style>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
-
-// TODO: جایگزین کن با مقادیر پروژه Firebase خودت
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-
-const chatLogin = document.getElementById('chat-login');
-const chatArea = document.getElementById('chat-area');
-const chatMessages = document.getElementById('chat-messages');
-const chatInput = document.getElementById('chat-input');
-const recipientDiv = document.getElementById('private-recipient-div');
-const recipientInput = document.getElementById('private-recipient');
-
-let currentChat = 'public';
-let userEmail = '';
-let username = '';
-
-function toggleOilgramBody(){
-  const body = document.getElementById('oilgram-body');
-  body.style.display = body.style.display==='none' ? 'block':'none';
-}
-
-// Sign Up & store username
-function signupChat(){
-  const email = document.getElementById('chat-email').value;
-  const pass = document.getElementById('chat-pass').value;
-  createUserWithEmailAndPassword(auth,email,pass)
-    .then(() => {
-      userEmail=email;
-      username=email.split('@')[0];
-      push(ref(db,'usernames'),{email:userEmail,username});
-      showChat();
-    })
-    .catch(err=>{ document.getElementById('chat-login-msg').innerText=err.message; });
-}
-
-function loginChat(){
-  const email = document.getElementById('chat-email').value;
-  const pass = document.getElementById('chat-pass').value;
-  signInWithEmailAndPassword(auth,email,pass)
-    .then(()=>{ 
-      userEmail=email; 
-      username=email.split('@')[0]; 
-      showChat(); 
-    })
-    .catch(err=>{ document.getElementById('chat-login-msg').innerText=err.message; });
-}
-
-function logoutChat(){
-  signOut(auth).then(()=>{
-    chatArea.style.display='none';
-    chatLogin.style.display='block';
-    chatMessages.innerHTML='';
-  });
-}
-
-function showChat(){
-  chatLogin.style.display='none';
-  chatArea.style.display='block';
-  loadMessages(currentChat);
-  recipientDiv.style.display = currentChat==='private' ? 'block':'none';
-}
-
-function showPublicChat(){ currentChat='public'; recipientDiv.style.display='none'; loadMessages(currentChat); }
-function showPrivateChat(){ currentChat='private'; recipientDiv.style.display='block'; loadMessages(currentChat); }
-
-function loadMessages(chatType){
-  chatMessages.innerHTML='';
-  const chatRef = ref(db, chatType);
-  onChildAdded(chatRef,(snapshot)=>{
-    const msg = snapshot.val();
-    if(chatType==='private'){
-      if(msg.toUser!==username && msg.fromUser!==username) return;
-      const div = document.createElement('div');
-      div.textContent = `${msg.fromUser} ➤ ${msg.toUser}: ${msg.text}`;
-      chatMessages.appendChild(div);
-    }else{
-      const div = document.createElement('div');
-      div.textContent = `${msg.fromUser}: ${msg.text}`;
-      chatMessages.appendChild(div);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oil Token (OIL) - Official Site</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card-radius:14px;
+      --gap:14px;
+      --gold:linear-gradient(135deg,#ffd700,#ffa500);
+      --blue:linear-gradient(135deg,#00c6ff,#0072ff);
+      --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
+      --purple:linear-gradient(135deg,#7f00ff,#e100ff);
+      --red:linear-gradient(135deg,#ff4b2b,#ff416c);
+      --green:linear-gradient(135deg,#00b09b,#96c93d);
+      --cyan:linear-gradient(135deg,#00ffcc,#00ffff);
+      --silver:linear-gradient(135deg,#c0c0c0,#e0e0e0);
     }
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  });
-}
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial; background:var(--bg); color:#111}
+    .container{max-width:1200px;margin:14px auto;padding:10px}
+    .top-row{display:flex;gap:var(--gap);flex-wrap:wrap}
+    .top-card{flex:1;min-width:260px;border-radius:18px;padding:18px;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .nav-card{background:linear-gradient(135deg,#ff0057,#ff7b00)}
+    .welcome-card{background:linear-gradient(135deg,#009dff,#00ffcc)}
+    .exchange-card{background:linear-gradient(135deg,#ffd700,#ff8c00)}
+    nav a{display:inline-block;margin:6px 8px;padding:8px 14px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.22)}
 
-function sendMessage(){
-  const text = chatInput.value.trim();
-  if(!text) return;
-  if(currentChat==='private'){
-    const toUser = recipientInput.value.trim();
-    if(!toUser) { alert('Enter recipient username'); return; }
-    push(ref(db,'private'),{fromUser:username,toUser,text});
-  }else{
-    push(ref(db,'public'),{fromUser:username,text});
-  }
-  chatInput.value='';
-}
-</script>
+    .main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:var(--gap);margin-top:18px}
+    .left-col,.right-col{display:flex;flex-direction:column;gap:var(--gap)}
+    .square-card{height:160px;border-radius:var(--card-radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .rect-card{border-radius:var(--card-radius);padding:20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .btn{display:inline-block;background:#fff;color:#111;padding:8px 14px;border-radius:14px;text-decoration:none;font-weight:700;margin:8px}
+    .sub-link{font-size:13px;margin-top:8px;color:rgba(255,255,255,.95)}
+    .sub-link a{color:#fff;text-decoration:underline}
+
+    footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
+    textarea,input{width:90%;padding:10px;border-radius:10px;border:1px solid #ddd;margin:8px 0;font-size:14px}
+    button.action{padding:10px 14px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:9999}
+    .modal .box{background:#fff;padding:18px;border-radius:12px;max-width:420px;width:94%;text-align:left}
+    .list-item{background:#111;color:#fff;padding:10px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:13px;color:rgba(255,255,255,.85)}
+    .hidden{display:none}
+    @media(max-width:900px){ .main-layout{grid-template-columns:1fr; } .top-row{flex-direction:column} .left-col,.right-col{flex-direction:row;overflow:auto} .square-card{min-width:200px} }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- TOP ROW -->
+    <div class="top-row">
+      <div class="top-card nav-card">
+        <h3>Explore</h3>
+        <nav>
+          <a href="WhitePaper.html">WhitePaper</a>
+          <a href="Roadmap.html">Roadmap</a>
+          <a href="Tokenomics.html">Tokenomics</a>
+          <a href="Team.html">Team</a>
+          <a href="Description.html">Description</a>
+        </nav>
+      </div>
+
+      <div class="top-card welcome-card">
+        <h2>Welcome to Oil Token</h2>
+        <p style="opacity:.95">The future of decentralized oil-backed digital assets.</p>
+        <p style="font-weight:700;opacity:.95">Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
+      </div>
+
+      <div class="top-card exchange-card">
+        <h2>OILtoken EXCHANGE</h2>
+        <p style="opacity:.95">Coming Soon</p>
+        <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
+      </div>
+    </div>
+
+    <!-- MAIN LAYOUT (1 2 1) -->
+    <div class="main-layout">
+      <!-- LEFT, MIDDLE, RIGHT COLUMNS (همان محتوای قبلی) -->
+      <!-- ...کدهای قبلی شما بدون تغییر... -->
+    </div>
+
+    <!-- FOOTER: Chat Widget (Oilgram) -->
+    <!-- ===== Oilgram Chat Widget (Username-Based Private Chat) ===== -->
+    <div id="oilgram-widget">
+      <div id="oilgram-header" onclick="toggleOilgramBody()">💬 Oilgram</div>
+      <div id="oilgram-body">
+
+        <!-- Login Form -->
+        <div id="chat-login">
+          <input type="email" id="chat-email" placeholder="Email" />
+          <input type="password" id="chat-pass" placeholder="Password" />
+          <button style="background:#ff4b5c;color:#fff" onclick="loginChat()">Login</button>
+          <button style="background:#ffcc00;color:#111" onclick="signupChat()">Sign Up</button>
+          <div id="chat-login-msg" style="font-size:12px;color:red;margin-top:4px;"></div>
+        </div>
+
+        <!-- Chat Area -->
+        <div id="chat-area">
+          <div style="display:flex;gap:4px;margin-bottom:6px;">
+            <button style="background:#ff4b5c;color:#fff;flex:1" onclick="showPublicChat()">Public Chat</button>
+            <button style="background:#8a2be2;color:#fff;flex:1" onclick="showPrivateChat()">Private Chat</button>
+            <button style="background:#aaa;color:#fff;flex:1" disabled>Voice Call</button>
+            <button style="background:#00ffcc;color:#111;flex:1" disabled>Video Call</button>
+          </div>
+
+          <div id="chat-messages" style="height:200px;overflow:auto;border:1px solid #ddd;padding:6px;border-radius:10px;margin-bottom:6px;background:#f0f0f0"></div>
+          
+          <div id="private-recipient-div" style="display:none;margin-bottom:6px;">
+            <input type="text" id="private-recipient" placeholder="Recipient username" />
+          </div>
+          
+          <input type="text" id="chat-input" placeholder="Type a message..." />
+          <button style="background:#00b09b;color:#fff;width:100%;margin-top:4px" onclick="sendMessage()">Send</button>
+          <button style="background:#ff69b4;color:#fff;width:100%;margin-top:4px" onclick="logoutChat()">Logout</button>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      #oilgram-widget{
+        position:fixed;
+        bottom:0;
+        right:20px;
+        width:320px;
+        background:#fff;
+        border-radius:12px 12px 0 0;
+        box-shadow:0 4px 12px rgba(0,0,0,.2);
+        z-index:9999;
+        font-family:Poppins
