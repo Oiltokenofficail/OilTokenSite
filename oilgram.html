@@ -1,41 +1,69 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oilgram — Oil Token Chat (OIL)</title>
   <style>
-    :root{ --bg:#ffffff; --accent:#3b0063; --muted:#666; --radius:12px; --success:#16a34a; --danger:#e11d48; }
-    body{font-family:Inter,system-ui,Arial;margin:0;background:linear-gradient(180deg,#fff,#fbfbff);color:#0b1220}
+    :root{
+      --bg:#ffffff; --accent:#3b0063; --accent-2:#ffd700;
+      --card: #0f1724; --muted:#666;
+      --radius:12px;
+      --success:#16a34a;
+      --danger:#e11d48;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto; margin:0;background:linear-gradient(180deg,#fff,#fbfbff);color:#0b1220}
     .wrap{max-width:980px;margin:18px auto;padding:18px}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    header h1{margin:0;font-size:20px;color:var(--accent)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
     .card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 8px 30px rgba(11,18,32,0.06)}
-    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #e6e6e9;margin:6px 0}
-    button{cursor:pointer;padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700}
-    .ghost{background:#fff;color:var(--accent);border:1px solid #eee}
-    .messages{height:360px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
-    .message{padding:8px;border-radius:8px;margin-bottom:8px;background:#fff;border:1px solid #eee}
-    .me{background:linear-gradient(90deg,#e9f8f2,#dff6ea)}
     .small{font-size:13px;color:var(--muted)}
+    label{display:block;margin:8px 0 6px;font-weight:600}
+    input[type=text],input[type=email],input[type=password],select,textarea{
+      width:100%;padding:10px;border-radius:10px;border:1px solid #e6e6e9;font-size:14px
+    }
+    button{cursor:pointer;padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700}
+    button.ghost{background:#fff;color:var(--accent);border:1px solid #eee}
+    .row{display:flex;gap:8px}
+    .muted{color:#888;font-size:13px}
+    .notice{background:linear-gradient(90deg,#fff7d6,#fff1f0);padding:10px;border-radius:10px;margin:8px 0;color:#333}
+    .messages{height:360px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
+    .message{padding:8px;margin-bottom:8px;border-radius:8px;background:#fff;border:1px solid #eee}
+    .me{background:linear-gradient(90deg,#e9f8f2,#dff6ea);border-color:#cdebd6}
+    .ts{font-size:11px;color:#888;margin-top:6px}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    .section-title{font-weight:800;margin-bottom:8px}
+    .link{color:var(--accent);text-decoration:underline}
+    .right-column .card{margin-bottom:12px}
+    .disabled{opacity:.5;pointer-events:none}
+    .inline{display:inline-block}
     .hidden{display:none}
-    @media(max-width:920px){ .grid{grid-template-columns:1fr} .messages{height:260px} }
+    @media(max-width:920px){
+      .grid{grid-template-columns:1fr; }
+      .messages{height:260px}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header style="display:flex;justify-content:space-between;align-items:center">
-      <h1 style="margin:0;color:#3b0063">Oilgram — Oil Token Chat</h1>
-      <div class="small">Auth: Email & Password • Number prefix: <strong>666</strong></div>
+    <header>
+      <h1>Oilgram — Oil Token Official Chat</h1>
+      <div class="small">Authentication: Email & Password • Number prefix: <strong>666</strong></div>
     </header>
 
-    <div class="grid" style="margin-top:18px">
-      <!-- left -->
+    <div class="grid">
+
+      <!-- LEFT: MAIN CHAT AREA -->
       <div>
+
+        <!-- AUTH / PROFILE -->
         <div class="card" id="authCard">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div>
-              <div style="font-weight:800">Sign up / Login</div>
-              <div class="small">Sign up with email & password. Then reserve a 10-digit code starting with 666.</div>
+              <div class="section-title">Sign up / Login</div>
+              <div class="small">Create an account with email & password. After signup you must pick a 10-digit number starting with <strong>666</strong>.</div>
             </div>
             <div id="profileBox" class="hidden">
               <div id="meName" style="font-weight:700"></div>
@@ -45,47 +73,53 @@
           </div>
 
           <div id="authForm">
-            <label>Email</label><input id="email" type="email" placeholder="you@example.com"/>
-            <label>Password</label><input id="password" type="password" placeholder="min 6 chars"/>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button onclick="doSignup()">Sign Up</button>
-              <button class="ghost" onclick="doLogin()">Login</button>
+            <label>Email</label>
+            <input id="email" type="email" placeholder="you@example.com" />
+            <label>Password</label>
+            <input id="password" type="password" placeholder="minimum 6 characters" />
+            <div class="row" style="margin-top:10px">
+              <button onclick="signup()">Sign Up</button>
+              <button class="ghost" onclick="login()">Login</button>
             </div>
 
             <div style="margin-top:12px">
-              <label>Choose 10-digit code (start 666) — optional</label>
-              <input id="chosenNumber" placeholder="e.g. 6661234567"/>
-              <div class="small" id="numberNotice">Reserved codes (3+ identical digits after 666) are blocked for auction.</div>
-              <div style="display:flex;gap:8px;margin-top:8px">
-                <button onclick="checkNumber()">Check</button>
-                <button class="ghost" onclick="assignNumber()">Assign</button>
+              <label>Choose your 10-digit number (must start with 666)</label>
+              <input id="chosenNumber" placeholder="e.g. 6661234567" />
+              <div class="small muted" id="numberNotice">🔒 Numbers containing 3 or more identical digits in a row after the 666 prefix are reserved for auction and cannot be registered.</div>
+              <div style="margin-top:8px" class="row">
+                <button onclick="reserveNumber()">Reserve / Assign Number</button>
+                <button class="ghost" onclick="checkNumber()">Check Availability</button>
               </div>
               <div id="numberFeedback" class="small" style="margin-top:8px"></div>
             </div>
           </div>
         </div>
 
+        <!-- CHAT CONTROLS -->
         <div class="card" style="margin-top:12px">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-weight:800">Public Chat</div><div class="small">Messages visible to all signed users.</div></div>
             <div>
-              <button class="ghost" onclick="showPublic()">Public</button>
-              <button onclick="showPrivate()" class="ghost">Private</button>
+              <div class="section-title">Public Chat</div>
+              <div class="small">Messages here are public to all signed users.</div>
+            </div>
+            <div>
+              <button id="btnPublic" onclick="showPublic()" class="ghost">Public</button>
+              <button id="btnPrivate" onclick="showPrivate()">Private</button>
             </div>
           </div>
 
-          <div id="publicArea" style="margin-top:10px">
+          <div id="publicArea" class="">
             <div class="messages" id="publicMessages"></div>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="publicInput" placeholder="Write a public message..."/>
+            <div class="controls">
+              <input id="publicInput" type="text" placeholder="Write a public message..." />
               <button onclick="sendPublic()">Send</button>
             </div>
           </div>
 
           <div id="privateArea" class="hidden" style="margin-top:12px">
-            <label>Find by code (666...)</label>
-            <input id="searchNumber" placeholder="Enter recipient code"/>
-            <div style="display:flex;gap:8px;margin-top:8px">
+            <label>Private chat — search by user number</label>
+            <input id="searchNumber" placeholder="Enter recipient number (666...)"/>
+            <div style="margin-top:8px" class="row">
               <button onclick="findUser()">Find</button>
               <button class="ghost" onclick="openPrivateBySelection()">Open Private</button>
             </div>
@@ -93,230 +127,401 @@
             <div id="privateChatBox" class="hidden" style="margin-top:12px">
               <div class="small">Chat with: <span id="privateRecipient"></span></div>
               <div class="messages" id="privateMessages"></div>
-              <div style="display:flex;gap:8px;margin-top:8px">
-                <input id="privateInput" placeholder="Write a private message..."/>
+              <div class="controls">
+                <input id="privateInput" placeholder="Write a private message..." />
                 <button onclick="sendPrivate()">Send</button>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- VOICE / VIDEO PLACEHOLDERS -->
         <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Voice & Video (coming soon)</div>
-          <div class="small">Voice & Video require WebRTC signalling (we will enable step-by-step). Buttons are placeholders now.</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="ghost" id="voiceBtn" onclick="alert('Voice call demo: next step implement WebRTC')" disabled>Start Voice</button>
-            <button class="ghost" id="videoBtn" onclick="alert('Video call demo: next step implement WebRTC')" disabled>Start Video</button>
+          <div class="section-title">Voice & Video (coming soon)</div>
+          <div class="small">Step-by-step support for voice then video calls will be enabled in future releases. Buttons are placeholders now.</div>
+          <div style="margin-top:12px" class="row">
+            <button class="ghost disabled">Start Voice</button>
+            <button class="ghost disabled">Start Video</button>
           </div>
         </div>
+
       </div>
 
-      <!-- right -->
-      <div>
+      <!-- RIGHT: SIDE PANEL -->
+      <div class="right-column">
         <div class="card">
-          <div style="font-weight:800">Quick Info</div>
-          <div class="small">Reserved codes (3+ identical digits after 666) are locked for auction and not assignable.</div>
-          <div style="margin-top:8px" id="reservedListBox"></div>
+          <div class="section-title">Quick Info</div>
+          <div class="small">• After signup you must reserve/assign your 10-digit number (prefix 666). If the number is invalid, system will explain why.</div>
+          <div style="margin-top:8px" class="small">• Reserved numbers: those containing 3+ identical digits in a row after 666 are blocked for auction.</div>
+          <div style="margin-top:10px">
+            <div><strong>Example reserved:</strong> 6665550000, 6661111111, 6661233330, 6667777000</div>
+          </div>
         </div>
 
         <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Admin (local)</div>
-          <div class="small">Admin password unlocks deletion UI client-side only.</div>
+          <div class="section-title">Admin (local password)</div>
+          <div class="small">Admin password enables moderation UI (delete news/comments) — for now only delete chat messages from client-side view.</div>
           <label>Admin Password</label>
           <input id="adminPass" type="password" placeholder="admin password"/>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button onclick="doAdminLogin()">Open Admin</button>
-            <button class="ghost" onclick="doAdminLogout()">Close</button>
+          <div style="margin-top:8px" class="row">
+            <button onclick="adminLogin()">Open Admin</button>
+            <button class="ghost" onclick="adminLogout()">Close</button>
           </div>
           <div id="adminStatus" class="small" style="margin-top:8px;color:var(--danger)"></div>
         </div>
 
         <div class="card" style="margin-top:12px">
-          <div style="font-weight:800">Search user by code</div>
-          <input id="search-code" placeholder="6661234567"/>
-          <div style="margin-top:8px"><button onclick="doSearch()">Find</button></div>
-          <div id="search-result" style="margin-top:8px"></div>
+          <div class="section-title">Help & Links</div>
+          <div class="small">• If you need to manage Jetton or metadata, use your GitHub Pages and metadata.json as usual.</div>
+          <div style="margin-top:8px">
+            <a class="link" href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">Official Site</a><br/>
+            <a class="link" href="https://t.me/oilofficial" target="_blank">Official Telegram (team)</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- app logic -->
-  <script type="module" src="./script.js"></script>
+  <!-- Firebase + App logic -->
   <script type="module">
-    // wrapper UI logic that uses functions from script.js
-    import * as S from "./script.js";
+    // ---------- Firebase (Firestore chosen) ----------
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
-    // UI helpers
-    function $(id){ return document.getElementById(id); }
-    function showProfile(udata){
-      $("authForm").style.display = "none";
-      $("profileBox").classList.remove("hidden");
-      $("meName").textContent = udata.email;
-      $("meNumber").textContent = "Code: " + (udata.code || "(none)");
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      where,
+      getDocs,
+      onSnapshot,
+      serverTimestamp,
+      orderBy,
+      doc,
+      setDoc,
+      updateDoc,
+      deleteDoc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    // Your Firebase config (provided earlier)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",
+      authDomain: "oilgram.firebaseapp.com",
+      projectId: "oilgram",
+      storageBucket: "oilgram.firebasestorage.app",
+      messagingSenderId: "555429946689",
+      appId: "1:555429946689:web:a23a918ca6ceb3e8936dc0",
+      measurementId: "G-BSEWJHYD29"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ---------- Utilities ----------
+    const ADMIN_PASSWORD = "oilteam2025"; // client-side admin toggle (not secure server-side)
+    let currentUser = null;
+    let currentUserDoc = null;
+    let currentPrivateRoomId = null;
+    let currentPrivateRecipient = null;
+    let unsubscribePublic = null;
+    let unsubscribePrivate = null;
+
+    // DOM refs
+    const authCard = document.getElementById('authCard');
+    const authForm = document.getElementById('authForm');
+    const profileBox = document.getElementById('profileBox');
+    const meName = document.getElementById('meName');
+    const meNumber = document.getElementById('meNumber');
+    const numberFeedback = document.getElementById('numberFeedback');
+
+    // ---------- Helper: number checks ----------
+    // reservedNumbers - explicit list to lock (examples provided)
+    const reservedSpecific = [
+      "6660000000","6661111111","6662222222","6663333333","6664444444","6665555555","6666666666",
+      "6667777777","6668888888","6669999999",
+      "6660001111","6660002222","6660003333","6660004444","6660005555","6660006666","6660007777","6660008888","6660009999",
+      "6661110000","6662220000","6663330000","6664440000","6665550000","6666660000","6667770000","6668880000","6669990000",
+      "6661000000","6662000000","6663000000","6664000000","6665000000","6666000000","6667000000","6668000000","6669000000"
+    ];
+
+    function normalizeNumberInput(n){
+      return String(n).replace(/\D/g,'').slice(0,10);
     }
+
+    function isValidFormat(n){
+      if(!n) return false;
+      const s = normalizeNumberInput(n);
+      return /^666\d{7}$/.test(s);
+    }
+
+    // Check if after 666 there is any sequence of >=3 identical digits in a row
+    function hasTripleIdenticalAfter666(n){
+      const s = normalizeNumberInput(n);
+      if(!/^666\d{7}$/.test(s)) return false;
+      const tail = s.slice(3); // 7 digits
+      return /(.)\1\1/.test(tail); // three identical in a row
+    }
+
+    // ---------- Auth flows ----------
+    async function signup(){
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+      if(!email || pass.length < 6){ alert('Enter a valid email and a password (min 6 chars).'); return; }
+      try{
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        // create a user doc in Firestore (will add phone/number later)
+        const uRef = doc(db, 'users', cred.user.uid);
+        await setDoc(uRef, {
+          email: email,
+          createdAt: serverTimestamp(),
+          displayName: email.split('@')[0],
+          number: null
+        });
+        alert('Signed up. Now choose/assign your 10-digit number (666...)');
+      } catch(e){
+        console.error(e); alert('Sign up error: ' + (e.message||e));
+      }
+    }
+
+    async function login(){
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+      if(!email || !pass){ alert('Enter email and password'); return; }
+      try{
+        await signInWithEmailAndPassword(auth, email, pass);
+      } catch(e){
+        console.error(e); alert('Login error: ' + (e.message||e));
+      }
+    }
+
+    function logout(){
+      signOut(auth);
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      if(user){
+        // load user's doc
+        const uref = doc(db, 'users', user.uid);
+        const snap = await getDoc(uref);
+        currentUserDoc = snap.exists() ? snap.data() : null;
+        showProfile();
+        startPublicListener();
+      } else {
+        currentUserDoc = null;
+        showLoggedOut();
+        stopPublicListener();
+      }
+    });
+
+    function showProfile(){
+      authForm.classList.add('hidden');
+      profileBox.classList.remove('hidden');
+      meName.textContent = currentUser.email;
+      meNumber.textContent = currentUserDoc && currentUserDoc.number ? ('Number: ' + currentUserDoc.number) : 'Number: not assigned';
+    }
+
     function showLoggedOut(){
-      $("authForm").style.display = "";
-      $("profileBox").classList.add("hidden");
+      authForm.classList.remove('hidden');
+      profileBox.classList.add('hidden');
+      meName.textContent = '';
+      meNumber.textContent = '';
     }
 
-    // load reserved list
-    async function renderReserved(){
-      const list = S.getReservedNumbers();
-      const box = $("reservedListBox");
-      box.innerHTML = "";
-      list.forEach(c=>{
-        const d = document.createElement("div");
-        d.style.marginBottom="6px";
-        d.innerHTML = `<strong>${c}</strong> <span style="color:#d23"> (reserved)</span>`;
-        box.appendChild(d);
+    // ---------- Number assignment ----------
+    async function checkNumber(){
+      const raw = document.getElementById('chosenNumber').value;
+      const n = normalizeNumberInput(raw);
+      if(!isValidFormat(n)){ numberFeedback.textContent = 'Number format must be 10 digits and start with 666 (e.g. 6661234567).'; numberFeedback.style.color = '#e11d48'; return; }
+      if(reservedSpecific.includes(n) || hasTripleIdenticalAfter666(n)){ numberFeedback.textContent = 'This number is reserved for auction (not available).' ; numberFeedback.style.color = '#e11d48'; return; }
+      // check uniqueness
+      const q = query(collection(db,'users'), where('number','==',n));
+      const snaps = await getDocs(q);
+      if(!snaps.empty){ numberFeedback.textContent = 'This number is already taken.'; numberFeedback.style.color = '#e11d48'; return; }
+      numberFeedback.textContent = 'Available ✅'; numberFeedback.style.color = '#16a34a';
+    }
+
+    async function reserveNumber(){
+      if(!currentUser){ alert('Please login first.'); return; }
+      const raw = document.getElementById('chosenNumber').value;
+      const n = normalizeNumberInput(raw);
+      if(!isValidFormat(n)){ numberFeedback.textContent = 'Number format must be 10 digits and start with 666.'; numberFeedback.style.color = '#e11d48'; return; }
+      if(reservedSpecific.includes(n) || hasTripleIdenticalAfter666(n)){ numberFeedback.textContent = 'This number is reserved for auction and cannot be registered.'; numberFeedback.style.color = '#e11d48'; return; }
+      // check uniqueness
+      const q = query(collection(db,'users'), where('number','==',n));
+      const snaps = await getDocs(q);
+      if(!snaps.empty){ numberFeedback.textContent = 'Number already taken.'; numberFeedback.style.color = '#e11d48'; return; }
+      // assign to user doc
+      try{
+        const uref = doc(db,'users', currentUser.uid);
+        await updateDoc(uref, { number: n, numberAssignedAt: serverTimestamp() });
+        currentUserDoc = (await getDoc(uref)).data();
+        showProfile();
+        numberFeedback.textContent = 'Number assigned ✅';
+        numberFeedback.style.color = '#16a34a';
+      } catch(e){
+        console.error(e); numberFeedback.textContent = 'Assign error: '+e.message; numberFeedback.style.color = '#e11d48';
+      }
+    }
+
+    // ---------- Public chat ----------
+    function sanitizeText(t){ return String(t||'').slice(0,1000); }
+
+    async function sendPublic(){
+      if(!currentUser){ alert('Please login to send messages'); return; }
+      const text = sanitizeText(document.getElementById('publicInput').value);
+      if(!text) return;
+      await addDoc(collection(db,'publicMessages'), {
+        uid: currentUser.uid,
+        email: currentUser.email,
+        number: currentUserDoc && currentUserDoc.number ? currentUserDoc.number : null,
+        text,
+        createdAt: serverTimestamp()
+      });
+      document.getElementById('publicInput').value = '';
+    }
+
+    // listen to public messages (ordered)
+    function startPublicListener(){
+      if(unsubscribePublic) unsubscribePublic();
+      const q = query(collection(db,'publicMessages'), orderBy('createdAt','desc'));
+      unsubscribePublic = onSnapshot(q, (snap) => {
+        const list = document.getElementById('publicMessages');
+        list.innerHTML = '';
+        snap.docs.slice().reverse().forEach(docSnap => {
+          const d = docSnap.data();
+          const el = document.createElement('div');
+          el.className = 'message' + (d.uid === (currentUser && currentUser.uid) ? ' me' : '');
+          el.innerHTML = `<div style="font-weight:700">${escapeHtml(d.number || d.email)}</div>
+                          <div>${escapeHtml(d.text)}</div>
+                          <div class="ts">${d.createdAt && d.createdAt.toDate ? d.createdAt.toDate().toLocaleString() : ''}</div>`;
+          // if admin logged in (client-side), show delete button
+          if(window._adminLogged){
+            const del = document.createElement('button');
+            del.textContent = 'Delete';
+            del.style.marginTop = '8px';
+            del.onclick = async () => { if(confirm('Delete this message?')) { await deleteDoc(doc(db,'publicMessages', docSnap.id)); } };
+            el.appendChild(del);
+          }
+          list.appendChild(el);
+        });
+        list.scrollTop = list.scrollHeight;
       });
     }
 
-    // signup/login wrappers for UI
-    window.doSignup = async function(){
-      try{
-        const email = $("email").value.trim();
-        const pass = $("password").value;
-        await S.signup(email,pass,$("chosenNumber").value.trim());
-        alert("Signed up. Check profile and assigned code in a moment.");
-      }catch(e){ alert("Signup error: "+(e.message||e)); console.error(e); }
-    };
-    window.doLogin = async function(){
-      try{ await S.login($("email").value.trim(), $("password").value); }
-      catch(e){ alert("Login error: "+(e.message||e)); console.error(e); }
-    };
-    window.logout = async function(){ await S.logout(); alert("Logged out"); };
+    function stopPublicListener(){
+      if(unsubscribePublic){ unsubscribePublic(); unsubscribePublic = null; }
+      document.getElementById('publicMessages').innerHTML = '';
+    }
 
-    // onAuth changes -> update UI & listeners
-    let currentUser = null;
-    onAuthStateChanged = S && S ? S : null; // avoid lint noise
-    // we cannot import onAuthStateChanged here (already in script.js). rely on window.currentUser updated in script.js
-    setInterval(()=>{ // small poll to update UI after auth changes (simple approach)
-      if(window.currentUser && (!currentUser || currentUser.uid !== window.currentUser.uid)){
-        currentUser = window.currentUser;
-        const udata = window.currentUserData || { email: currentUser.email, code: window.currentUserCode };
-        showProfile(udata);
-        // start public listener
-        S.startPublicListener((arr)=> {
-          const box = $("publicMessages"); box.innerHTML="";
-          arr.forEach(m=>{
-            const div = document.createElement("div");
-            div.className = "message" + (m.uid === (window.currentUser && window.currentUser.uid) ? " me" : "");
-            div.innerHTML = `<div style="font-weight:700">${m.code||m.email}</div><div>${m.text}</div><div style="font-size:11px;color:#888">${m.createdAt?.toDate ? m.createdAt.toDate().toLocaleString() : ''}</div>`;
-            // admin delete
-            if(window._adminLogged){
-              const del = document.createElement("button"); del.style.marginTop="8px"; del.textContent="Delete";
-              del.onclick = async ()=>{ if(confirm('Delete?')) await deleteDoc(doc(db,'publicMessages', m.id)); };
-              div.appendChild(del);
-            }
-            box.appendChild(div);
-          });
-          box.scrollTop = box.scrollHeight;
-        });
-      } else if(!window.currentUser && currentUser){
-        currentUser = null;
-        showLoggedOut();
-        S.stopPublicListener();
-      }
-    }, 700);
+    // ---------- Private chat ----------
+    // Find recipient by number
+    async function findUser(){
+      const num = normalizeNumberInput(document.getElementById('searchNumber').value);
+      if(!isValidFormat(num)){ alert('Enter valid 10-digit number starting with 666'); return; }
+      const q = query(collection(db,'users'), where('number','==',num));
+      const snaps = await getDocs(q);
+      if(snaps.empty){ alert('No user with that number'); return; }
+      const r = snaps.docs[0];
+      const data = r.data();
+      currentPrivateRecipient = { uid: r.id, number: data.number, email: data.email };
+      document.getElementById('privateRecipient').textContent = data.number || data.email;
+      document.getElementById('privateChatBox').classList.remove('hidden');
+      openPrivateRoomWith(currentUser.uid, r.id);
+    }
 
-    // number check & assign
-    window.checkNumber = async function(){
-      const raw = $("chosenNumber").value.trim();
-      const n = raw.replace(/\D/g,"");
-      if(!S.isValidCodeFormat?.call ? false : !S.isValidCodeFormat(n)){
-        // If script.js does not export isValidCodeFormat we fall back to simple check
-      }
-      // We'll call backend helpers from script.js via generated helpers:
-      if(!isNaN(Number(n)) && n.length===10){
-        if(reservedNumbers?.includes && reservedNumbers.includes(n) || (/(.)\1\1/.test(n.slice(3)))){
-          $("numberFeedback").textContent = "This number is reserved for auction (not available).";
-          $("numberFeedback").style.color = "#e11d48";
-          return;
-        }
-        // check uniqueness on Firestore
-        const q = await getDocs(query(collection(db,'userCodes'), where('code','==', n)));
-        if(!q.empty){ $("numberFeedback").textContent = "This number is already taken."; $("numberFeedback").style.color="#e11d48"; return; }
-        $("numberFeedback").textContent = "Available ✅"; $("numberFeedback").style.color="#16a34a";
-      } else {
-        $("numberFeedback").textContent = "Invalid format. Must be 10 digits starting with 666."; $("numberFeedback").style.color="#e11d48";
-      }
-    };
+    // Compose deterministic room id (sorted uids)
+    function makeRoomId(a,b){ return [a,b].sort().join('_'); }
 
-    // assign number: simply recommend using signup with requested number (script.signup handles it)
-    window.assignNumber = async function(){
-      alert("To assign a code, sign up (or login) first and then use the Assign button near code input (feature demo - server side assign done on signup).");
-    };
-
-    // public messaging UI
-    window.sendPublic = async function(){
-      try{
-        if(!window.currentUser) return alert("Login first");
-        await S.sendPublicMessage($("publicInput").value.trim(), window.currentUser);
-        $("publicInput").value='';
-      }catch(e){ alert("Send public error: "+(e.message||e)); }
-    };
-
-    // show toggle
-    window.showPublic = function(){ $("publicArea").classList.remove("hidden"); $("privateArea").classList.add("hidden"); };
-    window.showPrivate = function(){ $("publicArea").classList.add("hidden"); $("privateArea").classList.remove("hidden"); };
-
-    // find user by number (private chat)
-    window.findUser = async function(){
-      const num = $("searchNumber").value.trim().replace(/\D/g,"");
-      if(!num) return alert("Enter code");
-      const docSnap = await getDoc(doc(db,"userCodes", num));
-      if(!docSnap.exists()){ alert("No user with that code"); return; }
-      const target = docSnap.data();
-      $("privateRecipient").textContent = target.code;
-      $("privateChatBox").classList.remove("hidden");
-      // open private room realtime listener
-      const myUid = window.currentUser && window.currentUser.uid;
-      if(!myUid) return alert("Login first");
-      const convo = await S.openPrivateRoom(myUid, target.uid, (arr)=>{
-        const box = $("privateMessages"); box.innerHTML='';
-        arr.forEach(m=>{
-          const el = document.createElement("div");
-          el.className = "message" + (m.uid === (window.currentUser && window.currentUser.uid) ? " me" : "");
-          el.innerHTML = `<div style="font-weight:700">${m.code||m.email}</div><div>${m.text}</div>`;
+    async function openPrivateRoomWith(myUid, theirUid){
+      if(!myUid || !theirUid){ alert('Both users must exist'); return; }
+      // unsubscribe previous
+      if(unsubscribePrivate) unsubscribePrivate();
+      currentPrivateRoomId = makeRoomId(myUid, theirUid);
+      const q = query(collection(db,'privateMessages'), where('room','==',currentPrivateRoomId), orderBy('createdAt','desc'));
+      unsubscribePrivate = onSnapshot(q, (snap) => {
+        const box = document.getElementById('privateMessages');
+        box.innerHTML = '';
+        snap.docs.slice().reverse().forEach(docSnap => {
+          const d = docSnap.data();
+          const el = document.createElement('div');
+          el.className = 'message' + (d.uid === (currentUser && currentUser.uid) ? ' me' : '');
+          el.innerHTML = `<div style="font-weight:700">${escapeHtml(d.senderNumber || d.senderEmail)}</div>
+                          <div>${escapeHtml(d.text)}</div>
+                          <div class="ts">${d.createdAt && d.createdAt.toDate ? d.createdAt.toDate().toLocaleString() : ''}</div>`;
+          if(window._adminLogged){
+            const del = document.createElement('button');
+            del.textContent = 'Delete';
+            del.style.marginTop = '8px';
+            del.onclick = async () => { if(confirm('Delete private message?')) { await deleteDoc(doc(db,'privateMessages', docSnap.id)); } };
+            el.appendChild(del);
+          }
           box.appendChild(el);
         });
         box.scrollTop = box.scrollHeight;
       });
-      // store convo id in DOM
-      $("privateChatBox").dataset.convo = convo;
-    };
+    }
 
-    window.openPrivateBySelection = async function(){ if(!$("privateRecipient").textContent) return alert("Find recipient first"); /* already handled in findUser */ };
+    async function sendPrivate(){
+      if(!currentUser){ alert('Please login'); return; }
+      if(!currentPrivateRoomId){ alert('Open a private chat first'); return; }
+      const text = sanitizeText(document.getElementById('privateInput').value);
+      if(!text) return;
+      await addDoc(collection(db,'privateMessages'), {
+        room: currentPrivateRoomId,
+        uid: currentUser.uid,
+        senderEmail: currentUser.email,
+        senderNumber: currentUserDoc && currentUserDoc.number ? currentUserDoc.number : null,
+        text,
+        createdAt: serverTimestamp(),
+        participants: currentPrivateRoomId.split('_')
+      });
+      document.getElementById('privateInput').value = '';
+    }
 
-    window.sendPrivate = async function(){
-      try{
-        const convo = $("privateChatBox").dataset.convo;
-        if(!convo) return alert("Open private chat first");
-        await S.sendPrivateMessage(convo, $("privateInput").value.trim(), window.currentUser);
-        $("privateInput").value='';
-      }catch(e){ alert("Send private error: "+(e.message||e)); }
-    };
+    function openPrivateBySelection(){
+      // User must have set target via findUser earlier - just a helper to attempt open if currentPrivateRecipient present
+      if(!currentPrivateRecipient) return alert('Find recipient first');
+      openPrivateRoomWith(currentUser.uid, currentPrivateRecipient.uid);
+    }
 
-    // admin client
-    window.doAdminLogin = function(){
-      const p = $("adminPass").value.trim();
-      if(S.adminLogin(p)){ $("adminStatus").textContent="Admin enabled (client-side)."; } else alert("Wrong admin password.");
-    };
-    window.doAdminLogout = function(){ S.adminLogout(); $("adminStatus").textContent=''; };
+    // ---------- Admin client toggle ----------
+    window._adminLogged = false;
+    function adminLogin(){
+      const p = document.getElementById('adminPass').value;
+      if(p === ADMIN_PASSWORD){
+        window._adminLogged = true;
+        document.getElementById('adminStatus').textContent = 'Admin enabled (client-side). You can delete messages now.';
+      } else {
+        alert('Wrong admin password');
+      }
+    }
+    function adminLogout(){
+      window._adminLogged = false;
+      document.getElementById('adminStatus').textContent = '';
+    }
 
-    window.doSearch = async function(){
-      const code = $("search-code").value.trim().replace(/\D/g,"");
-      if(!code) return alert("Enter code");
-      const docSnap = await getDoc(doc(db,"userCodes", code));
-      if(!docSnap.exists()){ $("search-result").innerHTML = "<div class='small'>Not found</div>"; return; }
-      $("search-result").innerHTML = "<div class='small'>Found: " + code + "</div>";
-    };
+    // ---------- UI toggles ----------
+    function showPublic(){ document.getElementById('publicArea').classList.remove('hidden'); document.getElementById('privateArea').classList.add('hidden'); }
+    function showPrivate(){ document.getElementById('publicArea').classList.add('hidden'); document.getElementById('privateArea').classList.remove('hidden'); }
 
-    // initial
-    (async ()=>{ await renderReserved(); })();
+    // ---------- Small helpers ----------
+    function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+
+    // ensure listeners start if already logged in (on page reload)
+    window.addEventListener('load', () => {
+      // nothing else required here; onAuthStateChanged will start public listener when appropriate
+    });
 
   </script>
 </body>
-                        </html>
+  </html>
