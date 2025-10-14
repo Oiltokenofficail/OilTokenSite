@@ -1,141 +1,507 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Oil Token (OIL) - Official Site</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oil Token — Oilgram Chat & Accounts</title>
   <style>
     :root{
-      --bg: linear-gradient(135deg,#fafaff,#ffffff);
-      --gold:linear-gradient(135deg,#ffd700,#ffa500);
-      --blue:linear-gradient(135deg,#00c6ff,#0072ff);
-      --pink:linear-gradient(135deg,#ff5f6d,#ffc371);
-      --purple:linear-gradient(135deg,#7f00ff,#e100ff);
-      --red:linear-gradient(135deg,#ff4b2b,#ff416c);
-      --green:linear-gradient(135deg,#00b09b,#96c93d);
-      --card-radius:14px;
+      --bg: #ffffff;
+      --accent: linear-gradient(90deg,#ffd700,#ff6a00);
+      --card-radius:12px;
+      --gap:12px;
+      --muted:#666;
+      --success:#2ecc71;
+      --danger:#e74c3c;
     }
-    body{font-family:Inter,system-ui,Arial;margin:0;background:var(--bg);color:#111}
-    .wrap{max-width:1200px;margin:18px auto;padding:18px}
-    .top-row{display:flex;gap:14px}
-    .card{border-radius:18px;padding:18px;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.06)}
-    .nav-card{background:linear-gradient(135deg,#ff0057,#ff7b00)}
-    .welcome-card{background:linear-gradient(135deg,#009dff,#00ffcc)}
-    .exchange-card{background:linear-gradient(135deg,#ffd700,#ff8c00)}
-    nav a{display:inline-block;margin:6px 8px;padding:8px 12px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:10px;font-weight:700}
-    .main-layout{display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;margin-top:18px}
-    .square{height:140px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;cursor:pointer}
-    .rect{border-radius:14px;padding:16px;color:#fff}
-    .btn{display:inline-block;background:#fff;color:#111;padding:8px 12px;border-radius:12px;text-decoration:none;font-weight:700;margin-top:8px}
-    footer{margin-top:18px;padding:20px;background:#111;color:#fff;border-radius:12px}
+    body{font-family:Inter,system-ui,Arial; margin:0; padding:20px; background:var(--bg); color:#111;}
+    .container{max-width:1100px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    header h1{margin:0;font-size:20px;color:#222}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .card{background:#fff;border-radius:var(--card-radius);padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .top-row{display:flex;gap:12px;margin-bottom:12px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:var(--accent);color:#111;font-weight:700;text-decoration:none;cursor:pointer}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin:8px 0;box-sizing:border-box}
+    label{font-size:13px;color:var(--muted)}
+    .muted{color:var(--muted);font-size:13px}
+    .list{max-height:300px;overflow:auto;margin-top:10px}
+    .msg{padding:8px;border-radius:10px;margin:6px 0;background:#f4f6f8}
+    .mine{background:#e6ffe9}
+    .small{font-size:12px;color:var(--muted)}
+    .reserved{color:var(--danger);font-weight:700}
+    .success{color:var(--success);font-weight:700}
+    .row{display:flex;gap:8px;align-items:center}
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} .top-row{flex-direction:column} }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top-row">
-      <div class="card nav-card" style="flex:1">
-        <h3>Explore</h3>
-        <nav>
-          <a href="#">WhitePaper</a>
-          <a href="#">Roadmap</a>
-          <a href="#">Tokenomics</a>
-          <a href="#">Team</a>
-          <a href="#">Description</a>
-          <a href="oilgram.html">Oilgram</a>
-        </nav>
-      </div>
+  <div class="container">
 
-      <div class="card welcome-card" style="flex:1">
-        <h2>Welcome to Oil Token</h2>
-        <p style="opacity:.95">The future of decentralized oil-backed digital assets.</p>
-        <p style="font-weight:700;opacity:.95">Oil Token is a once-in-a-lifetime opportunity for those who missed buying Bitcoin in 2010.</p>
-      </div>
-
-      <div class="card exchange-card" style="flex:1">
-        <h2>OILtoken EXCHANGE</h2>
-        <p style="opacity:.95">Coming Soon</p>
-        <a class="btn" href="https://app.ston.fi/pools/EQD979TyDqadbJ-fhdRmH6T5GRNbqfjNOj1giuvCuX-_rvvy/" target="_blank">STON.fi Pool</a>
-      </div>
-    </div>
-
-    <div class="main-layout">
-      <!-- left -->
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="square" style="background:var(--gold)" onclick="window.open('https://www.youtube.com/watch?v=5qap5aO4i9A','_blank')">Crypto TV</div>
-        <div class="square" style="background:var(--blue)" onclick="window.open('https://www.bloomberg.com/live','_blank')">Bloomberg TV</div>
-        <div class="square" style="background:var(--purple)" onclick="window.open('https://oilprice.com','_blank')">Oil Market News</div>
-        <div class="square" style="background:var(--red)" onclick="location.href='#rewards'">Rewards</div>
-      </div>
-
-      <!-- middle -->
+    <header>
+      <h1>Oil Token — Oilgram (Chat & Accounts)</h1>
       <div>
-        <div class="rect" style="background:var(--pink)">
-          <h3>Global Crypto News</h3>
-          <a class="btn" href="https://www.coindesk.com/" target="_blank">CoinDesk</a>
-          <a class="btn" href="https://coinmarketcap.com/" target="_blank">CoinMarketCap</a>
-        </div>
+        <a class="btn" id="btn-logout" style="display:none">Logout</a>
+      </div>
+    </header>
 
-        <div class="rect" style="background:var(--blue);margin-top:12px">
-          <h3>Oiltoken News & Oilgram</h3>
-          <p style="color:#fff">📢 Oilgram is live for testing. Click below to open the Oilgram chat app.</p>
-          <a class="btn" href="oilgram.html">Open Oilgram</a>
-          <video width="100%" autoplay muted loop playsinline style="border-radius:10px;margin-top:12px">
-            <source src="https://cdn.pixabay.com/video/2017/10/30/12746-239984944_tiny.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="rect" style="background:var(--purple);margin-top:12px">
-          <h3>Connect Telegram Bot</h3>
-          <a class="btn" href="https://t.me/oilofficial" target="_blank">Open Bot</a>
-        </div>
+    <div class="top-row">
+      <div class="card" style="flex:1">
+        <h3>About</h3>
+        <p class="muted">Oilgram provides public and private chat for Oil Token users. Each registered user receives a unique 10-digit code starting with <strong>666</strong>. Certain special codes are reserved for auction and will not be auto-assigned.</p>
+        <p class="muted">This page uses Firebase Auth and Firestore. For production, add server-side logic for payments, auctions and admin functions.</p>
       </div>
 
-      <!-- right -->
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="square" style="background:var(--pink)">
-          Advertisements
-          <div style="font-size:13px;margin-top:8px;color:#fff">
-            Telegram: <a style="color:#fff;text-decoration:underline" href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a><br>
-            Email: <a style="color:#fff;text-decoration:underline" href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
-          </div>
-        </div>
+      <div class="card" style="width:380px">
+        <div id="auth-area">
+          <h3 id="auth-title">Sign up / Login</h3>
 
-        <div class="square" style="background:var(--gold)">
-          Partnerships
-          <div style="font-size:13px;margin-top:8px;color:#fff">
-            Telegram: <a style="color:#fff;text-decoration:underline" href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a><br>
-            Email: <a style="color:#fff;text-decoration:underline" href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
+          <div id="signup-form">
+            <label>Email</label>
+            <input id="su-email" type="email" placeholder="you@example.com" />
+            <label>Password</label>
+            <input id="su-pass" type="password" placeholder="min 6 chars" />
+            <label>Choose code (optional, leave blank for auto)</label>
+            <input id="su-code" type="text" placeholder="6661234567 or leave blank" />
+            <div class="row">
+              <button class="btn" id="btn-signup">Sign Up</button>
+              <button id="btn-show-login" style="padding:8px 10px;border-radius:8px">Go to Login</button>
+            </div>
+            <p class="small">Auto-assigned codes never collide with reserved ones.</p>
           </div>
-        </div>
 
-        <div class="square" style="background:var(--blue)" onclick="openContact()">Contact Us</div>
-        <div class="square" style="background:var(--green)" onclick="openAdmin()">Admin Panel</div>
+          <div id="login-form" style="display:none">
+            <label>Email</label>
+            <input id="li-email" type="email" />
+            <label>Password</label>
+            <input id="li-pass" type="password" />
+            <div class="row">
+              <button class="btn" id="btn-login">Login</button>
+              <button id="btn-show-signup" style="padding:8px 10px;border-radius:8px">Back to Sign Up</button>
+            </div>
+          </div>
+
+          <div id="user-info" style="display:none">
+            <p><strong id="ui-email"></strong></p>
+            <p>Your code: <span id="ui-code" class="success"></span></p>
+            <p class="small">Give your code to others to start private chat or calls.</p>
+            <div class="row">
+              <button class="btn" id="btn-open-public">Open Public Chat</button>
+              <button id="btn-open-private" style="padding:8px 10px;border-radius:8px">Open Private Chat</button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <footer id="rewards">
-      <h3 style="color:#fff">Rewards Registration</h3>
-      <input id="walletBox" placeholder="Enter your TON wallet address (ton format)" style="width:80%;padding:10px;border-radius:8px;border:1px solid #ddd"/>
-      <button style="padding:10px 14px;margin-left:8px" onclick="alert('Demo: wallet saved client-side only')">Submit</button>
+    <div class="grid">
+      <!-- LEFT: Chat area -->
+      <div>
+        <div id="public-chat" class="card" style="display:none">
+          <h3>Public Chat</h3>
+          <div class="row">
+            <input id="public-input" placeholder="Write public message..." />
+            <button class="btn" id="public-send">Send</button>
+          </div>
+          <div id="public-list" class="list"></div>
+        </div>
 
-      <h3 style="color:#fff;margin-top:18px">Comments (Free)</h3>
-      <textarea id="commentBox" rows="3" style="width:80%;padding:10px;border-radius:8px;border:1px solid #ddd" placeholder="Write a comment..."></textarea><br>
-      <button style="padding:10px 14px;margin-top:8px" onclick="alert('Demo: comment posted client-side only')">Post Comment</button>
-    </footer>
+        <div id="private-chat" class="card" style="display:none;margin-top:12px">
+          <h3 id="private-title">Private Chat</h3>
+
+          <div id="start-private" style="margin-bottom:8px">
+            <label>Enter recipient user code (e.g. 6661234567)</label>
+            <input id="private-recipient" placeholder="recipient code" />
+            <div class="row">
+              <button class="btn" id="start-private-btn">Start Private Chat</button>
+              <button id="end-private-btn" style="padding:8px 10px;border-radius:8px;display:none">End</button>
+            </div>
+            <p class="small">You can start a one-to-one private chat. Both participants must be authenticated.</p>
+          </div>
+
+          <div id="private-area" style="display:none">
+            <div class="row" style="justify-content:space-between;align-items:center">
+              <div><strong>Chat with:</strong> <span id="private-with" class="success"></span></div>
+            </div>
+
+            <div class="row" style="margin-top:8px">
+              <input id="private-input" placeholder="Write private message..." />
+              <button class="btn" id="private-send">Send</button>
+            </div>
+
+            <div id="private-list" class="list" style="margin-top:8px"></div>
+
+            <div style="margin-top:10px" id="private-call-area">
+              <button id="voice-call-btn" style="padding:8px 10px;border-radius:8px">Voice Call (test)</button>
+              <button id="video-call-btn" style="padding:8px 10px;border-radius:8px">Video Call (test)</button>
+              <p class="small">Call features require WebRTC & signalling (next steps).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Auctions / reserved numbers -->
+        <div class="card" style="margin-top:12px">
+          <h3>Reserved / Auction Numbers</h3>
+          <p class="small">Reserved codes will not be auto-assigned; they are locked for auction/sale.</p>
+          <div id="reserved-list" class="list"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Account, admin, utilities -->
+      <div>
+        <div class="card">
+          <h3>Search User by Code</h3>
+          <label>Enter code (666...)</label>
+          <input id="search-code" placeholder="6661234567" />
+          <button id="btn-search" class="btn">Find</button>
+          <div id="search-result" style="margin-top:8px"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Admin (local)</h3>
+          <p class="small">Local admin controls (password protected). Use for adding news/ads/auction items (client-side demo only).</p>
+          <input id="admin-pass" type="password" placeholder="admin password" />
+          <div class="row" style="margin-top:8px">
+            <button class="btn" id="admin-login">Login Admin</button>
+            <button id="admin-logout" style="padding:8px 10px;border-radius:8px;display:none">Logout</button>
+          </div>
+          <div id="admin-controls" style="display:none;margin-top:10px">
+            <label>Lock code for auction (enter full 10-digit)</label>
+            <input id="admin-lock-code" placeholder="6660000000" />
+            <button id="admin-lock-btn" class="btn">Lock Code</button>
+            <p class="small">Locked codes appear in Reserved list.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Your data</h3>
+          <div id="my-wallets"></div>
+          <div style="margin-top:8px" id="debug"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- contact & admin modals (simple) -->
-  <script type="module" src="./script.js"></script>
+  <!-- Firebase SDKs (modular) -->
   <script type="module">
-    // small helpers to open simple modals (use built-in prompts for demo)
-    window.openContact = function(){
-      alert("Contact & Socials:\nTelegram (team): t.me/oilofficial\nCommunity: t.me/Oiltokenofficial\nEmail: oiltokenofficial@gmail.com");
+    // ---------- Firebase config (use your project's config) ----------
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import {
+      getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+      onAuthStateChanged, signOut
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import {
+      getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot,
+      query, where, serverTimestamp, updateDoc, getDocs
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    // <-- Paste your firebaseConfig here (you provided this earlier) -->
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",
+      authDomain: "oilgram.firebaseapp.com",
+      projectId: "oilgram",
+      storageBucket: "oilgram.firebasestorage.app",
+      messagingSenderId: "555429946689",
+      appId: "1:555429946689:web:a23a918ca6ceb3e8936dc0",
+      measurementId: "G-BSEWJHYD29"
     };
-    window.openAdmin = function(){
-      const p = prompt("Enter admin password (client-side):");
-      if(p === "oilteam2025") alert("Admin unlocked (client-side). Use Oilgram admin UI for moderation.");
-      else if(p) alert("Wrong password.");
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ---------- Reserved numbers list (locked for auction) ----------
+    // This list contains the patterns you shared. You can extend this list server-side.
+    const reservedNumbers = [
+      "6660000000","6661111111","6662222222","6663333333","6664444444","6665555555","6666666666","6667777777","6668888888","6669999999",
+      "6660001111","6660002222","6660003333","6660004444","6660005555","6660006666","6660007777","6660008888","6660009999",
+      "6661110000","6662220000","6663330000","6664440000","6665550000","6666660000","6667770000","6668880000","6669990000",
+      "6661000000","6662000000","6663000000","6664000000","6665000000","6666000000","6667000000","6668000000","6669000000"
+    ];
+
+    // ---------- Helpers ----------
+    function $(id){ return document.getElementById(id); }
+    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+    // Generate random 10-digit starting with 666, avoid reserved & already-used
+    async function generateAvailableCode(){
+      // Try random picks, but also fallback to scanning sequentially
+      for(let attempt=0; attempt<30; attempt++){
+        const r = "666" + String(randInt(1000000, 9999999)).padStart(7, "0"); // ensures total 10 digits
+        if(reservedNumbers.includes(r)) continue;
+        // check uniqueness
+        const q = query(collection(db, "userCodes"), where("code","==", r));
+        const snap = await getDocs(q);
+        if(snap.empty) return r;
+      }
+      // Fallback: linear scan (safe)
+      for(let i=0;i<10000000;i++){
+        const n = "666" + String(i).padStart(7,"0");
+        if(reservedNumbers.includes(n)) continue;
+        const q = query(collection(db, "userCodes"), where("code","==", n));
+        const snap = await getDocs(q);
+        if(snap.empty) return n;
+      }
+      throw new Error("No available codes");
+    }
+
+    // ---------- UI wiring ----------
+    $("btn-show-login").onclick = ()=>{ $("signup-form").style.display="none"; $("login-form").style.display="block"; $("auth-title").textContent="Login" }
+    $("btn-show-signup").onclick = ()=>{ $("signup-form").style.display="block"; $("login-form").style.display="none"; $("auth-title").textContent="Sign up / Login" }
+
+    // Sign up
+    $("btn-signup").onclick = async ()=>{
+      const email = $("su-email").value.trim();
+      const pass = $("su-pass").value;
+      const chosen = $("su-code").value.trim();
+      if(!email || !pass){ alert("Fill email & password"); return; }
+      try{
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        const uid = cred.user.uid;
+        // choose code: if user provided and valid and not reserved & not taken, use it; else generate
+        let finalCode = null;
+        if(chosen){
+          // sanitize digits only
+          const clean = chosen.replace(/\D/g,"");
+          if(clean.length !== 10 || !clean.startsWith("666")) {
+            alert("Code must be 10 digits and start with 666. Leaving blank will auto-assign.");
+            finalCode = null;
+          } else if(reservedNumbers.includes(clean)){
+            alert("This code is reserved/locked for auction; cannot use.");
+            finalCode = null;
+          } else {
+            // check uniqueness
+            const q = query(collection(db, "userCodes"), where("code","==", clean));
+            const snap = await getDocs(q);
+            if(!snap.empty){ alert("Code already taken. It will be auto-assigned."); finalCode = null; }
+            else finalCode = clean;
+          }
+        }
+        if(!finalCode){
+          finalCode = await generateAvailableCode();
+        }
+        // save user doc
+        await setDoc(doc(db, "users", uid), {
+          email, createdAt: serverTimestamp(), code: finalCode
+        });
+        // map code -> uid
+        await setDoc(doc(db, "userCodes", finalCode), { uid, code: finalCode, createdAt: serverTimestamp() });
+        alert("Account created. Your code: " + finalCode);
+      }catch(e){
+        alert("Sign up error: " + (e.message||e));
+        console.error(e);
+      }
     };
+
+    // Login
+    $("btn-login").onclick = async ()=>{
+      const email = $("li-email").value.trim();
+      const pass = $("li-pass").value;
+      if(!email || !pass){ alert("Fill email & password"); return; }
+      try{
+        await signInWithEmailAndPassword(auth, email, pass);
+      }catch(e){ alert("Login error: " + (e.message||e)); console.error(e); }
+    };
+
+    // Logout UI
+    $("btn-logout").onclick = ()=> signOut(auth);
+
+    // Auth state observer
+    let currentUser = null;
+    let currentUserDoc = null;
+    onAuthStateChanged(auth, async (user)=>{
+      if(user){
+        currentUser = user;
+        $("btn-logout").style.display = "inline-block";
+        $("auth-area").querySelectorAll("#signup-form, #login-form").forEach(n=>n.style.display="none");
+        $("user-info").style.display = "block";
+        $("ui-email").textContent = user.email;
+        // load user doc
+        const ud = await getDoc(doc(db,"users", user.uid));
+        if(ud.exists()){
+          currentUserDoc = ud.data();
+          $("ui-code").textContent = currentUserDoc.code || "(none)";
+        } else {
+          // safety: create if missing (shouldn't happen)
+          const newCode = await generateAvailableCode();
+          await setDoc(doc(db,"users", user.uid), { email:user.email, code:newCode, createdAt: serverTimestamp() });
+          await setDoc(doc(db,"userCodes", newCode), { uid:user.uid, code:newCode, createdAt: serverTimestamp() });
+          currentUserDoc = { email:user.email, code:newCode };
+          $("ui-code").textContent = newCode;
+        }
+        // show chat buttons
+        $("btn-open-public").onclick = ()=>{ $("public-chat").style.display="block"; loadPublicMessages(); }
+        $("btn-open-private").onclick = ()=>{ $("private-chat").style.display="block"; }
+      } else {
+        currentUser = null; currentUserDoc = null;
+        $("btn-logout").style.display = "none";
+        $("user-info").style.display = "none";
+        $("signup-form").style.display = "block";
+        $("login-form").style.display = "none";
+        $("public-chat").style.display = "none";
+        $("private-chat").style.display = "none";
+      }
+    });
+
+    // ---------- Public chat ----------
+    let publicUnsub = null;
+    function loadPublicMessages(){
+      const col = collection(db,"publicMessages");
+      // live updates
+      if(publicUnsub) publicUnsub();
+      publicUnsub = onSnapshot(col, snap=>{
+        const list = $("public-list"); list.innerHTML = "";
+        snap.docs.sort((a,b)=> a.data().ts?.seconds - b.data().ts?.seconds ).forEach(docSnap=>{
+          const d = docSnap.data();
+          const div = document.createElement("div");
+          div.className = "msg" + (d.uid === (currentUser?.uid||"") ? " mine" : "");
+          div.innerHTML = `<div class="small">${escapeHtml(d.code||d.email||"")} • ${new Date(d.ts?.toMillis ? d.ts.toMillis() : (d.ts?.seconds*1000)).toLocaleString()}</div><div>${escapeHtml(d.text)}</div>`;
+          list.appendChild(div);
+        });
+        list.scrollTop = list.scrollHeight;
+      });
+    }
+    $("public-send").onclick = async ()=>{
+      const txt = $("public-input").value.trim(); if(!txt) return;
+      await addDoc(collection(db,"publicMessages"), { uid: currentUser.uid, code: currentUserDoc.code, email: currentUser.email, text: txt, ts: serverTimestamp() });
+      $("public-input").value = "";
+    };
+
+    // ---------- Private chat ----------
+    let currentPrivateDocId = null;
+    let privateUnsub = null;
+    async function startPrivateChatWith(targetCode){
+      // find target by code
+      const docSnap = await getDoc(doc(db, "userCodes", targetCode));
+      if(!docSnap.exists()){ alert("User code not found."); return; }
+      const target = docSnap.data();
+      if(target.uid === currentUser.uid){ alert("Cannot open private chat with yourself."); return; }
+      // Create an id for conversation deterministic (sorted uids)
+      const u1 = currentUser.uid, u2 = target.uid;
+      const convoId = [u1,u2].sort().join("_");
+      currentPrivateDocId = convoId;
+      // Ensure a document exists in privateMessages metadata collection (for participants)
+      const pmRef = doc(db, "privateMessages", convoId + "_meta");
+      const meta = await getDoc(pmRef);
+      if(!meta.exists()){
+        await setDoc(pmRef, { participants: [u1,u2], createdAt: serverTimestamp() });
+      }
+      // listen for messages under collection privateMessages/{convoId}/messages or simple approach: store messages in "privateMessages" with convoId field
+      if(privateUnsub) privateUnsub();
+      const q = query(collection(db,"privateMessages"), where("convoId","==", convoId));
+      privateUnsub = onSnapshot(q, snap=>{
+        const list = $("private-list"); list.innerHTML = "";
+        snap.docs.sort((a,b)=> a.data().ts?.seconds - b.data().ts?.seconds ).forEach(d=>{
+          const md = d.data();
+          const div = document.createElement("div");
+          div.className = "msg" + (md.uid === currentUser.uid ? " mine" : "");
+          div.innerHTML = `<div class="small">${escapeHtml(md.code||md.email||"")} • ${new Date(md.ts?.toMillis ? md.ts.toMillis() : (md.ts?.seconds*1000)).toLocaleString()}</div><div>${escapeHtml(md.text)}</div>`;
+          list.appendChild(div);
+        });
+        list.scrollTop = list.scrollHeight;
+      });
+      $("private-area").style.display = "block";
+      $("private-with").textContent = targetCode + " (" + (target.uid === currentUser.uid ? "you" : "user") +")";
+    }
+
+    $("start-private-btn").onclick = async ()=>{
+      const rc = $("private-recipient").value.trim().replace(/\D/g,"");
+      if(!rc) return alert("Enter recipient code");
+      await startPrivateChatWith(rc);
+    };
+
+    $("private-send").onclick = async ()=>{
+      const txt = $("private-input").value.trim(); if(!txt) return;
+      // save message with convoId
+      const targetCode = $("private-with").textContent.split(" ")[0];
+      const targetDoc = await getDoc(doc(db,"userCodes", targetCode));
+      if(!targetDoc.exists()) return alert("Target not found.");
+      const targetUid = targetDoc.data().uid;
+      const convoId = [currentUser.uid, targetUid].sort().join("_");
+      await addDoc(collection(db,"privateMessages"), {
+        convoId, uid: currentUser.uid, code: currentUserDoc.code, email: currentUser.email, text: txt, ts: serverTimestamp()
+      });
+      $("private-input").value = "";
+    };
+
+    // ---------- simple voice/video CALL placeholders (WebRTC next steps) ----------
+    $("voice-call-btn").onclick = ()=> alert("Voice call demo — next step: implement WebRTC signalling using Firestore.");
+    $("video-call-btn").onclick = ()=> alert("Video call demo — next step: implement WebRTC signalling using Firestore.");
+
+    // ---------- Search user by code ----------
+    $("btn-search").onclick = async ()=>{
+      const code = $("search-code").value.trim().replace(/\D/g,"");
+      if(!code) return alert("Enter code");
+      const docSnap = await getDoc(doc(db,"userCodes", code));
+      if(!docSnap.exists()){ $("search-result").innerHTML = "<div class='small'>Not found</div>"; return; }
+      const data = docSnap.data();
+      $("search-result").innerHTML = `<div class="small">Found: code ${escapeHtml(code)} — <em>uid</em> ${escapeHtml(data.uid)}</div>`;
+    };
+
+    // ---------- Reserved list rendering ----------
+    async function loadReservedList(){
+      const el = $("reserved-list"); el.innerHTML = "";
+      // mark reserved plus whether already assigned
+      for(const code of reservedNumbers){
+        const cd = document.createElement("div");
+        cd.className = "list-item";
+        // check assigned
+        const assignedSnap = await getDoc(doc(db,"userCodes", code));
+        if(assignedSnap.exists()){
+          cd.innerHTML = `<div><strong>${escapeHtml(code)}</strong> — <span class="small">Assigned</span></div><div class="small">Owner</div>`;
+        } else {
+          cd.innerHTML = `<div><strong class="reserved">${escapeHtml(code)}</strong> — <span class="small">Reserved (auction)</span></div><div><button onclick="openAuction('${code}')" style="padding:6px;border-radius:8px">View</button></div>`;
+        }
+        el.appendChild(cd);
+      }
+    }
+    function openAuction(code){
+      alert("Auction flow placeholder for " + code + ". Build server-side auction & payment flow to sell reserved codes.");
+    }
+
+    // ---------- Admin local (client) lock code ----------
+    $("admin-login").onclick = ()=>{
+      const p = $("admin-pass").value.trim();
+      if(p === "oilteam2025"){
+        $("admin-controls").style.display = "block";
+        $("admin-logout").style.display = "inline-block";
+        alert("Admin unlocked (client-side). For real admin use a server-side admin.");
+      } else alert("Bad admin password.");
+    };
+    $("admin-logout").onclick = ()=>{
+      $("admin-controls").style.display = "none";
+      $("admin-logout").style.display = "none";
+    };
+    $("admin-lock-btn").onclick = async ()=>{
+      const code = $("admin-lock-code").value.trim().replace(/\D/g,"");
+      if(!code || code.length !== 10) return alert("Enter valid 10-digit code to lock.");
+      // store in auctions collection (client demo)
+      await setDoc(doc(db,"auctions", code), { code, locked: true, createdAt: serverTimestamp() });
+      // also push to reservedNumbers array for UI (client-side)
+      if(!reservedNumbers.includes(code)) reservedNumbers.push(code);
+      await loadReservedList();
+      alert("Code locked for auction (client-side record). Implement real auction flows server-side.");
+    };
+
+    // ---------- Wallets & Comments (example storage) ----------
+    $("btn-open-public").onclick = ()=> {}; // handled earlier
+    function addWallet(){ /* left as example */ }
+
+    // ---------- Comments persistence ----------
+    function saveLocalData(key, value){
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+    function readLocalData(key){ return JSON.parse(localStorage.getItem(key)||"[]"); }
+
+    // ---------- Utilities ----------
+    function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}); }
+
+    // ---------- initial load ----------
+    window.addEventListener("load", async ()=>{
+      await loadReservedList();
+    });
   </script>
 </body>
   </html>
