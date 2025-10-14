@@ -1,310 +1,177 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Oilgram — Oil Token Chat (OIL)</title>
-  <style>
-    :root{
-      --bg:#ffffff; --accent:#3b0063; --accent-2:#ffd700;
-      --card: #0f1724; --muted:#666;
-      --radius:12px;
-      --success:#16a34a;
-      --danger:#e11d48;
-    }
-    *{box-sizing:border-box}
-    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto; margin:0;background:linear-gradient(180deg,#fff,#fbfbff);color:#0b1220}
-    .wrap{max-width:980px;margin:18px auto;padding:18px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    header h1{margin:0;font-size:20px;color:var(--accent)}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
-    .card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 8px 30px rgba(11,18,32,0.06)}
-    .small{font-size:13px;color:var(--muted)}
-    label{display:block;margin:8px 0 6px;font-weight:600}
-    input[type=text],input[type=email],input[type=password],select,textarea{
-      width:100%;padding:10px;border-radius:10px;border:1px solid #e6e6e9;font-size:14px
-    }
-    button{cursor:pointer;padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700}
-    button.ghost{background:#fff;color:var(--accent);border:1px solid #eee}
-    .row{display:flex;gap:8px}
-    .muted{color:#888;font-size:13px}
-    .notice{background:linear-gradient(90deg,#fff7d6,#fff1f0);padding:10px;border-radius:10px;margin:8px 0;color:#333}
-    .messages{height:360px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
-    .message{padding:8px;margin-bottom:8px;border-radius:8px;background:#fff;border:1px solid #eee}
-    .me{background:linear-gradient(90deg,#e9f8f2,#dff6ea);border-color:#cdebd6}
-    .ts{font-size:11px;color:#888;margin-top:6px}
-    .controls{display:flex;gap:8px;margin-top:8px}
-    .section-title{font-weight:800;margin-bottom:8px}
-    .link{color:var(--accent);text-decoration:underline}
-    .right-column .card{margin-bottom:12px}
-    .disabled{opacity:.5;pointer-events:none}
-    .hidden{display:none}
-    @media(max-width:920px){
-      .grid{grid-template-columns:1fr;}
-      .messages{height:260px}
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1>Oilgram — Oil Token Official Chat</h1>
-      <div class="small">Authentication: Email & Password • Number prefix: <strong>666</strong></div>
-    </header>
+<!-- ===== Oilgram Chat Widget (Username-Based Private Chat) ===== -->
+<div id="oilgram-widget">
+  <div id="oilgram-header" onclick="toggleOilgramBody()">💬 Oilgram</div>
+  <div id="oilgram-body">
 
-    <div class="grid">
-
-      <!-- LEFT: MAIN CHAT -->
-      <div>
-        <div class="card" id="authCard">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="section-title">Sign up / Login</div>
-              <div class="small">Create an account with email & password. Then assign a number (666...)</div>
-            </div>
-            <div id="profileBox" class="hidden">
-              <div id="meName" style="font-weight:700"></div>
-              <div class="small" id="meNumber"></div>
-              <button class="ghost" onclick="logout()">Logout</button>
-            </div>
-          </div>
-
-          <div id="authForm">
-            <label>Email</label>
-            <input id="email" type="email" placeholder="you@example.com" />
-            <label>Password</label>
-            <input id="password" type="password" placeholder="minimum 6 characters" />
-            <div class="row" style="margin-top:10px">
-              <button onclick="signup()">Sign Up</button>
-              <button class="ghost" onclick="login()">Login</button>
-            </div>
-
-            <div style="margin-top:12px">
-              <label>Choose your 10-digit number (must start with 666)</label>
-              <input id="chosenNumber" placeholder="e.g. 6661234567" />
-              <div class="small muted" id="numberNotice">🔒 Numbers with 3+ identical digits in a row after 666 are reserved.</div>
-              <div style="margin-top:8px" class="row">
-                <button onclick="reserveNumber()">Reserve / Assign Number</button>
-                <button class="ghost" onclick="checkNumber()">Check Availability</button>
-              </div>
-              <div id="numberFeedback" class="small" style="margin-top:8px"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CHAT -->
-        <div class="card" style="margin-top:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="section-title">Public Chat</div>
-              <div class="small">Visible to all signed users</div>
-            </div>
-            <div>
-              <button id="btnPublic" onclick="showPublic()" class="ghost">Public</button>
-              <button id="btnPrivate" onclick="showPrivate()">Private</button>
-            </div>
-          </div>
-
-          <div id="publicArea">
-            <div class="messages" id="publicMessages"></div>
-            <div class="controls">
-              <input id="publicInput" type="text" placeholder="Write a message..." />
-              <button onclick="sendPublic()">Send</button>
-            </div>
-          </div>
-
-          <div id="privateArea" class="hidden" style="margin-top:12px">
-            <label>Private chat — search by number</label>
-            <input id="searchNumber" placeholder="Enter recipient number (666...)" />
-            <div style="margin-top:8px" class="row">
-              <button onclick="findUser()">Find</button>
-              <button class="ghost" onclick="openPrivateBySelection()">Open Private</button>
-            </div>
-
-            <div id="privateChatBox" class="hidden" style="margin-top:12px">
-              <div class="small">Chat with: <span id="privateRecipient"></span></div>
-              <div class="messages" id="privateMessages"></div>
-              <div class="controls">
-                <input id="privateInput" placeholder="Write a private message..." />
-                <button onclick="sendPrivate()">Send</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- VOICE / VIDEO (future) -->
-        <div class="card" style="margin-top:12px">
-          <div class="section-title">Voice & Video (coming soon)</div>
-          <div class="small">These buttons are placeholders.</div>
-          <div style="margin-top:12px" class="row">
-            <button class="ghost disabled">Start Voice</button>
-            <button class="ghost disabled">Start Video</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT PANEL -->
-      <div class="right-column">
-        <div class="card">
-          <div class="section-title">Help & Links</div>
-          <div class="small">Manage Jetton or metadata via GitHub Pages.</div>
-          <div style="margin-top:8px">
-            <a class="link" href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">Official Site</a><br/>
-            <a class="link" href="https://t.me/oilofficial" target="_blank">Official Telegram</a>
-          </div>
-        </div>
-      </div>
+    <!-- Login Form -->
+    <div id="chat-login">
+      <input type="email" id="chat-email" placeholder="Email" />
+      <input type="password" id="chat-pass" placeholder="Password" />
+      <button style="background:#ff4b5c;color:#fff" onclick="loginChat()">Login</button>
+      <button style="background:#ffcc00;color:#111" onclick="signupChat()">Sign Up</button>
+      <div id="chat-login-msg" style="font-size:12px;color:red;margin-top:4px;"></div>
     </div>
+
+    <!-- Chat Area -->
+    <div id="chat-area">
+      <div style="display:flex;gap:4px;margin-bottom:6px;">
+        <button style="background:#ff4b5c;color:#fff;flex:1" onclick="showPublicChat()">Public Chat</button>
+        <button style="background:#8a2be2;color:#fff;flex:1" onclick="showPrivateChat()">Private Chat</button>
+        <button style="background:#aaa;color:#fff;flex:1" disabled>Voice Call</button>
+        <button style="background:#00ffcc;color:#111;flex:1" disabled>Video Call</button>
+      </div>
+
+      <div id="chat-messages" style="height:200px;overflow:auto;border:1px solid #ddd;padding:6px;border-radius:10px;margin-bottom:6px;background:#f0f0f0"></div>
+      
+      <div id="private-recipient-div" style="display:none;margin-bottom:6px;">
+        <input type="text" id="private-recipient" placeholder="Recipient username" />
+      </div>
+      
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button style="background:#00b09b;color:#fff;width:100%;margin-top:4px" onclick="sendMessage()">Send</button>
+      <button style="background:#ff69b4;color:#fff;width:100%;margin-top:4px" onclick="logoutChat()">Logout</button>
+    </div>
+
   </div>
+</div>
 
-  <!-- Firebase Logic -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-    import { getFirestore, collection, addDoc, query, where, getDocs, onSnapshot, serverTimestamp, orderBy, doc, setDoc, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+<style>
+  #oilgram-widget{
+    position:fixed;
+    bottom:0;
+    right:20px;
+    width:320px;
+    background:#fff;
+    border-radius:12px 12px 0 0;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    z-index:9999;
+    font-family:Poppins,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #oilgram-header{
+    background:#ff4b5c;
+    color:#fff;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    cursor:pointer;
+  }
+  #oilgram-body{padding:10px;display:none;}
+  #chat-area{display:none;margin-top:8px;}
+  #chat-input{width:calc(100% - 12px);padding:6px;margin-bottom:6px;border-radius:8px;border:1px solid #ccc;}
+  #oilgram-body button{display:block;width:100%;margin:6px 0;padding:8px;border:none;border-radius:10px;font-weight:700;cursor:pointer;}
+  #private-recipient{width:calc(100% - 12px);padding:6px;border-radius:8px;border:1px solid #ccc;}
+</style>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",
-      authDomain: "oilgram.firebaseapp.com",
-      projectId: "oilgram",
-      storageBucket: "oilgram.firebasestorage.app",
-      messagingSenderId: "555429946689",
-      appId: "1:555429946689:web:a23a918ca6ceb3e8936dc0"
-    };
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+// TODO: جایگزین کن با مقادیر پروژه Firebase خودت
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-    const reserved = n => /(.)\1\1/.test(n.slice(3));
-    const valid = n => /^666\d{7}$/.test(n);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
 
-    const qSel = id => document.getElementById(id);
+const chatLogin = document.getElementById('chat-login');
+const chatArea = document.getElementById('chat-area');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const recipientDiv = document.getElementById('private-recipient-div');
+const recipientInput = document.getElementById('private-recipient');
 
-    let currentUser = null;
-    let currentUserDoc = null;
-    let unsubscribePublic = null;
-    let unsubscribePrivate = null;
-    let currentPrivateRecipient = null;
-    let currentPrivateRoomId = null;
+let currentChat = 'public';
+let userEmail = '';
+let username = '';
 
-    async function signup(){
-      const email=qSel('email').value.trim();
-      const pass=qSel('password').value.trim();
-      if(!email||pass.length<6){alert("Enter valid email & password");return;}
-      await createUserWithEmailAndPassword(auth,email,pass);
-      alert("✅ Signed up! Now assign your number.");
+function toggleOilgramBody(){
+  const body = document.getElementById('oilgram-body');
+  body.style.display = body.style.display==='none' ? 'block':'none';
+}
+
+// Sign Up & store username
+function signupChat(){
+  const email = document.getElementById('chat-email').value;
+  const pass = document.getElementById('chat-pass').value;
+  createUserWithEmailAndPassword(auth,email,pass)
+    .then(() => {
+      userEmail=email;
+      username=email.split('@')[0];
+      push(ref(db,'usernames'),{email:userEmail,username});
+      showChat();
+    })
+    .catch(err=>{ document.getElementById('chat-login-msg').innerText=err.message; });
+}
+
+function loginChat(){
+  const email = document.getElementById('chat-email').value;
+  const pass = document.getElementById('chat-pass').value;
+  signInWithEmailAndPassword(auth,email,pass)
+    .then(()=>{ 
+      userEmail=email; 
+      username=email.split('@')[0]; 
+      showChat(); 
+    })
+    .catch(err=>{ document.getElementById('chat-login-msg').innerText=err.message; });
+}
+
+function logoutChat(){
+  signOut(auth).then(()=>{
+    chatArea.style.display='none';
+    chatLogin.style.display='block';
+    chatMessages.innerHTML='';
+  });
+}
+
+function showChat(){
+  chatLogin.style.display='none';
+  chatArea.style.display='block';
+  loadMessages(currentChat);
+  recipientDiv.style.display = currentChat==='private' ? 'block':'none';
+}
+
+function showPublicChat(){ currentChat='public'; recipientDiv.style.display='none'; loadMessages(currentChat); }
+function showPrivateChat(){ currentChat='private'; recipientDiv.style.display='block'; loadMessages(currentChat); }
+
+function loadMessages(chatType){
+  chatMessages.innerHTML='';
+  const chatRef = ref(db, chatType);
+  onChildAdded(chatRef,(snapshot)=>{
+    const msg = snapshot.val();
+    if(chatType==='private'){
+      if(msg.toUser!==username && msg.fromUser!==username) return;
+      const div = document.createElement('div');
+      div.textContent = `${msg.fromUser} ➤ ${msg.toUser}: ${msg.text}`;
+      chatMessages.appendChild(div);
+    }else{
+      const div = document.createElement('div');
+      div.textContent = `${msg.fromUser}: ${msg.text}`;
+      chatMessages.appendChild(div);
     }
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  });
+}
 
-    async function login(){
-      const email=qSel('email').value.trim();
-      const pass=qSel('password').value.trim();
-      await signInWithEmailAndPassword(auth,email,pass);
-      alert("✅ Logged in");
-    }
-
-    function logout(){ signOut(auth); }
-
-    onAuthStateChanged(auth, async user=>{
-      currentUser=user;
-      if(user){
-        const docRef=doc(db,"users",user.uid);
-        const snap=await getDoc(docRef);
-        currentUserDoc=snap.exists()?snap.data():null;
-        qSel('authForm').classList.add('hidden');
-        qSel('profileBox').classList.remove('hidden');
-        qSel('meName').textContent=user.email;
-        qSel('meNumber').textContent=currentUserDoc?.number || "No number assigned";
-        startPublic();
-      }else{
-        qSel('authForm').classList.remove('hidden');
-        qSel('profileBox').classList.add('hidden');
-        stopPublic();
-      }
-    });
-
-    async function checkNumber(){
-      const n=qSel('chosenNumber').value.trim();
-      if(!valid(n)){qSel('numberFeedback').textContent="❌ Invalid format";return;}
-      if(reserved(n)){qSel('numberFeedback').textContent="❌ Reserved";return;}
-      const s=await getDocs(query(collection(db,"users"),where("number","==",n)));
-      qSel('numberFeedback').textContent=s.empty?"✅ Available":"❌ Taken";
-    }
-
-    async function reserveNumber(){
-      if(!currentUser)return alert("Login first");
-      const n=qSel('chosenNumber').value.trim();
-      if(!valid(n)||reserved(n))return alert("Invalid number");
-      const s=await getDocs(query(collection(db,"users"),where("number","==",n)));
-      if(!s.empty)return alert("Taken");
-      await setDoc(doc(db,"users",currentUser.uid),{email:currentUser.email,number:n,createdAt:serverTimestamp()});
-      qSel('numberFeedback').textContent="✅ Number assigned";
-    }
-
-    async function sendPublic(){
-      const t=qSel('publicInput').value.trim();
-      if(!t||!currentUser)return;
-      await addDoc(collection(db,"publicMessages"),{uid:currentUser.uid,email:currentUser.email,text:t,createdAt:serverTimestamp()});
-      qSel('publicInput').value="";
-    }
-
-    function startPublic(){
-      stopPublic();
-      const q=query(collection(db,"publicMessages"),orderBy("createdAt","desc"));
-      unsubscribePublic=onSnapshot(q,snap=>{
-        const box=qSel('publicMessages'); box.innerHTML="";
-        snap.docs.slice().reverse().forEach(d=>{
-          const data=d.data(); const div=document.createElement("div");
-          div.className="message"+(data.uid===currentUser?.uid?" me":"");
-          div.innerHTML=`<div><b>${data.email}</b></div><div>${data.text}</div>`;
-          box.appendChild(div);
-        });
-      });
-    }
-
-    function stopPublic(){ if(unsubscribePublic){unsubscribePublic();unsubscribePublic=null;} }
-
-    async function findUser(){
-      const n=qSel('searchNumber').value.trim();
-      const s=await getDocs(query(collection(db,"users"),where("number","==",n)));
-      if(s.empty)return alert("User not found");
-      const u=s.docs[0]; currentPrivateRecipient={uid:u.id,...u.data()};
-      qSel('privateRecipient').textContent=currentPrivateRecipient.number;
-      qSel('privateChatBox').classList.remove('hidden');
-      openPrivateRoom(currentUser.uid,u.id);
-    }
-
-    function openPrivateRoom(a,b){
-      const id=[a,b].sort().join("_");
-      currentPrivateRoomId=id;
-      if(unsubscribePrivate)unsubscribePrivate();
-      unsubscribePrivate=onSnapshot(query(collection(db,"privateMessages"),where("room","==",id),orderBy("createdAt","desc")),
-        snap=>{
-          const box=qSel('privateMessages'); box.innerHTML="";
-          snap.docs.slice().reverse().forEach(d=>{
-            const data=d.data(); const div=document.createElement("div");
-            div.className="message"+(data.uid===currentUser?.uid?" me":"");
-            div.innerHTML=`<div><b>${data.senderEmail}</b></div><div>${data.text}</div>`;
-            box.appendChild(div);
-          });
-        });
-    }
-
-    async function sendPrivate(){
-      const t=qSel('privateInput').value.trim();
-      if(!t||!currentPrivateRoomId)return;
-      await addDoc(collection(db,"privateMessages"),{
-        room:currentPrivateRoomId,
-        uid:currentUser.uid,
-        senderEmail:currentUser.email,
-        text:t,
-        createdAt:serverTimestamp()
-      });
-      qSel('privateInput').value="";
-    }
-
-    function showPublic(){qSel('publicArea').classList.remove('hidden');qSel('privateArea').classList.add('hidden');}
-    function showPrivate(){qSel('publicArea').classList.add('hidden');qSel('privateArea').classList.remove('hidden');}
-  </script>
-</body>
-</html>
+function sendMessage(){
+  const text = chatInput.value.trim();
+  if(!text) return;
+  if(currentChat==='private'){
+    const toUser = recipientInput.value.trim();
+    if(!toUser) { alert('Enter recipient username'); return; }
+    push(ref(db,'private'),{fromUser:username,toUser,text});
+  }else{
+    push(ref(db,'public'),{fromUser:username,text});
+  }
+  chatInput.value='';
+}
+</script>
