@@ -3,151 +3,627 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Oilgram — Chat & Calls</title>
+  <title>Oilgram — Oil Token Chat & Calls</title>
   <style>
-    body{font-family:Inter,system-ui,Arial;margin:0;padding:16px;background:#f7f9fc;color:#111}
-    .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);max-width:1100px;margin:0 auto}
+    :root{ --bg:#fff; --accent:#6a0dad; --muted:#666; --radius:12px; --success:#16a34a; --danger:#e11d48; }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#111;}
+    .wrap{max-width:980px;margin:18px auto;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between}
+    .card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    input,textarea,button,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;margin:6px 0}
     .row{display:flex;gap:8px}
-    input,button{padding:8px;border-radius:8px;border:1px solid #e6e6e9}
+    .messages{height:320px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
+    .msg{padding:8px;border-radius:8px;margin-bottom:8px;background:#fff;border:1px solid #eee}
+    .mine{background:#e6ffe9}
+    .small{font-size:13px;color:var(--muted)}
+    .btn{background:var(--accent);color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer}
+    .btn.ghost{background:#fff;color:var(--accent);border:1px solid #eee}
     .hidden{display:none}
-    .small{font-size:13px;color:#666}
-    .messages{height:200px;overflow:auto;border:1px solid #eee;padding:8px;border-radius:8px;background:#fafbff}
     video{width:100%;border-radius:8px;background:#000}
+    .call-area{display:flex;gap:8px;flex-wrap:wrap}
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Oilgram — Chat & Calls</h2>
-    <div id="oilgramStatus" class="small">Loading...</div>
+  <div class="wrap">
+    <header>
+      <h2>Oilgram — Chat & Calls (OIL)</h2>
+      <div class="small">Auth: Email/Password • Codes start with <strong>666</strong></div>
+    </header>
 
-    <div id="authSection" style="margin-top:12px">
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:16px">
       <div>
-        <label>Email</label><input id="su-email" type="email" placeholder="you@example.com"/><br/>
-        <label>Password</label><input id="su-pass" type="password" placeholder="min 6 chars"/><br/>
-        <label>Choose code (optional)</label><input id="su-code" placeholder="6661234567"/><br/>
-        <div class="row" style="margin-top:8px">
-          <button id="btn-signup">Sign Up</button>
-          <button id="btn-show-login">Go to Login</button>
+        <div class="card" id="authCard">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>Sign up / Login</strong>
+              <div class="small">Create account, then assign a 10-digit code starting with 666.</div>
+            </div>
+            <div id="profileBox" class="hidden">
+              <div id="meEmail" style="font-weight:700"></div>
+              <div id="meCode" class="small"></div>
+              <button class="btn ghost" id="btnLogout">Logout</button>
+            </div>
+          </div>
+
+          <div id="authForms" style="margin-top:10px">
+            <div id="signup">
+              <label>Email</label><input id="suEmail" type="email" />
+              <label>Password</label><input id="suPass" type="password" />
+              <label>Choose code (optional)</label><input id="suCode" placeholder="6661234567 (optional)" />
+              <div class="row" style="margin-top:8px">
+                <button class="btn" id="btnSignup">Sign Up</button>
+                <button class="btn ghost" id="btnShowLogin">Login</button>
+              </div>
+            </div>
+
+            <div id="login" class="hidden">
+              <label>Email</label><input id="liEmail" type="email" />
+              <label>Password</label><input id="liPass" type="password" />
+              <div class="row" style="margin-top:8px">
+                <button class="btn" id="btnLogin">Login</button>
+                <button class="btn ghost" id="btnShowSignup">Back</button>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <label>Assign / Reserve number</label>
+              <input id="chosenNumber" placeholder="6661234567" />
+              <div class="small" id="numNotice">Numbers with 3 identical digits in a row after 666 are reserved for auction.</div>
+              <div class="row" style="margin-top:8px">
+                <button class="btn" id="btnCheck">Check</button>
+                <button class="btn ghost" id="btnAssign">Assign</button>
+              </div>
+              <div id="numFeedback" class="small" style="margin-top:8px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>Public Chat</strong>
+              <div class="small">Messages visible to all, auto-deleted after 2 hours (Firestore TTL).</div>
+            </div>
+            <div><button class="btn ghost" id="btnOpenPublic">Open</button></div>
+          </div>
+
+          <div id="publicSection" class="hidden" style="margin-top:10px">
+            <div class="messages" id="publicMessages"></div>
+            <div class="row" style="margin-top:8px">
+              <input id="publicInput" placeholder="Type public message..." />
+              <button class="btn" id="publicSend">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>Private Chat (P2P)</strong>
+              <div class="small">Private text goes peer-to-peer (not stored). Use the recipient's 666-code.</div>
+            </div>
+            <div><button class="btn ghost" id="btnOpenPrivate">Open</button></div>
+          </div>
+
+          <div id="privateSection" class="hidden" style="margin-top:10px">
+            <label>Recipient code</label>
+            <input id="privateRecipient" placeholder="6661234567" />
+            <div style="margin-top:8px" class="row">
+              <button class="btn" id="btnStartPrivate">Start P2P Chat</button>
+            </div>
+
+            <div id="privateArea" class="hidden" style="margin-top:10px">
+              <div class="small">Chat with: <span id="privateWith"></span></div>
+              <div class="messages" id="privateMessages"></div>
+              <div class="row" style="margin-top:8px">
+                <input id="privateInput" placeholder="Type private message..." />
+                <button class="btn" id="privateSend">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <strong>Voice Call (1:1)</strong>
+          <div class="small">Peer-to-peer voice via WebRTC. Use create/join call flow.</div>
+          <div style="margin-top:8px" class="row">
+            <button class="btn" id="createCallBtn">Create Call (offer)</button>
+            <button class="btn ghost" id="joinCallBtn">Join Call (enter id)</button>
+          </div>
+
+          <div id="callUI" class="hidden" style="margin-top:10px">
+            <div class="call-area">
+              <div style="flex:1">
+                <div class="small">Local</div>
+                <video id="localVideo" autoplay playsinline muted style="height:160px"></video>
+              </div>
+              <div style="flex:1">
+                <div class="small">Remote</div>
+                <video id="remoteVideo" autoplay playsinline style="height:160px"></video>
+              </div>
+            </div>
+            <div style="margin-top:8px" class="row">
+              <input id="callId" placeholder="Call ID" />
+              <button class="btn" id="copyCallId">Copy</button>
+            </div>
+            <div style="margin-top:8px">
+              <button class="btn ghost" id="hangupBtn">Hang up</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="card">
+          <strong>Reserved codes</strong>
+          <div class="small" style="margin-top:8px">Examples — blocked for auction / sale.</div>
+          <div style="margin-top:8px" id="reservedList"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <strong>Admin (local)</strong>
+          <div class="small">Local admin for client-side moderation (demo). For production use server admin.</div>
+          <label>Admin password</label><input id="adminPass" type="password" />
+          <div class="row" style="margin-top:8px">
+            <button class="btn" id="adminLogin">Open</button>
+            <button class="btn ghost" id="adminLogout">Close</button>
+          </div>
+          <div id="adminConsole" class="hidden" style="margin-top:8px">
+            <label>Lock code (10 digits)</label><input id="adminLock" placeholder="6660000000" />
+            <button class="btn" id="adminLockBtn">Lock</button>
+          </div>
+          <div id="adminStatus" class="small" style="margin-top:8px;color:var(--danger)"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <strong>Search user by code</strong>
+          <input id="searchCode" placeholder="6661234567" />
+          <button class="btn" id="btnSearch">Find</button>
+          <div id="searchResult" class="small" style="margin-top:8px"></div>
         </div>
       </div>
-
-      <div id="loginBlock" class="hidden" style="margin-top:8px">
-        <label>Email</label><input id="li-email" type="email"/><br/>
-        <label>Password</label><input id="li-pass" type="password"/><br/>
-        <div class="row"><button id="btn-login">Login</button><button id="btn-show-signup">Back to Sign Up</button></div>
-      </div>
-
-      <div id="profileBox" class="hidden" style="margin-top:8px">
-        <div><strong id="meEmail"></strong></div>
-        <div id="meCode" class="small"></div>
-        <button id="btn-logout">Logout</button>
-      </div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <label>Assign / Reserve Number</label>
-      <input id="chosenNumber" placeholder="6661234567"/>
-      <div class="row" style="margin-top:8px">
-        <button id="btn-check-number">Check</button>
-        <button id="btn-assign-number">Assign</button>
-      </div>
-      <div id="numberFeedback" class="small" style="margin-top:8px"></div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <div><strong>Public Chat</strong></div>
-        <div><button id="openPublic">Open</button></div>
-      </div>
-      <div id="publicSection" class="hidden" style="margin-top:8px">
-        <div class="messages" id="publicMessages"></div>
-        <div class="row" style="margin-top:8px">
-          <input id="publicInput" placeholder="Write public message..."/><button id="publicSend">Send</button>
-        </div>
-      </div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <div><strong>Private Chat</strong></div>
-        <div><button id="openPrivate">Open</button></div>
-      </div>
-      <div id="privateSection" class="hidden" style="margin-top:8px">
-        <label>Recipient code</label><input id="privateRecipientCode" placeholder="6661234567"/>
-        <div class="row" style="margin-top:8px"><button id="startPrivate">Start Private Chat</button></div>
-
-        <div id="privateArea" class="hidden" style="margin-top:8px">
-          <div class="small">Chat with: <span id="privateWith"></span></div>
-          <div class="messages" id="privateMessages"></div>
-          <div class="row"><input id="privateInput" placeholder="Write private message..."/><button id="privateSend">Send</button></div>
-        </div>
-      </div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <div><strong>Voice / Video Call (1:1)</strong></div>
-      <div class="row" style="margin-top:8px">
-        <button id="btn-create-call">Create Call (Offer)</button>
-        <button id="btn-join-call">Join Call (by ID)</button>
-      </div>
-
-      <div id="callArea" class="hidden" style="margin-top:8px">
-        <div class="row">
-          <div style="flex:1"><div class="small">Local</div><video id="localVideo" autoplay muted playsinline></video></div>
-          <div style="flex:1"><div class="small">Remote</div><video id="remoteVideo" autoplay playsinline></video></div>
-        </div>
-        <div style="margin-top:8px" class="row">
-          <input id="callIdInput" placeholder="Call ID"/><button id="btnCopyCallId">Copy ID</button>
-        </div>
-        <div style="margin-top:6px"><button id="btnHangup">Hang Up</button></div>
-      </div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <div><strong>Admin (client demo)</strong></div>
-      <input id="adminPass" placeholder="admin password"/><div class="row"><button id="adminLogin">Open Admin</button><button id="adminLogout">Close</button></div>
-      <div id="adminConsole" class="hidden" style="margin-top:8px">
-        <input id="adminLockCode" placeholder="6660000000"/><button id="adminLock">Lock Code</button>
-      </div>
-    </div>
-
-    <hr/>
-
-    <div style="margin-top:12px">
-      <div><strong>Reserved examples</strong></div>
-      <div id="reservedList" class="small" style="margin-top:6px"></div>
     </div>
   </div>
 
-  <!-- Load private-config.js if present (this file MUST NOT be public) -->
+  <!-- Firebase config: PLACEHOLDER
+       Replace the values below with your real config.
+       Option A (recommended): create a small local file `private-config.js` which sets window.__FIREBASE_CONFIG
+         (do NOT commit that file publicly).
+       Option B: paste real values here, but then restrict API key by HTTP referrer in Google Cloud Console.
+  -->
   <script>
-    // private-config.js (optional) should set: window.__FIREBASE_CONFIG = { apiKey: "...", authDomain: "...", ... };
-    // If private-config.js not present, page will show message and not initialize.
-    (function(){
-      const s = document.createElement('script');
-      s.src = 'private-config.js';
-      s.onload = ()=>{ console.log('private-config loaded'); };
-      s.onerror = ()=>{ console.warn('private-config.js not found — please add it with your firebaseConfig'); };
-      document.head.appendChild(s);
-    })();
+    // Example placeholder. REPLACE with your real config before use.
+    window.__FIREBASE_CONFIG = {
+      apiKey: "PASTE_API_KEY_HERE",
+      authDomain: "oilgramapp.firebaseapp.com",
+      projectId: "oilgramapp",
+      storageBucket: "oilgramapp.appspot.com",
+      messagingSenderId: "555429946689",
+      appId: "1:555429946689:web:XXXXXXXXXXXX",
+      measurementId: "G-XXXXXXXXXX"
+    };
   </script>
 
-  <!-- firebase SDKs -->
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <script type="module">
+    // ---------- Imports ----------
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot, query, where, serverTimestamp, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-  <!-- main logic -->
-  <script type="module" src="oilgram-main.js"></script>
+    // ---------- Init Firebase ----------
+    const firebaseConfig = window.__FIREBASE_CONFIG || {};
+    if(!firebaseConfig || !firebaseConfig.projectId){
+      alert("Firebase config missing. Paste your firebaseConfig into private-config or above.");
+      console.error("Missing firebaseConfig");
+    }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ---------- Reserved set ----------
+    const reservedNumbers = new Set([
+      "6660000000","6661111111","6662222222","6663333333","6664444444","6665555555","6666666666",
+      "6667777777","6668888888","6669999999",
+      "6660001111","6660002222","6660003333","6660004444","6660005555","6660006666","6660007777","6660008888","6660009999",
+      "6661110000","6662220000","6663330000","6664440000","6665550000","6666660000","6667770000","6668880000","6669990000",
+      "6661000000","6662000000","6663000000","6664000000","6665000000","6666000000","6667000000","6668000000","6669000000"
+    ]);
+
+    // ---------- Helpers ----------
+    const $ = id => document.getElementById(id);
+    function normalize(s){ return String(s||"").replace(/\D/g,"").slice(0,10); }
+    function isValidCode(s){ return /^666\d{7}$/.test(normalize(s)); }
+    function hasTriple(s){ const tail = normalize(s).slice(3); return /(.)\1\1/.test(tail); }
+
+    // render reserved
+    function renderReserved(){
+      const el = $("reservedList"); el.innerHTML = "";
+      for(const c of reservedNumbers){
+        const d = document.createElement("div"); d.className = "small"; d.textContent = c; el.appendChild(d);
+      }
+    }
+    renderReserved();
+
+    // ---------- Auth UI wiring ----------
+    $("btnShowLogin").onclick = ()=>{ $("signup").classList.add('hidden'); $("login").classList.remove('hidden'); };
+    $("btnShowSignup").onclick = ()=>{ $("signup").classList.remove('hidden'); $("login").classList.add('hidden'); };
+
+    // Sign up
+    $("btnSignup").onclick = async ()=>{
+      const email = $("suEmail").value.trim();
+      const pass = $("suPass").value;
+      const chosen = normalize($("suCode").value);
+      if(!email || pass.length<6){ alert("Enter email and password (min 6 chars)"); return; }
+      try{
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        const uid = cred.user.uid;
+        // choose code: if provided and valid and not reserved and not taken
+        let final = null;
+        if(chosen && isValidCode(chosen) && !reservedNumbers.has(chosen)){
+          const snap = await getDoc(doc(db,"userCodes", chosen));
+          if(!snap.exists()) final = chosen;
+        }
+        if(!final){
+          final = await generateAvailableCode();
+        }
+        await setDoc(doc(db,"users", uid), { email, code: final, createdAt: serverTimestamp() });
+        await setDoc(doc(db,"userCodes", final), { uid, code: final, createdAt: serverTimestamp() });
+        alert("Account created. Your code: " + final);
+      }catch(e){ console.error(e); alert("Signup error: " + (e.message||e)); }
+    };
+
+    // Login
+    $("btnLogin").onclick = async ()=>{
+      const email = $("liEmail").value.trim();
+      const pass = $("liPass").value;
+      if(!email || !pass){ alert("Enter email & password"); return; }
+      try{ await signInWithEmailAndPassword(auth, email, pass); } catch(e){ alert("Login error: " + (e.message||e)); }
+    };
+
+    $("btnLogout").onclick = ()=> signOut(auth);
+
+    onAuthStateChanged(auth, async user=>{
+      if(user){
+        $("profileBox").classList.remove('hidden');
+        $("authForms").classList.add('hidden');
+        $("meEmail").textContent = user.email;
+        const ud = await getDoc(doc(db,"users", user.uid));
+        const data = ud.exists() ? ud.data() : null;
+        $("meCode").textContent = data?.code ? "Code: " + data.code : "Code: not assigned";
+        startPublicListener();
+      } else {
+        $("profileBox").classList.add('hidden');
+        $("authForms").classList.remove('hidden');
+        stopPublicListener();
+      }
+    });
+
+    // generate code (avoid reserved)
+    async function generateAvailableCode(){
+      for(let i=0;i<50;i++){
+        const r = "666" + String(Math.floor(Math.random()*9000000)+1000000);
+        if(reservedNumbers.has(r)) continue;
+        const snap = await getDoc(doc(db,"userCodes", r));
+        if(!snap.exists()) return r;
+      }
+      // fallback sequential (slow)
+      for(let i=0;i<1000000;i++){
+        const r = "666" + String(i).padStart(7,"0");
+        if(reservedNumbers.has(r)) continue;
+        const snap = await getDoc(doc(db,"userCodes", r));
+        if(!snap.exists()) return r;
+      }
+      throw new Error("No available codes");
+    }
+
+    // check & assign number
+    $("btnCheck").onclick = async ()=>{
+      const raw = normalize($("chosenNumber").value);
+      if(!isValidCode(raw)){ $("numFeedback").textContent = "Format invalid"; $("numFeedback").style.color="red"; return; }
+      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved for auction"; $("numFeedback").style.color="red"; return; }
+      const snap = await getDoc(doc(db,"userCodes", raw));
+      if(snap.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
+      $("numFeedback").textContent="Available ✅"; $("numFeedback").style.color="green";
+    };
+
+    $("btnAssign").onclick = async ()=>{
+      const user = auth.currentUser; if(!user){ alert("Login first"); return; }
+      const raw = normalize($("chosenNumber").value);
+      if(!isValidCode(raw)){ $("numFeedback").textContent="Invalid format"; $("numFeedback").style.color="red"; return; }
+      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved"; $("numFeedback").style.color="red"; return; }
+      const taken = await getDoc(doc(db,"userCodes", raw));
+      if(taken.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
+      await setDoc(doc(db,"userCodes", raw), { uid: user.uid, code: raw, createdAt: serverTimestamp() });
+      await setDoc(doc(db,"users", user.uid), { email: user.email, code: raw, assignedAt: serverTimestamp() }, { merge:true });
+      $("numFeedback").textContent = "Assigned ✅"; $("numFeedback").style.color = "green";
+      const ud = await getDoc(doc(db,"users", user.uid));
+      $("meCode").textContent = ud.data()?.code ? "Code: " + ud.data().code : "Code: not assigned";
+    };
+
+    // ---------- Public messages (with expiresAt) ----------
+    let publicUnsub = null;
+    function startPublicListener(){
+      const col = collection(db,"publicMessages");
+      if(publicUnsub) publicUnsub();
+      const q = query(col, orderBy("createdAt","desc"));
+      publicUnsub = onSnapshot(q, snap=>{
+        const list = $("publicMessages"); list.innerHTML = "";
+        const docs = snap.docs.slice().reverse();
+        docs.forEach(d=>{
+          const v = d.data();
+          const el = document.createElement("div");
+          el.className = "msg" + (v.uid === auth.currentUser?.uid ? " mine" : "");
+          el.innerHTML = `<div class="small">${escapeHtml(v.code||v.email||"")}</div><div>${escapeHtml(v.text)}</div>`;
+          list.appendChild(el);
+        });
+        list.scrollTop = list.scrollHeight;
+      });
+    }
+    function stopPublicListener(){ if(publicUnsub) publicUnsub(); $("publicMessages").innerHTML = ""; }
+
+    $("publicSend").onclick = async ()=>{
+      const txt = $("publicInput").value.trim(); if(!txt) return;
+      if(!auth.currentUser){ alert("Login to send"); return; }
+      const udSnap = await getDoc(doc(db,"users", auth.currentUser.uid));
+      const code = udSnap.data()?.code || null;
+      // expiresAt -> serverTimestamp + 7200 seconds will be set client-side as Date
+      const expiresAt = new Date(Date.now() + 2*60*60*1000);
+      await addDoc(collection(db,"publicMessages"), { uid: auth.currentUser.uid, email: auth.currentUser.email, code, text: txt, createdAt: serverTimestamp(), expiresAt: expiresAt });
+      $("publicInput").value = "";
+      // NOTE: enable Firestore TTL on field 'expiresAt' to auto-delete after 2 hours.
+    };
+    $("btnOpenPublic").onclick = ()=> $("publicSection").classList.toggle('hidden');
+
+    // ---------- Private P2P chat via WebRTC DataChannel ----------
+    // Signalling uses collection "p2pSignals" with doc id = deterministic pair id
+    // messages (text) will be sent over data channel only; not stored.
+    let pc = null;
+    let dc = null;
+    let localStream = null;
+    let remoteStream = null;
+    let currentSignalDoc = null;
+    const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
+
+    async function startPrivateP2P(targetCode){
+      // find target uid
+      const targetSnap = await getDoc(doc(db,"userCodes", targetCode));
+      if(!targetSnap.exists()){ alert("Recipient not found"); return; }
+      const target = targetSnap.data();
+      const myUid = auth.currentUser.uid;
+      const theirUid = target.uid;
+      if(myUid === theirUid) { alert("You cannot open chat with yourself"); return; }
+      // deterministic doc id
+      const pairId = [myUid, theirUid].sort().join("_");
+      currentSignalDoc = doc(db,"p2pSignals", pairId);
+      pc = new RTCPeerConnection(servers);
+      // create data channel (for initiator)
+      dc = pc.createDataChannel("chat");
+      setupDataChannel(dc);
+      pc.onicecandidate = async (e) => {
+        if(e.candidate){
+          const c = e.candidate.toJSON();
+          await addDoc(collection(currentSignalDoc, "offerCandidates"), c);
+        }
+      };
+      pc.ondatachannel = (e) => { // in case the other side creates channel
+        dc = e.channel; setupDataChannel(dc);
+      };
+
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+      await setDoc(currentSignalDoc, { offer: { type: offer.type, sdp: offer.sdp, from: myUid, to: theirUid, createdAt: serverTimestamp() } });
+
+      // listen for answer
+      const unsubSignal = onSnapshot(currentSignalDoc, async snap=>{
+        const data = snap.data();
+        if(data?.answer && pc && !pc.currentRemoteDescription){
+          await pc.setRemoteDescription(new RTCSessionDescription(data.answer));
+        }
+      });
+
+      // listen for answer candidates
+      const answerCandCol = collection(currentSignalDoc, "answerCandidates");
+      onSnapshot(answerCandCol, snap=>{
+        snap.docChanges().forEach(ch=>{
+          if(ch.type === "added"){
+            const c = ch.doc.data();
+            pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error);
+          }
+        });
+      });
+
+      // listen for offerCandidates (others will add them)
+      const offerCandCol = collection(currentSignalDoc, "offerCandidates");
+      onSnapshot(offerCandCol, snap=>{
+        snap.docChanges().forEach(ch=>{
+          if(ch.type === "added"){
+            const c = ch.doc.data();
+            pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error);
+          }
+        });
+      });
+
+      $("privateArea").classList.remove('hidden');
+      $("privateWith").textContent = targetCode;
+      // store unsub function in doc for cleanup if you want (not necessary here)
+    }
+
+    function setupDataChannel(channel){
+      channel.onopen = ()=> { console.log("Data channel open"); };
+      channel.onmessage = (e)=> {
+        const list = $("privateMessages");
+        const div = document.createElement("div"); div.className = "msg";
+        div.innerHTML = `<div class="small">Peer</div><div>${escapeHtml(e.data)}</div>`;
+        list.appendChild(div); list.scrollTop = list.scrollHeight;
+      };
+    }
+
+    // Listener side: respond to offer
+    // We'll watch for offer docs where 'to' equals current user's uid
+    onAuthStateChanged(auth, async user=>{
+      if(!user) return;
+      const uid = user.uid;
+      const col = collection(db,"p2pSignals");
+      // simple polling: onSnapshot for all signals, filter those directed to me and without answer
+      onSnapshot(col, async snap=>{
+        snap.docs.forEach(async ds=>{
+          const data = ds.data();
+          if(data?.offer?.to === uid && !data.answer){
+            // accept offer: create pc, set remote, create answer
+            if(pc) { pc.close(); pc = null; }
+            pc = new RTCPeerConnection(servers);
+            pc.ondatachannel = (e)=> { dc = e.channel; setupDataChannel(dc); };
+            pc.onicecandidate = async (e)=>{
+              if(e.candidate){
+                const c = e.candidate.toJSON();
+                await addDoc(collection(doc(db,"p2pSignals", ds.id), "answerCandidates"), c);
+              }
+            };
+            const offerDesc = data.offer;
+            await pc.setRemoteDescription(new RTCSessionDescription(offerDesc));
+            const answerDesc = await pc.createAnswer();
+            await pc.setLocalDescription(answerDesc);
+            await updateDoc(doc(db,"p2pSignals", ds.id), { answer: { type: answerDesc.type, sdp: answerDesc.sdp, from: uid, to: data.offer.from, createdAt: serverTimestamp() } });
+            // listen for offerCandidates and add
+            const offerCandidates = collection(doc(db,"p2pSignals", ds.id), "offerCandidates");
+            onSnapshot(offerCandidates, snap2=>{
+              snap2.docChanges().forEach(ch=>{
+                if(ch.type === "added"){
+                  pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error);
+                }
+              });
+            });
+            // listen for answerCandidates
+            const answerCandidates = collection(doc(db,"p2pSignals", ds.id), "answerCandidates");
+            onSnapshot(answerCandidates, snap3=>{
+              snap3.docChanges().forEach(ch=>{
+                if(ch.type === "added"){
+                  pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error);
+                }
+              });
+            });
+
+            // show UI
+            $("privateArea").classList.remove('hidden');
+            $("privateWith").textContent = data.offer.from === uid ? "you" : data.offer.from;
+          }
+        });
+      });
+    });
+
+    $("btnStartPrivate").onclick = async ()=>{
+      const rc = normalize($("privateRecipient").value);
+      if(!isValidCode(rc)){ alert("Enter valid recipient code"); return; }
+      await startPrivateP2P(rc);
+    };
+
+    $("privateSend").onclick = ()=>{
+      const txt = $("privateInput").value.trim(); if(!txt || !dc || dc.readyState !== "open") { alert("P2P not connected"); return; }
+      dc.send(txt);
+      const list = $("privateMessages"); const div = document.createElement("div"); div.className="msg mine"; div.innerHTML=`<div class="small">You</div><div>${escapeHtml(txt)}</div>`; list.appendChild(div); list.scrollTop = list.scrollHeight; $("privateInput").value="";
+    };
+
+    $("btnOpenPrivate").onclick = ()=> $("privateSection").classList.toggle('hidden');
+
+    // ---------- Voice call (simple WebRTC using 'calls' collection) ----------
+    let callPc = null;
+    let callDoc = null;
+    async function startLocalAudio(){
+      if(!localStream){
+        try{ localStream = await navigator.mediaDevices.getUserMedia({ audio:true, video:false }); $("localVideo").srcObject = localStream; } catch(e){ alert("Microphone access denied: " + e.message); }
+      }
+    }
+
+    $("createCallBtn").onclick = async ()=>{
+      if(!auth.currentUser) return alert("Login required");
+      await startLocalAudio();
+      callPc = new RTCPeerConnection(servers);
+      callPc.ontrack = e=> { if(!remoteStream) remoteStream = new MediaStream(); remoteStream.addTrack(e.track); $("remoteVideo").srcObject = remoteStream; };
+      localStream.getTracks().forEach(track=> callPc.addTrack(track, localStream));
+      callPc.onicecandidate = async e=> { if(e.candidate) await addDoc(collection(callDoc, "offerCandidates"), e.candidate.toJSON()); };
+      // create call doc
+      callDoc = doc(collection(db,"calls"));
+      const offerCandidates = collection(callDoc, "offerCandidates");
+      const answerCandidates = collection(callDoc, "answerCandidates");
+      const offerDesc = await callPc.createOffer();
+      await callPc.setLocalDescription(offerDesc);
+      await setDoc(callDoc, { offer: { type: offerDesc.type, sdp: offerDesc.sdp, createdAt: serverTimestamp(), from: auth.currentUser.uid } });
+      // listen for answer
+      onSnapshot(callDoc, snap=> {
+        const d = snap.data();
+        if(d?.answer && callPc && !callPc.currentRemoteDescription) callPc.setRemoteDescription(new RTCSessionDescription(d.answer)).catch(console.error);
+      });
+      onSnapshot(answerCandidates, snap=> snap.docChanges().forEach(ch=> { if(ch.type==="added") callPc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error); }));
+      // show UI
+      $("callUI").classList.remove('hidden'); $("callId").value = callDoc.id;
+      alert("Call created. Share ID: " + callDoc.id);
+    };
+
+    $("joinCallBtn").onclick = async ()=>{
+      const id = prompt("Enter call ID:");
+      if(!id) return;
+      await startLocalAudio();
+      callPc = new RTCPeerConnection(servers);
+      callPc.ontrack = e=> { if(!remoteStream) remoteStream = new MediaStream(); remoteStream.addTrack(e.track); $("remoteVideo").srcObject = remoteStream; };
+      localStream.getTracks().forEach(track=> callPc.addTrack(track, localStream));
+      callDoc = doc(db,"calls", id);
+      const callSnap = await getDoc(callDoc);
+      if(!callSnap.exists()){ alert("Call not found"); return; }
+      const data = callSnap.data();
+      // add listeners for offerCandidates
+      const offerCandidates = collection(callDoc, "offerCandidates");
+      onSnapshot(offerCandidates, snap=> snap.docChanges().forEach(ch=> { if(ch.type==="added") callPc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error); }));
+      // set remote desc
+      await callPc.setRemoteDescription(new RTCSessionDescription(data.offer));
+      const answerDesc = await callPc.createAnswer();
+      await callPc.setLocalDescription(answerDesc);
+      await updateDoc(callDoc, { answer: { type: answerDesc.type, sdp: answerDesc.sdp } });
+      const answerCandidates = collection(callDoc, "answerCandidates");
+      callPc.onicecandidate = e=> { if(e.candidate) addDoc(answerCandidates, e.candidate.toJSON()); };
+      $("callUI").classList.remove('hidden'); $("callId").value = id;
+      alert("Joined call: " + id);
+    };
+
+    $("hangupBtn").onclick = async ()=>{
+      if(callPc){ callPc.close(); callPc = null; }
+      if(localStream){ localStream.getTracks().forEach(t=>t.stop()); localStream = null; $("localVideo").srcObject = null; }
+      $("callUI").classList.add('hidden');
+    };
+    $("copyCallId").onclick = ()=> { navigator.clipboard.writeText($("callId").value||""); alert("Copied"); };
+
+    // ---------- Search, Admin ----------
+
+    $("btnSearch").onclick = async ()=>{
+      const code = normalize($("searchCode").value);
+      if(!isValidCode(code)){ $("searchResult").textContent = "Invalid code"; return; }
+      const snap = await getDoc(doc(db,"userCodes", code));
+      if(!snap.exists()){ $("searchResult").textContent = "Not found"; return; }
+      const d = snap.data(); $("searchResult").textContent = `Found: ${code} — uid: ${d.uid}`;
+    };
+
+    $("adminLogin").onclick = ()=>{
+      const p = $("adminPass").value;
+      if(p === "Oilcoin1378"){ $("adminConsole").classList.remove('hidden'); $("adminStatus").textContent = "Admin enabled (client-side)"; window._adminLogged = true; } else alert("Wrong password");
+    };
+    $("adminLogout").onclick = ()=> { $("adminConsole").classList.add('hidden'); $("adminStatus").textContent = ""; window._adminLogged = false; };
+
+    $("adminLockBtn").onclick = async ()=>{
+      const code = normalize($("adminLock").value);
+      if(!isValidCode(code)) return alert("Enter valid 10-digit code");
+      reservedNumbers.add(code); await setDoc(doc(db,"auctions", code), { code, locked:true, createdAt: serverTimestamp() });
+      renderReserved(); alert("Locked for auction (client record).");
+    };
+
+    // ---------- Utility functions ----------
+    function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+    // ---------- initial bindings ----------
+    $("btnOpenPublic").onclick = ()=> $("publicSection").classList.toggle('hidden');
+
+    // ---------- Notes for operator ----------
+    console.log("Oilgram loaded. Remember to enable Firestore TTL on 'expiresAt' for publicMessages (2 hours). Restrict API key by referrer in GCP.");
+  </script>
 </body>
 </html>
