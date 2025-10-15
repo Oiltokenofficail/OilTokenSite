@@ -1,77 +1,149 @@
-README
-Oil Token (OILTOKEN)
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Token (OILTOKEN) README</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+  }
+  h1, h2, h3 {
+    color: #1a1a1a;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  pre {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Oil Token (OILTOKEN)</h1>
 
-Overview: Oil Token is a utility and asset-backed cryptocurrency built on the TON blockchain. Each token represents one barrel of crude oil in digital form, bridging the global energy sector with decentralized finance. It enables transparent, secure, and borderless access to energy-backed assets for users worldwide.
+  <h2>Overview</h2>
+  <p>Oil Token is a utility and asset-backed cryptocurrency built on the TON blockchain. Each token represents one barrel of crude oil in digital form, bridging the global energy sector with decentralized finance. It enables transparent, secure, and borderless access to energy-backed assets for users worldwide.</p>
 
-Problem: Traditional oil markets are centralized, inaccessible to small investors, and lack transparency. Trading and ownership are often limited by intermediaries, regulations, and high costs.
+  <h2>Problem</h2>
+  <p>Traditional oil markets are centralized, inaccessible to small investors, and lack transparency. Trading and ownership are often limited by intermediaries, regulations, and high costs.</p>
 
-Solution: Oil Token (OILTOKEN) democratizes access to the energy market by tokenizing crude oil. Through blockchain technology, investors can trade, stake, and track oil-based assets securely and transparently. The token enables global participation without traditional financial barriers.
+  <h2>Solution</h2>
+  <p>Oil Token (OILTOKEN) democratizes access to the energy market by tokenizing crude oil. Through blockchain technology, investors can trade, stake, and track oil-based assets securely and transparently. The token enables global participation without traditional financial barriers.</p>
 
-Utility:
+  <h2>Utility</h2>
+  <ul>
+    <li>Trade OILTOKEN on decentralized exchanges (DEX) such as Ston.fi.</li>
+    <li>Use in energy-backed decentralized applications (dApps).</li>
+    <li>Participate in staking and rewards programs.</li>
+    <li>Long-term vision: establish price correlation between OILTOKEN and global crude oil value.</li>
+  </ul>
 
-Trade OILTOKEN on decentralized exchanges (DEX) such as Ston.fi.
-Use in energy-backed decentralized applications (dApps).
-Participate in staking and rewards programs.
-Long-term vision: establish price correlation between OILTOKEN and global crude oil value.
-Tokenomics:
+  <h2>Tokenomics</h2>
+  <p><strong>Total Supply:</strong> 10,000,000,000 OILTOKEN</p>
+  <p><strong>Locked Supply:</strong> 5,000,000,000 tokens locked for 5 years.</p>
+  <p>After 5 years, 1B tokens are released over 10 months (100M/month). Every 2 years thereafter, another 1B is released over 10 months. Full release over approximately 16 years and 3 months.</p>
 
-Total Supply: 10,000,000,000 OILTOKEN
-Locked Supply: 5,000,000,000 tokens locked for 5 years.
-After 5 years, 1B tokens are released over 10 months (100M/month).
-Every 2 years thereafter, another 1B is released over 10 months.
-Full release over approximately 16 years and 3 months.
-Initial Distribution:
-10% (1B) — Tonkeeper holders at launch
-20% (2B) — Public Sale on Exchanges
-10% (1B) — Airdrops & Rewards
-5% (500M) — Core Team (vesting after 2 years)
-5% (500M) — Community Development & Future Projects
-50% (5B) — Locked Supply
-Launch Details:
+  <h3>Initial Distribution</h3>
+  <ul>
+    <li>10% (1B) — Tonkeeper holders at launch</li>
+    <li>20% (2B) — Public Sale on Exchanges</li>
+    <li>10% (1B) — Airdrops & Rewards</li>
+    <li>5% (500M) — Core Team (vesting after 2 years)</li>
+    <li>5% (500M) — Community Development & Future Projects</li>
+    <li>50% (5B) — Locked Supply</li>
+  </ul>
 
-Token Generation Event (TGE): Yet to be confirmed
-Blockchain: TON
-Contract Address: [To be published after mainnet verification]
-Decimal: 9
-Top Holders: 35 wallets currently active
-Explorer Link: [To be added once verified on TON Explorer]
-Vesting Information:
+  <h2>Launch Details</h2>
+  <ul>
+    <li>Token Generation Event (TGE): Yet to be confirmed</li>
+    <li>Blockchain: TON</li>
+    <li>Contract Address: [To be published after mainnet verification]</li>
+    <li>Decimal: 9</li>
+    <li>Top Holders: 35 wallets currently active</li>
+    <li>Explorer Link: [To be added once verified on TON Explorer]</li>
+  </ul>
 
-Cliff Period: 60 months (5 years)
-Vesting Period: 123 months (10 years and 3 months)
-Release Schedule: Monthly (100M OILTOKEN per month during unlock periods)
-Locked Wallets: 5B tokens reserved in vesting wallets, excluded from circulating supply.
-Supply Information:
+  <h2>Vesting Information</h2>
+  <ul>
+    <li>Cliff Period: 60 months (5 years)</li>
+    <li>Vesting Period: 123 months (10 years and 3 months)</li>
+    <li>Release Schedule: Monthly (100M OILTOKEN per month during unlock periods)</li>
+    <li>Locked Wallets: 5B tokens reserved in vesting wallets, excluded from circulating supply.</li>
+  </ul>
 
-Total Supply: 10,000,000,000 OILTOKEN
-Circulating Supply: 5,000,000,000 (after 5 years unlock)
-Emission Type: Fixed supply (no minting)
-Infinite Supply: No
-Roadmap:
+  <h2>Supply Information</h2>
+  <ul>
+    <li>Total Supply: 10,000,000,000 OILTOKEN</li>
+    <li>Circulating Supply: 5,000,000,000 (after 5 years unlock)</li>
+    <li>Emission Type: Fixed supply (no minting)</li>
+    <li>Infinite Supply: No</li>
+  </ul>
 
-✅ Token creation and verification on TON
-✅ Initial distribution to Tonkeeper holders
-🔜 Public Sale (next 3 months)
-🔜 Airdrops & Reward distribution
-🔜 Exchange listings and staking program
-🔜 Expansion of utility in energy-backed dApps
-🔜 Strategic partnerships in global energy networks
-Category: Energy (energy) Oil Token integrates blockchain innovation into the energy sector, creating a transparent, secure, and globally accessible system for energy asset ownership. By tokenizing crude oil, it bridges the gap between physical commodities and decentralized finance, empowering users to invest directly in real-world energy resources.
+  <h2>Roadmap</h2>
+  <ul>
+    <li>✅ Token creation and verification on TON</li>
+    <li>✅ Initial distribution to Tonkeeper holders</li>
+    <li>🔜 Public Sale (next 3 months)</li>
+    <li>🔜 Airdrops & Reward distribution</li>
+    <li>🔜 Exchange listings and staking program</li>
+    <li>🔜 Expansion of utility in energy-backed dApps</li>
+    <li>🔜 Strategic partnerships in global energy networks</li>
+  </ul>
 
-Revenue Model: Revenue will be generated from exchange transaction fees, staking commissions, NFT-based energy certificates, and liquidity pool fees. A portion of all profits will fund community development and token buybacks.
+  <h2>Category</h2>
+  <p>Energy (energy) Oil Token integrates blockchain innovation into the energy sector, creating a transparent, secure, and globally accessible system for energy asset ownership. By tokenizing crude oil, it bridges the gap between physical commodities and decentralized finance, empowering users to invest directly in real-world energy resources.</p>
 
-Uniqueness: Oil Token is one of the first projects to tokenize crude oil on the TON blockchain. Its transparent tokenomics, long-term vesting, and real-asset backing make it unique in both energy and DeFi markets.
+  <h2>Revenue Model</h2>
+  <p>Revenue will be generated from exchange transaction fees, staking commissions, NFT-based energy certificates, and liquidity pool fees. A portion of all profits will fund community development and token buybacks.</p>
 
-Team: The Oil Token team includes blockchain developers, energy market experts, and decentralized finance strategists. Advisors support the project’s integration with real-world energy systems and partnerships.
+  <h2>Uniqueness</h2>
+  <p>Oil Token is one of the first projects to tokenize crude oil on the TON blockchain. Its transparent tokenomics, long-term vesting, and real-asset backing make it unique in both energy and DeFi markets.</p>
 
-Market Opportunity: The global energy sector exceeds $6 trillion. Tokenizing oil assets allows digital investors to participate in this massive market through transparent, secure, and borderless blockchain access.
+  <h2>Team</h2>
+  <p>The Oil Token team includes blockchain developers, energy market experts, and decentralized finance strategists. Advisors support the project’s integration with real-world energy systems and partnerships.</p>
 
-Social Links:
+  <h2>Market Opportunity</h2>
+  <p>The global energy sector exceeds $6 trillion. Tokenizing oil assets allows digital investors to participate in this massive market through transparent, secure, and borderless blockchain access.</p>
 
-🌐 Website: https://oiltokenofficail.github.io/OilTokenSite/
-💬 Telegram: https://t.me/OilTokenOfficial
-🐦 X (Twitter): https://x.com/OilToken_
-📸 Instagram: https://www.instagram.com/oiltokenofficail
-💻 GitHub: https://github.com/OilTokenOfficail
-📧 Email: oiltokenofficail@gmail.com
-Summary: Oil Token (OILTOKEN) is a decentralized, energy-backed token designed to make global oil investment transparent, accessible, and secure. Built on TON, it represents the future of digital energy markets — combining blockchain innovation with real-world value.
+  <h2>Social Links</h2>
+  <ul>
+    <li>🌐 Website: <a href="https://oiltokenofficail.github.io/OilTokenSite/" target="_blank">oiltokenofficail.github.io</a></li>
+    <li>💬 Telegram: <a href="https://t.me/OilTokenOfficial" target="_blank">t.me/OilTokenOfficial</a></li>
+    <li>🐦 X (Twitter): <a href="https://x.com/OilToken_" target="_blank">x.com/OilToken_</a></li>
+    <li>📸 Instagram: <a href="https://www.instagram.com/oiltokenofficail" target="_blank">instagram.com/oiltokenofficail</a></li>
+    <li>💻 GitHub: <a href="https://github.com/OilTokenOfficail" target="_blank">github.com/OilTokenOfficail</a></li>
+    <li>📧 Email: oiltokenofficail@gmail.com</li>
+  </ul>
+
+  <h2>Summary</h2>
+  <p>Oil Token (OILTOKEN) is a decentralized, energy-backed token designed to make global oil investment transparent, accessible, and secure. Built on TON, it represents the future of digital energy markets — combining blockchain innovation with real-world value.</p>
+
+  <h2>Example Code / Copy Box</h2>
+  <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9; display: inline-block;">
+    <pre><code>یا Discretion</code></pre>
+  </div>
+</div>
+</body>
+</html>
