@@ -1,63 +1,177 @@
-<section id="team" style="padding:60px 20px; max-width:1200px; margin:auto; background:linear-gradient(135deg,#2a004a,#120033); border-radius:18px; color:#fff; box-shadow:0 0 25px rgba(255,215,0,0.2); font-family:'Segoe UI',sans-serif;">
-  <h2 style="text-align:center; font-size:32px; margin-bottom:40px; color:#ffd700; letter-spacing:1px;">🌟 Team & Advisors — Oil Token Official</h2>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OILToken — Official Site</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --accent: linear-gradient(135deg,#009dff,#7f00ff);
+      --gold: linear-gradient(135deg,#ffd700,#ff6a00);
+      --card-radius:16px;
+      --gap:14px;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Poppins,system-ui,Arial; margin:0; background:var(--bg); color:#111; -webkit-font-smoothing:antialiased}
+    .wrap{max-width:1200px;margin:18px auto;padding:20px}
+    header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .brand{flex:1;min-width:260px}
+    .brand h1{margin:0;color:#111;font-size:26px}
+    .brand p{margin:6px 0 0;color:var(--muted)}
+    nav.top-nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav.top-nav a{padding:8px 12px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;background:linear-gradient(135deg,#ff416c,#ff7b00);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .hero{margin-top:18px;border-radius:16px;padding:22px;background:linear-gradient(135deg,#ffffff,#f7fbff);box-shadow:0 10px 30px rgba(11,18,32,0.04)}
+    .hero h2{margin:0 0 8px}
+    .hero p{margin:0;color:#333}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    .section-title{font-weight:800;margin-bottom:8px}
+    .sub{color:var(--muted);font-size:13px}
+    .big-cta{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,#00c6ff,#0072ff);color:#fff;text-decoration:none;font-weight:800}
+    .link-list{display:flex;flex-direction:column;gap:8px}
+    .link-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(135deg,#fff,#f5f7ff);border:1px solid #eee}
+    .link-item a{color:#111;text-decoration:none;font-weight:700}
+    .contacts{font-size:14px}
+    iframe#oilgram-iframe{width:100%;height:640px;border-radius:12px;border:1px solid #eee}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px;padding:18px}
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} iframe#oilgram-iframe{height:560px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>Welcome to OILToken</h1>
+        <p>The future of decentralized oil-backed digital assets — modernizing the oil market with blockchain.</p>
+      </div>
 
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
-    
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center; box-shadow:0 0 10px rgba(255,255,255,0.1);">
-      <h3 style="color:#ffcc33;">P.S</h3>
-      <p>Digital Assets Specialist & Project Manager</p>
+      <nav class="top-nav" aria-label="Explore">
+        <a href="WhitePaper.html" target="_blank">WhitePaper</a>
+        <a href="Roadmap.html" target="_blank">Roadmap</a>
+        <a href="Tokenomics.html" target="_blank">Tokenomics</a>
+        <a href="Team.html" target="_blank">Team</a>
+        <a href="Description.html" target="_blank">Description</a>
+        <a href="https://oiltokenofficail.github.io/OilTokenSite/oilgram.html" target="_blank" style="background:linear-gradient(135deg,#00b09b,#96c93d)">Oilgram</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>OILToken — Digital energy, reimagined</h2>
+      <p>OILToken is a unique digital asset aiming to bring the global oil market into a transparent, tradable, and decentralized framework. Join holders and early supporters today.</p>
+    </section>
+
+    <div style="margin-top:18px" class="card">
+      <div class="section-title">Explore — Quick Links</div>
+      <div class="link-list">
+        <div class="link-item">
+          <a href="https://oilprice.com/" target="_blank">Oil Market News (live)</a>
+          <span class="sub">oilprice.com</span>
+        </div>
+        <div class="link-item">
+          <a href="https://coinmarketcap.com/" target="_blank">Crypto Live — CoinMarketCap</a>
+          <span class="sub">coinmarketcap.com</span>
+        </div>
+        <div class="link-item">
+          <a href="https://www.coingecko.com/" target="_blank">Crypto Live — CoinGecko</a>
+          <span class="sub">coingecko.com</span>
+        </div>
+        <div class="link-item">
+          <a href="https://www.bloomberg.com/live" target="_blank">Bloomberg TV</a>
+          <span class="sub">bloomberg.com</span>
+        </div>
+        <div class="link-item">
+          <a href="https://app.ston.fi/swap" target="_blank">STON.fi (swap / pool)</a>
+          <span class="sub">STON.fi</span>
+        </div>
+        <div class="link-item contacts">
+          <div>
+            <strong>Connect with us</strong><br/>
+            Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a> — Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">M.B</h3>
-      <p>Senior Expert in Marketing & Global Trade</p>
+    <div class="grid" style="margin-top:18px">
+      <div>
+        <!-- Place for any future content / news -->
+        <div class="card">
+          <div class="section-title">Latest Announcement</div>
+          <div class="sub">Multi-chain expansion — OILToken will soon be available on Ethereum and BSC, in addition to TON. Follow official channels for launch details.</div>
+        </div>
+
+        <!-- Oilgram section: embedded iframe -->
+        <div style="margin-top:18px">
+          <div class="card">
+            <div class="section-title">Oilgram — Chat & Calls (embedded)</div>
+            <div class="sub">Oilgram is embedded below. If you uploaded <code>oilgram.html</code> to the same folder on GitHub Pages, it will load here. Otherwise click the Open button to open in a new tab.</div>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <a class="big-cta" href="https://oiltokenofficail.github.io/OilTokenSite/oilgram.html" target="_blank">Open Oilgram (new tab)</a>
+              <button class="big-cta" style="background:linear-gradient(90deg,#00b09b,#00ffcc)" onclick="reloadIframe()">Reload embed</button>
+            </div>
+
+            <div style="margin-top:12px">
+              <!-- IFRAME: will show oilgram.html if present in same repo root -->
+              <iframe id="oilgram-iframe" src="oilgram.html" title="Oilgram chat"></iframe>
+            </div>
+
+            <div style="margin-top:8px" class="small">
+              Notes:
+              <ul>
+                <li>For chat & calls to work you must upload <code>oilgram.html</code> and its scripts to the same GitHub Pages site (same folder).</li>
+                <li>Make sure Firebase configuration is provided securely to <code>oilgram.html</code> (see instructions below).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <div class="section-title">Reserved Codes (examples)</div>
+          <div class="sub">Numbers starting with <strong>666</strong> where three (or more) identical digits appear consecutively after the prefix are reserved for auction.</div>
+          <div style="margin-top:8px" class="small">
+            Examples: 6660000000 • 6661111111 • 6665550000 • 6667777000
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="section-title">Admin</div>
+          <div class="small">Admin UI & moderation live inside Oilgram (client demo). For secure admin actions use server-side tools.</div>
+        </div>
+      </aside>
     </div>
 
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Miss N</h3>
-      <p>Senior Expert in International Insurance</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Mr F</h3>
-      <p>Senior Expert in Accounting & Finance</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Ms A</h3>
-      <p>Senior Expert in International Law</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Mr Bs</h3>
-      <p>Senior Marketing Specialist</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Ms S</h3>
-      <p>Project Program Manager</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.08); border-radius:15px; padding:20px; text-align:center;">
-      <h3 style="color:#ffcc33;">Ms F</h3>
-      <p>Public Relations Manager</p>
-    </div>
-
+    <footer>
+      © <strong>OILToken Team</strong> — official channels: <a href="https://t.me/oilofficial" target="_blank">Telegram</a> • Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
+    </footer>
   </div>
 
-  <div style="margin-top:50px; background:rgba(255,255,255,0.05); border-radius:15px; padding:25px; line-height:1.8; font-size:16px;">
-    <h3 style="color:#ffd700; margin-bottom:15px;">🧭 Team Overview</h3>
-    <p>Our team consists of young, talented, and highly intelligent innovators working full-time to bring Oil Token (OILTOKEN) to life. Although this is our first joint venture, our shared vision, technical skill, and discipline drive us toward rapid recognition in the crypto community.</p>
+  <script>
+    // Helper to reload the embedded oilgram iframe (useful after you upload oilgram.html)
+    function reloadIframe(){
+      const iframe = document.getElementById('oilgram-iframe');
+      iframe.src = iframe.src.split('#')[0] + '#reload-' + Date.now();
+    }
 
-    <h3 style="color:#ffd700; margin-top:25px; margin-bottom:10px;">👥 Team Composition</h3>
-    <p>All team members are fully dedicated and working full-time on the Oil Token project, ensuring continuous progress and professional execution.</p>
+    // Security note shown in console (not exposing any secret here)
+    console.log('Index loaded. Make sure oilgram.html has Firebase config securely provided (see README).');
+  </script>
 
-    <h3 style="color:#ffd700; margin-top:25px; margin-bottom:10px;">💬 Public Presence & Communication Channel</h3>
-    <p>For security and privacy reasons, all official communications and inquiries are handled exclusively through our verified Telegram channel:</p>
-    <p style="text-align:center; margin-top:10px;"><a href="https://t.me/oilofficial" style="color:#ffcc33; font-weight:bold; text-decoration:none;">🔗 https://t.me/oilofficial</a></p>
-    <p>At this stage, the team members prefer to remain pseudonymous until key milestones are achieved.</p>
-
-    <h3 style="color:#ffd700; margin-top:25px; margin-bottom:10px;">🕓 Work History</h3>
-    <p>The founding members have been collaborating full-time since the inception of the project, dedicating their expertise to ensuring technical precision and project integrity.</p>
-  </div>
-</section>
+  <!--
+    IMPORTANT: Protecting Firebase config
+    ------------------------------------
+    - This index.html intentionally does NOT include any Firebase keys.
+    - Provide Firebase config only inside oilgram.html or a separate JS file that you DO NOT commit publicly.
+      Example: create a file named `private-config.js` (locally) which contains:
+        window.__FIREBASE_CONFIG = { apiKey: "...", authDomain: "...", projectId: "...", ... };
+      Then in oilgram.html load that file BEFORE any Firebase SDK code:
+        <script src="private-config.js"></script>
+        <script type="module" src="oilgram-main.js"></script>
+      IMPORTANT: Do NOT push private-config.js to a public GitHub repository.
+    - For production consider using Firebase Hosting or a server to serve config from an environment-protected endpoint.
+  -->
+</body>
+</html>
