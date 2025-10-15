@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oilgram — Chat & Calls</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial;margin:0;padding:16px;background:#f7f9fc;color:#111}
+    .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);max-width:1100px;margin:0 auto}
+    .row{display:flex;gap:8px}
+    input,button{padding:8px;border-radius:8px;border:1px solid #e6e6e9}
+    .hidden{display:none}
+    .small{font-size:13px;color:#666}
+    .messages{height:200px;overflow:auto;border:1px solid #eee;padding:8px;border-radius:8px;background:#fafbff}
+    video{width:100%;border-radius:8px;background:#000}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Oilgram — Chat & Calls</h2>
+    <div id="oilgramStatus" class="small">Loading...</div>
+
+    <div id="authSection" style="margin-top:12px">
+      <div>
+        <label>Email</label><input id="su-email" type="email" placeholder="you@example.com"/><br/>
+        <label>Password</label><input id="su-pass" type="password" placeholder="min 6 chars"/><br/>
+        <label>Choose code (optional)</label><input id="su-code" placeholder="6661234567"/><br/>
+        <div class="row" style="margin-top:8px">
+          <button id="btn-signup">Sign Up</button>
+          <button id="btn-show-login">Go to Login</button>
+        </div>
+      </div>
+
+      <div id="loginBlock" class="hidden" style="margin-top:8px">
+        <label>Email</label><input id="li-email" type="email"/><br/>
+        <label>Password</label><input id="li-pass" type="password"/><br/>
+        <div class="row"><button id="btn-login">Login</button><button id="btn-show-signup">Back to Sign Up</button></div>
+      </div>
+
+      <div id="profileBox" class="hidden" style="margin-top:8px">
+        <div><strong id="meEmail"></strong></div>
+        <div id="meCode" class="small"></div>
+        <button id="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <label>Assign / Reserve Number</label>
+      <input id="chosenNumber" placeholder="6661234567"/>
+      <div class="row" style="margin-top:8px">
+        <button id="btn-check-number">Check</button>
+        <button id="btn-assign-number">Assign</button>
+      </div>
+      <div id="numberFeedback" class="small" style="margin-top:8px"></div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div><strong>Public Chat</strong></div>
+        <div><button id="openPublic">Open</button></div>
+      </div>
+      <div id="publicSection" class="hidden" style="margin-top:8px">
+        <div class="messages" id="publicMessages"></div>
+        <div class="row" style="margin-top:8px">
+          <input id="publicInput" placeholder="Write public message..."/><button id="publicSend">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div><strong>Private Chat</strong></div>
+        <div><button id="openPrivate">Open</button></div>
+      </div>
+      <div id="privateSection" class="hidden" style="margin-top:8px">
+        <label>Recipient code</label><input id="privateRecipientCode" placeholder="6661234567"/>
+        <div class="row" style="margin-top:8px"><button id="startPrivate">Start Private Chat</button></div>
+
+        <div id="privateArea" class="hidden" style="margin-top:8px">
+          <div class="small">Chat with: <span id="privateWith"></span></div>
+          <div class="messages" id="privateMessages"></div>
+          <div class="row"><input id="privateInput" placeholder="Write private message..."/><button id="privateSend">Send</button></div>
+        </div>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <div><strong>Voice / Video Call (1:1)</strong></div>
+      <div class="row" style="margin-top:8px">
+        <button id="btn-create-call">Create Call (Offer)</button>
+        <button id="btn-join-call">Join Call (by ID)</button>
+      </div>
+
+      <div id="callArea" class="hidden" style="margin-top:8px">
+        <div class="row">
+          <div style="flex:1"><div class="small">Local</div><video id="localVideo" autoplay muted playsinline></video></div>
+          <div style="flex:1"><div class="small">Remote</div><video id="remoteVideo" autoplay playsinline></video></div>
+        </div>
+        <div style="margin-top:8px" class="row">
+          <input id="callIdInput" placeholder="Call ID"/><button id="btnCopyCallId">Copy ID</button>
+        </div>
+        <div style="margin-top:6px"><button id="btnHangup">Hang Up</button></div>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <div><strong>Admin (client demo)</strong></div>
+      <input id="adminPass" placeholder="admin password"/><div class="row"><button id="adminLogin">Open Admin</button><button id="adminLogout">Close</button></div>
+      <div id="adminConsole" class="hidden" style="margin-top:8px">
+        <input id="adminLockCode" placeholder="6660000000"/><button id="adminLock">Lock Code</button>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div style="margin-top:12px">
+      <div><strong>Reserved examples</strong></div>
+      <div id="reservedList" class="small" style="margin-top:6px"></div>
+    </div>
+  </div>
+
+  <!-- Load private-config.js if present (this file MUST NOT be public) -->
+  <script>
+    // private-config.js (optional) should set: window.__FIREBASE_CONFIG = { apiKey: "...", authDomain: "...", ... };
+    // If private-config.js not present, page will show message and not initialize.
+    (function(){
+      const s = document.createElement('script');
+      s.src = 'private-config.js';
+      s.onload = ()=>{ console.log('private-config loaded'); };
+      s.onerror = ()=>{ console.warn('private-config.js not found — please add it with your firebaseConfig'); };
+      document.head.appendChild(s);
+    })();
+  </script>
+
+  <!-- firebase SDKs -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+
+  <!-- main logic -->
+  <script type="module" src="oilgram-main.js"></script>
+</body>
+</html>
