@@ -93,11 +93,9 @@
       </div>
     </div>
     
-        <div class="card" style="margin-top:12px">
-          <div class="section-title">Admin</div>
-          <div class="small">Admin UI & moderation live inside Oilgram (client demo). For secure admin actions use server-side tools.</div>
-        </div>
-      </aside>
+    <div class="card" style="margin-top:12px">
+      <div class="section-title">Admin</div>
+      <div class="small">Admin UI & moderation live inside Oilgram (client demo). For secure admin actions use server-side tools.</div>
     </div>
 
     <footer>
@@ -105,12 +103,24 @@
     </footer>
   </div>
 
-  <script>
-    function reloadIframe(){
-      const iframe = document.getElementById('oilgram-iframe');
-      iframe.src = iframe.src.split('#')[0] + '#reload-' + Date.now();
-    }
-    console.log('Index loaded.');
+  <!-- Firebase Initialization -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";  
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";  
+
+    const firebaseConfig = {  
+      apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",  
+      authDomain: "oilgram.firebaseapp.com",  
+      projectId: "oilgram",  
+      storageBucket: "oilgram.firebasestorage.app",  
+      messagingSenderId: "555429946689",  
+      appId: "1:555429946689:web:1ad245cfe30e0e67936dc0",  
+      measurementId: "G-669LKXWGZW"  
+    };  
+
+    const app = initializeApp(firebaseConfig);  
+    const analytics = getAnalytics(app);  
+    console.log('Firebase initialized successfully');
   </script>
 </body>
-          </html>
+</html>
