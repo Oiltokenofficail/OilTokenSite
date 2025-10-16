@@ -5,169 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>OILToken — Official</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --blue: #0b66ff;
-      --muted: #666;
+    :root{
+      --bg:#ffffff;
+      --blue:#0b66ff;
+      --muted:#666;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, Arial;
-      background: var(--bg);
-      color: #111;
-    }
-    header {
-      position: relative;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-    .brand h1 {
-      margin: 0;
-      color: #111;
-      font-size: 26px;
-    }
-    .brand p {
-      margin: 6px 0 0;
-      color: var(--muted);
-    }
-    nav.top-nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    nav.top-nav a {
-      padding: 8px 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #fff;
-      background: var(--blue);
-      font-weight: 700;
-    }
-    .wrap {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      position: relative;
-    }
-    .hero {
-      border-radius: 12px;
-      padding: 22px;
-      background: #fff;
-      box-shadow: 0 6px 20px rgba(11,18,32,0.04);
-    }
-    .link-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .link-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #eee;
-    }
-    .cta-blue {
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: var(--blue);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 18px;
-      margin-top: 18px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    }
-    .section-title {
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    footer {
-      margin-top: 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      padding: 18px;
-    }
-    /* watermark oil barrel */
-    body::before {
-      content: "";
-      position: fixed;
-      right: 20px;
-      top: 20px;
-      width: 220px;
-      height: 220px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><g opacity="0.07" fill="%23000"><path d="M50 20h100v20H50zM40 40h120v20H40zM60 70h80v80H60z"/></g></svg>') center/contain no-repeat;
-      pointer-events: none;
-      z-index: 0;
-    }
-    /* slideshow */
-    .slideshow {
-      height: 220px;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fafafa;
-    }
-    .slide {
-      width: 100%;
-      height: 100%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .slide img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .slide.active { display: flex; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#111}
+    .wrap{max-width:1200px;margin:18px auto;padding:20px;position:relative}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+    .brand h1{margin:0;color:#111;font-size:26px}
+    .brand p{margin:6px 0 0;color:var(--muted)}
+    nav.top-nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav.top-nav a{padding:8px 12px;border-radius:10px;text-decoration:none;color:#fff;background:var(--blue);font-weight:700}
+    .hero{margin-top:18px;border-radius:12px;padding:22px;background:#fff;box-shadow:0 6px 20px rgba(11,18,32,0.04)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    .section-title{font-weight:800;margin-bottom:8px}
+    .cta-blue{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;text-align:center}
+    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px;padding:18px}
 
-    /* top-right menu button */
-    #modalBtn {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-      z-index: 10;
+    /* watermark oil barrel */
+    body::before{
+      content:"";
+      position:fixed;
+      right:20px; top:20px;
+      width:220px;height:220px;
+      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><g opacity="0.07" fill="%23000"><path d="M50 20h100v20H50zM40 40h120v20H40zM60 70h80v80H60z"/></g></svg>') center/contain no-repeat;
+      pointer-events:none;
+      z-index:0;
     }
-    @media(max-width:980px){
-      .grid { grid-template-columns: 1fr; }
-    }
+
+    /* floating modal button (menu) */
+    #modalBtn{position:fixed;right:18px;bottom:18px;padding:12px 14px;border-radius:12px;background:var(--blue);color:#fff;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.15)}
+
+    /* admin modal */
+    #adminModal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.3);padding:20px;z-index:10000;width:320px;max-width:90%}
+    #adminModal h3{margin-top:0;color:#0b66ff}
+    #adminModal button{margin-top:10px;padding:8px 12px;border:none;border-radius:8px;background:var(--blue);color:#fff;cursor:pointer}
+
+    /* menu modal */
+    #siteModal{display:none;position:fixed;right:18px;bottom:78px;width:320px;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.2);padding:14px;z-index:10000}
+    #siteModal a{padding:8px 10px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;text-align:center;font-weight:700}
+    #siteModal button{margin-top:6px;padding:6px 10px;background:#eee;border:none;border-radius:8px;cursor:pointer}
+
+    /* slideshow */
+    .slideshow{height:220px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fafafa}
+    .slide{width:100%;height:100%;display:none;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+    .slide img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+    .slide.active{display:flex}
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
   </style>
 </head>
-<body>
-  <button id="modalBtn" onclick="openModal()">☰</button>
 
+<body>
   <div class="wrap">
     <header>
       <div class="brand">
         <h1>Welcome to OILToken</h1>
-        <p>OILToken — bridging oil markets and blockchain. Trade, communicate and grow with the community.</p>
+        <p>Modernizing the oil market through blockchain innovation.</p>
       </div>
 
       <nav class="top-nav" aria-label="Explore">
@@ -175,18 +71,20 @@
         <a href="Roadmap.html" target="_blank">Roadmap</a>
         <a href="Tokenomics.html" target="_blank">Tokenomics</a>
         <a href="Description.html" target="_blank">Description</a>
-        <a href="connect.html" target="_blank">Connect us</a>
+        <a href="https://t.me/oilofficial" target="_blank">Connect us</a>
       </nav>
     </header>
 
     <div class="hero">
       <div class="section-title">Explore</div>
-      <div class="link-list">
-        <div class="link-item"><div>Oil Market News</div><a class="cta-blue" href="https://oilprice.com" target="_blank">Oilnews</a></div>
-        <div class="link-item"><div>Crypto News</div><a class="cta-blue" href="https://cointelegraph.com" target="_blank">Cryptonews</a></div>
-        <div class="link-item"><div>Crypto Live</div><a class="cta-blue" href="https://coinmarketcap.com" target="_blank">Crypto Live</a></div>
-        <div class="link-item"><div>Bloomberg Live</div><a class="cta-blue" href="https://www.bloomberg.com/live" target="_blank">Bloomberg</a></div>
-        <div class="link-item"><div>Oilgram (chat & calls)</div><a class="cta-blue" href="oilgram.html" target="_blank">Open Oilgram</a></div>
+      <div class="card">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a class="cta-blue" href="https://oilprice.com" target="_blank">Oil News</a>
+          <a class="cta-blue" href="https://cointelegraph.com" target="_blank">Crypto News</a>
+          <a class="cta-blue" href="https://coinmarketcap.com" target="_blank">Crypto Live</a>
+          <a class="cta-blue" href="https://www.bloomberg.com/live" target="_blank">Bloomberg</a>
+          <a class="cta-blue" href="oilgram.html" target="_blank">Oilgram</a>
+        </div>
       </div>
     </div>
 
@@ -194,28 +92,22 @@
       <main>
         <div class="card">
           <div class="section-title">OILToken News & Exchange</div>
-          <p style="color:var(--muted)">Latest announcements, partnerships and exchange integrations.</p>
-          <div style="margin-top:10px">
-            <a class="cta-blue" href="https://app.ston.fi/swap" target="_blank">STON.fi (swap)</a>
-          </div>
+          <p style="color:var(--muted)">Latest updates and partnerships.</p>
+          <a class="cta-blue" href="https://app.ston.fi/swap" target="_blank">STON.fi (swap)</a>
         </div>
 
         <div class="card" style="margin-top:18px">
-          <div class="section-title">Admin (password protected)</div>
-          <p class="small">Admin can sign in to manage site blocks and reserved numbers.</p>
-          <div style="margin-top:8px">
-            <button class="cta-blue" onclick="openAdminPrompt()">Admin login</button>
-            <div id="adminNotice" class="small" style="margin-top:8px;color:#900"></div>
-          </div>
+          <div class="section-title">Admin Panel</div>
+          <button class="cta-blue" onclick="openAdminPrompt()">Admin Login</button>
         </div>
 
         <div class="card" style="margin-top:18px">
           <div class="section-title">About Oilgram</div>
-          <p>Oilgram is a dedicated chat & voice-call app for OILToken holders — direct P2P voice calls and private chat (no server-side storing of private messages).</p>
+          <p>Oilgram is a dedicated platform for OILToken users to connect through secure, private P2P voice communication — with zero data storage.</p>
         </div>
 
         <div class="card" style="margin-top:18px">
-          <div class="section-title">Documents slideshow</div>
+          <div class="section-title">Documents Slideshow</div>
           <div class="slideshow" id="slideshow">
             <div class="slide active"><img src="Description.png" alt="Description"></div>
             <div class="slide"><img src="WhitePaper.png" alt="WhitePaper"></div>
@@ -227,70 +119,82 @@
 
       <aside>
         <div class="card">
-          <div class="section-title">Reserved Numbers</div>
-          <div class="small" style="margin-top:8px">
-            Numbers with 3 or more identical digits after 666 are locked for auction unless admin releases them.
-          </div>
+          <div class="section-title">Reserved Codes</div>
+          <p class="small">Numbers with 3+ identical digits after 666 are locked for auction unless admin releases them.</p>
         </div>
 
         <div class="card" style="margin-top:12px">
-          <div class="section-title">Contact Us</div>
-          <div class="small">
-            Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a><br>
-            Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a>
-          </div>
+          <div class="section-title">Contact</div>
+          <p>Telegram: <a href="https://t.me/oilofficial" target="_blank">@oilofficial</a><br>
+             Email: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a></p>
         </div>
       </aside>
     </div>
 
     <footer>
-      © OILToken — All rights reserved • 
-      Contact: <a href="mailto:oiltokenofficial@gmail.com">oiltokenofficial@gmail.com</a> • 
-      Telegram: <a href="https://t.me/oilofficial" target="_blank">t.me/oilofficial</a>
+      © 2025 OILToken — All rights reserved • <a href="mailto:oiltokenofficial@gmail.com">Email</a> • 
+      <a href="https://t.me/oilofficial" target="_blank">Telegram</a>
     </footer>
   </div>
 
-  <!-- Modal -->
-  <div id="siteModal" style="display:none;position:fixed;right:18px;top:70px;width:300px;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.2);padding:14px;z-index:10000">
+  <!-- Floating Menu Button -->
+  <button id="modalBtn" onclick="toggleMenu()">☰ Menu</button>
+
+  <!-- Quick Menu -->
+  <div id="siteModal">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <strong>Quick Links</strong>
-      <button onclick="document.getElementById('siteModal').style.display='none'">Close</button>
+      <button onclick="toggleMenu()">Close</button>
     </div>
     <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
-      <a class="cta-blue" href="WhitePaper.html" target="_blank">WhitePaper</a>
-      <a class="cta-blue" href="Roadmap.html" target="_blank">Roadmap</a>
-      <a class="cta-blue" href="Tokenomics.html" target="_blank">Tokenomics</a>
-      <a class="cta-blue" href="Description.html" target="_blank">Description</a>
-      <a class="cta-blue" href="connect.html" target="_blank">Connect us</a>
-      <a class="cta-blue" href="oilgram.html" target="_blank">Open Oilgram</a>
+      <a href="WhitePaper.html" target="_blank">WhitePaper</a>
+      <a href="Roadmap.html" target="_blank">Roadmap</a>
+      <a href="Tokenomics.html" target="_blank">Tokenomics</a>
+      <a href="Description.html" target="_blank">Description</a>
+      <a href="https://t.me/oilofficial" target="_blank">Connect Us</a>
+      <a href="oilgram.html" target="_blank">Oilgram</a>
     </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="adminModal">
+    <h3>Admin Panel</h3>
+    <p>You are now logged in as Admin.</p>
+    <p><b>Tools:</b></p>
+    <button onclick="alert('Reserved numbers updated')">Update Reserved Numbers</button>
+    <button onclick="alert('News section updated')">Update News</button>
+    <button onclick="closeAdmin()">Logout</button>
   </div>
 
   <script>
     // Slideshow
-    (function() {
+    (function slideshow(){
       const slides = document.querySelectorAll('.slide');
-      let idx = 0;
-      setInterval(() => {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
+      let i = 0;
+      setInterval(()=>{
+        slides[i].classList.remove('active');
+        i = (i+1)%slides.length;
+        slides[i].classList.add('active');
       }, 10000);
     })();
 
-    function openModal() {
-      document.getElementById('siteModal').style.display = 'block';
+    function toggleMenu(){
+      const m = document.getElementById('siteModal');
+      m.style.display = (m.style.display==='block'?'none':'block');
     }
 
-    function openAdminPrompt() {
+    function openAdminPrompt(){
       const pass = prompt("Enter admin password:");
-      if (pass === 'you1378$') {
-        alert("Admin unlocked. (Admin panel coming soon)");
-        document.getElementById('adminNotice').textContent = "Admin: unlocked";
-      } else {
-        document.getElementById('adminNotice').textContent = "Wrong password";
+      if(pass === "you1378$"){
+        document.getElementById('adminModal').style.display='block';
+      }else{
+        alert("Wrong password!");
       }
+    }
+
+    function closeAdmin(){
+      document.getElementById('adminModal').style.display='none';
     }
   </script>
 </body>
-    </html>
+                                                                      </html>
