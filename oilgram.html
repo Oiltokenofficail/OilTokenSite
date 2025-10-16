@@ -1,447 +1,231 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oilgram — Voice Calls (OIL)</title>
   <style>
-    :root{ --bg:#fff; --accent:#6a0dad; --muted:#666; --radius:12px; --success:#16a34a; --danger:#e11d48; }
+    :root{ --bg:#fff; --accent:#6a0dad; --muted:#666; --radius:12px }
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#111;}
+    body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#111}
     .wrap{max-width:980px;margin:18px auto;padding:18px}
-    header{display:flex;align-items:center;justify-content:space-between}
     .card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-    input,textarea,button,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;margin:6px 0}
+    input,button{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;margin:6px 0}
     .row{display:flex;gap:8px}
-    .messages{height:320px;overflow:auto;padding:10px;border-radius:10px;background:#f7f8fa;border:1px solid #eee}
-    .msg{padding:8px;border-radius:8px;margin-bottom:8px;background:#fff;border:1px solid #eee}
-    .mine{background:#e6ffe9}
     .small{font-size:13px;color:var(--muted)}
     .btn{background:var(--accent);color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer}
     .btn.ghost{background:#fff;color:var(--accent);border:1px solid #eee}
     .hidden{display:none}
-    video{width:100%;border-radius:8px;background:#000}
-    .call-area{display:flex;gap:8px;flex-wrap:wrap}
-    .reserved{color:var(--danger);font-weight:700}
+    audio{width:100%;border-radius:8px;background:#000}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <header style="display:flex;justify-content:space-between;align-items:center">
       <h2>Oilgram — Voice Calls (OIL)</h2>
       <div class="small">Auth: Email/password (email verification required) • Codes start with <strong>666</strong></div>
     </header>
 
-    <div style="display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:16px">
-      <div>
-        <div class="card" id="authCard">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <strong>Sign up / Login</strong>
-              <div class="small">Sign up with email/password. You must verify your email before using calls. After sign-up assign your 10-digit code (starts with 666).</div>
-            </div>
-            <div id="profileBox" class="hidden">
-              <div id="meEmail" style="font-weight:700"></div>
-              <div id="meCode" class="small"></div>
-              <button class="btn ghost" id="btnLogout">Logout</button>
-            </div>
+    <div style="margin-top:16px">
+      <div class="card" id="authCard">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <strong>Sign up / Login</strong>
+            <div class="small">Sign up with email/password. Verify email to assign codes and use calls.</div>
           </div>
-
-          <div id="authForms" style="margin-top:10px">
-            <div id="signup">
-              <label>Email</label><input id="suEmail" type="email" />
-              <label>Password</label><input id="suPass" type="password" />
-              <label>Choose code (optional)</label><input id="suCode" placeholder="6661234567 (optional)" />
-              <div class="row" style="margin-top:8px">
-                <button class="btn" id="btnSignup">Sign Up</button>
-                <button class="btn ghost" id="btnShowLogin">Login</button>
-              </div>
-            </div>
-
-            <div id="login" class="hidden">
-              <label>Email</label><input id="liEmail" type="email" />
-              <label>Password</label><input id="liPass" type="password" />
-              <div class="row" style="margin-top:8px">
-                <button class="btn" id="btnLogin">Login</button>
-                <button class="btn ghost" id="btnShowSignup">Back</button>
-              </div>
-            </div>
-
-            <div style="margin-top:10px">
-              <label>Assign / Reserve number</label>
-              <input id="chosenNumber" placeholder="6661234567" />
-              <div class="small" id="numNotice">Numbers with 3 identical digits in a row after 666 are reserved for auction.</div>
-              <div class="row">
-                <button class="btn" id="btnCheck">Check</button>
-                <button class="btn ghost" id="btnAssign">Assign</button>
-              </div>
-              <div id="numFeedback" class="small" style="margin-top:8px"></div>
-            </div>
+          <div id="profileBox" class="hidden">
+            <div id="meEmail" style="font-weight:700"></div>
+            <div id="meCode" class="small"></div>
+            <button class="btn ghost" id="btnLogout">Logout</button>
           </div>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <strong>Voice Call (1:1)</strong>
-          <div class="small">Make a P2P voice call. Both users must be signed in and email-verified. Create a call (offer) and share Call ID with recipient.</div>
+        <div id="authForms" style="margin-top:10px">
+          <div id="signup">
+            <label>Email</label><input id="suEmail" type="email" />
+            <label>Password</label><input id="suPass" type="password" />
+            <label>Choose code (optional)</label><input id="suCode" placeholder="6661234567 (optional)" />
+            <div class="row" style="margin-top:8px">
+              <button class="btn" id="btnSignup">Sign Up</button>
+              <button class="btn ghost" id="btnShowLogin">Login</button>
+            </div>
+          </div>
+
+          <div id="login" class="hidden">
+            <label>Email</label><input id="liEmail" type="email" />
+            <label>Password</label><input id="liPass" type="password" />
+            <div class="row" style="margin-top:8px">
+              <button class="btn" id="btnLogin">Login</button>
+              <button class="btn ghost" id="btnShowSignup">Back</button>
+            </div>
+          </div>
+
+          <div style="margin-top:10px">
+            <label>Assign / Reserve number</label>
+            <input id="chosenNumber" placeholder="6661234567" />
+            <div class="small" id="numNotice">Numbers with 3 identical digits in a row after 666 are reserved for auction.</div>
+            <div class="row">
+              <button class="btn" id="btnCheck">Check</button>
+              <button class="btn ghost" id="btnAssign">Assign</button>
+            </div>
+            <div id="numFeedback" class="small" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <strong>Voice Call (1:1)</strong>
+        <div class="small">Make a P2P voice call. Both users must be signed in and email-verified. Create a call (offer) and share Call ID with recipient.</div>
+
+        <div style="margin-top:10px" class="row">
+          <button class="btn" id="createCallBtn">Create Call (offer)</button>
+          <button class="btn ghost" id="joinCallBtn">Join Call (enter ID)</button>
+        </div>
+
+        <div id="callUI" class="hidden" style="margin-top:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="flex:1"><div class="small">Local</div><audio id="localAudio" controls autoplay muted></audio></div>
+            <div style="flex:1"><div class="small">Remote</div><audio id="remoteAudio" controls autoplay></audio></div>
+          </div>
 
           <div style="margin-top:10px" class="row">
-            <button class="btn" id="createCallBtn">Create Call (offer)</button>
-            <button class="btn ghost" id="joinCallBtn">Join Call (enter ID)</button>
+            <input id="callIdField" placeholder="Call ID" />
+            <button class="btn" id="copyCallId">Copy ID</button>
           </div>
 
-          <div id="callUI" class="hidden" style="margin-top:12px">
-            <div class="call-area">
-              <div style="flex:1">
-                <div class="small">Local</div>
-                <audio id="localAudio" controls autoplay muted style="width:100%"></audio>
-              </div>
-              <div style="flex:1">
-                <div class="small">Remote</div>
-                <audio id="remoteAudio" controls autoplay style="width:100%"></audio>
-              </div>
-            </div>
-
-            <div style="margin-top:10px" class="row">
-              <input id="callIdField" placeholder="Call ID" />
-              <button class="btn" id="copyCallId">Copy ID</button>
-            </div>
-
-            <div style="margin-top:8px">
-              <button class="btn ghost" id="hangupBtn">Hang up</button>
-            </div>
+          <div style="margin-top:8px">
+            <button class="btn ghost" id="hangupBtn">Hang up</button>
           </div>
         </div>
-
       </div>
 
-      <div>
-        <div class="card">
-          <strong>Reserved codes</strong>
-          <div class="small" style="margin-top:8px">Examples — blocked for auction / sale.</div>
-          <div style="margin-top:8px" id="reservedList"></div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <strong>Admin (local)</strong>
-          <div class="small">Single admin for announcements. Password (client-side demo): <strong>Oilcoin1378</strong></div>
-          <label>Admin password</label><input id="adminPass" type="password" />
-          <div class="row" style="margin-top:8px">
-            <button class="btn" id="adminLogin">Open</button>
-            <button class="btn ghost" id="adminLogout">Close</button>
-          </div>
-
-          <div id="adminConsole" class="hidden" style="margin-top:8px">
-            <label>Announcement</label><input id="adminAnnouncement" placeholder="Write announcement..." />
-            <button class="btn" id="adminPost">Post Announcement</button>
-            <div style="margin-top:8px" id="announcementsList"></div>
-          </div>
-          <div id="adminStatus" class="small" style="margin-top:8px;color:var(--danger)"></div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <strong>Search user by code</strong>
-          <input id="searchCode" placeholder="6661234567" />
-          <button class="btn" id="btnSearch">Find</button>
-          <div id="searchResult" class="small" style="margin-top:8px"></div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- PRIVATE CONFIG (do not commit publicly) -->
+  <!-- private-config.js will expose window.__FIREBASE_CONFIG -->
   <script src="private-config.js"></script>
-
   <script type="module">
-    // ---------- Imports ----------
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot, query, where, serverTimestamp, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+    import { getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot, getDocs, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
 
-    // ---------- Firebase init ----------
-    const cfg = window.__FIREBASE_CONFIG || /* PASTE FIREBASE CONFIG HERE */ {};
-    if(!cfg || !cfg.projectId){ alert("Missing firebase config. Put real config into private-config.js"); console.error("Missing firebaseConfig"); }
+    const cfg = window.__FIREBASE_CONFIG || {};
+    if(!cfg || !cfg.projectId){ console.warn('Missing firebase config. Put real config into private-config.js'); }
     const app = initializeApp(cfg);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // ---------- Constants ----------
-    const ADMIN_PASSWORD = "Oilcoin1378";
-    const reservedNumbers = new Set([
-      "6660000000","6661111111","6662222222","6663333333","6664444444","6665555555","6666666666",
-      "6667777777","6668888888","6669999999",
-      "6660001111","6660002222","6660003333","6660004444","6660005555","6660006666","6660007777","6660008888","6660009999",
-      "6661110000","6662220000","6663330000","6664440000","6665550000","6666660000","6667770000","6668880000","6669990000",
-      "6661000000","6662000000","6663000000","6664000000","6665000000","6666000000","6667000000","6668000000","6669000000"
-    ]);
-
-    // ---------- Helpers ----------
+    // --- Minimal UI helpers ---
     const $ = id => document.getElementById(id);
-    const normalize = s => String(s||"").replace(/\D/g,"").slice(0,10);
+    const normalize = s => String(s||'').replace(/\D/g,'').slice(0,10);
     const isValidCode = s => /^666\d{7}$/.test(normalize(s));
     const hasTriple = s => /(.)\1\1/.test(normalize(s).slice(3));
-    function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 
-    // render reserved
-    function renderReserved(){ const el = $("reservedList"); el.innerHTML = ""; for(const c of reservedNumbers){ const d=document.createElement("div"); d.className="small"; d.textContent=c; el.appendChild(d); } }
-    renderReserved();
+    // UI wiring (same behavior as demo)
+    $('btnShowLogin').onclick = ()=>{ $('signup').classList.add('hidden'); $('login').classList.remove('hidden'); };
+    $('btnShowSignup').onclick = ()=>{ $('signup').classList.remove('hidden'); $('login').classList.add('hidden'); };
 
-    // ---------- UI wiring ----------
-    $("btnShowLogin").onclick = ()=>{ $("signup").classList.add('hidden'); $("login").classList.remove('hidden'); };
-    $("btnShowSignup").onclick = ()=>{ $("signup").classList.remove('hidden'); $("login").classList.add('hidden'); };
-
-    // ---------- Signup ----------
-    $("btnSignup").onclick = async ()=>{
-      const email = $("suEmail").value.trim();
-      const pass = $("suPass").value;
-      const chosen = normalize($("suCode").value);
-      if(!email || pass.length < 6){ alert("Enter email + password (min 6 chars)"); return; }
+    $('btnSignup').onclick = async ()=>{
+      const email = $('suEmail').value.trim();
+      const pass = $('suPass').value;
+      if(!email || pass.length < 6){ alert('Enter email + password (min 6 chars)'); return; }
       try{
         const cred = await createUserWithEmailAndPassword(auth, email, pass);
-        // send verification
         await sendEmailVerification(cred.user);
-        // create user doc with placeholder (code null for now)
-        await setDoc(doc(db,"users", cred.user.uid), { email, code: null, createdAt: serverTimestamp() });
-        alert("Signed up. Verification email sent — confirm email, then assign a code.");
-      }catch(e){ console.error(e); alert("Sign up error: " + (e.message||e)); }
+        await setDoc(doc(db,'users', cred.user.uid), { email, code: null });
+        alert('Signed up. Verification email sent — confirm email, then assign a code.');
+      }catch(e){ console.error(e); alert('Sign up error: '+(e.message||e)); }
     };
 
-    // ---------- Login ----------
-    $("btnLogin").onclick = async ()=>{
-      const email = $("liEmail").value.trim();
-      const pass = $("liPass").value;
-      if(!email || !pass){ alert("Enter email & password"); return; }
-      try{ await signInWithEmailAndPassword(auth, email, pass); } catch(e){ alert("Login error: " + (e.message||e)); }
+    $('btnLogin').onclick = async ()=>{
+      const email = $('liEmail').value.trim(); const pass = $('liPass').value;
+      if(!email||!pass){ alert('Enter email & password'); return; }
+      try{ await signInWithEmailAndPassword(auth, email, pass); }catch(e){ alert('Login error: '+(e.message||e)); }
     };
 
-    $("btnLogout").onclick = ()=> signOut(auth);
+    $('btnLogout').onclick = ()=> signOut(auth);
 
-    // ---------- On Auth state ----------
     onAuthStateChanged(auth, async user=>{
       if(user){
-        $("profileBox").classList.remove('hidden');
-        $("authForms").classList.add('hidden');
-        $("meEmail").textContent = user.email + (user.emailVerified ? " (verified)" : " (verify email)");
-        // load user doc
-        const ud = await getDoc(doc(db,"users", user.uid));
-        const data = ud.exists() ? ud.data() : {};
-        $("meCode").textContent = data.code ? "Code: " + data.code : "Code: not assigned";
-        // show announcements
-        loadAnnouncements();
-      } else {
-        $("profileBox").classList.add('hidden');
-        $("authForms").classList.remove('hidden');
-      }
+        $('profileBox').classList.remove('hidden'); $('authForms').classList.add('hidden');
+        $('meEmail').textContent = user.email + (user.emailVerified? ' (verified)': ' (verify email)');
+        const ud = await getDoc(doc(db,'users', user.uid));
+        $('meCode').textContent = ud.exists()? (ud.data().code? 'Code: '+ud.data().code:'Code: not assigned') : 'Code: not assigned';
+      } else { $('profileBox').classList.add('hidden'); $('authForms').classList.remove('hidden'); }
     });
 
-    // ---------- Check & Assign number ----------
-    $("btnCheck").onclick = async ()=>{
-      const raw = normalize($("chosenNumber").value);
-      if(!isValidCode(raw)){ $("numFeedback").textContent="Format invalid"; $("numFeedback").style.color="red"; return; }
-      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved for auction"; $("numFeedback").style.color="red"; return; }
-      const docSnap = await getDoc(doc(db,"userCodes", raw));
-      if(docSnap.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
-      $("numFeedback").textContent="Available ✅"; $("numFeedback").style.color="green";
+    $('btnCheck').onclick = async ()=>{
+      const raw = normalize($('chosenNumber').value);
+      if(!isValidCode(raw)){ $('numFeedback').textContent='Format invalid'; $('numFeedback').style.color='red'; return; }
+      if(hasTriple(raw)){ $('numFeedback').textContent='Reserved for auction'; $('numFeedback').style.color='red'; return; }
+      const docSnap = await getDoc(doc(db,'userCodes', raw));
+      if(docSnap.exists()){ $('numFeedback').textContent='Taken'; $('numFeedback').style.color='red'; return; }
+      $('numFeedback').textContent='Available ✅'; $('numFeedback').style.color='green';
     };
 
-    $("btnAssign").onclick = async ()=>{
-      const user = auth.currentUser;
-      if(!user){ alert("Login first"); return; }
-      if(!user.emailVerified){ alert("You must verify your email before assigning a code."); return; }
-      const raw = normalize($("chosenNumber").value);
-      if(!isValidCode(raw)){ $("numFeedback").textContent="Invalid format"; $("numFeedback").style.color="red"; return; }
-      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved"; $("numFeedback").style.color="red"; return; }
-      // check if taken
-      const taken = await getDoc(doc(db,"userCodes", raw));
-      if(taken.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
-      // assign: create mapping and update user doc
-      await setDoc(doc(db,"userCodes", raw), { uid: user.uid, code: raw, createdAt: serverTimestamp() });
-      await updateDoc(doc(db,"users", user.uid), { code: raw, assignedAt: serverTimestamp() });
-      $("numFeedback").textContent="Assigned ✅"; $("numFeedback").style.color="green";
-      $("meCode").textContent = "Code: " + raw;
+    $('btnAssign').onclick = async ()=>{
+      const user = auth.currentUser; if(!user){ alert('Login first'); return; }
+      if(!user.emailVerified){ alert('You must verify your email before assigning a code.'); return; }
+      const raw = normalize($('chosenNumber').value);
+      if(!isValidCode(raw)){ $('numFeedback').textContent='Invalid format'; $('numFeedback').style.color='red'; return; }
+      if(hasTriple(raw)){ $('numFeedback').textContent='Reserved'; $('numFeedback').style.color='red'; return; }
+      const taken = await getDoc(doc(db,'userCodes', raw)); if(taken.exists()){ $('numFeedback').textContent='Taken'; $('numFeedback').style.color='red'; return; }
+      await setDoc(doc(db,'userCodes', raw), { uid: user.uid, code: raw });
+      await updateDoc(doc(db,'users', user.uid), { code: raw }).catch(async()=>{ await setDoc(doc(db,'users', user.uid), { email: user.email, code: raw }); });
+      $('numFeedback').textContent='Assigned ✅'; $('numFeedback').style.color='green'; $('meCode').textContent = 'Code: '+raw;
     };
 
-    // ---------- Calls (Firestore signaling) ----------
-    // We'll create a call doc: collection "calls", doc id random -> contains offer, answer; two subcollections: offerCandidates, answerCandidates
-    import { doc as docRef, collection as colRef, addDoc as addDocFn, setDoc as setDocFn, getDoc as getDocFn, onSnapshot as onSnap, query as qFn, orderBy as orderByFn } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    // --- Simple WebRTC calls using Firestore for signalling ---
+    let localStream = null; let pc = null; let callDoc = null;
+    const servers = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
 
-    // alias because imports above didn't include these names: use the ones imported earlier (we already have functions via getFirestore imports)
-    // But due to module scope, we will use the Firestore functions already imported (doc, collection, addDoc, setDoc, getDoc, onSnapshot, query, serverTimestamp, updateDoc)
-    // declared earlier — they exist in this module.
+    async function startLocalAudio(){ if(localStream) return; try{ localStream = await navigator.mediaDevices.getUserMedia({ audio:true }); $('localAudio').srcObject = localStream; $('localAudio').muted = true; }catch(e){ alert('Microphone access denied: '+e.message); throw e; } }
 
-    let localStream = null;
-    let pc = null;
-    let callDoc = null;
-    const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
-
-    async function startLocalAudio(){
-      if(localStream) return;
-      try{
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        // attach to localAudio element so user sees it's active (muted to avoid feedback)
-        const localEl = $("localAudio");
-        localEl.srcObject = localStream;
-        localEl.muted = true;
-      }catch(e){ alert("Microphone access denied: " + e.message); throw e; }
-    }
-
-    $("createCallBtn").onclick = async ()=>{
-      if(!auth.currentUser){ alert("Login required"); return; }
-      if(!auth.currentUser.emailVerified){ alert("Your email must be verified"); return; }
+    $('createCallBtn').onclick = async ()=>{
+      if(!auth.currentUser){ alert('Login required'); return; }
+      if(!auth.currentUser.emailVerified){ alert('Your email must be verified'); return; }
       await startLocalAudio();
       pc = new RTCPeerConnection(servers);
-      // attach remote audio
-      let remoteStream = new MediaStream();
-      $("remoteAudio").srcObject = remoteStream;
-      pc.ontrack = (event) => {
-        event.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
-      };
-      localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-      // create call doc
-      callDoc = doc(db, "calls", /* random id */ `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`);
-      const offerCandidatesCol = collection(callDoc, "offerCandidates");
-      const answerCandidatesCol = collection(callDoc, "answerCandidates");
-
-      pc.onicecandidate = (e) => {
-        if(e.candidate){
-          addDoc(collection(callDoc, "offerCandidates"), e.candidate.toJSON());
-        }
-      };
-
-      const offerDesc = await pc.createOffer();
-      await pc.setLocalDescription(offerDesc);
-      await setDoc(callDoc, { offer: { type: offerDesc.type, sdp: offerDesc.sdp, from: auth.currentUser.uid, createdAt: serverTimestamp() } });
-
-      // listen for answer
-      onSnapshot(callDoc, (snap) => {
-        const data = snap.data();
-        if(data && data.answer && pc && !pc.currentRemoteDescription){
-          pc.setRemoteDescription(new RTCSessionDescription(data.answer)).catch(console.error);
-        }
-      });
-
-      // listen for answer candidates
-      const answerCandCol = collection(callDoc, "answerCandidates");
-      onSnapshot(answerCandCol, (snap) => {
-        snap.docChanges().forEach(change => {
-          if(change.type === "added"){
-            const c = change.doc.data();
-            pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error);
-          }
-        });
-      });
-
-      // show UI
-      $("callUI").classList.remove("hidden");
-      $("callIdField").value = callDoc.id;
-      alert("Call created. Share this Call ID with recipient: " + callDoc.id);
+      let remoteStream = new MediaStream(); $('remoteAudio').srcObject = remoteStream; pc.ontrack = (e)=> e.streams[0].getTracks().forEach(t=>remoteStream.addTrack(t));
+      localStream.getTracks().forEach(track=>pc.addTrack(track, localStream));
+      callDoc = doc(db, 'calls', `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`);
+      pc.onicecandidate = e=>{ if(e.candidate) addDoc(collection(callDoc,'offerCandidates'), e.candidate.toJSON()); };
+      const offerDesc = await pc.createOffer(); await pc.setLocalDescription(offerDesc);
+      await setDoc(callDoc, { offer: { type: offerDesc.type, sdp: offerDesc.sdp, from: auth.currentUser.uid } });
+      onSnapshot(callDoc, snap=>{ const data = snap.data(); if(data && data.answer && pc && !pc.currentRemoteDescription){ pc.setRemoteDescription(new RTCSessionDescription(data.answer)).catch(console.error); } });
+      onSnapshot(collection(callDoc,'answerCandidates'), snap=>{ snap.docChanges().forEach(ch=>{ if(ch.type==='added'){ pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error); } }); });
+      $('callUI').classList.remove('hidden'); $('callIdField').value = callDoc.id; alert('Call created. Share Call ID: '+callDoc.id);
     };
 
-    $("joinCallBtn").onclick = async ()=>{
-      const id = prompt("Enter Call ID to join:");
-      if(!id) return;
-      await startLocalAudio();
-      pc = new RTCPeerConnection(servers);
-      let remoteStream = new MediaStream();
-      $("remoteAudio").srcObject = remoteStream;
-      pc.ontrack = (event) => {
-        event.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
-      };
-      localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-
-      callDoc = doc(db, "calls", id);
-      const callSnap = await getDoc(callDoc);
-      if(!callSnap.exists()){ alert("Call not found"); return; }
-      const data = callSnap.data();
-
-      // listen for offerCandidates and add them
-      const offerCandCol = collection(callDoc, "offerCandidates");
-      onSnapshot(offerCandCol, (snap) => {
-        snap.docChanges().forEach(change => {
-          if(change.type === "added"){
-            pc.addIceCandidate(new RTCIceCandidate(change.doc.data())).catch(console.error);
-          }
-        });
-      });
-
-      // set remote description (offer)
-      await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
-
-      // create answer
-      const answerDesc = await pc.createAnswer();
-      await pc.setLocalDescription(answerDesc);
-
-      await updateDoc(callDoc, { answer: { type: answerDesc.type, sdp: answerDesc.sdp, from: auth.currentUser.uid, createdAt: serverTimestamp() } });
-
-      // collect local ICE candidates and write to answerCandidates
-      pc.onicecandidate = (e) => {
-        if(e.candidate){
-          addDoc(collection(callDoc, "answerCandidates"), e.candidate.toJSON());
-        }
-      };
-
-      $("callUI").classList.remove("hidden");
-      $("callIdField").value = id;
-      alert("Joined call: " + id);
+    $('joinCallBtn').onclick = async ()=>{
+      const id = prompt('Enter Call ID to join:'); if(!id) return; await startLocalAudio(); pc = new RTCPeerConnection(servers); let remoteStream = new MediaStream(); $('remoteAudio').srcObject = remoteStream; pc.ontrack = (e)=> e.streams[0].getTracks().forEach(t=>remoteStream.addTrack(t)); localStream.getTracks().forEach(track=>pc.addTrack(track, localStream));
+      callDoc = doc(db,'calls', id); const callSnap = await getDoc(callDoc); if(!callSnap.exists()){ alert('Call not found'); return; }
+      const data = callSnap.data(); onSnapshot(collection(callDoc,'offerCandidates'), snap=>{ snap.docChanges().forEach(ch=>{ if(ch.type==='added'){ pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error); } }); });
+      await pc.setRemoteDescription(new RTCSessionDescription(data.offer)); const answerDesc = await pc.createAnswer(); await pc.setLocalDescription(answerDesc); await updateDoc(callDoc, { answer: { type: answerDesc.type, sdp: answerDesc.sdp, from: auth.currentUser.uid } });
+      pc.onicecandidate = e=>{ if(e.candidate) addDoc(collection(callDoc,'answerCandidates'), e.candidate.toJSON()); };
+      $('callUI').classList.remove('hidden'); $('callIdField').value = id; alert('Joined call: '+id);
     };
 
-    $("hangupBtn").onclick = async ()=>{
-      if(pc){ pc.close(); pc = null; }
-      if(localStream){ localStream.getTracks().forEach(t=>t.stop()); localStream = null; $("localAudio").srcObject = null; }
-      $("callUI").classList.add("hidden");
-      // optionally remove call doc — careful: only remove if you created it (permission rules)
-      // For demo we do not auto-delete; implement server-side cleanup if desired.
+    $('hangupBtn').onclick = async ()=>{ if(pc){ pc.close(); pc = null; } if(localStream){ localStream.getTracks().forEach(t=>t.stop()); localStream=null; $('localAudio').srcObject=null; } $('callUI').classList.add('hidden'); };
+    $('copyCallId').onclick = ()=>{ navigator.clipboard.writeText($('callIdField').value||''); alert('Copied'); };
+
+    // --- Announcements (admin) demo: store in Firestore collection 'announcements' ---
+    const ADMIN_PASSWORD = 'Oilcoin1378'; // demo only — move to server!
+    window._adminLogged = false;
+
+    // load simple announcements
+    async function loadAnnouncements(){ const snap = await getDocs(collection(db,'announcements')); const arr = snap.docs.map(d=>({id:d.id,...d.data()})); if(arr.length) document.getElementById('latestAnn').textContent = arr[arr.length-1].text; }
+    loadAnnouncements();
+
+    // Simple search by code
+    window.searchByCode = async (code) => {
+      const c = normalize(code);
+      if(!isValidCode(c)) return null;
+      const snap = await getDoc(doc(db,'userCodes', c));
+      return snap.exists()? snap.data() : null;
     };
 
-    $("copyCallId").onclick = ()=> { navigator.clipboard.writeText($("callIdField").value || ""); alert("Copied"); };
-
-    // ---------- Admin announcements ----------
-    $("adminLogin").onclick = ()=> {
-      const p = $("adminPass").value;
-      if(p === ADMIN_PASSWORD){ $("adminConsole").classList.remove("hidden"); $("adminStatus").textContent = "Admin enabled"; window._adminLogged = true; loadAnnouncements(); }
-      else alert("Wrong admin password");
-    };
-    $("adminLogout").onclick = ()=> { $("adminConsole").classList.add("hidden"); $("adminStatus").textContent = ""; window._adminLogged = false; };
-
-    $("adminPost").onclick = async ()=>{
-      const txt = $("adminAnnouncement").value.trim();
-      if(!txt) return;
-      await addDoc(collection(db,"announcements"), { text: txt, createdAt: serverTimestamp(), by: "admin" });
-      $("adminAnnouncement").value = "";
-      loadAnnouncements();
-    };
-
-    async function loadAnnouncements(){
-      const snap = await getDocs(collection(db,"announcements"));
-      const el = $("announcementsList"); el.innerHTML = "";
-      snap.docs.sort((a,b)=> (a.data().createdAt?.seconds||0) - (b.data().createdAt?.seconds||0)).forEach(d=>{
-        const v = d.data();
-        const div = document.createElement("div");
-        div.className = "small";
-        div.innerHTML = `<div style="margin-bottom:6px">${escapeHtml(v.text)} <small style="color:#888">(${new Date((v.createdAt?.seconds||0)*1000).toLocaleString()})</small></div>`;
-        if(window._adminLogged){
-          const rm = document.createElement("button");
-          rm.textContent = "Delete"; rm.style.marginLeft="8px";
-          rm.onclick = async ()=> { if(confirm("Delete?")) { await deleteDoc(doc(db,"announcements", d.id)); loadAnnouncements(); } };
-          div.appendChild(rm);
-        }
-        el.appendChild(div);
-      });
-    }
-
-    // ---------- Search user by code ----------
-    $("btnSearch").onclick = async ()=>{
-      const code = normalize($("searchCode").value);
-      if(!isValidCode(code)){ $("searchResult").textContent="Invalid code"; return; }
-      const snap = await getDoc(doc(db,"userCodes", code));
-      if(!snap.exists()){ $("searchResult").textContent="Not found"; return; }
-      const d = snap.data();
-      $("searchResult").textContent = `Found: ${code} — uid: ${d.uid}`;
-    };
-
-    // Utility references
-    // Note: functions addDoc, collection, etc are from Firestore imports earlier.
-    // Make sure Firestore rules (you set) allow these operations.
-    console.log("Oilgram loaded. Make sure Firestore rules are applied and API key is restricted by referrer.");
+    console.log('Oilgram module loaded.');
   </script>
 </body>
-  </html>
+</html>
