@@ -92,10 +92,53 @@
         </div>
       </div>
     </div>
-    
-    <div class="card" style="margin-top:12px">
-      <div class="section-title">Admin</div>
-      <div class="small">Admin UI & moderation live inside Oilgram (client demo). For secure admin actions use server-side tools.</div>
+
+    <div class="grid" style="margin-top:18px">
+      <div>
+        <div class="card">
+          <div class="section-title">Latest Announcement</div>
+          <div class="sub">Multi-chain expansion — OILToken will soon be available on Ethereum and BSC, in addition to TON. Follow official channels for launch details.</div>
+        </div>
+
+        <div style="margin-top:18px">
+          <div class="card">
+            <div class="section-title">Oilgram — Voice Calls</div>
+            <div class="sub">Oilgram provides 1:1 voice calls (WebRTC). Click to open the app below or open in a new tab.</div>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <a class="big-cta" href="oilgram.html" target="_blank">Open Oilgram (new tab)</a>
+              <button class="big-cta" style="background:linear-gradient(90deg,#00b09b,#00ffcc)" onclick="reloadIframe()">Reload embed</button>
+            </div>
+
+            <div style="margin-top:12px">
+              <!-- IFRAME: will show oilgram.html if present in same folder -->
+              <iframe id="oilgram-iframe" src="oilgram.html" title="Oilgram chat" ></iframe>
+            </div>
+
+            <div style="margin-top:8px" class="small">
+              Notes:
+              <ul>
+                <li>Upload <code>oilgram.html</code> to the same folder on GitHub Pages (or use Firebase Hosting).</li>
+                <li>Place your Firebase config securely (see README below).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <div class="section-title">Reserved Codes (examples)</div>
+          <div class="sub">Numbers starting with <strong>666</strong> where three (or more) identical digits appear consecutively after the prefix are reserved for auction.</div>
+          <div style="margin-top:8px" class="small">
+            Examples: 6660000000 • 6661111111 • 6665550000 • 6667777000
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="section-title">Admin</div>
+          <div class="small">Admin UI & moderation live inside Oilgram (client demo). For secure admin actions use server-side tools. Admin username: <strong>oiltoken admin</strong></div>
+        </div>
+      </aside>
     </div>
 
     <footer>
@@ -103,24 +146,12 @@
     </footer>
   </div>
 
-  <!-- Firebase Initialization -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";  
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";  
-
-    const firebaseConfig = {  
-      apiKey: "AIzaSyCGDY_ij0EjS-RDSXF0RQCyoc6yYLXyPXE",  
-      authDomain: "oilgram.firebaseapp.com",  
-      projectId: "oilgram",  
-      storageBucket: "oilgram.firebasestorage.app",  
-      messagingSenderId: "555429946689",  
-      appId: "1:555429946689:web:1ad245cfe30e0e67936dc0",  
-      measurementId: "G-669LKXWGZW"  
-    };  
-
-    const app = initializeApp(firebaseConfig);  
-    const analytics = getAnalytics(app);  
-    console.log('Firebase initialized successfully');
+  <script>
+    function reloadIframe(){
+      const iframe = document.getElementById('oilgram-iframe');
+      iframe.src = iframe.src.split('#')[0] + '#reload-' + Date.now();
+    }
+    console.log('Index loaded.');
   </script>
 </body>
 </html>
