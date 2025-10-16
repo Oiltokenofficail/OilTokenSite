@@ -1,348 +1,327 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Oilgram — Voice Calls (OIL)</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Oilgram — Chat & Voice (OIL)</title>
   <style>
-    :root{ --bg:#fff; --accent:#0b74ff; --muted:#666; --card-radius:12px; }
+    :root{--bg:#fff;--blue:#0b66ff;--muted:#666;--radius:12px}
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#111;}
-    .wrap{max-width:980px;margin:18px auto;padding:18px}
-    .card{background:#fff;border-radius:var(--card-radius);padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-    input,button,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;margin:6px 0}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#111;padding:18px}
+    .wrap{max-width:980px;margin:0 auto}
+    .card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(0,0,0,0.06);margin-bottom:12px}
+    input,button{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;margin:6px 0;font-size:14px}
     .row{display:flex;gap:8px}
+    .btn{background:var(--blue);color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer}
     .small{font-size:13px;color:var(--muted)}
-    .btn{background:var(--accent);color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer}
-    .btn.ghost{background:#fff;color:var(--accent);border:1px solid #eee}
     .hidden{display:none}
-    audio{width:100%;border-radius:8px;background:#000}
-    .reserved{color:#b91c1c;font-weight:700}
-    label{font-weight:700;font-size:13px}
-    pre.note{background:#f7f8fa;padding:10px;border-radius:8px;border:1px solid #eee}
+    video{width:100%;background:#000;border-radius:8px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header style="display:flex;justify-content:space-between;align-items:center">
-      <h2>Oilgram — Voice Calls (OIL)</h2>
-      <div class="small">Email/password auth • Assign 10-digit code starting with <strong>666</strong></div>
-    </header>
-
-    <div style="margin-top:16px">
-      <div class="card" id="authCard">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <strong>Sign up / Login</strong>
-            <div class="small">Sign up with email/password. Verify email to assign codes and use calls.</div>
-          </div>
-          <div id="profileBox" class="hidden">
-            <div id="meEmail" style="font-weight:700"></div>
-            <div id="meCode" class="small"></div>
-            <button class="btn ghost" id="btnLogout">Logout</button>
-          </div>
-        </div>
-
-        <div id="authForms" style="margin-top:10px">
-          <div id="signup">
-            <label>Email</label><input id="suEmail" type="email" placeholder="you@example.com" />
-            <label>Password</label><input id="suPass" type="password" placeholder="min 6 chars" />
-            <label>Choose code (optional)</label><input id="suCode" placeholder="6661234567 (optional)" />
-            <div class="row" style="margin-top:8px">
-              <button class="btn" id="btnSignup">Sign Up</button>
-              <button class="btn ghost" id="btnShowLogin">Login</button>
-            </div>
-          </div>
-
-          <div id="login" class="hidden">
-            <label>Email</label><input id="liEmail" type="email" />
-            <label>Password</label><input id="liPass" type="password" />
-            <div class="row" style="margin-top:8px">
-              <button class="btn" id="btnLogin">Login</button>
-              <button class="btn ghost" id="btnShowSignup">Back</button>
-            </div>
-          </div>
-
-          <div style="margin-top:10px">
-            <label>Assign / Reserve number</label>
-            <input id="chosenNumber" placeholder="6661234567" />
-            <div class="small" id="numNotice">Numbers with 3 identical digits in a row after 666 are reserved for auction.</div>
-            <div class="row">
-              <button class="btn" id="btnCheck">Check</button>
-              <button class="btn ghost" id="btnAssign">Assign</button>
-            </div>
-            <div id="numFeedback" class="small" style="margin-top:8px"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <strong>Voice Call (1:1)</strong>
-        <div class="small">Make a P2P voice call. Both users must be signed in and email-verified. Create a call (offer) and share Call ID with recipient.</div>
-
-        <div style="margin-top:10px" class="row">
-          <button class="btn" id="createCallBtn">Create Call (offer)</button>
-          <button class="btn ghost" id="joinCallBtn">Join Call (enter ID)</button>
-        </div>
-
-        <div id="callUI" class="hidden" style="margin-top:12px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <div style="flex:1"><div class="small">Local</div><audio id="localAudio" controls autoplay muted></audio></div>
-            <div style="flex:1"><div class="small">Remote</div><audio id="remoteAudio" controls autoplay></audio></div>
-          </div>
-
-          <div style="margin-top:10px" class="row">
-            <input id="callIdField" placeholder="Call ID" />
-            <button class="btn" id="copyCallId">Copy ID</button>
-          </div>
-
-          <div style="margin-top:8px">
-            <button class="btn ghost" id="hangupBtn">Hang up</button>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px" class="card">
-        <strong>Reserved codes (examples)</strong>
-        <div class="small" style="margin-top:8px">Examples — blocked for auction / sale.</div>
-        <div style="margin-top:8px" id="reservedList"></div>
-      </div>
-
-      <div style="margin-top:12px" class="card">
-        <label class="small">Search user by code</label>
-        <input id="searchCode" placeholder="6661234567" />
-        <button class="btn" id="btnSearch">Find</button>
-        <div id="searchResult" class="small" style="margin-top:8px"></div>
-      </div>
-
+    <div class="card">
+      <h2>Oilgram — P2P Voice Calls</h2>
+      <p class="small">Login with your Telegram ID (username). On first login choose a code that starts with <strong>666</strong>. Reserved codes (three same digits in a row) are blocked.</p>
     </div>
+
+    <div class="card" id="authCard">
+      <div id="authForms">
+        <label>Telegram username (example: @yourname)</label>
+        <input id="tgUsername" placeholder="@yourname" />
+        <label>Choose a password (this will be your login secret)</label>
+        <input id="tgPass" placeholder="choose a password" type="password" />
+        <label>Choose code (10 digits, start 666) — optional (if blank will be auto-assigned)</label>
+        <input id="chosenCode" placeholder="6661234567" />
+        <div class="row">
+          <button class="btn" id="btnRegister">Register / Login</button>
+        </div>
+        <div id="authFeedback" class="small"></div>
+      </div>
+
+      <div id="profileBox" class="hidden">
+        <div><strong id="meId"></strong></div>
+        <div class="small" id="meCode"></div>
+        <div class="row">
+          <button class="btn" id="btnLogout">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Voice Call</h3>
+      <p class="small">Create a call, share the call ID with the other user to join. Peer-to-peer audio; signalling via Firestore.</p>
+      <div class="row">
+        <button class="btn" id="createCallBtn">Create Call (offer)</button>
+        <button class="btn" id="joinCallBtn">Join Call (enter ID)</button>
+      </div>
+
+      <div id="callUI" class="hidden" style="margin-top:12px">
+        <div style="margin-bottom:8px"><strong>Call ID:</strong> <input id="callIdField" readonly/></div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1">
+            <div class="small">Local (muted preview)</div>
+            <video id="localPreview" autoplay muted playsinline style="height:160px"></video>
+          </div>
+          <div style="flex:1">
+            <div class="small">Remote</div>
+            <video id="remoteAudioDisplay" autoplay playsinline style="height:160px"></video>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="row">
+          <button class="btn" id="hangupBtn">Hang up</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Reserved / Locked Codes</h3>
+      <div class="small">Admin can lock or release codes (auction / permanent). Locked patterns: any three identical digits in a row after 666.</div>
+      <div id="reservedList" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <h3>Admin</h3>
+      <div class="small">Admin password: <strong>you1378$</strong></div>
+      <input id="adminPass" type="password" placeholder="admin password"/>
+      <div class="row">
+        <button class="btn" id="adminLogin">Open</button>
+      </div>
+      <div id="adminConsole" class="hidden" style="margin-top:8px">
+        <label>Lock code (10 digits)</label>
+        <input id="adminLockCode" placeholder="6660000000"/>
+        <button class="btn" id="adminLockBtn">Lock code</button>
+        <div style="margin-top:8px" class="small">Admin can also release locked codes from Firestore (not fully automated here).</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- private-config.js should set window.__FIREBASE_CONFIG = {...} -->
+  <!-- private-config.js must set window.__FIREBASE_CONFIG with actual values -->
   <script src="private-config.js"></script>
 
   <script type="module">
+    // ===== Imports =====
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    import { getAuth, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import {
+      getFirestore, doc, setDoc, getDoc, collection, addDoc, onSnapshot,
+      serverTimestamp, updateDoc, getDocs
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-    // load config from private-config.js (expects window.__FIREBASE_CONFIG)
-    const cfg = window.__FIREBASE_CONFIG || {};
-    if(!cfg || !cfg.projectId){ console.warn('Missing firebase config. Put real config into private-config.js'); }
-
-    const app = initializeApp(cfg);
-    const auth = getAuth(app);
+    // ===== Config (from private-config.js) =====
+    const firebaseConfig = window.__FIREBASE_CONFIG || {};
+    if(!firebaseConfig || !firebaseConfig.projectId){
+      alert("Firebase config missing. Add private-config.js with window.__FIREBASE_CONFIG.");
+      throw new Error("missing firebase config");
+    }
+    const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // -------- helpers --------
-    const $ = id => document.getElementById(id);
-    const normalize = s => String(s||"").replace(/\D/g,"").slice(0,10);
-    const isValidCode = s => /^666\d{7}$/.test(normalize(s));
-    const hasTriple = s => /(.)\1\1/.test(normalize(s).slice(3));
-    function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-
-    // reserved list (examples)
-    const reservedNumbers = new Set([
+    // ===== Reserved list & helpers =====
+    const reserved = new Set([
       "6660000000","6661111111","6662222222","6663333333","6664444444","6665555555","6666666666",
       "6667777777","6668888888","6669999999",
       "6660001111","6660002222","6660003333","6660004444","6660005555","6660006666","6660007777","6660008888","6660009999",
       "6661110000","6662220000","6663330000","6664440000","6665550000","6666660000","6667770000","6668880000","6669990000",
       "6661000000","6662000000","6663000000","6664000000","6665000000","6666000000","6667000000","6668000000","6669000000"
     ]);
-    function renderReserved(){ const el = $("reservedList"); el.innerHTML = ""; for(const c of reservedNumbers){ const d=document.createElement("div"); d.className="small"; d.textContent=c; el.appendChild(d); } }
+    const $ = id => document.getElementById(id);
+    const normalize = s => String(s||"").replace(/\D/g,"").slice(0,10);
+    const isValidCode = s => /^666\d{7}$/.test(normalize(s));
+    const hasTriple = s => /(.)\1\1/.test(normalize(s).slice(3));
+
+    // show reserved list
+    function renderReserved(){
+      const el = $("reservedList"); el.innerHTML = "";
+      Array.from(reserved).forEach(r=>{
+        const d = document.createElement('div'); d.textContent = r; el.appendChild(d);
+      });
+    }
     renderReserved();
 
-    // UI wiring
-    $("btnShowLogin").onclick = ()=>{ $("signup").classList.add('hidden'); $("login").classList.remove('hidden'); };
-    $("btnShowSignup").onclick = ()=>{ $("signup").classList.remove('hidden'); $("login").classList.add('hidden'); };
-
-    // Signup
-    $("btnSignup").onclick = async ()=>{
-      const email = $("suEmail").value.trim();
-      const pass = $("suPass").value;
-      if(!email || pass.length < 6){ alert("Enter email + password (min 6 chars)"); return; }
-      try{
-        const cred = await createUserWithEmailAndPassword(auth, email, pass);
-        await sendEmailVerification(cred.user);
-        await setDoc(doc(db,"users", cred.user.uid), { email, code: null, createdAt: Date.now() });
-        alert("Signed up. Verification email sent — confirm email, then assign a code.");
-      }catch(e){ console.error(e); alert("Sign up error: " + (e.message||e)); }
-    };
-
-    // Login
-    $("btnLogin").onclick = async ()=>{
-      const email = $("liEmail").value.trim();
-      const pass = $("liPass").value;
-      if(!email || !pass){ alert("Enter email & password"); return; }
-      try{ await signInWithEmailAndPassword(auth, email, pass); } catch(e){ alert("Login error: " + (e.message||e)); }
-    };
-
-    $("btnLogout").onclick = ()=> signOut(auth);
-
-    onAuthStateChanged(auth, async user=>{
-      if(user){
-        $("profileBox").classList.remove('hidden');
-        $("authForms").classList.add('hidden');
-        $("meEmail").textContent = user.email + (user.emailVerified ? " (verified)" : " (verify email)");
-        const ud = await getDoc(doc(db,"users", user.uid));
-        const data = ud.exists() ? ud.data() : {};
-        $("meCode").textContent = data.code ? "Code: " + data.code : "Code: not assigned";
-      } else {
-        $("profileBox").classList.add('hidden');
-        $("authForms").classList.remove('hidden');
+    // ===== Simple "Auth" with Telegram username + pass (client-side, saved in Firestore) =====
+    // NOTE: real Telegram OAuth requires Telegram widget — recommended later.
+    let currentUser = null;
+    async function registerOrLogin(){
+      const username = ($("tgUsername").value||"").trim();
+      const pass = ($("tgPass").value||"").trim();
+      let chosen = normalize($("chosenCode").value||"");
+      if(!username || !pass){ $("authFeedback").textContent = "Enter Telegram username and a password"; return; }
+      // find if user exists
+      const userDoc = await getDoc(doc(db,"tgUsers", username));
+      if(userDoc.exists()){
+        const data = userDoc.data();
+        if(data.pass !== pass){ $("authFeedback").textContent = "Wrong password for this username"; return; }
+        currentUser = { username, code: data.code, uid: data.uid || username };
+        showProfile();
+        $("authFeedback").textContent = "Logged in";
+        return;
       }
-    });
+      // create new: choose code
+      if(chosen && !isValidCode(chosen)){ $("authFeedback").textContent = "Invalid code format (must start 666)"; return; }
+      if(chosen && (reserved.has(chosen) || hasTriple(chosen))){ $("authFeedback").textContent = "Chosen code is reserved"; return; }
+      // check uniqueness if chosen
+      if(chosen){
+        const exists = await getDoc(doc(db,"userCodes", chosen));
+        if(exists.exists()){ $("authFeedback").textContent = "Chosen code already taken"; chosen = null; }
+      }
+      if(!chosen){
+        // generate available
+        chosen = await generateAvailableCode();
+      }
+      // save user
+      await setDoc(doc(db,"tgUsers", username), { pass, code: chosen, createdAt: serverTimestamp(), username });
+      await setDoc(doc(db,"userCodes", chosen), { username, code: chosen, createdAt: serverTimestamp() });
+      currentUser = { username, code: chosen, uid: username };
+      showProfile();
+      $("authFeedback").textContent = "Account created. Your code: " + chosen;
+    }
 
-    // Check & Assign
-    $("btnCheck").onclick = async ()=>{
-      const raw = normalize($("chosenNumber").value);
-      if(!isValidCode(raw)){ $("numFeedback").textContent="Format invalid"; $("numFeedback").style.color="red"; return; }
-      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved for auction"; $("numFeedback").style.color="red"; return; }
-      const docSnap = await getDoc(doc(db,"userCodes", raw));
-      if(docSnap.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
-      $("numFeedback").textContent="Available ✅"; $("numFeedback").style.color="green";
+    function showProfile(){
+      $("authForms").classList.add('hidden');
+      $("profileBox").classList.remove('hidden');
+      $("meId").textContent = currentUser.username;
+      $("meCode").textContent = "Code: " + currentUser.code;
+    }
+    $("btnRegister").onclick = registerOrLogin;
+    $("btnLogout").onclick = ()=>{ location.reload(); };
+
+    async function generateAvailableCode(){
+      for(let i=0;i<200;i++){
+        const r = "666" + String(Math.floor(Math.random()*9000000)+1000000);
+        if(reserved.has(r)) continue;
+        const s = await getDoc(doc(db,"userCodes", r));
+        if(!s.exists()) return r;
+      }
+      // fallback quick scan
+      for(let i=0;i<1000000;i++){
+        const r = "666" + String(i).padStart(7,"0");
+        if(reserved.has(r)) continue;
+        const s = await getDoc(doc(db,"userCodes", r));
+        if(!s.exists()) return r;
+      }
+      throw new Error("No code");
+    }
+
+    // ===== Admin =====
+    $("adminLogin").onclick = ()=>{
+      const p = $("adminPass").value;
+      if(p === "you1378$"){ $("adminConsole").classList.remove('hidden'); alert("Admin enabled"); }
+      else alert("Wrong password");
+    };
+    $("adminLockBtn").onclick = async ()=>{
+      const c = normalize($("adminLockCode").value);
+      if(!isValidCode(c)){ alert("Invalid code"); return; }
+      reserved.add(c); await setDoc(doc(db,"auctions", c), { code:c, locked:true, createdAt: serverTimestamp() });
+      renderReserved(); alert("Locked for auction (client-side recorded).");
     };
 
-    $("btnAssign").onclick = async ()=>{
-      const user = auth.currentUser;
-      if(!user){ alert("Login first"); return; }
-      if(!user.emailVerified){ alert("You must verify your email before assigning a code."); return; }
-      const raw = normalize($("chosenNumber").value);
-      if(!isValidCode(raw)){ $("numFeedback").textContent="Invalid format"; $("numFeedback").style.color="red"; return; }
-      if(reservedNumbers.has(raw) || hasTriple(raw)){ $("numFeedback").textContent="Reserved"; $("numFeedback").style.color="red"; return; }
-      const taken = await getDoc(doc(db,"userCodes", raw));
-      if(taken.exists()){ $("numFeedback").textContent="Taken"; $("numFeedback").style.color="red"; return; }
-      await setDoc(doc(db,"userCodes", raw), { uid: user.uid, code: raw, createdAt: Date.now() });
-      await updateDoc(doc(db,"users", user.uid), { code: raw }).catch(async()=>{ await setDoc(doc(db,"users", user.uid), { email: user.email, code: raw }); });
-      $("numFeedback").textContent="Assigned ✅"; $("numFeedback").style.color="green";
-      $("meCode").textContent = "Code: " + raw;
-    };
-
-    // WebRTC calls (Firestore signaling)
-    let localStream = null;
-    let pc = null;
-    let callDoc = null;
+    // ===== WebRTC voice call (simple calls collection) =====
+    let pc = null, localStream = null, remoteStream = null, callDoc = null;
     const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
 
     async function startLocalAudio(){
       if(localStream) return;
       try{
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        const localEl = $("localAudio");
-        localEl.srcObject = localStream;
-        localEl.muted = true;
-      }catch(e){ alert("Microphone access denied: " + e.message); throw e; }
+        localStream = await navigator.mediaDevices.getUserMedia({ audio:true, video:false });
+        const audioEl = document.getElementById('localPreview');
+        audioEl.srcObject = localStream;
+      } catch(e){ alert("Mic access denied: " + e.message); throw e; }
     }
 
     $("createCallBtn").onclick = async ()=>{
-      if(!auth.currentUser){ alert("Login required"); return; }
-      if(!auth.currentUser.emailVerified){ alert("Your email must be verified"); return; }
+      if(!currentUser){ alert("Login first"); return; }
       await startLocalAudio();
       pc = new RTCPeerConnection(servers);
-      let remoteStream = new MediaStream();
-      $("remoteAudio").srcObject = remoteStream;
-      pc.ontrack = (event) => {
-        event.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
-      };
+      remoteStream = new MediaStream();
+      document.getElementById('remoteAudioDisplay').srcObject = remoteStream;
+      pc.ontrack = e => { e.streams[0].getTracks().forEach(t=> remoteStream.addTrack(t)); };
       localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-      callDoc = doc(db, "calls", `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`);
-      const offerCandidatesCol = collection(callDoc, "offerCandidates");
-      const answerCandidatesCol = collection(callDoc, "answerCandidates");
-
-      pc.onicecandidate = (e) => {
-        if(e.candidate){
-          addDoc(offerCandidatesCol, e.candidate.toJSON());
+      pc.onicecandidate = async event => {
+        if(event.candidate && callDoc){
+          await addDoc(collection(callDoc, "offerCandidates"), event.candidate.toJSON());
         }
       };
 
+      // create call doc
+      callDoc = doc(collection(db,"calls"));
       const offerDesc = await pc.createOffer();
       await pc.setLocalDescription(offerDesc);
-      await setDoc(callDoc, { offer: { type: offerDesc.type, sdp: offerDesc.sdp, from: auth.currentUser.uid, createdAt: Date.now() } });
+      await setDoc(callDoc, { offer: { type: offerDesc.type, sdp: offerDesc.sdp, from: currentUser.uid }, createdAt: serverTimestamp() });
 
-      onSnapshot(callDoc, (snap) => {
+      // listen for answer and candidates
+      onSnapshot(callDoc, snap=>{
         const data = snap.data();
-        if(data && data.answer && pc && !pc.currentRemoteDescription){
+        if(data?.answer && pc && !pc.currentRemoteDescription){
           pc.setRemoteDescription(new RTCSessionDescription(data.answer)).catch(console.error);
         }
       });
 
-      onSnapshot(collection(callDoc, "answerCandidates"), (snap) => {
-        snap.docChanges().forEach(change => {
-          if(change.type === "added"){
-            const c = change.doc.data();
-            pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error);
-          }
+      const answerCandidates = collection(callDoc, "answerCandidates");
+      onSnapshot(answerCandidates, snap=>{
+        snap.docChanges().forEach(ch=>{
+          if(ch.type === "added") pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error);
         });
       });
 
-      $("callUI").classList.remove("hidden");
+      // share id
+      $("callUI").classList.remove('hidden');
       $("callIdField").value = callDoc.id;
-      alert("Call created. Share this Call ID with recipient: " + callDoc.id);
+      alert("Call created. Share this ID with other user: " + callDoc.id);
     };
 
     $("joinCallBtn").onclick = async ()=>{
-      const id = prompt("Enter Call ID to join:");
+      const id = prompt("Enter call ID:");
       if(!id) return;
       await startLocalAudio();
       pc = new RTCPeerConnection(servers);
-      let remoteStream = new MediaStream();
-      $("remoteAudio").srcObject = remoteStream;
-      pc.ontrack = (event) => {
-        event.streams[0].getTracks().forEach(t => remoteStream.addTrack(t));
-      };
+      remoteStream = new MediaStream();
+      document.getElementById('remoteAudioDisplay').srcObject = remoteStream;
+      pc.ontrack = e=> { e.streams[0].getTracks().forEach(t=> remoteStream.addTrack(t)); };
       localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+      callDoc = doc(db,"calls", id);
+      const callSnapshot = await getDoc(callDoc);
+      if(!callSnapshot.exists()){ alert("Call not found"); return; }
+      const data = callSnapshot.data();
+      await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+      const answerDesc = await pc.createAnswer();
+      await pc.setLocalDescription(answerDesc);
+      await updateDoc(callDoc, { answer: { type: answerDesc.type, sdp: answerDesc.sdp, from: currentUser.uid } });
 
-      callDoc = doc(db, "calls", id);
-      const callSnap = await getDoc(callDoc);
-      if(!callSnap.exists()){ alert("Call not found"); return; }
-      const data = callSnap.data();
-
-      const offerCandidatesCol = collection(callDoc, "offerCandidates");
-      onSnapshot(offerCandidatesCol, (snap) => {
-        snap.docChanges().forEach(change => {
-          if(change.type === "added"){
-            pc.addIceCandidate(new RTCIceCandidate(change.doc.data())).catch(console.error);
-          }
+      // add listeners to candidates
+      const offerCandidates = collection(callDoc, "offerCandidates");
+      onSnapshot(offerCandidates, snap=>{
+        snap.docChanges().forEach(ch=>{
+          if(ch.type==="added") pc.addIceCandidate(new RTCIceCandidate(ch.doc.data())).catch(console.error);
         });
       });
 
-      await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
-
-      const answerDesc = await pc.createAnswer();
-      await pc.setLocalDescription(answerDesc);
-
-      await updateDoc(callDoc, { answer: { type: answerDesc.type, sdp: answerDesc.sdp, from: auth.currentUser.uid, createdAt: Date.now() } });
-
-      pc.onicecandidate = (e) => {
-        if(e.candidate){
-          addDoc(collection(callDoc, "answerCandidates"), e.candidate.toJSON());
-        }
+      pc.onicecandidate = e=>{
+        if(e.candidate) addDoc(collection(callDoc, "answerCandidates"), e.candidate.toJSON());
       };
 
-      $("callUI").classList.remove("hidden");
+      $("callUI").classList.remove('hidden');
       $("callIdField").value = id;
-      alert("Joined call: " + id);
+      alert("Joined call");
     };
 
     $("hangupBtn").onclick = async ()=>{
       if(pc){ pc.close(); pc = null; }
-      if(localStream){ localStream.getTracks().forEach(t=>t.stop()); localStream = null; $("localAudio").srcObject = null; }
-      $("callUI").classList.add("hidden");
+      if(localStream){ localStream.getTracks().forEach(t=>t.stop()); localStream = null; document.getElementById('localPreview').srcObject = null; }
+      $("callUI").classList.add('hidden');
+      callDoc = null;
     };
 
-    $("copyCallId").onclick = ()=> { navigator.clipboard.writeText($("callIdField").value || ""); alert("Copied"); };
+    // small aliases
+    import { addDoc as addDocFn, collection as collectionFn, doc as docFn, getDoc as getDocFn, setDoc as setDocFn, serverTimestamp as serverTimestampFn, updateDoc as updateDocFn } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    // but we already imported above; leaving as-is.
 
-    // search user by code
-    $("btnSearch").onclick = async ()=>{
-      const code = normalize($("searchCode").value);
-      if(!isValidCode(code)){ $("searchResult").textContent="Invalid code"; return; }
-      const snap = await getDoc(doc(db,"userCodes", code));
-      if(!snap.exists()){ $("searchResult").textContent="Not found"; return; }
-      const d = snap.data();
-      $("searchResult").textContent = `Found: ${code} — uid: ${d.uid}`;
-    };
+    // helper: escape
+    function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
 
-    console.log("Oilgram loaded. Make sure private-config.js is available and Firestore rules allow required operations.");
+    // Note: For production, replace simple username+pass with Telegram Login Widget or real OAuth.
+    console.log("Oilgram loaded. Ensure private-config.js contains firebase config and Firestore rules / TTL are set.");
   </script>
 </body>
-</html>
+  </html>
