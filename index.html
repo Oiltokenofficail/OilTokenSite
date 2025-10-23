@@ -13,30 +13,53 @@
       --bg: #e0e5ec;
       --card: #f9f9fb;
       --accent: #0b66ff;
+      --accent-hover: #00c6ff;
       --muted: #6b7280;
       --radius: 16px;
       --shadow-light: rgba(255,255,255,0.7);
       --shadow-dark: rgba(0,0,0,0.15);
-      --transition: 0.4s ease;
+      --transition: 0.5s ease;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
     body { background: var(--bg); color: #111; padding: 20px; scroll-behavior: smooth; overflow-x: hidden; }
     a { text-decoration: none; color: var(--accent); transition: color var(--transition); }
-    a:hover { color: #094cbf; }
+    a:hover { color: var(--accent-hover); }
 
     .wrap { max-width: 980px; margin: 0 auto; }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 100px 20px 50px 20px;
+      padding: 100px 20px 40px 20px;
       font-weight: 700;
       font-size: 3rem;
       background: linear-gradient(90deg, #0b66ff, #00c6ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: heroFadeIn 1.2s ease forwards;
+    }
+
+    /* Button Nav below Hero */
+    .hero-nav {
+      text-align: center;
+      margin: 24px 0;
+    }
+    .hero-nav a {
+      display: inline-block;
+      margin: 0 12px;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 500;
+      color: #fff;
+      background: linear-gradient(90deg,#0b66ff,#00c6ff);
+      box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+      transition: all var(--transition);
+    }
+    .hero-nav a:hover {
+      background: linear-gradient(90deg,#00c6ff,#0b66ff);
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
     }
 
     /* Neumorphic Cards */
@@ -49,11 +72,11 @@
       opacity: 0;
       transform: translateY(40px);
       transition: transform 0.6s var(--transition), opacity 0.6s var(--transition), box-shadow 0.3s;
+      background: linear-gradient(120deg,#ffffff,#f1f3f6);
+      background-size: 200% 200%;
+      animation: gradientMove 8s ease infinite;
     }
-    .card.reveal {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
+    .card.reveal { opacity: 1 !important; transform: translateY(0) !important; }
     .card:hover {
       transform: translateY(-6px);
       box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
@@ -62,10 +85,11 @@
     h2 {
       color: #111;
       margin-bottom: 14px;
+      font-size: 1.5rem;
       background: linear-gradient(90deg,#0b66ff,#00c6ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 1.5rem;
+      animation: textFadeIn 1s ease forwards;
     }
 
     p, ul, ol { color: var(--muted); line-height: 1.7; }
@@ -78,7 +102,7 @@
       color: var(--accent);
       transition: color var(--transition);
     }
-    .smalllink:hover { color: #094cbf; text-decoration: underline; }
+    .smalllink:hover { color: var(--accent-hover); text-decoration: underline; }
 
     footer {
       text-align: center;
@@ -92,6 +116,15 @@
       0% { opacity: 0; transform: translateY(-30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+    @keyframes textFadeIn {
+      0% { opacity: 0; background-position: -200px 0; }
+      100% { opacity: 1; background-position: 0 0; }
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
   </style>
 </head>
 <body>
@@ -100,10 +133,18 @@
     <!-- Hero Section -->
     <section class="hero">Welcome to OILToken</section>
 
-    <!-- Exchange -->
+    <!-- Hero Buttons -->
+    <div class="hero-nav">
+      <a href="WhitePaper.html">WhitePaper</a>
+      <a href="Roadmap.html">Roadmap</a>
+      <a href="Tokenomics.html">Tokenomics</a>
+      <a href="Description.html">Description</a>
+    </div>
+
+    <!-- Exchange Card -->
     <article class="card reveal">
       <h2>Oiltoken Exchange (coming soon)</h2>
-      <p>We plan integration with DEX/aggregators. For swap preview, use Ston.fi link below.</p>
+      <p>Integration with DEX/aggregators. Preview swaps via Ston.fi link below.</p>
       <p>
         <a href="https://app.ston.fi/swap" target="_blank">Ston.fi — Swap</a> |
         <a href="https://tonviewer.com/EQBKYEHMfMRcplj_7eVsBHW1RnqXf-PO8XP-xISXRRu-XA7q" target="_blank">TON Viewer</a>
@@ -126,7 +167,7 @@
       <h2>About Oilgram</h2>
       <p>
         Oilgram is a P2P voice-call subsystem inside the OILToken platform.
-        Users can register, choose a 10-digit number starting with 666, and make secure P2P calls.
+        Users register, choose a 10-digit number starting with 666, and make secure P2P calls.
       </p>
       <ol>
         <li>Sign up with email & password (verification required).</li>
@@ -149,6 +190,7 @@
     <footer>© 2025 OILToken — All rights reserved</footer>
   </div>
 
+  <!-- Scroll Reveal JS -->
   <script>
     const revealElements = document.querySelectorAll('.card');
     function revealOnScroll() {
@@ -164,4 +206,4 @@
     window.addEventListener('load', revealOnScroll);
   </script>
 </body>
-          </html>
+</html>
